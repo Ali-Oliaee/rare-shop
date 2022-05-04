@@ -1,0 +1,87 @@
+{
+   "products": [
+      {
+         "name": "کیف پول چرم جانتا مدل 124",
+         "category": "15",
+         "brand": "جانتا",
+         "price": "120000",
+         "inventory": "12",
+         "description": "اکارتی ها ابزار و پوشش برای محافظت و نگهداری از همه ی کارت های مهم یک فرد، به خصوص کارت های بانکی هستند. جاکارتی جدید مجموعه ی چرم جانتا از طراحی ساده و در عین حال کاربردی برخوردار است. از لحاظ جنس، این جاکارتی از متریال چرم طبیعی مرغوب و منعطف ساخته شده است. این محصول در رنگ بندی متنوع و زیبا ساخته شده که تمام سلیقه ها را پوشش می دهد. برشی به اندازه انگشت شصت روی سطح رویی محصول طراحی شده است.",
+         "images": "c4e5c64298b479e9881aa323206920a3",
+         "thumbnail": "c4e5c64298b479e9881aa323206920a3",
+         "id": 9
+      }
+   ],
+   "category": [
+      {
+         "id": 1,
+         "name": "کت، جلیقه و ست رسمی مردانه",
+         "createdAt": 1643375019984
+      }
+   ],
+   "users": [
+      {
+         "name": "Amir hossein Mahdioun",
+         "username": "admin",
+         "password": "admin",
+         "role": "admin"
+      }
+   ],
+   "orders": [
+      {
+         "customerDetail": {
+            "username": "admin",
+            "firstName": "حسین",
+            "lastName": "رئیسی",
+            "phone": "09121211211",
+            "billingAddress": "Tehran - tajrish",
+            "shippingAddress": "Tehran- azadi"
+         },
+         "id": 2,
+         "location": "21111,2000,3333",
+         "orderNumber": "2122",
+         "orderDate": 1643396897495,
+         "purchaseTotal": "220000",
+         "orderStatus": 1,
+         "delivery": 1643396897495,
+         "deliveredAt": 1646222643757,
+         "orderItems": [
+            {
+               "name": "Test product",
+               "thumbnail": "65ddd8b1bbce4d8396b62611147fa1d6",
+               "price": "12000",
+               "quantity": "12"
+            }
+         ]
+      }
+   ],
+   "orderStatus": [
+      {
+         "id": 1,
+         "status": "Completed"
+      },
+      {
+         "id": 2,
+         "status": "Processing"
+      }
+   ],
+   "whoami": {
+      "name": "Amir hossein Mahdioun",
+      "username": "admin",
+      "password": "admin",
+      "role": "admin"
+   },
+   "protection": {
+      "products.get": false,
+      "products": "admin",
+      "products.post": false,
+      "products.put": false,
+      "products.delete": false,
+      "orders.post": false,
+      "upload": false,
+      "orders": "admin",
+      "orders.put": false,
+      "users": "admin",
+      "protection": "admin"
+   }
+}
