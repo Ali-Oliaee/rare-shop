@@ -1,0 +1,16 @@
+{
+  "products": [
+    {
+      "name": "asus laptop",
+      "category": "عینک",
+      "subCategory": "اسپرت",
+      "image": "https://i.pinimg.com/564x/86/28/93/8628931322307af9263bc07d05b76716.jpg",
+      "price": "۴۵۰۰۰۰",
+      "createdAt": 1622901942857,
+      "id": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
