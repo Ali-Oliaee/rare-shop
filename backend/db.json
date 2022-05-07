@@ -1,87 +1,166 @@
 {
-   "products": [
-      {
-         "name": "کیف پول چرم جانتا مدل 124",
-         "category": "15",
-         "brand": "جانتا",
-         "price": "120000",
-         "inventory": "12",
-         "description": "اکارتی ها ابزار و پوشش برای محافظت و نگهداری از همه ی کارت های مهم یک فرد، به خصوص کارت های بانکی هستند. جاکارتی جدید مجموعه ی چرم جانتا از طراحی ساده و در عین حال کاربردی برخوردار است. از لحاظ جنس، این جاکارتی از متریال چرم طبیعی مرغوب و منعطف ساخته شده است. این محصول در رنگ بندی متنوع و زیبا ساخته شده که تمام سلیقه ها را پوشش می دهد. برشی به اندازه انگشت شصت روی سطح رویی محصول طراحی شده است.",
-         "images": "c4e5c64298b479e9881aa323206920a3",
-         "thumbnail": "c4e5c64298b479e9881aa323206920a3",
-         "id": 9
-      }
-   ],
-   "category": [
-      {
-         "id": 1,
-         "name": "کت، جلیقه و ست رسمی مردانه",
-         "createdAt": 1643375019984
-      }
-   ],
-   "users": [
-      {
-         "name": "Amir hossein Mahdioun",
-         "username": "admin",
-         "password": "admin",
-         "role": "admin"
-      }
-   ],
-   "orders": [
-      {
-         "customerDetail": {
-            "username": "admin",
-            "firstName": "حسین",
-            "lastName": "رئیسی",
-            "phone": "09121211211",
-            "billingAddress": "Tehran - tajrish",
-            "shippingAddress": "Tehran- azadi"
-         },
-         "id": 2,
-         "location": "21111,2000,3333",
-         "orderNumber": "2122",
-         "orderDate": 1643396897495,
-         "purchaseTotal": "220000",
-         "orderStatus": 1,
-         "delivery": 1643396897495,
-         "deliveredAt": 1646222643757,
-         "orderItems": [
-            {
-               "name": "Test product",
-               "thumbnail": "65ddd8b1bbce4d8396b62611147fa1d6",
-               "price": "12000",
-               "quantity": "12"
-            }
-         ]
-      }
-   ],
-   "orderStatus": [
-      {
-         "id": 1,
-         "status": "Completed"
-      },
-      {
-         "id": 2,
-         "status": "Processing"
-      }
-   ],
-   "whoami": {
+  "products": [
+    {
+      "name": "شلوار بگی آبی تیره",
+      "category": "پوشاک",
+      "subCategory": "شلوار",
+      "price": "۴۷۰۰۰۰",
+      "inventory": "۴۰",
+      "images": "['https://res.cloudinary.com/dyfm9za7h/image/upload/v1651775430/1634783177b79d245e0189065044bf90d3c8fd0357_thumbnail_900x_ddo2na.webp','https://res.cloudinary.com/dyfm9za7h/image/upload/v1651775430/1634783183bf4e75f23bc491945c0b9d3e46278b9f_thumbnail_900x_uggekx.webp','https://res.cloudinary.com/dyfm9za7h/image/upload/v1651775430/1634783174d42b290f7b59a9c02296c7f360f610c5_thumbnail_900x_gkfoxi.webp']",
+      "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
+      "image": "/files/5bbb103ba916e270ee9cbd4be345d635",
+      "createdAt": 1651775523056,
+      "id": 1
+    },
+    {
+      "name": "شلوار بگی نارنجی",
+      "category": "پوشاک",
+      "subCategory": "شلوار",
+      "price": "۵۵۰۰۰۰",
+      "inventory": "۴۲",
+      "images": "['https://res.cloudinary.com/dyfm9za7h/image/upload/v1651775624/16480875229b0f9049e9e5ec214bae879dac3e2722_thumbnail_900x_ffi149.webp','https://res.cloudinary.com/dyfm9za7h/image/upload/v1651775625/1648087525ebc4ac3a35c764210871451e25e620ee_thumbnail_900x_rbx4mq.webp','https://res.cloudinary.com/dyfm9za7h/image/upload/v1651775627/164808752794faf1d3047c9ed4b664259f719b47d1_thumbnail_900x_fiv4yp.webp']",
+      "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
+      "image": "/files/b081e1aa932f0611fe21603465a2579d",
+      "createdAt": 1651775684637,
+      "id": 2
+    },
+    {
+      "name": "شلوار بگی طرحدار",
+      "category": "پوشاک",
+      "subCategory": "شلوار",
+      "price": "۶۳۰۰۰۰",
+      "inventory": "۲۵",
+      "images": "['https://res.cloudinary.com/dyfm9za7h/image/upload/v1651775787/16173515660ca41a483f9f260506e4073dc30ac729_thumbnail_900x_sgsgbd.webp','https://res.cloudinary.com/dyfm9za7h/image/upload/v1651775786/1617351572919d68c507b2a000ccf97ab343743413_thumbnail_900x_equxhk.webp','https://res.cloudinary.com/dyfm9za7h/image/upload/v1651775786/161735156317342ea8a98f946fa2c91bb06ae2131d_thumbnail_900x_iwfla6.webp']",
+      "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
+      "image": "/files/048454da2ba3f71514bbccc0860fd59c",
+      "createdAt": 1651775836660,
+      "id": 3
+    },
+    {
+      "name": "شلواربوی فرند زاپ دار",
+      "category": "پوشاک",
+      "subCategory": "شلوار",
+      "price": "۷۴۰۰۰۰",
+      "inventory": "۳۰",
+      "images": "['https://res.cloudinary.com/dyfm9za7h/image/upload/v1651775962/163109353288523b260a4744218b825af91b247622_thumbnail_900x_b6ystf.webp','https://res.cloudinary.com/dyfm9za7h/image/upload/v1651775961/163109352391f2f6197925f801d604f0f52ea7b724_thumbnail_900x_e6uimm.webp','https://res.cloudinary.com/dyfm9za7h/image/upload/v1651775961/16310935253b1b212132090b26121609216e7c7572_thumbnail_900x_dfkc9a.webp']",
+      "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
+      "image": "/files/d5c85b3200a222268d88db502645c062",
+      "createdAt": 1651776012626,
+      "id": 4
+    },
+    {
+      "name": "شلوار بوت کات چرم مشکی",
+      "categoryId": "1",
+      "subCategoryId": "1",
+      "price": "۸۵۰۰۰۰",
+      "inventory": "۳۰",
+      "images": "['https://res.cloudinary.com/dyfm9za7h/image/upload/v1651776201/16309097432ac2ad1d8efed778692f5976013394a2_thumbnail_900x_yhziig.webp','https://res.cloudinary.com/dyfm9za7h/image/upload/v1651776201/16309097415f4ba8016d96f4d5a4ee74602867a7a2_thumbnail_900x_ur9vmg.webp','https://res.cloudinary.com/dyfm9za7h/image/upload/v1651776201/16309097432ac2ad1d8efed778692f5976013394a2_thumbnail_900x_yhziig.webp']",
+      "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
+      "image": "/files/9d48f3e0e9de147ca82ad686ae401aaa",
+      "createdAt": 1651776294180,
+      "id": 5
+    },
+    {
+      "name": "شلوار بوت کات چرم قرمز",
+      "categoryId": "1",
+      "subCategoryId": "1",
+      "price": "۸۵۰۰۰۰",
+      "inventory": "۳۲",
+      "images": "['https://res.cloudinary.com/dyfm9za7h/image/upload/v1651776357/16497531719eb9524d3b140e3269794dea4f1942b4_thumbnail_900x_wgfxkd.webp','https://res.cloudinary.com/dyfm9za7h/image/upload/v1651776358/16497531683d61457c005240778f1d35ed389b5417_thumbnail_900x_dqgbld.webp','https://res.cloudinary.com/dyfm9za7h/image/upload/v1651776358/16497531665e7d642bb029978277b00c268a80f81c_thumbnail_900x_p9zxjm.webp']",
+      "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
+      "image": "/files/f4aea10f1750e1a665098a1519931c23",
+      "createdAt": 1651776404516,
+      "id": 6
+    },
+    {
+      "name": "شلوار جین راسته سبز جلبکی",
+      "categoryId": "1",
+      "subCategoryId": "1",
+      "price": "۵۷۰۰۰۰",
+      "inventory": "۵۵",
+      "images": "['https://res.cloudinary.com/dyfm9za7h/image/upload/v1651776498/1636535400d1a54106fb681407215335b91641e9e0_thumbnail_900x_jvolos.webp','https://res.cloudinary.com/dyfm9za7h/image/upload/v1651776514/16365354520eae6d4de04108180867bc0b747dede4_thumbnail_900x_umoiti.webp','https://res.cloudinary.com/dyfm9za7h/image/upload/v1651776518/16365354447c40a9efbdccdbb408794e4d04d8f9e1_thumbnail_900x_z51q9y.webp']",
+      "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
+      "image": "/files/7a6116124e277fba9376f616b25d247b",
+      "createdAt": 1651776630150,
+      "id": 7
+    },
+    {
+      "name": "شلوار جین بگ طرح گاوی بنفش",
+      "categoryId": "1",
+      "subCategoryId": "1",
+      "price": "۶۴۵۰۰۰",
+      "inventory": "۵۲",
+      "images": "['30068032963408793676f385f332a014','30068032963408793676f385f332a014','30068032963408793676f385f332a014','30068032963408793676f385f332a014']",
+      "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
+      "image": "30068032963408793676f385f332a014",
+      "createdAt": 1651776784417,
+      "id": 8
+    }
+  ],
+  "category": [],
+  "users": [
+    {
       "name": "Amir hossein Mahdioun",
       "username": "admin",
       "password": "admin",
       "role": "admin"
-   },
-   "protection": {
-      "products.get": false,
-      "products": "admin",
-      "products.post": false,
-      "products.put": false,
-      "products.delete": false,
-      "orders.post": false,
-      "upload": false,
-      "orders": "admin",
-      "orders.put": false,
-      "users": "admin",
-      "protection": "admin"
-   }
+    }
+  ],
+  "orders": [
+    {
+      "customerDetail": {
+        "username": "admin",
+        "firstName": "حسین",
+        "lastName": "رئیسی",
+        "phone": "09121211211",
+        "billingAddress": "Tehran - tajrish",
+        "shippingAddress": "Tehran- azadi"
+      },
+      "id": 2,
+      "location": "21111,2000,3333",
+      "orderNumber": "2122",
+      "orderDate": 1643396897495,
+      "purchaseTotal": "220000",
+      "orderStatus": 1,
+      "delivery": 1643396897495,
+      "deliveredAt": 1646222643757,
+      "orderItems": [
+        {
+          "name": "Test product",
+          "thumbnail": "65ddd8b1bbce4d8396b62611147fa1d6",
+          "price": "12000",
+          "quantity": "12"
+        }
+      ]
+    }
+  ],
+  "orderStatus": [
+    {
+      "id": 1,
+      "status": "Completed"
+    },
+    {
+      "id": 2,
+      "status": "Processing"
+    }
+  ],
+  "whoami": {
+    "name": "Amir hossein Mahdioun",
+    "username": "admin",
+    "password": "admin",
+    "role": "admin"
+  },
+  "protection": {
+    "products.get": false,
+    "products": "admin",
+    "products.post": false,
+    "products.put": false,
+    "products.delete": false,
+    "orders.post": false,
+    "upload": false,
+    "orders": "admin",
+    "orders.put": false,
+    "users": "admin",
+    "protection": "admin"
+  }
 }
