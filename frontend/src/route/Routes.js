@@ -1,40 +1,50 @@
-import Home from "../pages/Home";
+import Home from "../pages/User/Home";
 import Product from "../pages/User/Product";
 import Payment from "../pages/User/Payment";
 import Cart from "../pages/User/Cart";
-import Login from "../components/Admin/Login/Login";
+// import Login from "../components/Admin/Login/Login";
 import Paneladmin from "../components/Admin/Panel/PanelAdmin";
-const routes = [
+import UserLayout from "../components/User/Layout";
+
+export const routes = [
    {
-      path: "/home",
-      component: <Home />,
+      path: "/",
+      component: (
+         <UserLayout>
+            <Home />
+         </UserLayout>
+      ),
       isPrivate: false,
-      layout: "user",
    },
    {
-      path: "/product/id", ///////code spliting
-      component: <Product />,
+      path: "/product/id",
+      component: (
+         <UserLayout>
+            <Product />
+         </UserLayout>
+      ),
       isPrivate: false,
-      layout: "user",
    },
    {
       path: "/payment",
       component: <Payment />,
       isPrivate: false,
-      layout: "user",
    },
    {
       path: "/cart",
-      component: <Cart />,
+      component: (
+         <UserLayout>
+            <Cart />
+         </UserLayout>
+      ),
       isPrivate: false,
-      layout: "user",
    },
-   {
-      path: "/login",
-      component: <Login />,
-      isPrivate: false,
-      layout: "user",
-   },
+   // {
+   //    path: "/login",
+   //    component: <Login />,
+   //    isPrivate: false,
+   //    layout: "user",
+   // },
    {
       path: "/adminPanel",
       component: <Paneladmin />,
