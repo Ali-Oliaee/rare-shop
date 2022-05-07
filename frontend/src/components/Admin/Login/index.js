@@ -1,7 +1,7 @@
 import { TextField, Button, Container, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
-import Image from "./nudewallpaper.jpeg";
+import Image from "../../../assets/pic/nudewallpaper.jpeg"
 const useStyle = makeStyles({
    root: {
       padding: 80,

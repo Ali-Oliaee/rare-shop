@@ -3,7 +3,7 @@ import axios from "axios";
 import ProductCard from "../../components/User/Product/ProductCard";
 import { Grid } from "@mui/material";
 import NewProductTable from "../../components/User/Table/MyTable";
-
+import Login from "../../components/Admin/Login";
 const Home = () => {
    const text = "<script>console.log('hello')</script>";
    return (
@@ -31,7 +31,7 @@ const Home = () => {
             </Grid>
          </Grid>
          {/* <NewProductTable/>     */}
-         {/* <Login/> */}
+         <Login/>
       </>
    );
 };
