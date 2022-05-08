@@ -1,15 +1,16 @@
 import axios from 'axios'
 import { TOKEN_LOCAL_KEY } from "../core/constants"
 import store from "../redux/store"
-import { startLoading, endLoading } from "redux/actions/loading.action"
-
+import { setLoading } from '../redux/reducers/adminSlice';
+import { useSelector, useDispatch } from 'react-redux'
 class Service {
     constructor(entity){
         this.instance = axios.create();
-        // this.entity = entity;
-        // this.baseApisUrl = `/api${this.entity}`
+        this.entity = entity;
+        this.dispatch = useDispatch()
+        this.baseApisUrl = `/api${this.entity}`
         this.instance.interceptors.request.use((config) => {
-            store.dispatch(startLoading())
+            this.dispatch(setLoading(true))
             const token = localStorage.getItem(TOKEN_LOCAL_KEY);
                 if (token) {
                   config.headers["x-auth-token"] = token;
@@ -20,14 +21,14 @@ class Service {
         });
         
         this.instance.interceptors.response.use(res => {
-            store.dispatch(endLoading())
+             this.dispatch(setLoading(false))
             const {status} = res;
             if(status>=400){
                 window.location.pathname = '/404'
             }
             return res
         }, (error)=> {
-            store.dispatch(endLoading())
+            this.dispatch(setLoading(false))
             return Promise.reject(error);
         });
         
@@ -35,9 +36,6 @@ class Service {
         this.instance.defaults.baseURL = process.env.REACT_APP_SUB_API;
     }
 
-    gets = (config)=>{
-        return this.instance.get(this.baseApisUrl, config)
-    }
     
     get = (id, config)=>{
         return this.instance.get(`${this.baseApisUrl}/${id}`, config)
