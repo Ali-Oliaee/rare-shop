@@ -2,11 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const adminSlice = createSlice({
   name: 'admin',
-  initialState:{},
+  initialState:{
+    loadingStatus: false,
+  },
   reducers: {
-    setAdmin: (state, action) => {
+    setLoading: (state, action) => {
       return action.payload
     },
     
   }
 })
+export const { setLoading } = adminSlice.actions;
+
+export default adminSlice.reducer;

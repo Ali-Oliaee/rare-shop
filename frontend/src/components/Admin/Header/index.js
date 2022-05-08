@@ -32,7 +32,7 @@ const Header = () => {
    return (
       <>
 
-            {/* <AppBar sx={{ background: "black" }} position="static">
+            <AppBar sx={{ background: "black" }} position="static">
                <Container maxWidth="xl">
                   <Toolbar disableGutters>
                      <Box
@@ -64,7 +64,7 @@ const Header = () => {
                      </Typography>
                   </Toolbar>
                </Container>
-            </AppBar> */}
+            </AppBar>
       </>
    );
 };
