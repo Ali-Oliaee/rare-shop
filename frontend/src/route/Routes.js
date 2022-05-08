@@ -2,10 +2,9 @@ import Home from "../pages/User/Home";
 import Product from "../pages/User/Product";
 import Payment from "../pages/User/Payment";
 import Cart from "../pages/User/Cart";
-// import Login from "../components/Admin/Login/Login";
-import Paneladmin from "../components/Admin/Panel/PanelAdmin";
+import Login from "../components/Admin/Login";
 import UserLayout from "../components/User/Layout";
-
+import Adminpanel from "../pages/Admin/AdminPanel";
 export const routes = [
    {
       path: "/",
@@ -39,15 +38,15 @@ export const routes = [
       ),
       isPrivate: false,
    },
-   // {
-   //    path: "/login",
-   //    component: <Login />,
-   //    isPrivate: false,
-   //    layout: "user",
-   // },
+   {
+      path: "/login",
+      component: <Login />,
+      isPrivate: false,
+      layout: "user",
+   },
    {
       path: "/adminPanel",
-      component: <Paneladmin />,
+      component: <Adminpanel />,
       isPrivate: false,
       layout: "admin",
    },
