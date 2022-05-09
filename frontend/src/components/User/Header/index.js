@@ -8,7 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import "./Header.scss";
 
 const UserHeader = () => {
@@ -54,17 +54,22 @@ const UserHeader = () => {
                   </Box>
 
                   <Box sx={{ flexGrow: 1, display: "flex" }}>
-                     <Button
-                        onClick={handleCloseNavMenu}
-                        sx={{
-                           my: 2,
-                           display: "block",
-                           color: "white",
-                           fontSize: 20,
-                        }}
+                     <Link
+                        to="/login"
+                        style={{ textDecoration: "none", color: "black" }}
                      >
-                        مدیریت
-                     </Button>
+                        <Button
+                           onClick={handleCloseNavMenu}
+                           sx={{
+                              my: 2,
+                              display: "block",
+                              color: "white",
+                              fontSize: 20,
+                           }}
+                        >
+                           مدیریت
+                        </Button>
+                     </Link>
                      <Button
                         onClick={handleCloseNavMenu}
                         sx={{ my: 2, display: "block", color: "white" }}

@@ -12,6 +12,12 @@ export default function ProductCard() {
 
   return (
     <Card sx={{ display: 'flex' ,background:"#F4D7C0", borderRadius:0, padding:1}}>
+      <CardMedia
+        component="img"
+        sx={{ width: 200,height:200, ml: "auto"}}
+        image="http://localhost:8000/files/5d2ca5838324280e32a9738cf989fb12"
+        alt="شلوار"
+      />
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems:'self-end' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography  component="div" variant="h5">
@@ -23,12 +29,6 @@ export default function ProductCard() {
         </CardContent>
        
       </Box>
-      <CardMedia
-        component="img"
-        sx={{ width: 200,height:200, ml: "auto"}}
-        image="http://localhost:8000/files/16c1dee66820467acc7b0d2c3ff064f7"
-        alt="شلوار"
-      />
     </Card>
   );
 }

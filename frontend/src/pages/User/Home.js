@@ -31,7 +31,6 @@ const Home = () => {
             </Grid>
          </Grid>
          {/* <NewProductTable/>     */}
-         <Login/>
       </>
    );
 };

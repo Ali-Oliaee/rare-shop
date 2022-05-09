@@ -1,10 +1,12 @@
+import AllProducts from "../../components/Admin/ProductsTable/index";
 import AdminLayout from "../../components/Admin/Layout";
-import GoodsTable from "../../components/Admin/Table";
+import Orders from "../../components/Admin/Orders/Orders";
 
 const Adminpanel = () => {
    return (
       <AdminLayout>
-         <GoodsTable />
+         <Orders/>
+         <AllProducts/>
       </AdminLayout>
    );
 };

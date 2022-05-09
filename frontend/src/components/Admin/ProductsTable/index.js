@@ -14,7 +14,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { ProductApi } from "../../../api/products";
+import { ProductApi } from "../../../api/Products";
 import { AdminApi } from "../../../api/AdminApi";
 import { BASE_URL } from "../../../core/constants";
 const useStyle = makeStyles({
@@ -32,29 +32,13 @@ const useStyle = makeStyles({
          flexDirection: "row-reverse",
       },
    },
-   // pagination: {
-   //    "& p": {
-   //       color: "red",
-   //    },
-   // },
 });
-const columns = [
-   { id: "image", label: "image", minWidth: 170 },
-   { id: "name", label: "", minWidth: 170 },
-   { id: "code", label: "ISO\u00a0Code", minWidth: 100 },
-   {
-      id: "deletedit",
-      label: "",
-      minWidth: 170,
-   },
-];
+
 function createData(name, image, category, delit) {
    return { name, image, category, delit };
 }
 
-const rows = [createData("India", "IN", 1324171354)];
-
-export default function GoodsTable() {
+export default function AllProducts() {
    const [page, setPage] = React.useState(0);
    const [rowsPerPage, setRowsPerPage] = React.useState(10);
    const [category, setCategory] = React.useState([]);
@@ -65,7 +49,7 @@ export default function GoodsTable() {
       const func = async () => {
          // const requestedCategoryId = await AdminApi.category({})
          const data = await ProductApi.gets({
-            params: { _page: 1, _limit: 10, name: category },
+            params: { _page: page, _limit: rowsPerPage, categoryId: category },
          });
          setProducts(data.data);
       };
@@ -74,6 +58,7 @@ export default function GoodsTable() {
 
    const handleChange = (event) => {
       let requestedCategory = event.target.value;
+      console.log(requestedCategory);
       setCategory(requestedCategory);
    };
 
@@ -85,6 +70,7 @@ export default function GoodsTable() {
       setRowsPerPage(+event.target.value);
       setPage(0);
    };
+   console.log(rowsPerPage);
 
    return (
       <Paper className={classes.root} sx={{ borderRadius: 0 }}>
@@ -109,12 +95,12 @@ export default function GoodsTable() {
                               onChange={handleChange}
                               label="Age"
                            >
-                              <MenuItem value="">
+                              {/* <MenuItem value="">
                                  <em>None</em>
-                              </MenuItem>
-                              <MenuItem value={10}>پوشاک</MenuItem>
-                              <MenuItem value={20}>کیف و کفش</MenuItem>
-                              <MenuItem value={30}>اکسسوری</MenuItem>
+                              </MenuItem> */}
+                              <MenuItem value={1}>پوشاک</MenuItem>
+                              <MenuItem value={2}>کیف و کفش</MenuItem>
+                              <MenuItem value={3}>اکسسوری</MenuItem>
                            </Select>
                         </FormControl>
                      </TableCell>
@@ -144,25 +130,11 @@ export default function GoodsTable() {
                                  />
                               </TableCell>
                               <TableCell>{row.name}</TableCell>
-                              <TableCell>{row.subCategory}</TableCell>
+                              <TableCell>{row.subCategoryId}</TableCell>
                               <TableCell>
                                  <DeleteIcon />
                                  <EditIcon />
                               </TableCell>
-                              {/* {columns.map((column) => {
-                                 const value = row[column.id];
-                                 return (
-                                    <TableCell
-                                       key={column.id}
-                                       align={column.align}
-                                    >
-                                       {column.format &&
-                                       typeof value === "number"
-                                          ? column.format(value)
-                                          : value}
-                                    </TableCell>
-                                 );
-                              })} */}
                            </TableRow>
                         );
                      })}
@@ -174,7 +146,7 @@ export default function GoodsTable() {
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
             labelRowsPerPage="صفحه"
-            count={rows.length}
+            count={products.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
