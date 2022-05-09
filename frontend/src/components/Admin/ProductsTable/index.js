@@ -38,11 +38,6 @@ function createData(name, image, category, delit) {
    return { name, image, category, delit };
 }
 
-<<<<<<< HEAD
-=======
-const rows = [createData("India", "IN", 1324171354)];
-
->>>>>>> feat/login
 export default function AllProducts() {
    const [page, setPage] = React.useState(0);
    const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -74,7 +69,7 @@ export default function AllProducts() {
       setRowsPerPage(+event.target.value);
       setPage(0);
    };
-   console.log(rowsPerPage)
+   console.log(rowsPerPage);
 
    return (
       <Paper className={classes.root} sx={{ borderRadius: 0 }}>
@@ -139,7 +134,6 @@ export default function AllProducts() {
                                  <DeleteIcon />
                                  <EditIcon />
                               </TableCell>
-
                            </TableRow>
                         );
                      })}
@@ -151,7 +145,7 @@ export default function AllProducts() {
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
             labelRowsPerPage="صفحه"
-            count={rows.length}
+            count={products.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

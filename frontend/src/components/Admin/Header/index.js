@@ -7,8 +7,7 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import { ThemeProvider } from "styled-components";
-
-
+import { Link } from "react-router-dom";
 
 const Header = () => {
    const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -31,40 +30,50 @@ const Header = () => {
 
    return (
       <>
-
-            {/* <AppBar sx={{ background: "black" }} position="static">
-               <Container maxWidth="xl">
-                  <Toolbar disableGutters>
-                     <Box
-                        sx={{
-                           flexGrow: 1,
-                           display: { xs: "flex", md: "none" },
-                        }}
+         <AppBar sx={{ background: "black" }} position="static">
+            <Container maxWidth="xl">
+               <Toolbar disableGutters>
+                  <Box
+                     sx={{
+                        flexGrow: 1,
+                        display: { xs: "flex", md: "none" },
+                     }}
+                  >
+                     <IconButton
+                        size="large"
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        onClick={handleOpenNavMenu}
+                        color="inherit"
                      >
-                        <IconButton
-                           size="large"
-                           aria-label="account of current user"
-                           aria-controls="menu-appbar"
-                           aria-haspopup="true"
-                           onClick={handleOpenNavMenu}
-                           color="inherit"
-                        >
-                           <MenuIcon />
-                        </IconButton>
-                     </Box>
+                        <MenuIcon />
+                     </IconButton>
+                  </Box>
 
-                     <Typography
-                        className="logo-shop"
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ marginTop: "auto", fontSize: 24 }}
-                     >
-                        Rare Shop
-                     </Typography>
-                  </Toolbar>
-               </Container>
-            </AppBar> */}
+                  <Typography
+                     className="logo-shop"
+                     variant="h6"
+                     noWrap
+                     component="div"
+                     sx={{ marginTop: "auto", fontSize: 24 }}
+                  >
+                     Rare Shop
+                  </Typography>
+               </Toolbar>
+               <ul className="links-ul">
+                  <li >
+                     <Link to="/products">کالا ها</Link>
+                  </li>
+                  <li >
+                     <a href="/inventory">موجودی و قیمت ها</a>
+                  </li>
+                  <li >
+                     <a href="/accessory">سفارش ها</a>
+                  </li>
+               </ul>
+            </Container>
+         </AppBar>
       </>
    );
 };
