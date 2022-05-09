@@ -9,7 +9,7 @@ function App() {
       <ThemeProvider theme={theme}>
          <Routes>
             {routes.map((rout, index) => (
-               <Route path={rout.path} element={rout.component} />
+               <Route key={rout.path} path={rout.path} element={rout.component} />
             ))}
          </Routes>
       </ThemeProvider>
