@@ -14,6 +14,9 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { ProductApi } from "../../../api/products";
+import { AdminApi } from "../../../api/AdminApi";
+import { BASE_URL } from "../../../core/constants";
 const useStyle = makeStyles({
    root: {
       width: "70%",
@@ -24,22 +27,25 @@ const useStyle = makeStyles({
       "& .table_row:hover": {
          background: "#E6BC98",
       },
-   },
-   pagination: {
-      "& p": {
-         color: "red",
+      "& .MuiTablePagination-actions": {
+         display: "flex",
+         flexDirection: "row-reverse",
       },
    },
+   // pagination: {
+   //    "& p": {
+   //       color: "red",
+   //    },
+   // },
 });
 const columns = [
-   { id: "name", label: "Name", minWidth: 170 },
+   { id: "image", label: "image", minWidth: 170 },
+   { id: "name", label: "", minWidth: 170 },
    { id: "code", label: "ISO\u00a0Code", minWidth: 100 },
    {
-      id: "population",
-      label: "Population",
+      id: "deletedit",
+      label: "",
       minWidth: 170,
-      align: "right",
-      format: (value) => value.toLocaleString("en-US"),
    },
 ];
 function createData(name, image, category, delit) {
@@ -51,11 +57,24 @@ const rows = [createData("India", "IN", 1324171354)];
 export default function GoodsTable() {
    const [page, setPage] = React.useState(0);
    const [rowsPerPage, setRowsPerPage] = React.useState(10);
-   const [age, setAge] = React.useState("");
+   const [category, setCategory] = React.useState([]);
+   const [products, setProducts] = React.useState([]);
    const classes = useStyle();
 
+   React.useEffect(() => {
+      const func = async () => {
+         // const requestedCategoryId = await AdminApi.category({})
+         const data = await ProductApi.gets({
+            params: { _page: 1, _limit: 10, name: category },
+         });
+         setProducts(data.data);
+      };
+      func();
+   }, [category]);
+
    const handleChange = (event) => {
-      setAge(event.target.value);
+      let requestedCategory = event.target.value;
+      setCategory(requestedCategory);
    };
 
    const handleChangePage = (event, newPage) => {
@@ -73,7 +92,7 @@ export default function GoodsTable() {
             <Table stickyHeader aria-label="sticky table">
                <TableHead>
                   <TableRow className={classes.table_row}>
-                     <TableCell style={{ minWidth: 100 }}>تصویر</TableCell>
+                     <TableCell style={{ minWidth: 60 }}>تصویر</TableCell>
                      <TableCell style={{ minWidth: 100 }}>نام محصول</TableCell>
                      <TableCell style={{ minWidth: 100 }}>
                         <FormControl
@@ -86,23 +105,24 @@ export default function GoodsTable() {
                            <Select
                               labelId="demo-simple-select-standard-label"
                               id="demo-simple-select-standard"
-                              value={age}
+                              value={category}
                               onChange={handleChange}
                               label="Age"
                            >
-                              {/* <MenuItem value="">
+                              <MenuItem value="">
                                  <em>None</em>
-                              </MenuItem> */}
+                              </MenuItem>
                               <MenuItem value={10}>پوشاک</MenuItem>
                               <MenuItem value={20}>کیف و کفش</MenuItem>
                               <MenuItem value={30}>اکسسوری</MenuItem>
                            </Select>
                         </FormControl>
                      </TableCell>
+                     <TableCell></TableCell>
                   </TableRow>
                </TableHead>
                <TableBody>
-                  {rows
+                  {Object.values(products)
                      .slice(
                         page * rowsPerPage,
                         page * rowsPerPage + rowsPerPage
@@ -116,7 +136,20 @@ export default function GoodsTable() {
                               tabIndex={-1}
                               key={row.code}
                            >
-                              {columns.map((column) => {
+                              <TableCell>
+                                 <img
+                                    style={{ maxWidth: 60 }}
+                                    src={BASE_URL + row.image}
+                                    alt="تصویر کالا"
+                                 />
+                              </TableCell>
+                              <TableCell>{row.name}</TableCell>
+                              <TableCell>{row.subCategory}</TableCell>
+                              <TableCell>
+                                 <DeleteIcon />
+                                 <EditIcon />
+                              </TableCell>
+                              {/* {columns.map((column) => {
                                  const value = row[column.id];
                                  return (
                                     <TableCell
@@ -129,9 +162,7 @@ export default function GoodsTable() {
                                           : value}
                                     </TableCell>
                                  );
-                              })}
-                              <DeleteIcon />
-                              <EditIcon />
+                              })} */}
                            </TableRow>
                         );
                      })}
@@ -142,6 +173,7 @@ export default function GoodsTable() {
             className={classes.pagination}
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
+            labelRowsPerPage="صفحه"
             count={rows.length}
             rowsPerPage={rowsPerPage}
             page={page}

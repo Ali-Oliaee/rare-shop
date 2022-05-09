@@ -8,6 +8,7 @@ import { store } from "./redux/store";
 function App() {
    return (
       <ThemeProvider theme={theme}>
+<<<<<<< HEAD
          <Provider store={store}>
             <Routes>
                {routes.map((rout) => (
@@ -15,6 +16,13 @@ function App() {
                ))}
             </Routes>
          </Provider>
+=======
+         <Routes>
+            {routes.map((rout, index) => (
+               <Route key={rout.path} path={rout.path} element={rout.component} />
+            ))}
+         </Routes>
+>>>>>>> feat/admin-table
       </ThemeProvider>
    );
 }
