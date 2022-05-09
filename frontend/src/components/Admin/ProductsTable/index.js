@@ -38,6 +38,11 @@ function createData(name, image, category, delit) {
    return { name, image, category, delit };
 }
 
+<<<<<<< HEAD
+=======
+const rows = [createData("India", "IN", 1324171354)];
+
+>>>>>>> feat/login
 export default function AllProducts() {
    const [page, setPage] = React.useState(0);
    const [rowsPerPage, setRowsPerPage] = React.useState(10);

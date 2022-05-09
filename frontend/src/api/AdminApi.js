@@ -10,11 +10,11 @@ AdminApi.getAllProducts = function(config) {
   return this.instance.get(`${this.baseApisUrl}/products`, config)
 }
 
-AdminApi.login = function (body) {
-  return this.instance.post(`${this.baseApisUrl}/login`, body);
-};
-
 AdminApi.category = function (body) {
   return this.instance.get(`${this.baseApisUrl}/category`, body);
+};
+
+AdminApi.whoami = function () {
+  return this.instance.get(`${this.baseApisUrl}/whoami`);
 };
 export { AdminApi }
