@@ -3,7 +3,7 @@ import http from "./HttpApi"
 const AdminApi = new http("/");
 
 AdminApi.setNewProduct = function (body) {
-  return this.instance.post(`${this.baseApisUrl}/NewProduct`, body)
+  return this.instance.post(`${this.baseApisUrl}/newproduct`, body)
 }
 
 AdminApi.getAllProducts = function(config) {

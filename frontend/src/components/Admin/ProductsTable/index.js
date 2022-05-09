@@ -49,7 +49,7 @@ export default function AllProducts() {
       const func = async () => {
          // const requestedCategoryId = await AdminApi.category({})
          const data = await ProductApi.gets({
-            params: { _page: page, _limit: 20, categoryId: 3 },
+            params: { _page: page, _limit: rowsPerPage, categoryId: category },
          });
          setProducts(data.data);
       };
@@ -58,6 +58,7 @@ export default function AllProducts() {
 
    const handleChange = (event) => {
       let requestedCategory = event.target.value;
+      console.log(requestedCategory);
       setCategory(requestedCategory);
    };
 
@@ -97,9 +98,9 @@ export default function AllProducts() {
                               {/* <MenuItem value="">
                                  <em>None</em>
                               </MenuItem> */}
-                              <MenuItem value={10}>پوشاک</MenuItem>
-                              <MenuItem value={20}>کیف و کفش</MenuItem>
-                              <MenuItem value={30}>اکسسوری</MenuItem>
+                              <MenuItem value={1}>پوشاک</MenuItem>
+                              <MenuItem value={2}>کیف و کفش</MenuItem>
+                              <MenuItem value={3}>اکسسوری</MenuItem>
                            </Select>
                         </FormControl>
                      </TableCell>
@@ -129,7 +130,7 @@ export default function AllProducts() {
                                  />
                               </TableCell>
                               <TableCell>{row.name}</TableCell>
-                              <TableCell>{row.subCategory}</TableCell>
+                              <TableCell>{row.subCategoryId}</TableCell>
                               <TableCell>
                                  <DeleteIcon />
                                  <EditIcon />

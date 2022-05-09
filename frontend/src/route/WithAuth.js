@@ -4,11 +4,10 @@ import { AdminApi } from '../api/AdminApi';
 const WithAuth = ({ Component }) => {
 
   return function Authenticated ({...props}) {
-    alert("hello")
     let {user, pass} = AdminApi.whoami()
-   console.log(user, pass);
-   
-    return <Route path='/adminPanel' element={<Component/>}/>
+    console.log(user, pass);
+
+    
   }
 }
 
