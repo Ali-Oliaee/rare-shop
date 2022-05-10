@@ -14,7 +14,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { ProductApi } from "../../../api/Products";
 import { OrdersApi } from "../../../api/OrdersApi";
 import { BASE_URL } from "../../../core/constants";
 import Radio from "@mui/material/Radio";
@@ -33,9 +32,8 @@ const useStyle = makeStyles({
       "& .table_row:hover": {
          background: "#E6BC98",
       },
-      "& .MuiTablePagination-actions": {
-         display: "flex",
-         flexDirection: "row-reverse",
+      "& .MuiButtonBase-root svg": {
+         transform: "rotate(180deg)"
       },
    },
 });
@@ -43,28 +41,29 @@ const useStyle = makeStyles({
 export default function Orders() {
    const [page, setPage] = useState(0);
    const [rowsPerPage, setRowsPerPage] = useState(10);
-   const [category, setCategory] = useState([]);
+   const [arrange, setArrange] = useState(1);
    const [orders, setOrders] = useState([]);
    const [processOrders, setProcessOrders] = useState(true);
    const classes = useStyle();
 
    const filterOrdersByStatus = async () => {
       const orderStatus = processOrders ? 1 : 2;
+      const sortingStatus = arrange == 1 ? "asc" : "desc"
       const res = await OrdersApi.gets({
-         params: { orderStatus: orderStatus },
+         params: { _sort: sortingStatus , orderStatus: orderStatus },
       });
       setOrders(res.data);
    };
    
-   aray.reduce((acc, cv) => ({...acc,[cv.id]:cv.name}), {})
+   // aray.reduce((acc, cv) => ({...acc,[cv.id]:cv.name}), {})
 
    useEffect(() => {
       filterOrdersByStatus();
-   }, [processOrders]);
+   }, [processOrders, arrange]);
 
    const handleChange = (event) => {
       let requestedCategory = event.target.value;
-      setCategory(requestedCategory);
+      setArrange(requestedCategory);
    };
 
    const handleChangePage = (event, newPage) => {
@@ -75,7 +74,6 @@ export default function Orders() {
       setRowsPerPage(+event.target.value);
       setPage(0);
    };
-   console.log(rowsPerPage);
 
    return (
       <>
@@ -123,16 +121,11 @@ export default function Orders() {
                               <Select
                                  labelId="demo-simple-select-standard-label"
                                  id="demo-simple-select-standard"
-                                 value={category}
                                  onChange={handleChange}
                                  label="Age"
                               >
-                                 {/* <MenuItem value="">
-                                 <em>None</em>
-                              </MenuItem> */}
-                                 <MenuItem value={10}>پوشاک</MenuItem>
-                                 <MenuItem value={20}>کیف و کفش</MenuItem>
-                                 <MenuItem value={30}>اکسسوری</MenuItem>
+                                 <MenuItem value={1}>جدید ترین</MenuItem>
+                                 <MenuItem value={2}>قدیمی ترین</MenuItem>
                               </Select>
                            </FormControl>
                         </TableCell>

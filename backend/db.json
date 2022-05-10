@@ -999,7 +999,7 @@
   ],
   "categoryId": [
     {
-      "name": "کفش",
+      "name": "پوشاک",
       "id": 1,
       "createdAt": 1651926817260
     },
@@ -1081,6 +1081,32 @@
         "shippingAddress": "Tehran- azadi"
       },
       "id": 1,
+      "location": "21111,2000,3333",
+      "orderNumber": "2122",
+      "orderDate": 1651941133996,
+      "purchaseTotal": 220000,
+      "orderStatus": 1,
+      "delivery": 1643396897495,
+      "deliveredAt": 1646222643757,
+      "orderItems": [
+        {
+          "name": "Test product",
+          "thumbnail": "65ddd8b1bbce4d8396b62611147fa1d6",
+          "price": "12000",
+          "quantity": "12"
+        }
+      ]
+    },
+    {
+      "customerDetail": {
+        "username": "admin",
+        "firstName": "معصومه",
+        "lastName": "نادری",
+        "phone": "09017638913",
+        "billingAddress": "Tehran - piroozi",
+        "shippingAddress": "Tehran- azadi"
+      },
+      "id": 2,
       "location": "21111,2000,3333",
       "orderNumber": "2122",
       "orderDate": 1651941133996,

@@ -6,13 +6,12 @@ AdminApi.setNewProduct = function (body) {
   return this.instance.post(`${this.baseApisUrl}/newproduct`, body)
 }
 
-AdminApi.getAllProducts = function(config) {
-  return this.instance.get(`${this.baseApisUrl}/products`, config)
-}
-
-AdminApi.category = function (body) {
-  return this.instance.get(`${this.baseApisUrl}/category`, body);
+AdminApi.getCategoryId = function () {
+  return this.instance.get(`${this.baseApisUrl}categoryId`);
 };
+AdminApi.getSubCategoryId = function () {
+  return this.instance.get(`${this.baseApisUrl}subCategoryId`);
+}
 
 AdminApi.whoami = function () {
   return this.instance.get(`${this.baseApisUrl}/whoami`);

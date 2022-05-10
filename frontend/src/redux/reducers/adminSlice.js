@@ -1,22 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const adminSlice = createSlice({
-<<<<<<< HEAD
-  name: 'admin',
-  initialState:{
-    loadingStatus: false,
-  },
-  reducers: {
-    setLoading: (state, action) => {
-      return action.payload
-    },
+// <<<<<<< HEAD
+//   name: 'admin',
+//   initialState:{
+//     loadingStatus: false,
+//   },
+//   reducers: {
+//     setLoading: (state, action) => {
+//       return action.payload
+//     },
     
-  }
-})
-export const { setLoading } = adminSlice.actions;
+//   }
+// })
+// export const { setLoading } = adminSlice.actions;
 
-export default adminSlice.reducer;
-=======
+// export default adminSlice.reducer;
+// =======
    name: "admin",
    initialState: {},
    reducers: {
@@ -27,4 +27,4 @@ export default adminSlice.reducer;
 });
 export const { setLoading } = adminSlice.actions;
 export default adminSlice.reducer
->>>>>>> feat/admin-table
+

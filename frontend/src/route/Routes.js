@@ -48,7 +48,7 @@ export const routes = [
    {
       path: "/adminPanel",
       component: <Adminpanel />,
-      isPrivate: true,
+      isPrivate: false,
       layout: "admin",
    },
 ];

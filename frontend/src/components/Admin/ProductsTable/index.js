@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -27,38 +27,40 @@ const useStyle = makeStyles({
       "& .table_row:hover": {
          background: "#E6BC98",
       },
-      "& .MuiTablePagination-actions": {
-         display: "flex",
-         flexDirection: "row-reverse",
+      "& .MuiButtonBase-root": {
+         transform: "rotate(180deg)"
       },
    },
 });
 
-function createData(name, image, category, delit) {
-   return { name, image, category, delit };
-}
-
 export default function AllProducts() {
-   const [page, setPage] = React.useState(0);
-   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-   const [category, setCategory] = React.useState([]);
-   const [products, setProducts] = React.useState([]);
+   const [page, setPage] = useState(0);
+   const [rowsPerPage, setRowsPerPage] = useState(10);
+   const [category, setCategory] = useState([]);
+   const [products, setProducts] = useState([]);
+   const [subCategories, setSubCategories] = useState([]);
+   const [Categories, setCategories] = useState([]);
+
    const classes = useStyle();
 
-   React.useEffect(() => {
-      const func = async () => {
-         // const requestedCategoryId = await AdminApi.category({})
-         const data = await ProductApi.gets({
-            params: { _page: page, _limit: rowsPerPage, categoryId: category },
-         });
-         setProducts(data.data);
-      };
-      func();
+   const getProducts = async () => {
+      const res = await ProductApi.gets({
+         params: { categoryId: category },
+      });
+      setProducts(res.data);
+    
+      const categoryIdRes = await AdminApi.getCategoryId();
+      setCategories(categoryIdRes.data);
+     
+      const subCategoryIdRes = await AdminApi.getSubCategoryId();
+      setSubCategories(subCategoryIdRes.data);
+   };
+   useEffect(() => {
+      getProducts();
    }, [category]);
 
    const handleChange = (event) => {
       let requestedCategory = event.target.value;
-      console.log(requestedCategory);
       setCategory(requestedCategory);
    };
 
@@ -70,15 +72,22 @@ export default function AllProducts() {
       setRowsPerPage(+event.target.value);
       setPage(0);
    };
-   console.log(rowsPerPage);
 
+   const findCategoryName = (id) => {
+      let requestedCategoryObject = Categories.find((el) => el.id == id);
+      return requestedCategoryObject?.name;
+   };
+   const findSubCategoryName = (id) => {
+      let requestedSubCategoryObject = subCategories.find((el) => el.id == id);
+      return requestedSubCategoryObject?.name;
+   };
    return (
       <Paper className={classes.root} sx={{ borderRadius: 0 }}>
          <TableContainer sx={{ maxHeight: 440 }}>
             <Table stickyHeader aria-label="sticky table">
                <TableHead>
                   <TableRow className={classes.table_row}>
-                     <TableCell style={{ minWidth: 60 }}>تصویر</TableCell>
+                     <TableCell style={{ minWidth: 60 , maxHeight:60}}>تصویر</TableCell>
                      <TableCell style={{ minWidth: 100 }}>نام محصول</TableCell>
                      <TableCell style={{ minWidth: 100 }}>
                         <FormControl
@@ -91,16 +100,13 @@ export default function AllProducts() {
                            <Select
                               labelId="demo-simple-select-standard-label"
                               id="demo-simple-select-standard"
-                              value={category}
                               onChange={handleChange}
-                              label="Age"
                            >
-                              {/* <MenuItem value="">
-                                 <em>None</em>
-                              </MenuItem> */}
-                              <MenuItem value={1}>پوشاک</MenuItem>
-                              <MenuItem value={2}>کیف و کفش</MenuItem>
-                              <MenuItem value={3}>اکسسوری</MenuItem>
+                              {Categories.map((catgory) => (
+                                 <MenuItem value={catgory.id}>
+                                    {catgory.name}
+                                 </MenuItem>
+                              ))}
                            </Select>
                         </FormControl>
                      </TableCell>
@@ -130,7 +136,11 @@ export default function AllProducts() {
                                  />
                               </TableCell>
                               <TableCell>{row.name}</TableCell>
-                              <TableCell>{row.subCategoryId}</TableCell>
+                              <TableCell>
+                                 {findCategoryName(row.categoryId) +
+                                    "/ " +
+                                    findSubCategoryName(row.subCategoryId)}
+                              </TableCell>
                               <TableCell>
                                  <DeleteIcon />
                                  <EditIcon />
