@@ -55,7 +55,7 @@ export default function Orders() {
 
    useEffect(() => {
       filterOrdersByStatus();
-   }, [processOrders, arrange]);
+   }, [arrange]);
 
    const handleChange = (event) => {
       let requestedCategory = event.target.value;

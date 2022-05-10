@@ -4,7 +4,10 @@ import Payment from "../pages/User/Payment";
 import Cart from "../pages/User/Cart";
 import Login from "../components/Admin/Login";
 import UserLayout from "../components/User/Layout";
-import Adminpanel from "../pages/Admin/AdminPanel";
+// import Adminpanel from "../pages/Admin/AdminPanel";
+import Inventory from "../pages/Admin/Inventory";
+import Order from "../pages/Admin/Order";
+import Products from "../pages/Admin/Products";
 
 export const routes = [
    {
@@ -45,10 +48,29 @@ export const routes = [
       isPrivate: false,
       layout: "user",
    },
+   // {
+   //    path: "/adminPanel",
+   //    component: <Adminpanel />,
+   //    isPrivate: false,
+   //    layout: "admin",
+   // },
    {
-      path: "/adminPanel",
-      component: <Adminpanel />,
+      path: "/products",
+      component: <Products/>,
       isPrivate: false,
       layout: "admin",
    },
+   {
+      path: "/inventory",
+      component: <Inventory />,
+      isPrivate: false,
+      layout: "admin",
+   },
+   {
+      path: "/order", 
+      component: <Order />,
+      isPrivate: false,
+      layout: "admin",
+   },
+   
 ];

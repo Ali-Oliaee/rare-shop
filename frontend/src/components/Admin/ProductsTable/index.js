@@ -57,7 +57,7 @@ export default function AllProducts() {
    };
    useEffect(() => {
       getProducts();
-   }, [category]);
+}, [category]);
 
    const handleChange = (event) => {
       let requestedCategory = event.target.value;

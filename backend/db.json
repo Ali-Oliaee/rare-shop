@@ -997,7 +997,7 @@
       "id": 83
     }
   ],
-  "categoryId": [
+  "category": [
     {
       "name": "پوشاک",
       "id": 1,
@@ -1015,7 +1015,7 @@
     }
   ],
 
-  "subCategoryId": [
+  "subCategory": [
     {
       "name": "شلوار",
       "id": 1,

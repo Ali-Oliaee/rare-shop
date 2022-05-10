@@ -1,4 +1,4 @@
-import http from "./HttpApi"
+import http from "./httpApi"
 
 const OrdersApi = new http("/orders");
 

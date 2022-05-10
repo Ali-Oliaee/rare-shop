@@ -1,4 +1,4 @@
-import http from "./HttpApi"
+import http from "./httpApi"
 
 const AdminApi = new http("/");
 
@@ -7,10 +7,10 @@ AdminApi.setNewProduct = function (body) {
 }
 
 AdminApi.getCategoryId = function () {
-  return this.instance.get(`${this.baseApisUrl}categoryId`);
+  return this.instance.get(`${this.baseApisUrl}category`);
 };
 AdminApi.getSubCategoryId = function () {
-  return this.instance.get(`${this.baseApisUrl}subCategoryId`);
+  return this.instance.get(`${this.baseApisUrl}subCategory`);
 }
 
 AdminApi.whoami = function () {

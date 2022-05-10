@@ -69,7 +69,7 @@ const Header = () => {
                      <Link to="/inventory">موجودی و قیمت ها</Link>
                   </li>
                   <li>
-                     <Link to="/orders">سفارش ها</Link>
+                     <Link to="/order">سفارش ها</Link>
                   </li>
                </ul>
             </Container>

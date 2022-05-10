@@ -8,21 +8,22 @@ import WithAuth from "./route/WithAuth";
 function App() {
    return (
       <ThemeProvider theme={theme}>
+
          <Routes>
             {routes.map((rout, index) => {
                if (rout.isPrivate) {
-                  return WithAuth(rout.component);
+                 return WithAuth(rout.component);
+                 
                } else {
-                  return (
-                     <Route
-                        key={rout.path}
-                        path={rout.path}
-                        element={rout.component}
-                     />
-                  );
+                 return <Route
+                     key={rout.path}
+                     path={rout.path}
+                     element={rout.component}
+                  />;
                }
             })}
          </Routes>
+
       </ThemeProvider>
    );
 }
