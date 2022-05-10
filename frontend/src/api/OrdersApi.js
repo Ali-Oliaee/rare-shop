@@ -1,5 +1,5 @@
-import http from "./httpApi"
+import http from "./HttpApi";
 
 const OrdersApi = new http("/orders");
 
-export { OrdersApi }
+export { OrdersApi };

@@ -10,7 +10,7 @@ import TableRow from "@mui/material/TableRow";
 import { makeStyles } from "@mui/styles";
 import { OrdersApi } from "../../../api/OrdersApi";
 import { Button } from "@mui/material";
-import { ProductApi } from "api/Products";
+import { ProductApi } from "../../../api/Products";
 const useStyle = makeStyles({
    root: {
       width: "70%",

@@ -1,4 +1,4 @@
-import http from "./httpApi"
+import http from "./HttpApi"
 
 const AdminApi = new http("/");
 
@@ -14,6 +14,6 @@ AdminApi.getSubCategoryId = function () {
 }
 
 AdminApi.whoami = function () {
-  return this.instance.get(`${this.baseApisUrl}/whoami`);
+  return this.instance.get(`${this.baseApisUrl}whoami`);
 };
 export { AdminApi }

@@ -57,7 +57,7 @@ export const routes = [
    {
       path: "/products",
       component: <Products/>,
-      isPrivate: false,
+      isPrivate: true,
       layout: "admin",
    },
    {

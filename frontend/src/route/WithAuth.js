@@ -4,10 +4,11 @@ import { AdminApi } from '../api/AdminApi';
 const WithAuth = ({ Component }) => {
 
   return function Authenticated ({...props}) {
-    let {user, pass} = AdminApi.whoami()
-    console.log(user, pass);
+    const getAdminData = async() => {
+      let adminData = await AdminApi.whoami()
+   }
+   getAdminData()
 
-    
   }
 }
 

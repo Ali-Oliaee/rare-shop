@@ -12,8 +12,7 @@ function App() {
          <Routes>
             {routes.map((rout, index) => {
                if (rout.isPrivate) {
-                 return WithAuth(rout.component);
-                 
+                 return  <Route path={rout.path} element={WithAuth(rout.component)}/>;
                } else {
                  return <Route
                      key={rout.path}
