@@ -7,19 +7,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
 import { makeStyles } from "@mui/styles";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { OrdersApi } from "../../../api/OrdersApi";
-import { BASE_URL } from "../../../core/constants";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import FormLabel from "@mui/material/FormLabel";
 import { Button } from "@mui/material";
 import moment from "jalali-moment";
 const useStyle = makeStyles({
@@ -33,7 +29,7 @@ const useStyle = makeStyles({
          background: "#E6BC98",
       },
       "& .MuiButtonBase-root svg": {
-         transform: "rotate(180deg)"
+         transform: "rotate(180deg)",
       },
    },
 });
@@ -48,13 +44,13 @@ export default function Orders() {
 
    const filterOrdersByStatus = async () => {
       const orderStatus = processOrders ? 1 : 2;
-      const sortingStatus = arrange == 1 ? "asc" : "desc"
+      const sortingStatus = arrange == 1 ? "asc" : "desc";
       const res = await OrdersApi.gets({
-         params: { _sort: sortingStatus , orderStatus: orderStatus },
+         params: { _sort: sortingStatus, orderStatus: orderStatus },
       });
       setOrders(res.data);
    };
-   
+
    // aray.reduce((acc, cv) => ({...acc,[cv.id]:cv.name}), {})
 
    useEffect(() => {

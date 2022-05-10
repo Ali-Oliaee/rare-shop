@@ -5,7 +5,7 @@ import Orders from "../../components/Admin/Orders/Orders";
 const Adminpanel = () => {
    return (
       <AdminLayout>
-         <Orders/>
+         {/* <Orders/> */}
          <AllProducts/>
       </AdminLayout>
    );
