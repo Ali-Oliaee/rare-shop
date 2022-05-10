@@ -55,19 +55,19 @@ export const routes = [
    //    layout: "admin",
    // },
    {
-      path: "/products",
-      component: <Products/>,
+      path: "/dashboard/products",
+      component: Products,
       isPrivate: true,
       layout: "admin",
    },
    {
-      path: "/inventory",
+      path: "/dashboard/inventory",
       component: <Inventory />,
       isPrivate: false,
       layout: "admin",
    },
    {
-      path: "/order", 
+      path: "/dashboard/order", 
       component: <Order />,
       isPrivate: false,
       layout: "admin",

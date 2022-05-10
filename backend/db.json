@@ -1134,12 +1134,6 @@
       "status": "Processing"
     }
   ],
-  "whoami": {
-    "name": "masoume naderi",
-    "username": "admin",
-    "password": "admin",
-    "role": "admin"
-  },
   "protection": {
     "products.get": false,
     "products": "admin",

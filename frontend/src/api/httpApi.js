@@ -13,7 +13,7 @@ class Service {
             store.dispatch(startLoading());
             const token = localStorage.getItem(TOKEN_LOCAL_KEY);
             if (token) {
-               config.headers["x-auth-token"] = token;
+               config.headers["token"] = token;
             }
             return config;
          },
@@ -21,7 +21,6 @@ class Service {
             return Promise.reject(error);
          }
       );
-
       this.instance.interceptors.response.use(
          (res) => {
             store.dispatch(endLoading())

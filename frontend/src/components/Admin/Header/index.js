@@ -63,13 +63,13 @@ const Header = () => {
                </Toolbar>
                <ul className="links-ul">
                   <li>
-                     <Link to="/products">کالا ها</Link>
+                     <Link to="/dashboard/products">کالا ها</Link>
                   </li>
                   <li>
-                     <Link to="/inventory">موجودی و قیمت ها</Link>
+                     <Link to="/dashboard/inventory">موجودی و قیمت ها</Link>
                   </li>
                   <li>
-                     <Link to="/order">سفارش ها</Link>
+                     <Link to="/dashboard/order">سفارش ها</Link>
                   </li>
                </ul>
             </Container>

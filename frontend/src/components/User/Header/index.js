@@ -55,7 +55,7 @@ const UserHeader = () => {
 
                   <Box sx={{ flexGrow: 1, display: "flex" }}>
                      <Link
-                        to="/login"
+                        to="/dashboard/products"
                         style={{ textDecoration: "none", color: "black" }}
                      >
                         <Button

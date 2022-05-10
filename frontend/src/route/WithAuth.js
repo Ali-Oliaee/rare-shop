@@ -1,15 +1,14 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
-import { AdminApi } from '../api/AdminApi';
-const WithAuth = ({ Component }) => {
+import React from "react";
+import { Navigate } from "react-router-dom";
 
-  return function Authenticated ({...props}) {
-    const getAdminData = async() => {
-      let adminData = await AdminApi.whoami()
-   }
-   getAdminData()
+const WithAuth = (Component) => {
+   console.log(<Component />);
 
-  }
-}
+   return localStorage.getItem("token") ? (
+      <Component></Component>
+   ) : (
+      <Navigate to="/login" />
+   );
+};
 
 export default WithAuth;

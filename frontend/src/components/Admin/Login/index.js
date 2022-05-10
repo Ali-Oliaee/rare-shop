@@ -1,7 +1,9 @@
 import { TextField, Button, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import React from "react";
+import React, { useState } from "react";
 import Image from "../../../assets/pic/nudewallpaper.jpeg";
+import { AdminApi } from "../../../api/AdminApi";
+import { useNavigate } from "react-router-dom";
 const useStyle = makeStyles({
    root: {
       padding: 80,
@@ -17,9 +19,19 @@ const useStyle = makeStyles({
 });
 
 const Login = () => {
+  const [user, setUser] = useState({username:"", password:""})
    const classes = useStyle();
+   const navigate = useNavigate()
+   const handleSubmit = async(e) => {
+      
+      e.preventDefault()
+      let res = await AdminApi.login(user)
+      localStorage.setItem('token',res.data.token)
+      navigate("/dashboard/products")
+   }
+console.log("i am login");
    return (
-      <div className={classes.bodyStyle}>
+      <form onSubmit={handleSubmit} className={classes.bodyStyle}>
          <Typography textAlign="center" pt={5} variant="h2" xs={12}>
             خوش آمدید
          </Typography>
@@ -36,6 +48,8 @@ const Login = () => {
                   type="text"
                   autoComplete="current-password"
                   variant="filled"
+                  value={user.username}
+                  onChange={(e) => setUser({...user, username:e.target.value})}
                />
             </Grid>
             <Grid item xs={12} m={"auto"}>
@@ -46,14 +60,17 @@ const Login = () => {
                      border: "1px solid black",
                   }}
                   id="filled-password-input"
-                  label="Password"
+                  label="password"
                   type="password"
                   autoComplete="current-password"
                   variant="filled"
+                  value={user.password}
+                  onChange={(e) => setUser({...user, password:e.target.value})}
                />
             </Grid>
             <Grid item xs={12} m={"auto"}>
                <Button
+                  type="submit"
                   color="neutral_dark"
                   sx={{ width: "100%", borderRadius: 0 }}
                   variant="contained"
@@ -62,7 +79,7 @@ const Login = () => {
                </Button>
             </Grid>
          </Grid>
-      </div>
+      </form>
    );
 };
 

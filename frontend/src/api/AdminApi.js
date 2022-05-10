@@ -9,11 +9,12 @@ AdminApi.setNewProduct = function (body) {
 AdminApi.getCategoryId = function () {
   return this.instance.get(`${this.baseApisUrl}category`);
 };
+
 AdminApi.getSubCategoryId = function () {
   return this.instance.get(`${this.baseApisUrl}subCategory`);
 }
 
-AdminApi.whoami = function () {
-  return this.instance.get(`${this.baseApisUrl}whoami`);
+AdminApi.login = function (body) {
+  return this.instance.post(`${this.baseApisUrl}auth/login`, body);
 };
 export { AdminApi }
