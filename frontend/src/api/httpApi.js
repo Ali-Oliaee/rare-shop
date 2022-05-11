@@ -18,6 +18,7 @@ class Service {
             return config;
          },
          function (error) {
+            console.log(error);
             return Promise.reject(error);
          }
       );
@@ -25,7 +26,10 @@ class Service {
          (res) => {
             store.dispatch(endLoading())
             const { status } = res;
-            if (status >= 400) {
+            if(status == 401){
+               window.location.pathname = "/auth/login";  
+            }
+            if (status > 401) {
                window.location.pathname = "/404";
             }
             return res;

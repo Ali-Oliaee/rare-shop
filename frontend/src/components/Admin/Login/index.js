@@ -19,17 +19,20 @@ const useStyle = makeStyles({
 });
 
 const Login = () => {
-  const [user, setUser] = useState({username:"", password:""})
+   const [user, setUser] = useState({ username: "", password: "" });
    const classes = useStyle();
-   const navigate = useNavigate()
-   const handleSubmit = async(e) => {
-      
-      e.preventDefault()
-      let res = await AdminApi.login(user)
-      localStorage.setItem('token',res.data.token)
-      navigate("/dashboard/products")
-   }
-console.log("i am login");
+   const navigate = useNavigate();
+
+   const handleSubmit = async (e) => {
+      e.preventDefault();
+       localStorage.clear()
+       //  const token = localStorage.getItem("token");
+      let res = await AdminApi.login(user);
+      console.log(res);
+      localStorage.setItem("token", res.data.token);
+      navigate("/dashboard/products");
+   };
+   
    return (
       <form onSubmit={handleSubmit} className={classes.bodyStyle}>
          <Typography textAlign="center" pt={5} variant="h2" xs={12}>
@@ -49,7 +52,9 @@ console.log("i am login");
                   autoComplete="current-password"
                   variant="filled"
                   value={user.username}
-                  onChange={(e) => setUser({...user, username:e.target.value})}
+                  onChange={(e) =>
+                     setUser({ ...user, username: e.target.value })
+                  }
                />
             </Grid>
             <Grid item xs={12} m={"auto"}>
@@ -65,7 +70,9 @@ console.log("i am login");
                   autoComplete="current-password"
                   variant="filled"
                   value={user.password}
-                  onChange={(e) => setUser({...user, password:e.target.value})}
+                  onChange={(e) =>
+                     setUser({ ...user, password: e.target.value })
+                  }
                />
             </Grid>
             <Grid item xs={12} m={"auto"}>

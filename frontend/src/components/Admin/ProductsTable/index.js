@@ -42,7 +42,6 @@ export default function AllProducts() {
    const [Categories, setCategories] = useState([]);
 
    const classes = useStyle();
-   console.log("i am products");
    const getProducts = async () => {
       const res = await ProductApi.gets({
          params: { categoryId: category },

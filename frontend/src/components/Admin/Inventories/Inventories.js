@@ -8,7 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { makeStyles } from "@mui/styles";
-import { OrdersApi } from "../../../api/OrdersApi";
+import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
 import { ProductApi } from "../../../api/Products";
 const useStyle = makeStyles({
@@ -26,8 +26,8 @@ const useStyle = makeStyles({
          transform: "rotate(180deg)",
       },
       "& .row_cell": {
-         width:300,
-         textAlign:"center",
+         width: 300,
+         textAlign: "center",
       },
    },
 });
@@ -36,6 +36,7 @@ export default function Inventories() {
    const [page, setPage] = useState(0);
    const [rowsPerPage, setRowsPerPage] = useState(10);
    const [products, setProducts] = useState([]);
+   const [edit, setEdit] = useState(true);
    const classes = useStyle();
 
    const getProducts = async () => {
@@ -85,12 +86,24 @@ export default function Inventories() {
                                     tabIndex={-1}
                                     key={row.code}
                                  >
-                                    <TableCell className="row_cell">
+                                    <TableCell  className="row_cell">
                                        {row.name}
                                     </TableCell>
-                                    <TableCell className="row_cell">
-                                       {row.price.toLocaleString()}
-                                    </TableCell>
+                                    {edit ? (
+                                       <TextField
+                                          id="standard-multiline-flexible"
+                                          multiline
+                                          maxRows={4}
+                                           value={row.price}
+                                          // onChange={handleChange}
+                                          // onClick={setEdit(!edit)}
+                                          variant="standard"
+                                       />
+                                    ) : (
+                                       <TableCell  className="row_cell">
+                                          {row.price.toLocaleString()}
+                                       </TableCell>
+                                    )}
                                     <TableCell className="row_cell">
                                        {row.inventory}
                                     </TableCell>

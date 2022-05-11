@@ -17,4 +17,9 @@ AdminApi.getSubCategoryId = function () {
 AdminApi.login = function (body) {
   return this.instance.post(`${this.baseApisUrl}auth/login`, body);
 };
+
+AdminApi.refreshToken = function (body) {
+  return this.instance.post(`${this.baseApisUrl}auth/refresh-token`, body);
+};
+
 export { AdminApi }

@@ -43,7 +43,7 @@ export const routes = [
       isPrivate: false,
    },
    {
-      path: "/login",
+      path: "/auth/login",
       component: <Login />,
       isPrivate: false,
       layout: "user",
@@ -67,10 +67,9 @@ export const routes = [
       layout: "admin",
    },
    {
-      path: "/dashboard/order", 
+      path: "/dashboard/order",
       component: <Order />,
       isPrivate: false,
       layout: "admin",
    },
-   
 ];
