@@ -28,7 +28,7 @@ const useStyle = makeStyles({
          background: "#E6BC98",
       },
       "& .MuiButtonBase-root": {
-         transform: "rotate(180deg)"
+         transform: "rotate(180deg)",
       },
    },
 });
@@ -47,16 +47,16 @@ export default function AllProducts() {
          params: { categoryId: category },
       });
       setProducts(res.data);
-    
+
       const categoryIdRes = await AdminApi.getCategoryId();
       setCategories(categoryIdRes.data);
-     
+
       const subCategoryIdRes = await AdminApi.getSubCategoryId();
       setSubCategories(subCategoryIdRes.data);
    };
    useEffect(() => {
       getProducts();
-}, [category]);
+   }, [category]);
 
    const handleChange = (event) => {
       let requestedCategory = event.target.value;
@@ -80,13 +80,19 @@ export default function AllProducts() {
       let requestedSubCategoryObject = subCategories.find((el) => el.id == id);
       return requestedSubCategoryObject?.name;
    };
+
+ function defaultLabelDisplayedRows({ from, to, count }) {
+      return `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`;
+   };
    return (
       <Paper className={classes.root} sx={{ borderRadius: 0 }}>
          <TableContainer sx={{ maxHeight: 440 }}>
             <Table stickyHeader aria-label="sticky table">
                <TableHead>
                   <TableRow className={classes.table_row}>
-                     <TableCell style={{ minWidth: 60 , maxHeight:60}}>تصویر</TableCell>
+                     <TableCell style={{ minWidth: 60, maxHeight: 60 }}>
+                        تصویر
+                     </TableCell>
                      <TableCell style={{ minWidth: 100 }}>نام محصول</TableCell>
                      <TableCell style={{ minWidth: 100 }}>
                         <FormControl
@@ -155,6 +161,7 @@ export default function AllProducts() {
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
             labelRowsPerPage="صفحه"
+            labelDisplayedRows={defaultLabelDisplayedRows}
             count={products.length}
             rowsPerPage={rowsPerPage}
             page={page}

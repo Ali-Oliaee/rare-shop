@@ -70,7 +70,9 @@ export default function Orders() {
       setRowsPerPage(+event.target.value);
       setPage(0);
    };
-
+   function defaultLabelDisplayedRows({ from, to, count }) {
+      return `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`;
+   };
    return (
       <>
          <FormControl>
@@ -172,6 +174,7 @@ export default function Orders() {
                component="div"
                labelRowsPerPage="صفحه"
                count={orders.length}
+               labelDisplayedRows={defaultLabelDisplayedRows}
                rowsPerPage={rowsPerPage}
                page={page}
                onPageChange={handleChangePage}

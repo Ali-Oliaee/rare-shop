@@ -11,23 +11,23 @@ class Service {
       this.instance.interceptors.request.use(
          (config) => {
             store.dispatch(startLoading());
-            const token = localStorage.getItem(TOKEN_LOCAL_KEY);
+            const token = localStorage.getItem("token");
             if (token) {
                config.headers["token"] = token;
             }
             return config;
          },
          function (error) {
-            console.log(error);
-            return Promise.reject(error);
+            console.log("bye");
          }
       );
       this.instance.interceptors.response.use(
          (res) => {
-            store.dispatch(endLoading())
+            console.log(res);
+            store.dispatch(endLoading());
             const { status } = res;
-            if(status == 401){
-               window.location.pathname = "/auth/login";  
+            if (status == 401) {
+               window.location.pathname = "/auth/login";
             }
             if (status > 401) {
                window.location.pathname = "/404";
@@ -35,8 +35,11 @@ class Service {
             return res;
          },
          (error) => {
-            store.dispatch(endLoading())
-            return Promise.reject(error);
+            if (error.response.status == 401) {
+               window.location.pathname = "/auth/login";
+            }
+            store.dispatch(endLoading());
+            return error.response;
          }
       );
 
