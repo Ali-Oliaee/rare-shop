@@ -8,9 +8,10 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { makeStyles } from "@mui/styles";
-import { TextField } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import { ProductApi } from "../../../api/Products";
+import Types from "../../../redux/types/LoadingType";
 const useStyle = makeStyles({
    tableContainer: {
       background: "#E6BC98",
@@ -42,6 +43,9 @@ const useStyle = makeStyles({
          marginRight: 30,
          marginTop: "20px",
       },
+      "& .MuiTableContainer-root::-webkit-scrollbar": {
+         display: "none", /* for Chrome, Safari, and Opera */
+     }
    },
 });
 
@@ -104,7 +108,7 @@ export default function Inventories() {
                                        <TableCell className="row_cell">
                                           {row.name}
                                        </TableCell>
-                                       {!edit ? (
+                                       {edit ? (
                                           <TextField
                                              id="standard-multiline-flexible"
                                              multiline
@@ -116,7 +120,7 @@ export default function Inventories() {
                                           />
                                        ) : (
                                           <TableCell className="row_cell">
-                                             {row.price.toLocaleString()}
+                                            <Typography>{row.price.toLocaleString()}</Typography> 
                                           </TableCell>
                                        )}
                                        <TableCell className="row_cell">

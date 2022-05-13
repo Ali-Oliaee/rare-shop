@@ -19,6 +19,7 @@ import { AdminApi } from "../../../api/AdminApi";
 import { BASE_URL } from "../../../core/constants";
 const useStyle = makeStyles({
    root: {
+      
       width: "70%",
       margin: "auto",
       marginTop: 50,
@@ -30,6 +31,9 @@ const useStyle = makeStyles({
       "& .MuiButtonBase-root": {
          transform: "rotate(180deg)",
       },
+      "& .MuiTableContainer-root::-webkit-scrollbar": {
+         display: "none", /* for Chrome, Safari, and Opera */
+      }
    },
 });
 
@@ -54,6 +58,7 @@ export default function AllProducts() {
       const subCategoryIdRes = await AdminApi.getSubCategoryId();
       setSubCategories(subCategoryIdRes.data);
    };
+   
    useEffect(() => {
       getProducts();
    }, [category]);
@@ -86,7 +91,7 @@ export default function AllProducts() {
    };
    return (
       <Paper className={classes.root} sx={{ borderRadius: 0 }}>
-         <TableContainer sx={{ maxHeight: 440 }}>
+         <TableContainer className={classes.scrollClass} sx={{ maxHeight: 440, overflowY:"scroll" }}>
             <Table stickyHeader aria-label="sticky table">
                <TableHead>
                   <TableRow className={classes.table_row}>

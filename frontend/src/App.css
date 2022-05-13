@@ -1,3 +1,5 @@
-body{
-  background: #fbe4cc;
+@import url('https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap');
+*{
+  
+  font-family: 'Scheherazade New', serif;
 }

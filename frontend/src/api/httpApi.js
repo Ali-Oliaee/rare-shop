@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { CanceledError } from "axios";
 import { TOKEN_LOCAL_KEY } from "../core/constants";
 import store from "../redux/store";
 import { startLoading, endLoading } from "../redux/actions/LoadingAction";
@@ -18,7 +18,8 @@ class Service {
             return config;
          },
          function (error) {
-            console.log("bye");
+            // console.log("bye");
+            Promise.reject(CanceledError)
          }
       );
       this.instance.interceptors.response.use(
@@ -26,10 +27,10 @@ class Service {
             console.log(res);
             store.dispatch(endLoading());
             const { status } = res;
-            if (status == 401) {
-               window.location.pathname = "/auth/login";
-            }
-            if (status > 401) {
+            // if (status == 401) {
+            //    window.location.pathname = "/auth/login";
+            // }
+            if (status > 400) {
                window.location.pathname = "/404";
             }
             return res;

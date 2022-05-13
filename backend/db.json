@@ -1111,7 +1111,7 @@
       "orderNumber": "2122",
       "orderDate": 1651941133996,
       "purchaseTotal": 220000,
-      "orderStatus": 1,
+      "orderStatus": 2,
       "delivery": 1643396897495,
       "deliveredAt": 1646222643757,
       "orderItems": [

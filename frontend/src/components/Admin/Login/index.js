@@ -25,10 +25,9 @@ const Login = () => {
 
    const handleSubmit = async (e) => {
       e.preventDefault();
-       localStorage.clear()
        //  const token = localStorage.getItem("token");
       let res = await AdminApi.login(user);
-      console.log(res);
+      console.log(res.data.token);
       localStorage.setItem("token", res.data.token);
       navigate("/dashboard/products");
    };

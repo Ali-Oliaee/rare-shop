@@ -31,6 +31,9 @@ const useStyle = makeStyles({
       "& .MuiButtonBase-root svg": {
          transform: "rotate(180deg)",
       },
+      "& .MuiTableContainer-root::-webkit-scrollbar": {
+         display: "none", /* for Chrome, Safari, and Opera */
+     }
    },
 });
 
@@ -46,7 +49,7 @@ export default function Orders() {
       const orderStatus = processOrders ? 1 : 2;
       const sortingStatus = arrange == 1 ? "asc" : "desc";
       const res = await OrdersApi.gets({
-         params: { _sort: sortingStatus, orderStatus: orderStatus },
+         params: { orderStatus: orderStatus },
       });
       setOrders(res.data);
    };
@@ -55,7 +58,7 @@ export default function Orders() {
 
    useEffect(() => {
       filterOrdersByStatus();
-   }, [arrange]);
+   }, [arrange,processOrders]);
 
    const handleChange = (event) => {
       let requestedCategory = event.target.value;
@@ -98,7 +101,7 @@ export default function Orders() {
             </RadioGroup>
          </FormControl>
          <Paper className={classes.root} sx={{ borderRadius: 0 }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
+            <TableContainer sx={{ maxHeight: 440 ,overflowY:"hidden"}}>
                <Table stickyHeader aria-label="sticky table">
                   <TableHead>
                      <TableRow className={classes.table_row}>
