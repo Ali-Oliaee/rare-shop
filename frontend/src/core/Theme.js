@@ -1,6 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 
 export let theme = createTheme({
+   direction: 'rtl',
    palette: {
       neutral_light: {
          main: "#fff",

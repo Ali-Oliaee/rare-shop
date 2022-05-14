@@ -73,6 +73,9 @@ export default function Orders() {
       setRowsPerPage(+event.target.value);
       setPage(0);
    };
+   const handleRadioChange = () => {
+      setProcessOrders(!processOrders)
+   }
    function defaultLabelDisplayedRows({ from, to, count }) {
       return `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`;
    };
@@ -89,14 +92,14 @@ export default function Orders() {
                   control={<Radio />}
                   label="سفارش های تحویل شده"
                   checked={!processOrders}
-                  onChange={() => setProcessOrders(!processOrders)}
+                  onChange={handleRadioChange}
                />
                <FormControlLabel
                   value="female"
                   control={<Radio />}
                   label="سفارش های در انتظار تحویل"
                   checked={processOrders}
-                  onChange={() => setProcessOrders(!processOrders)}
+                  onChange={handleRadioChange}
                />
             </RadioGroup>
          </FormControl>

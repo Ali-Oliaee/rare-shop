@@ -8,13 +8,17 @@ const useStyle = makeStyles({
    root: {
       padding: 80,
       backgroundColor: "#a88d77d5",
+      "& input[type='text']::placeholder":{
+         paddingRight: "10px"
+      }
    },
    bodyStyle: {
       width: "100vw",
       height: "100vh",
+      paddingTop: 140,
       backgroundImage: `url(${Image})`,
       backgroundRepeat: "no-repeat",
-      backgroundSize: "cover",
+      backgroundSize: "cover", 
    },
 });
 
@@ -25,19 +29,18 @@ const Login = () => {
 
    const handleSubmit = async (e) => {
       e.preventDefault();
-       //  const token = localStorage.getItem("token");
+      localStorage.removeItem('token')
       let res = await AdminApi.login(user);
-      console.log(res.data.token);
-      localStorage.setItem("token", res.data.token);
+      res && localStorage.setItem("token", res.data.token);
       navigate("/dashboard/products");
    };
    
    return (
       <form onSubmit={handleSubmit} className={classes.bodyStyle}>
-         <Typography textAlign="center" pt={5} variant="h2" xs={12}>
-            خوش آمدید
+      <Grid className={classes.root} xs={5} m="auto" container spacing={2}>
+         <Typography textAlign="center" m='auto' variant="h4" xs={12}>
+         پنل مدیریت
          </Typography>
-         <Grid className={classes.root} xs={5} m="auto" container spacing={2}>
             <Grid item xs={12} m={"auto"}>
                <TextField
                   sx={{
@@ -45,8 +48,8 @@ const Login = () => {
                      bgcolor: "neutral_light.main",
                      border: "1px solid black",
                   }}
-                  id="filled-password-input"
-                  label="username"
+                  id="filled-username-input"
+                  label="نام کاربری"
                   type="text"
                   autoComplete="current-password"
                   variant="filled"
@@ -63,8 +66,8 @@ const Login = () => {
                      bgcolor: "neutral_light.main",
                      border: "1px solid black",
                   }}
+                  label="رمز عبور"
                   id="filled-password-input"
-                  label="password"
                   type="password"
                   autoComplete="current-password"
                   variant="filled"
@@ -81,7 +84,7 @@ const Login = () => {
                   sx={{ width: "100%", borderRadius: 0 }}
                   variant="contained"
                >
-                  Login
+                  ورود
                </Button>
             </Grid>
          </Grid>
