@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -7,11 +7,12 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import { ThemeProvider } from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
-   const [anchorElNav, setAnchorElNav] = React.useState(null);
-   const [anchorElUser, setAnchorElUser] = React.useState(null);
+   const [anchorElNav, setAnchorElNav] = useState(null);
+   const [anchorElUser, setAnchorElUser] = useState(null);
+   const [active, setActive] = useState(1);
 
    const handleOpenNavMenu = (event) => {
       setAnchorElNav(event.currentTarget);
@@ -27,7 +28,27 @@ const Header = () => {
    const handleCloseUserMenu = () => {
       setAnchorElUser(null);
    };
+   const handleClickChange = () => {
+      setActive(!active);
+   };
+   const isActiveStyle = () => {
+    
+      return {
+         color: "#856047",
+         textDecoration: "none",
+      };
+   };
+   const notActiveStyle = () => {
+      return {
+         color: "white",
+         textDecoration: "none",
+      };
+   };
 
+   useEffect(() => {
+      console.log(active);
+      
+   }, [active]);
    return (
       <>
          <AppBar sx={{ background: "black" }} position="static">
@@ -51,25 +72,45 @@ const Header = () => {
                      </IconButton>
                   </Box>
 
-                  <Typography
-                     className="logo-shop"
-                     variant="h6"
-                     noWrap
-                     component="div"
-                     sx={{ marginTop: "auto", fontSize: 24 }}
+                  <NavLink
+                     to="/"
+                     style={{ textDecoration: "none", color: "white" }}
                   >
-                     Rare Shop
-                  </Typography>
+                     <Typography
+                        className="logo-shop"
+                        variant="h6"
+                        noWrap
+                        component="div"
+                        sx={{ marginTop: "auto", fontSize: 24 }}
+                     >
+                        Rare Shop
+                     </Typography>
+                  </NavLink>
                </Toolbar>
                <ul className="links-ul">
-                  <li>
-                     <Link style={{color: "white"}} to="/dashboard/products">کالا ها</Link>
+                  <li onClick={() => setActive(1)}>
+                     <NavLink
+                        style={active === 1 ? isActiveStyle : notActiveStyle}
+                        to="/dashboard/products"
+                     >
+                        کالا ها
+                     </NavLink>
                   </li>
-                  <li>
-                     <Link style={{color: "white"}} to="/dashboard/inventory">موجودی و قیمت ها</Link>
+                  <li  onClick={() => setActive(2)}>
+                     <NavLink
+                        style={active === 2 ? isActiveStyle : notActiveStyle}
+                        to="/dashboard/inventory"
+                     >
+                        موجودی و قیمت ها
+                     </NavLink>
                   </li>
-                  <li>
-                     <Link style={{color: "white"}} to="/dashboard/order">سفارش ها</Link>
+                  <li  onClick={() => setActive(3)}>
+                     <NavLink
+                        style={active === 3 ? isActiveStyle : notActiveStyle}
+                        to="/dashboard/order"
+                     >
+                        سفارش ها
+                     </NavLink>
                   </li>
                </ul>
             </Container>

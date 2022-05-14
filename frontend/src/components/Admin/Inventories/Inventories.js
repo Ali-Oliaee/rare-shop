@@ -11,7 +11,7 @@ import { makeStyles } from "@mui/styles";
 import { TextField, Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import { ProductApi } from "../../../api/Products";
-import Types from "../../../redux/types/LoadingType";
+
 const useStyle = makeStyles({
    tableContainer: {
       background: "#E6BC98",
@@ -63,7 +63,7 @@ export default function Inventories() {
 
    useEffect(() => {
       getProducts();
-   }, [products]);
+   }, [edit]);
 
    const handleChangePage = (event, newPage) => {
       setPage(newPage);

@@ -1019,46 +1019,55 @@
     {
       "name": "شلوار",
       "id": 1,
+      "categoryId":1,
       "createdAt": 1651926817260
     },
     {
       "name": "تیشرت و شومیز",
       "id": 2,
+      "categoryId":1,
       "createdAt": 1651926880494
     },
     {
       "name": "پیراهن",
       "id": 3,
+      "categoryId":1,
       "createdAt": 1651926893313
     },
     {
       "name": "کفش اسپرت",
       "id": 4,
+      "categoryId":2,
       "createdAt": 1651926880495
     },
     {
       "name": "کفش مجلسی",
       "id": 5,
+      "categoryId":2,
       "createdAt": 1651926880496
     },
     {
       "name": "کیف",
       "id": 6,
+      "categoryId":2,
       "createdAt": 1651926880497
     },
     {
       "name": "عینک",
-      "id": 7,
+      "id": 7, 
+      "categoryId":3,
       "createdAt": 1651926880498
     },
     {
       "name": "گردنبند و دستبند",
       "id": 8,
+      "categoryId":3,
       "createdAt": 1651926880499
     },
     {
       "name": "گوشواره و انگشتر",
       "id": 9,
+      "categoryId":3,
       "createdAt": 1651926880594
     }
   ],

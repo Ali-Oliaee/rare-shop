@@ -17,9 +17,10 @@ import Select from "@mui/material/Select";
 import { ProductApi } from "../../../api/Products";
 import { AdminApi } from "../../../api/AdminApi";
 import { BASE_URL } from "../../../core/constants";
+import { Button } from "@mui/material";
+
 const useStyle = makeStyles({
    root: {
-      
       width: "70%",
       margin: "auto",
       marginTop: 50,
@@ -28,12 +29,12 @@ const useStyle = makeStyles({
       "& .table_row:hover": {
          background: "#E6BC98",
       },
-      "& .MuiButtonBase-root": {
+      "& .MuiButtonBase-root svg": {
          transform: "rotate(180deg)",
       },
       "& .MuiTableContainer-root::-webkit-scrollbar": {
-         display: "none", /* for Chrome, Safari, and Opera */
-      }
+         display: "none" /* for Chrome, Safari, and Opera */,
+      },
    },
 });
 
@@ -58,7 +59,7 @@ export default function AllProducts() {
       const subCategoryIdRes = await AdminApi.getSubCategoryId();
       setSubCategories(subCategoryIdRes.data);
    };
-   
+
    useEffect(() => {
       getProducts();
    }, [category]);
@@ -86,93 +87,101 @@ export default function AllProducts() {
       return requestedSubCategoryObject?.name;
    };
 
- function defaultLabelDisplayedRows({ from, to, count }) {
+   function defaultLabelDisplayedRows({ from, to, count }) {
       return `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`;
-   };
+   }
    return (
-      <Paper className={classes.root} sx={{ borderRadius: 0 }}>
-         <TableContainer className={classes.scrollClass} sx={{ maxHeight: 440, overflowY:"scroll" }}>
-            <Table stickyHeader aria-label="sticky table">
-               <TableHead>
-                  <TableRow className={classes.table_row}>
-                     <TableCell style={{ minWidth: 60, maxHeight: 60 }}>
-                        تصویر
-                     </TableCell>
-                     <TableCell style={{ minWidth: 100 }}>نام محصول</TableCell>
-                     <TableCell style={{ minWidth: 100 }}>
-                        <FormControl
-                           variant="standard"
-                           sx={{ m: 1, minWidth: 120 }}
-                        >
-                           <InputLabel id="demo-simple-select-standard-label">
-                              دسته بندی
-                           </InputLabel>
-                           <Select
-                              labelId="demo-simple-select-standard-label"
-                              id="demo-simple-select-standard"
-                              onChange={handleChange}
+      <>
+         <Button className={classes.myButton}>کالای جدید</Button>
+         <Paper className={classes.root} sx={{ borderRadius: 0 }}>
+            <TableContainer
+               className={classes.scrollClass}
+               sx={{ maxHeight: 440, overflowY: "scroll" }}
+            >
+               <Table stickyHeader aria-label="sticky table">
+                  <TableHead>
+                     <TableRow className={classes.table_row}>
+                        <TableCell style={{ minWidth: 60, maxHeight: 60 }}>
+                           تصویر
+                        </TableCell>
+                        <TableCell style={{ minWidth: 100 }}>
+                           نام محصول
+                        </TableCell>
+                        <TableCell style={{ minWidth: 100 }}>
+                           <FormControl
+                              variant="standard"
+                              sx={{ m: 1, minWidth: 120 }}
                            >
-                              {Categories.map((catgory) => (
-                                 <MenuItem value={catgory.id}>
-                                    {catgory.name}
-                                 </MenuItem>
-                              ))}
-                           </Select>
-                        </FormControl>
-                     </TableCell>
-                     <TableCell></TableCell>
-                  </TableRow>
-               </TableHead>
-               <TableBody>
-                  {Object.values(products)
-                     .slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                     )
-                     .map((row) => {
-                        return (
-                           <TableRow
-                              className="table_row"
-                              sx={{ bgcolor: "light_nude.main" }}
-                              role="checkbox"
-                              tabIndex={-1}
-                              key={row.code}
-                           >
-                              <TableCell>
-                                 <img
-                                    style={{ maxWidth: 60 }}
-                                    src={BASE_URL + row.image}
-                                    alt="تصویر کالا"
-                                 />
-                              </TableCell>
-                              <TableCell>{row.name}</TableCell>
-                              <TableCell>
-                                 {findCategoryName(row.categoryId) +
-                                    "/ " +
-                                    findSubCategoryName(row.subCategoryId)}
-                              </TableCell>
-                              <TableCell>
-                                 <DeleteIcon />
-                                 <EditIcon />
-                              </TableCell>
-                           </TableRow>
-                        );
-                     })}
-               </TableBody>
-            </Table>
-         </TableContainer>
-         <TablePagination
-            className={classes.pagination}
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            labelRowsPerPage="صفحه"
-            labelDisplayedRows={defaultLabelDisplayedRows}
-            count={products.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-         />
-      </Paper>
+                              <InputLabel id="demo-simple-select-standard-label">
+                                 دسته بندی
+                              </InputLabel>
+                              <Select
+                                 labelId="demo-simple-select-standard-label"
+                                 id="demo-simple-select-standard"
+                                 onChange={handleChange}
+                              >
+                                 {Categories.map((catgory) => (
+                                    <MenuItem value={toString(catgory?.id)}>
+                                       {catgory.name}
+                                    </MenuItem>
+                                 ))}
+                              </Select>
+                           </FormControl>
+                        </TableCell>
+                        <TableCell></TableCell>
+                     </TableRow>
+                  </TableHead>
+                  <TableBody>
+                     {Object.values(products)
+                        .slice(
+                           page * rowsPerPage,
+                           page * rowsPerPage + rowsPerPage
+                        )
+                        .map((row) => {
+                           return (
+                              <TableRow
+                                 className="table_row"
+                                 sx={{ bgcolor: "light_nude.main" }}
+                                 role="checkbox"
+                                 tabIndex={-1}
+                                 key={row.code}
+                              >
+                                 <TableCell>
+                                    <img
+                                       style={{ maxWidth: 60 }}
+                                       src={BASE_URL + row.image}
+                                       alt="تصویر کالا"
+                                    />
+                                 </TableCell>
+                                 <TableCell>{row.name}</TableCell>
+                                 <TableCell>
+                                    {findCategoryName(row.categoryId) +
+                                       "/ " +
+                                       findSubCategoryName(row.subCategoryId)}
+                                 </TableCell>
+                                 <TableCell>
+                                    <DeleteIcon />
+                                    <EditIcon />
+                                 </TableCell>
+                              </TableRow>
+                           );
+                        })}
+                  </TableBody>
+               </Table>
+            </TableContainer>
+            <TablePagination
+               className={classes.pagination}
+               rowsPerPageOptions={[10, 25, 100]}
+               component="div"
+               labelRowsPerPage="صفحه"
+               labelDisplayedRows={defaultLabelDisplayedRows}
+               count={products.length}
+               rowsPerPage={rowsPerPage}
+               page={page}
+               onPageChange={handleChangePage}
+               onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+         </Paper>
+      </>
    );
 }

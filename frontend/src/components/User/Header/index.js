@@ -77,15 +77,17 @@ const UserHeader = () => {
                         <ShoppingCartIcon />
                      </Button>
                   </Box>
-                  <Typography
-                     className="logo-shop"
-                     variant="h6"
-                     noWrap
-                     component="div"
-                     sx={{ marginTop: "auto", fontSize: 24 }}
-                  >
-                     Rare Shop
-                  </Typography>
+                  <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                     <Typography
+                        className="logo-shop"
+                        variant="h6"
+                        noWrap
+                        component="div"
+                        sx={{ marginTop: "auto", fontSize: 24 }}
+                     >
+                        Rare Shop
+                     </Typography>
+                  </Link>
                </Toolbar>
                <ul className="links-ul">
                   <li href="/clothes">

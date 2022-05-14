@@ -1,18 +1,17 @@
-import LoadingActionTypes from "../types/LoadingType";
+import { createSlice } from "@reduxjs/toolkit";
 
-const INITIAL_STATE = {
-    status:false
-};
+export const LoadingSlice = createSlice({
+  name: 'loading',
+  initialState:{
+    loadingStatus: false,
+  },
+  reducers: {
+    setLoading: (state, action) => {
+      return action.payload
+    },
+    
+  }
+})
+// export const { setLoading } = LoadingSlice.actions;
+// export default LoadingSlice.reducer
 
-const loadingReducer = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
-      case LoadingActionTypes.START:
-        return { status: true };
-      case LoadingActionTypes.END:
-        return { status: false };
-      default:
-        return state;
-    }
-  };
-  
-  export default loadingReducer;
