@@ -25,7 +25,7 @@ const Login = () => {
 
    const handleSubmit = async (e) => {
       e.preventDefault();
-       //  const token = localStorage.getItem("token");
+      localStorage.removeItem("token");
       let res = await AdminApi.login(user);
       console.log(res.data.token);
       localStorage.setItem("token", res.data.token);

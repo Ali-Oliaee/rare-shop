@@ -4,13 +4,15 @@ import ProductCard from "../../components/User/Product/ProductCard";
 import { Grid } from "@mui/material";
 import NewProductTable from "../../components/User/Table/MyTable";
 import Login from "../../components/Admin/Login";
+import Slider from "../../components/User/Slider/Slider";
+import "swiper/css/bundle";
 const Home = () => {
    const text = "<script>console.log('hello')</script>";
    return (
       <>
          {/* <img src={data[0]?.image}/> */}
          {/* <p dangerouslySetInnerHTML={{__html: text}}></p> */}
-         <Grid container m="auto">
+         {/* <Grid container m="auto">
             <Grid item mx={"auto"} my={3} xs={10} md={5} lg={3.5}>
                <ProductCard />
             </Grid>
@@ -28,9 +30,10 @@ const Home = () => {
             </Grid>
             <Grid item mx={"auto"} my={3} xs={10} md={5} lg={3.5}>
                <ProductCard />
-            </Grid>
-         </Grid>
+            </Grid> */}
+         {/* </Grid> */}
          {/* <NewProductTable/>     */}
+         <Slider/>
       </>
    );
 };
