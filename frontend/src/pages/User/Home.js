@@ -1,39 +1,32 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import ProductCard from "../../components/User/Product/ProductCard";
-import { Grid } from "@mui/material";
-import NewProductTable from "../../components/User/Table/MyTable";
-import Login from "../../components/Admin/Login";
 import Slider from "../../components/User/Slider/Slider";
+import { ProductApi } from "../../api/Products";
 import "swiper/css/bundle";
 const Home = () => {
-   const text = "<script>console.log('hello')</script>";
+   const [products, setProducts] = useState([]);
+
+   const getProducts = async () => {
+      const clothesRes = await ProductApi.gets({
+         params: { categoryId: 1, _limit: 6 },
+      });
+      const shoesRes = await ProductApi.gets({
+         params: { categoryId: 2, _limit: 6 },
+      });
+      const accessoryRes = await ProductApi.gets({
+         params: { categoryId: 3, _limit: 6 },
+      });
+      setProducts([clothesRes.data,shoesRes.data,accessoryRes.data]);
+   };
+
+   useEffect(() => {
+      getProducts();
+   }, []);
+   console.log(products);
    return (
       <>
-         {/* <img src={data[0]?.image}/> */}
-         {/* <p dangerouslySetInnerHTML={{__html: text}}></p> */}
-         {/* <Grid container m="auto">
-            <Grid item mx={"auto"} my={3} xs={10} md={5} lg={3.5}>
-               <ProductCard />
-            </Grid>
-            <Grid item mx={"auto"} my={3} xs={10} md={5} lg={3.5}>
-               <ProductCard />
-            </Grid>
-            <Grid item mx={"auto"} my={3} xs={10} md={5} lg={3.5}>
-               <ProductCard />
-            </Grid>
-            <Grid item mx={"auto"} my={3} xs={10} md={5} lg={3.5}>
-               <ProductCard />
-            </Grid>
-            <Grid item mx={"auto"} my={3} xs={10} md={5} lg={3.5}>
-               <ProductCard />
-            </Grid>
-            <Grid item mx={"auto"} my={3} xs={10} md={5} lg={3.5}>
-               <ProductCard />
-            </Grid> */}
-         {/* </Grid> */}
-         {/* <NewProductTable/>     */}
-         <Slider/>
+         <Slider data={products[0]} category="پوشاک" />
+         <Slider data={products[1]} category="کیف و کفش"/>
+         <Slider data={products[2]} category="اکسسوری"/>
       </>
    );
 };

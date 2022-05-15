@@ -29,6 +29,15 @@ export const routes = [
       isPrivate: false,
    },
    {
+      path: "/products/:id",
+      component: (
+         <UserLayout>
+            <Product />
+         </UserLayout>
+      ),
+      isPrivate: false,
+   },
+   {
       path: "/payment",
       component: <Payment />,
       isPrivate: false,
