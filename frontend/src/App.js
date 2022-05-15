@@ -24,6 +24,7 @@ function App() {
                   if (rout.isPrivate) {
                      return (
                         <Route
+                           key={rout.path}
                            path={rout.path}
                            element={WithAuth(rout.component)}
                         />

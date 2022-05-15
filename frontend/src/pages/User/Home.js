@@ -21,12 +21,11 @@ const Home = () => {
    useEffect(() => {
       getProducts();
    }, []);
-   console.log(products);
    return (
       <>
-         <Slider data={products[0]} category="پوشاک" />
-         <Slider data={products[1]} category="کیف و کفش"/>
-         <Slider data={products[2]} category="اکسسوری"/>
+         <Slider data={products[0]} category={1} urlCategory={"clothes"} />
+         <Slider data={products[1]} category={2} urlCategory={"shoes-bag"}/>
+         <Slider data={products[2]} category={3} urlCategory={"accessory"}/>
       </>
    );
 };

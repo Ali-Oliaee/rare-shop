@@ -18,7 +18,6 @@ class Service {
             return config;
          },
          function (error) {
-            // console.log("bye");
             Promise.reject(CanceledError)
          }
       );

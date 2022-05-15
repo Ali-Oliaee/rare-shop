@@ -32,8 +32,8 @@ const useStyle = makeStyles({
          transform: "rotate(180deg)",
       },
       "& .MuiTableContainer-root::-webkit-scrollbar": {
-         display: "none", /* for Chrome, Safari, and Opera */
-     }
+         display: "none" /* for Chrome, Safari, and Opera */,
+      },
    },
 });
 
@@ -58,7 +58,7 @@ export default function Orders() {
 
    useEffect(() => {
       filterOrdersByStatus();
-   }, [arrange,processOrders]);
+   }, [arrange, processOrders]);
 
    const handleChange = (event) => {
       let requestedCategory = event.target.value;
@@ -74,11 +74,11 @@ export default function Orders() {
       setPage(0);
    };
    const handleRadioChange = () => {
-      setProcessOrders(!processOrders)
-   }
+      setProcessOrders(!processOrders);
+   };
    function defaultLabelDisplayedRows({ from, to, count }) {
       return `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`;
-   };
+   }
    return (
       <>
          <FormControl>
@@ -104,7 +104,7 @@ export default function Orders() {
             </RadioGroup>
          </FormControl>
          <Paper className={classes.root} sx={{ borderRadius: 0 }}>
-            <TableContainer sx={{ maxHeight: 440 ,overflowY:"hidden"}}>
+            <TableContainer sx={{ maxHeight: 440, overflowY: "hidden" }}>
                <Table stickyHeader aria-label="sticky table">
                   <TableHead>
                      <TableRow className={classes.table_row}>

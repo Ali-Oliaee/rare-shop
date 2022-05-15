@@ -1,6 +1,7 @@
 import Home from "../pages/User/Home";
 import Product from "../pages/User/Product";
 import Payment from "../pages/User/Payment";
+import AllProducts from "../pages/User/Products";
 import Cart from "../pages/User/Cart";
 import Login from "../components/Admin/Login";
 import UserLayout from "../components/User/Layout";
@@ -29,10 +30,10 @@ export const routes = [
       isPrivate: false,
    },
    {
-      path: "/products/:id",
+      path: "/products/clothes",
       component: (
          <UserLayout>
-            <Product />
+            <AllProducts/>
          </UserLayout>
       ),
       isPrivate: false,

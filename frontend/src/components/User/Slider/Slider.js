@@ -1,18 +1,33 @@
 import React, { useRef, useState, useEffect } from "react";
 import { makeStyles } from "@mui/styles";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { ProductApi } from "../../../api/Products";
+import { AdminApi } from "../../../api/AdminApi";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { BASE_URL } from "../../../core/constants";
-import "./Slider.scss"
+import "./Slider.scss";
 import { Link } from "react-router-dom";
 
-
 export default function Slider(props) {
-   
+   const [Categories, setCategories] = useState([]);
+   const inside = async () => {
+      const categoryIdRes = await AdminApi.getCategoryId();
+      setCategories(categoryIdRes.data);
+   };
+   useEffect(() => {
+      inside();
+   }, []);
+
+   const findCategoryName = (id) => {
+      let requestedCategoryObject = Object.values(Categories).find(
+         (el) => el.id == id
+      );
+       return requestedCategoryObject?.name;
+   };
    return (
       <>
-      <Link to={`/products${props.category}`}>{props.category}</Link>
+         <Link to={`/products/${props.urlCategory}`}>
+            {findCategoryName(props.category)}
+         </Link>
          <Swiper
             spaceBetween={30}
             centeredSlides={true}
