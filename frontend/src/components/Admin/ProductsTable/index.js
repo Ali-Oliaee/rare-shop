@@ -38,7 +38,7 @@ const useStyle = makeStyles({
    },
 });
 
-export default function AllProducts() {
+export default function AllProductsTable() {
    const [page, setPage] = useState(0);
    const [rowsPerPage, setRowsPerPage] = useState(10);
    const [category, setCategory] = useState([]);

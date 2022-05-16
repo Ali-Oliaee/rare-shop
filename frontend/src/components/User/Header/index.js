@@ -77,7 +77,10 @@ const UserHeader = () => {
                         <ShoppingCartIcon />
                      </Button>
                   </Box>
-                  <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                  <Link
+                     to="/"
+                     style={{ textDecoration: "none", color: "white" }}
+                  >
                      <Typography
                         className="logo-shop"
                         variant="h6"
@@ -90,14 +93,14 @@ const UserHeader = () => {
                   </Link>
                </Toolbar>
                <ul className="links-ul">
-                  <li href="/clothes">
-                     <a>پوشاک</a>
+                  <li>
+                     <a href="/products/clothes">پوشاک</a>
                   </li>
-                  <li href="/shoesbag">
-                     <a>کیف و کفش</a>
+                  <li>
+                     <a href="/products/shoes-bag">کیف و کفش</a>
                   </li>
-                  <li href="/accessory">
-                     <a>اکسسوری</a>
+                  <li>
+                     <a href="/products/accessory">اکسسوری</a>
                   </li>
                </ul>
             </Container>

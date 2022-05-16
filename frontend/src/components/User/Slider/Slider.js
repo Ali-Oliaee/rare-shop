@@ -19,7 +19,7 @@ export default function Slider(props) {
 
    const findCategoryName = (id) => {
       let requestedCategoryObject = Object.values(Categories).find(
-         (el) => el.id == id
+         (el) => el.id === id
       );
        return requestedCategoryObject?.name;
    };

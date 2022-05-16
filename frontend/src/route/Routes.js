@@ -6,9 +6,8 @@ import Login from "../components/Admin/Login";
 import UserLayout from "../components/User/Layout";
 import Inventory from "../pages/Admin/Inventory";
 import Order from "../pages/Admin/Order";
-import Products from "../pages/Admin/Products";
-import Clothes from "../components/User/Clothes";
-
+import ProductsTable from "../pages/Admin/Products";
+import AllProducts from "../pages/User/AllProducts";
 export const routes = [
    {
       path: "/",
@@ -32,7 +31,25 @@ export const routes = [
       path: "/products/clothes",
       component: (
          <UserLayout>
-            <Clothes/>
+            <AllProducts cat={1} />
+         </UserLayout>
+      ),
+      isPrivate: false,
+   },
+   {
+      path: "/products/shoes-bag",
+      component: (
+         <UserLayout>
+            <AllProducts cat={2} />
+         </UserLayout>
+      ),
+      isPrivate: false,
+   },
+   {
+      path: "/products/accessory",
+      component: (
+         <UserLayout>
+            <AllProducts cat={3} />
          </UserLayout>
       ),
       isPrivate: false,
@@ -57,15 +74,9 @@ export const routes = [
       isPrivate: false,
       layout: "user",
    },
-   // {
-   //    path: "/adminPanel",
-   //    component: <Adminpanel />,
-   //    isPrivate: false,
-   //    layout: "admin",
-   // },
    {
       path: "/dashboard/products",
-      component: Products,
+      component: ProductsTable,
       isPrivate: true,
       layout: "admin",
    },
