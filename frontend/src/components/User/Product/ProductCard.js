@@ -33,7 +33,7 @@ export default function ProductCard({ data }) {
                   color="blue"
                   component="div"
                >
-                  {data.price}
+                  {data.price.toLocaleString("fa")}
                </Typography>
             </CardContent>
          </Box>

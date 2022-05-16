@@ -1,14 +1,13 @@
 import Home from "../pages/User/Home";
 import Product from "../pages/User/Product";
 import Payment from "../pages/User/Payment";
-import AllProducts from "../pages/User/Products";
 import Cart from "../pages/User/Cart";
 import Login from "../components/Admin/Login";
 import UserLayout from "../components/User/Layout";
-// import Adminpanel from "../pages/Admin/AdminPanel";
 import Inventory from "../pages/Admin/Inventory";
 import Order from "../pages/Admin/Order";
 import Products from "../pages/Admin/Products";
+import Clothes from "../components/User/Clothes";
 
 export const routes = [
    {
@@ -33,7 +32,7 @@ export const routes = [
       path: "/products/clothes",
       component: (
          <UserLayout>
-            <AllProducts/>
+            <Clothes/>
          </UserLayout>
       ),
       isPrivate: false,
