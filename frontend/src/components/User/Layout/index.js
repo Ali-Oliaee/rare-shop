@@ -5,7 +5,7 @@ const UserLayout = ({ children }) => {
    return (
       <>
          <UserHeader />
-           <div>{children}</div>
+           <div style={{margin:40,padding:20, background: "#c09d7e"}}>{children}</div>
          <Footer />
       </>
    );

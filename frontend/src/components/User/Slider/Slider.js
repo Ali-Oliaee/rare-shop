@@ -1,33 +1,22 @@
 import React, { useRef, useState, useEffect } from "react";
 import { makeStyles } from "@mui/styles";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { AdminApi } from "../../../api/AdminApi";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { BASE_URL } from "../../../core/constants";
 import "./Slider.scss";
 import { Link } from "react-router-dom";
 
 export default function Slider(props) {
-   const [Categories, setCategories] = useState([]);
-   const inside = async () => {
-      const categoryIdRes = await AdminApi.getCategoryId();
-      setCategories(categoryIdRes.data);
-   };
-   useEffect(() => {
-      inside();
-   }, []);
-
-   const findCategoryName = (id) => {
-      let requestedCategoryObject = Object.values(Categories).find(
-         (el) => el.id === id
-      );
-       return requestedCategoryObject?.name;
-   };
    return (
       <>
-         <Link to={`/products/${props.urlCategory}`}>
-            {findCategoryName(props.category)}
-         </Link>
+         <div style={{width: 500}}>
+            <h2>
+               <Link className="mylink" to={`/products/${props.urlCategory}`}>
+                  {props.findCategoryName(props.category)}
+               </Link>
+            </h2>
+            <h3>{props?.description}</h3>
+         </div>
          <Swiper
             spaceBetween={30}
             centeredSlides={true}
@@ -43,7 +32,9 @@ export default function Slider(props) {
             className="mySwiper"
          >
             {props.data?.map((swipe) => (
-               <SwiperSlide>{<img src={BASE_URL + swipe.image} />}</SwiperSlide>
+               <SwiperSlide className="swiperImg" key={swipe.id}>
+                  {<img src={BASE_URL + swipe.image} />}
+               </SwiperSlide>
             ))}
          </Swiper>
       </>

@@ -18,22 +18,24 @@ export default function ProductCard({ data }) {
       >
          <CardMedia
             component="img"
-            sx={{ width: 200, height: 220 }}
+            sx={{ width: 280, height: 220, borderRadius: 3 }}
             image={BASE_URL + data.image}
             alt="عکس کالا"
          />
          <Box>
-            <CardContent sx={{ flex: "1 0 auto" }}>
-               <Typography component="div" variant="h5">
+            <CardContent
+               sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  width: 180,
+                  fontSize: 20,
+               }}
+            >
+               <Typography alignSelf="start" component="div" variant="span">
                   {data.name}
                </Typography>
-               <Typography
-                  // mt={5}
-                  variant="subtitle1"
-                  color="blue"
-                  component="div"
-               >
-                  {data.price.toLocaleString("fa")}
+               <Typography mt={10} ml={2}  fontSize={20} variant="subtitle1" component="div">
+                  { " تومان "+ data.price.toLocaleString("fa")}
                </Typography>
             </CardContent>
          </Box>
