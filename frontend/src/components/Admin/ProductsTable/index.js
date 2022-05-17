@@ -18,6 +18,7 @@ import { ProductApi } from "../../../api/Products";
 import { AdminApi } from "../../../api/AdminApi";
 import { BASE_URL } from "../../../core/constants";
 import { Button } from "@mui/material";
+import NewProductModal from "../NewProduct/NewProduct";
 
 const useStyle = makeStyles({
    root: {
@@ -92,7 +93,7 @@ export default function AllProductsTable() {
    }
    return (
       <>
-         <Button className={classes.myButton}>کالای جدید</Button>
+      <NewProductModal/>
          <Paper className={classes.root} sx={{ borderRadius: 0 }}>
             <TableContainer
                className={classes.scrollClass}
@@ -121,7 +122,7 @@ export default function AllProductsTable() {
                                  onChange={handleChange}
                               >
                                  {Categories.map((catgory) => (
-                                    <MenuItem value={toString(catgory?.id)}>
+                                    <MenuItem value={catgory?.id}>
                                        {catgory.name}
                                     </MenuItem>
                                  ))}

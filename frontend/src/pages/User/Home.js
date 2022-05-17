@@ -3,6 +3,7 @@ import Slider from "../../components/User/Slider/Slider";
 import { ProductApi } from "../../api/Products";
 import { AdminApi } from "../../api/AdminApi";
 import "swiper/css/bundle";
+import MyTable from "../../components/User/Table/MyTable";
 const Home = () => {
    const [products, setProducts] = useState([]);
    const [Categories, setCategories] = useState([]);
@@ -37,6 +38,7 @@ const Home = () => {
    console.log(Categories[0]);
    return (
       <>
+      <MyTable/>
          <div style={{ display: "flex", alignItems: "center" }}>
             <Slider
                category={1}
