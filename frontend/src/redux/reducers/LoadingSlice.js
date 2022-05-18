@@ -6,10 +6,12 @@ export const LoadingSlice = createSlice({
     loadingStatus: false,
   },
   reducers: {
-    setLoading: (state, action) => {
+    startLoading: (state, action) => {
       return action.payload
     },
-    
+    endLoading: (state, action) => {
+      return action.payload
+    },
   }
 })
 // export const { setLoading } = LoadingSlice.actions;

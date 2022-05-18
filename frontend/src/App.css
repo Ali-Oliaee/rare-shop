@@ -2,3 +2,7 @@
 *{
   font-family: 'Scheherazade New', serif;
 }
+.link-style {
+  text-decoration: none;
+  color: inherit;
+}

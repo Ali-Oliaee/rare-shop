@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "../../components/User/Product/ProductCard";
-import { ProductApi } from "../../api/Products";
+import { ProductsApi } from "../../api/Products";
 import { Grid } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import { makeStyles } from "@mui/styles";
@@ -23,7 +23,7 @@ const AllProducts = ({ cat }) => {
    const [count, setCount] = useState(1);
    const classes = useStyle();
    const getProducts = async () => {
-      const clothesRes = await ProductApi.gets({
+      const clothesRes = await ProductsApi.gets({
          params: { _page: page, _limit: 6, categoryId: cat },
       });
       setCount(parseInt(clothesRes.headers["x-total-count"] / 6));

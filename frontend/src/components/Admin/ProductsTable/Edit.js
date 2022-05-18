@@ -7,7 +7,8 @@ const Edit = ({ id }) => {
    const editHandler = (id) => {
 
    };
-   const handleFileSelect = (event) => {
+
+   const handleUpdatedData = (event) => {
       setSelectedFile(event.target.files[0]);
       console.log(selectedFile);
    };
@@ -16,7 +17,7 @@ const Edit = ({ id }) => {
          <Icon onClick={() => editHandler(id)}>
             {/* <EditIcon /> */}
          </Icon>
-            <MyModal buttonName={<EditIcon /> }handleFileSelect={handleFileSelect} />
+            <MyModal buttonName={<EditIcon /> }handleFileSelect={handleUpdatedData} />
       </div>
    );
 };

@@ -1,5 +1,5 @@
 import http from "./HttpApi"
 
-const ProductApi = new http("/products");
+const ProductsApi = new http("/products");
 
-export { ProductApi }
+export { ProductsApi }
