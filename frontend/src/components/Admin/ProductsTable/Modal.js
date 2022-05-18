@@ -1,14 +1,12 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
-import Edit from "@mui/icons-material/Edit";
-import Editor from "../Editor";
+import Editor from "./Editor";
 const style = {
    position: "absolute",
    top: "50%",
@@ -20,15 +18,14 @@ const style = {
    boxShadow: 24,
    p: 4,
 };
-
-export default function NewProductModal() {
-   const [open, setOpen] = React.useState(false);
+const MyModal = (props) => {
+   const [open, setOpen] = useState(false);
    const handleOpen = () => setOpen(true);
    const handleClose = () => setOpen(false);
-
    return (
       <div>
-         <Button onClick={handleOpen}>کالای جدید</Button>
+         <Button onClick={handleOpen}>{props.buttonName}</Button>
+
          <Modal
             open={open}
             onClose={handleClose}
@@ -37,9 +34,10 @@ export default function NewProductModal() {
          >
             <Box sx={style}>
                <TextField value={""}></TextField>
+               {/* <button onClick={handleUploadFile}>upload</button> */}
                <Button variant="contained" component="label">
                   افزودن عکس
-                  <input type="file" hidden />
+                  <input type="file" hidden onChange={props.handleFileSelect} />
                </Button>
                <TextField
                   label="نام کالا"
@@ -68,4 +66,6 @@ export default function NewProductModal() {
          </Modal>
       </div>
    );
-}
+};
+
+export default MyModal;

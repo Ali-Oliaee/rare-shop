@@ -22,7 +22,6 @@ const AllProducts = ({ cat }) => {
    const [page, setPage] = useState(1);
    const [count, setCount] = useState(1);
    const classes = useStyle();
-
    const getProducts = async () => {
       const clothesRes = await ProductApi.gets({
          params: { _page: page, _limit: 6, categoryId: cat },
@@ -36,7 +35,7 @@ const AllProducts = ({ cat }) => {
    };
    useEffect(() => {
       getProducts();
-   }, [page]);
+   }, [page, cat]);
 
    return (
       <div className={classes.root}>

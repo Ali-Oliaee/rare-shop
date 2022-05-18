@@ -8,6 +8,7 @@ import Inventory from "../pages/Admin/Inventory";
 import Order from "../pages/Admin/Order";
 import ProductsTable from "../pages/Admin/Products";
 import AllProducts from "../pages/User/AllProducts";
+
 export const routes = [
    {
       path: "/",
@@ -18,15 +19,7 @@ export const routes = [
       ),
       isPrivate: false,
    },
-   {
-      path: "/product/id",
-      component: (
-         <UserLayout>
-            <Product />
-         </UserLayout>
-      ),
-      isPrivate: false,
-   },
+  
    {
       path: "/products/clothes",
       component: (

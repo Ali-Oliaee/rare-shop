@@ -18,12 +18,11 @@ class Service {
             return config;
          },
          function (error) {
-            Promise.reject(CanceledError)
+            Promise.reject(CanceledError);
          }
       );
       this.instance.interceptors.response.use(
          (res) => {
-
             // store.dispatch(endLoading());
             const { status } = res;
             if (status > 400) {
@@ -72,25 +71,27 @@ class Service {
 
    formdata = (body) => {
       const fd = new FormData();
-      Object.keys(body).forEach((k) => {
-         if (body[k] instanceof FileList) {
-            [...body[k]].forEach((v) => {
-               let value = v;
-               if (!(value instanceof File) && typeof value === "object")
-                  value = JSON.stringify(value);
-               fd.append(k, value);
-            });
-         }
-         if (body[k] instanceof File) {
-            fd.append(k, body[k]);
-         } else {
-            let value = body[k];
-            if (!(value instanceof File) && typeof value === "object") {
-               value = JSON.stringify(value);
-            }
-            fd.append(k, value);
-         }
-      });
+      // Object.keys(body).forEach((k) => {
+         // if (body instanceof File) {
+            fd.append('image',body);
+            console.log("is file");
+         // } else {
+         //    let value = body;
+         //    if (!(value instanceof File) && typeof value === "object") {
+         //       value = JSON.stringify(value);
+         //    }
+         //    console.log("isn't file");
+         //    fd.append('image',value);
+         // }
+         // if (body[k] instanceof FileList) {
+         //    [...body[k]].forEach((v) => {
+         //       let value = v;
+         //       if (!(value instanceof File) && typeof value === "object")
+         //          value = JSON.stringify(value);
+         //       fd.append(k, value);
+         //    });
+         // }
+      // });
       return fd;
    };
 }

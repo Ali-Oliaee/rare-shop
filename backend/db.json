@@ -17,7 +17,7 @@
       "categoryId": 1,
       "subCategoryId": 1,
       "price": 600000,
-      "inventory": 40 ,     
+      "inventory": 40,
       "images": "['/files/b081e1aa932f0611fe21603465a2579d','/files/b081e1aa932f0611fe21603465a2579d','/files/b081e1aa932f0611fe21603465a2579d','/files/b081e1aa932f0611fe21603465a2579d']",
       "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
       "image": "/files/b081e1aa932f0611fe21603465a2579d",
@@ -95,18 +95,6 @@
       "image": "/files/30068032963408793676f385f332a014",
       "createdAt": 1651776784417,
       "id": 8
-    },
-    {
-      "name": "شلوار کتان سفید",
-      "categoryId": 1,
-      "subCategoryId": 1,
-      "price": 600000,
-      "inventory": 40,
-      "images": "['/files/500b1806288cfa7e5d662417213adc89','/files/500b1806288cfa7e5d662417213adc89','/files/500b1806288cfa7e5d662417213adc89','/files/500b1806288cfa7e5d662417213adc89']",
-      "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
-      "image": "/files/500b1806288cfa7e5d662417213adc89",
-      "createdAt": 1651926525824,
-      "id": 9
     },
     {
       "name": "شلوار بگ آبی روشن زاپ دار",
@@ -197,7 +185,7 @@
       "categoryId": 1,
       "subCategoryId": 2,
       "price": 600000,
-      "inventory": 40 ,     
+      "inventory": 40,
       "images": "['/files/4aa2af4833d97ca9d3d78e483976b72a','/files/4aa2af4833d97ca9d3d78e483976b72a','/files/4aa2af4833d97ca9d3d78e483976b72a','/files/4aa2af4833d97ca9d3d78e483976b72a']",
       "description": "این تیشرت از پارچه درجه یک دوخته شده که بسیار زیبا و راحت است.مناسب برای مهمانی ها",
       "image": "/files/4aa2af4833d97ca9d3d78e483976b72a",
@@ -241,18 +229,6 @@
       "id": 20
     },
     {
-      "name": "تیشرت طرح دایناسور گوگل",
-      "categoryId": 1,
-      "subCategoryId": 2,
-      "price": 600000,
-      "inventory": 40,
-      "images": "['/files/3500d8390d8fa453414cecbce309693f','/files/3500d8390d8fa453414cecbce309693f','/files/3500d8390d8fa453414cecbce309693f','/files/3500d8390d8fa453414cecbce309693f']",
-      "description": "این تیشرت از پارچه درجه یک دوخته شده که بسیار زیبا و راحت است.مناسب برای مهمانی ها",
-      "image": "/files/3500d8390d8fa453414cecbce309693f",
-      "createdAt": 1651928047503,
-      "id": 21
-    },
-    {
       "name": "تیشرت سفید آستین گیپور",
       "categoryId": 1,
       "subCategoryId": 2,
@@ -293,7 +269,7 @@
       "categoryId": 1,
       "subCategoryId": 3,
       "price": 600000,
-      "inventory": 40,     
+      "inventory": 40,
       "images": "['/files/6b475a857244424cab1863f697b7ccc8','/files/6b475a857244424cab1863f697b7ccc8','/files/6b475a857244424cab1863f697b7ccc8','/files/6b475a857244424cab1863f697b7ccc8']",
       "description": "این پیراهن از پارچه درجه یک دوخته شده که بسیار زیبا و راحت است.مناسب برای مهمانی ها",
       "image": "/files/6b475a857244424cab1863f697b7ccc8",
@@ -305,7 +281,7 @@
       "categoryId": 1,
       "subCategoryId": 3,
       "price": 600000,
-      "inventory": 40,      
+      "inventory": 40,
       "images": "['/files/5d8cd3588240106f424c78573bde2d86','/files/5d8cd3588240106f424c78573bde2d86','/files/5d8cd3588240106f424c78573bde2d86','/files/5d8cd3588240106f424c78573bde2d86']",
       "description": "این پیراهن از پارچه درجه یک دوخته شده که بسیار زیبا و راحت است.مناسب برای مهمانی ها",
       "image": "/files/5d8cd3588240106f424c78573bde2d86",
@@ -317,7 +293,7 @@
       "categoryId": 1,
       "subCategoryId": 3,
       "price": 600000,
-      "inventory": 40,      
+      "inventory": 40,
       "images": "['/files/234573ca1c095727ea6b2eaa6d466bcb','','','']",
       "description": "این پیراهن از پارچه درجه یک دوخته شده که بسیار زیبا و راحت است.مناسب برای مهمانی ها",
       "image": "/files/234573ca1c095727ea6b2eaa6d466bcb",
@@ -329,7 +305,7 @@
       "categoryId": 1,
       "subCategoryId": 3,
       "price": 600000,
-      "inventory": 40 ,    
+      "inventory": 40,
       "images": "['/files/3c68155ba845c274b7567ba899fdf31b','/files/3c68155ba845c274b7567ba899fdf31b','/files/3c68155ba845c274b7567ba899fdf31b','/files/3c68155ba845c274b7567ba899fdf31b']",
       "description": "این پیراهن از پارچه درجه یک دوخته شده که بسیار زیبا و راحت است.مناسب برای مهمانی ها",
       "image": "/files/3c68155ba845c274b7567ba899fdf31b",
@@ -349,18 +325,6 @@
       "id": 29
     },
     {
-      "name": "پیراهن آبی نفتی بلند",
-      "categoryId": 1,
-      "subCategoryId": 3,
-      "price": 600000,
-      "inventory": 40,
-      "images": "['/files/464a79fc7162fc264a2d9026d9ba9981','/files/464a79fc7162fc264a2d9026d9ba9981','/files/464a79fc7162fc264a2d9026d9ba9981','/files/464a79fc7162fc264a2d9026d9ba9981']",
-      "description": "این پیراهن از پارچه درجه یک دوخته شده که بسیار زیبا و راحت است.مناسب برای مهمانی ها",
-      "image": "/files/464a79fc7162fc264a2d9026d9ba9981",
-      "createdAt": 1651928993390,
-      "id": 30
-    },
-    {
       "name": "پیراهن شیری بلند",
       "categoryId": 1,
       "subCategoryId": 3,
@@ -371,18 +335,6 @@
       "image": "/files/1500fa02efc0d0527a9b316cf39c60ec",
       "createdAt": 1651929012716,
       "id": 31
-    },
-    {
-      "name": "پیراهن سفید یقه گیپور",
-      "categoryId": 1,
-      "subCategoryId": 3,
-      "price": 600000,
-      "inventory": 40,
-      "images": "['/files/2d0813023e44ad28065ea9e888124229','/files/2d0813023e44ad28065ea9e888124229','/files/2d0813023e44ad28065ea9e888124229','/files/2d0813023e44ad28065ea9e888124229']",
-      "description": "این پیراهن از پارچه درجه یک دوخته شده که بسیار زیبا و راحت است.مناسب برای مهمانی ها",
-      "image": "/files/2d0813023e44ad28065ea9e888124229",
-      "createdAt": 1651929035839,
-      "id": 32
     },
     {
       "name": "کفش کانورس گورخری",
@@ -1009,7 +961,6 @@
       "id": 2,
       "createdAt": 1651926880494,
       "description": "ما اینجاییم تا شما با کیف و کفش های برند تمام کشور های جهان را در کمد خود داشته باشید."
-
     },
     {
       "name": "اکسسوری",
@@ -1018,60 +969,59 @@
       "description": "اکسسوری برای داشتن یک استایل بی نظیر ضروریست."
     }
   ],
-
   "subCategory": [
     {
       "name": "شلوار",
       "id": 1,
-      "categoryId":1,
+      "categoryId": 1,
       "createdAt": 1651926817260
     },
     {
       "name": "تیشرت و شومیز",
       "id": 2,
-      "categoryId":1,
+      "categoryId": 1,
       "createdAt": 1651926880494
     },
     {
       "name": "پیراهن",
       "id": 3,
-      "categoryId":1,
+      "categoryId": 1,
       "createdAt": 1651926893313
     },
     {
       "name": "کفش اسپرت",
       "id": 4,
-      "categoryId":2,
+      "categoryId": 2,
       "createdAt": 1651926880495
     },
     {
       "name": "کفش مجلسی",
       "id": 5,
-      "categoryId":2,
+      "categoryId": 2,
       "createdAt": 1651926880496
     },
     {
       "name": "کیف",
       "id": 6,
-      "categoryId":2,
+      "categoryId": 2,
       "createdAt": 1651926880497
     },
     {
       "name": "عینک",
-      "id": 7, 
-      "categoryId":3,
+      "id": 7,
+      "categoryId": 3,
       "createdAt": 1651926880498
     },
     {
       "name": "گردنبند و دستبند",
       "id": 8,
-      "categoryId":3,
+      "categoryId": 3,
       "createdAt": 1651926880499
     },
     {
       "name": "گوشواره و انگشتر",
       "id": 9,
-      "categoryId":3,
+      "categoryId": 3,
       "createdAt": 1651926880594
     }
   ],
@@ -1161,4 +1111,3 @@
     "protection": "admin"
   }
 }
-

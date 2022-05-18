@@ -21,7 +21,9 @@ function App() {
          <ThemeProvider theme={theme}>
             <Routes>
                {routes.map((rout, index) => {
+                  
                   if (rout.isPrivate) {
+                     console.log(rout.path);
                      return (
                         <Route
                            key={rout.path}
@@ -30,6 +32,7 @@ function App() {
                         />
                      );
                   } else {
+                     console.log(rout.path);
                      return (
                         <Route
                            key={rout.path}

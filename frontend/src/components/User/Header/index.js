@@ -94,13 +94,13 @@ const UserHeader = () => {
                </Toolbar>
                <ul className="links-ul">
                   <li>
-                     <a href="/products/clothes">پوشاک</a>
+                     <Link to="/products/clothes">پوشاک</Link>
                   </li>
                   <li>
-                     <a href="/products/shoes-bag">کیف و کفش</a>
+                     <Link to="/products/shoes-bag">کیف و کفش</Link>
                   </li>
                   <li>
-                     <a href="/products/accessory">اکسسوری</a>
+                     <Link to="/products/accessory">اکسسوری</Link>
                   </li>
                </ul>
             </Container>

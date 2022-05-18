@@ -7,8 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
+
 import { makeStyles } from "@mui/styles";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -17,8 +16,10 @@ import Select from "@mui/material/Select";
 import { ProductApi } from "../../../api/Products";
 import { AdminApi } from "../../../api/AdminApi";
 import { BASE_URL } from "../../../core/constants";
-import { Button } from "@mui/material";
-import NewProductModal from "../NewProduct/NewProduct";
+import { Button, Icon } from "@mui/material";
+import NewProductModal from "./NewProduct";
+import Delete from "./Delete";
+import Edit from "./Edit";
 
 const useStyle = makeStyles({
    root: {
@@ -46,8 +47,8 @@ export default function AllProductsTable() {
    const [products, setProducts] = useState([]);
    const [subCategories, setSubCategories] = useState([]);
    const [Categories, setCategories] = useState([]);
-
    const classes = useStyle();
+
    const getProducts = async () => {
       const res = await ProductApi.gets({
          params: { categoryId: category },
@@ -93,7 +94,7 @@ export default function AllProductsTable() {
    }
    return (
       <>
-      <NewProductModal/>
+         <NewProductModal />
          <Paper className={classes.root} sx={{ borderRadius: 0 }}>
             <TableContainer
                className={classes.scrollClass}
@@ -161,8 +162,11 @@ export default function AllProductsTable() {
                                        findSubCategoryName(row.subCategoryId)}
                                  </TableCell>
                                  <TableCell>
-                                    <DeleteIcon />
-                                    <EditIcon />
+                                    <Delete
+                                       onFinish={getProducts}
+                                       id={row.id}
+                                    />
+                                    <Edit id={row.id} onFinish={getProducts} />
                                  </TableCell>
                               </TableRow>
                            );
