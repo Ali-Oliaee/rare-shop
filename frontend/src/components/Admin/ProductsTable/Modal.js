@@ -6,25 +6,36 @@ import { TextField } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
+import { makeStyles } from "@mui/styles";
 import Editor from "./Editor";
-const style = {
-   position: "absolute",
-   top: "50%",
-   left: "50%",
-   transform: "translate(-50%, -50%)",
-   width: 400,
-   bgcolor: "background.paper",
-   border: "2px solid #000",
-   boxShadow: 24,
-   p: 4,
-};
+const style = {};
+const useStyle = makeStyles({
+   root: {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      width: 400,
+      bgcolor: "white",
+      border: "2px solid #000",
+      boxShadow: 24,
+      p: 4,
+   },
+   buttonStyle: {
+      marginRight: "70rem",
+      marginTop: "2rem",
+   },
+});
 const MyModal = (props) => {
    const [open, setOpen] = useState(false);
    const handleOpen = () => setOpen(true);
    const handleClose = () => setOpen(false);
+   const classes = useStyle();
    return (
       <div>
-         <Button onClick={handleOpen}>{props.buttonName}</Button>
+         <Button className={classes.buttonStyle} onClick={handleOpen}>
+            {props.buttonName}
+         </Button>
 
          <Modal
             open={open}
@@ -32,7 +43,7 @@ const MyModal = (props) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
          >
-            <Box sx={style}>
+            <Box className={classes.root}>
                <TextField value={""}></TextField>
                {/* <button onClick={handleUploadFile}>upload</button> */}
                <Button variant="contained" component="label">
