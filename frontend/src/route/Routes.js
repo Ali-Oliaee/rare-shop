@@ -19,7 +19,7 @@ export const routes = [
       ),
       isPrivate: false,
    },
-  
+
    {
       path: "/products/clothes",
       component: (
@@ -82,6 +82,16 @@ export const routes = [
    {
       path: "/dashboard/order",
       component: <Order />,
+      isPrivate: false,
+      layout: "admin",
+   },
+   {
+      path: "/product/:id",
+      component: (
+         <UserLayout>
+            <Product />
+         </UserLayout>
+      ),
       isPrivate: false,
       layout: "admin",
    },

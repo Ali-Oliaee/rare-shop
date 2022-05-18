@@ -7,7 +7,7 @@ import { useEffect } from "react";
 // import AdminPanel from "../admin-panel";
 // import "../../admin-panel/admin.css";
 // import BasicModal from "./add-product";
-import { ProductApi } from "../../../api/Products";
+import { ProductsApi } from "../../../api/Products";
 const columns = [
    {
       field: "image",
@@ -26,7 +26,7 @@ const columns = [
 export default function DataTable() {
    const [product, setProduct] = React.useState({});
    async function getData() {
-      const res = await ProductApi.gets({
+      const res = await ProductsApi.gets({
          params: { categoryId: 1 },
       });
       setProduct(res.data);

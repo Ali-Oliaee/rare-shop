@@ -15,16 +15,27 @@ const useStyle = makeStyles({
       top: "50%",
       left: "50%",
       transform: "translate(-50%, -50%)",
-      width: 400,
-      bgcolor: "white",
+      width: 500,
+      height: 500,
+      background: "white",
       border: "2px solid #000",
       boxShadow: 24,
-      p: 4,
+      padding: 40,
+      "& .MuiFormControl-root":{
+         width:"100%",
+         marginTop:20,
+         marginBottom:20,
+      }
    },
    buttonStyle: {
       marginRight: "70rem",
       marginTop: "2rem",
    },
+   fileButton:{
+      float: "left",
+      marginBottom:20,
+   },
+  
 });
 const MyModal = (props) => {
    const [open, setOpen] = useState(false);
@@ -46,19 +57,19 @@ const MyModal = (props) => {
             <Box className={classes.root}>
                <TextField value={""}></TextField>
                {/* <button onClick={handleUploadFile}>upload</button> */}
-               <Button variant="contained" component="label">
+               <Button className={classes.fileButton} variant="contained" component="label">
                   افزودن عکس
-                  <input type="file" hidden onChange={props.handleFileSelect} />
+                  <input type="file" hidden onChange={props.handleUpdatedData} />
                </Button>
                <TextField
+               className={classes.inputName}
                   label="نام کالا"
                   variant="standard"
-                  color="warning"
                   focused
                />
                <FormControl fullWidth>
                   <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                     Age
+                     دسته بندی
                   </InputLabel>
                   <NativeSelect
                      defaultValue={30}
@@ -67,12 +78,16 @@ const MyModal = (props) => {
                         id: "uncontrolled-native",
                      }}
                   >
-                     <option value={10}>Ten</option>
-                     <option value={20}>Twenty</option>
-                     <option value={30}>Thirty</option>
+                     <option></option>
+                     <option value={1}>پوشاک</option>
+                     <option value={2}>کیف و کفش </option>
+                     <option value={3}>اکسسوری</option>
                   </NativeSelect>
                </FormControl>
                <Editor />
+            <Button onClick={props.updateData} variant="contained" component="label">
+             ذخیره
+            </Button>
             </Box>
          </Modal>
       </div>

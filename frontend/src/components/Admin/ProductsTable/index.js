@@ -12,7 +12,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { ProductApi } from "../../../api/Products";
+import { ProductsApi } from "../../../api/Products";
 import { AdminApi } from "../../../api/AdminApi";
 import { BASE_URL } from "../../../core/constants";
 import { Button, Icon } from "@mui/material";
@@ -49,7 +49,7 @@ export default function AllProductsTable() {
    const classes = useStyle();
 
    const getProducts = async () => {
-      const res = await ProductApi.gets({
+      const res = await ProductsApi.gets({
          params: { categoryId: category },
       });
       setProducts(res.data);

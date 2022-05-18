@@ -18,8 +18,10 @@ AdminApi.login = function (body) {
   return this.instance.post(`${this.baseApisUrl}auth/login`, body);
 };
 
-AdminApi.refreshToken = function (body) {
-  return this.instance.post(`${this.baseApisUrl}auth/refresh-token`, body);
+AdminApi.upload = function (body) {
+  return this.instance.post(`${this.baseApisUrl}upload`, body);
 };
-
+AdminApi.update = function (id, body) {
+  return this.instance.patch(`${this.baseApisUrl}`, body);
+};
 export { AdminApi }

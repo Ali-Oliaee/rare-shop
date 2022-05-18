@@ -74,7 +74,7 @@ const Header = () => {
 
                   <NavLink
                      to="/"
-                     style={{ textDecoration: "none", color: "white" }}
+                     className="link-style"
                   >
                      <Typography
                         className="logo-shop"

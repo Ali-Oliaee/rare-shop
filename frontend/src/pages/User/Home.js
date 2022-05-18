@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Slider from "../../components/User/Slider/Slider";
-import { ProductApi } from "../../api/Products";
+import { ProductsApi } from "../../api/Products";
 import { AdminApi } from "../../api/AdminApi";
 import "swiper/css/bundle";
 import MyTable from "../../components/User/Table/MyTable";
@@ -9,13 +9,13 @@ const Home = () => {
    const [Categories, setCategories] = useState([]);
 
    const getProducts = async () => {
-      const clothesRes = await ProductApi.gets({
+      const clothesRes = await ProductsApi.gets({
          params: { categoryId: 1, _limit: 6 },
       });
-      const shoesRes = await ProductApi.gets({
+      const shoesRes = await ProductsApi.gets({
          params: { categoryId: 2, _limit: 6 },
       });
-      const accessoryRes = await ProductApi.gets({
+      const accessoryRes = await ProductsApi.gets({
          params: { categoryId: 3, _limit: 6 },
       });
       setProducts([clothesRes.data, shoesRes.data, accessoryRes.data]);

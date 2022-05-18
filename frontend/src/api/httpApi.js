@@ -47,7 +47,7 @@ class Service {
       return this.instance.get(`${this.baseApisUrl}`, config);
    };
 
-   get = (id, config) => {
+   get = (id,config) => {
       return this.instance.get(`${this.baseApisUrl}/${id}`, config);
    };
 

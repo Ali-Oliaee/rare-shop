@@ -56,7 +56,7 @@ const UserHeader = () => {
                   <Box sx={{ flexGrow: 1, display: "flex" }}>
                      <Link
                         to="/dashboard/products"
-                        style={{ textDecoration: "none", color: "black" }}
+                        className="link-style"
                      >
                         <Button
                            onClick={handleCloseNavMenu}
@@ -79,7 +79,7 @@ const UserHeader = () => {
                   </Box>
                   <Link
                      to="/"
-                     style={{ textDecoration: "none", color: "white" }}
+                     className="link-style"
                   >
                      <Typography
                         className="logo-shop"

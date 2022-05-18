@@ -10,7 +10,7 @@ import TableRow from "@mui/material/TableRow";
 import { makeStyles } from "@mui/styles";
 import { TextField, Typography } from "@mui/material";
 import { Button } from "@mui/material";
-import { ProductApi } from "../../../api/Products";
+import { ProductsApi } from "../../../api/Products";
 
 const useStyle = makeStyles({
    tableContainer: {
@@ -57,7 +57,7 @@ export default function Inventories() {
    const classes = useStyle();
 
    const getProducts = async () => {
-      const res = await ProductApi.gets();
+      const res = await ProductsApi.gets();
       setProducts(res.data);
    };
 
