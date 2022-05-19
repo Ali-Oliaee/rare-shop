@@ -22,21 +22,30 @@ import Edit from "./Edit";
 
 const useStyle = makeStyles({
    root: {
-      width: "70%",
+      background: "#E6BC98",
       margin: "auto",
-      marginTop: 50,
+      width: "70%",
+      padding: 50,
       overflow: "hidden",
       border: "1px solid black",
-      "& .table_row:hover": {
-         background: "#E6BC98",
-      },
+
       "& .MuiButtonBase-root svg": {
          transform: "rotate(180deg)",
+      },
+      "& .row_cell": {
+         width: 300,
+         textAlign: "center",
+      },
+      "& .MuiTableCell-head ": {
+         background: "black",
+         color: "white",
+         padding: 40,
       },
       "& .MuiTableContainer-root::-webkit-scrollbar": {
          display: "none" /* for Chrome, Safari, and Opera */,
       },
    },
+  
 });
 
 export default function AllProductsTable() {
@@ -92,9 +101,9 @@ export default function AllProductsTable() {
       return `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`;
    }
    return (
-      <>
+      <div className={classes.root}>
          <NewProductModal />
-         <Paper className={classes.root} sx={{ borderRadius: 0 }}>
+         <Paper sx={{ borderRadius: 0 }}>
             <TableContainer
                className={classes.scrollClass}
                sx={{ maxHeight: 440, overflowY: "scroll" }}
@@ -142,7 +151,6 @@ export default function AllProductsTable() {
                            return (
                               <TableRow
                                  className="table_row"
-                                 sx={{ bgcolor: "light_nude.main" }}
                                  role="checkbox"
                                  tabIndex={-1}
                                  key={row.code}
@@ -186,6 +194,6 @@ export default function AllProductsTable() {
                onRowsPerPageChange={handleChangeRowsPerPage}
             />
          </Paper>
-      </>
+      </div>
    );
 }

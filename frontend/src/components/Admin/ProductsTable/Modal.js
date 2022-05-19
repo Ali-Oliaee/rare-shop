@@ -25,7 +25,11 @@ const useStyle = makeStyles({
          width:"100%",
          marginTop:20,
          marginBottom:20,
-      }
+      },
+      "& .MuiButton-root": {
+         background: "black",
+         marginBottom : "1rem"
+      },
    },
    buttonStyle: {
       marginRight: "70rem",
@@ -37,15 +41,15 @@ const useStyle = makeStyles({
    },
   
 });
-const MyModal = (props) => {
+const MyModal = ({newProduct , setNewProduct, buttonName, handleUploadFile}) => {
    const [open, setOpen] = useState(false);
    const handleOpen = () => setOpen(true);
    const handleClose = () => setOpen(false);
    const classes = useStyle();
    return (
       <div>
-         <Button className={classes.buttonStyle} onClick={handleOpen}>
-            {props.buttonName}
+         <Button style={{background: "black"}} onClick={handleOpen}>
+            {buttonName}
          </Button>
 
          <Modal
@@ -59,13 +63,14 @@ const MyModal = (props) => {
                {/* <button onClick={handleUploadFile}>upload</button> */}
                <Button className={classes.fileButton} variant="contained" component="label">
                   افزودن عکس
-                  <input type="file" hidden onChange={props.handleUpdatedData} />
+                  <input type="file" hidden onChange={handleUploadFile} />
                </Button>
                <TextField
                className={classes.inputName}
                   label="نام کالا"
                   variant="standard"
-                  focused
+                  // focused
+                  // onChange={() => setNewProduct()}
                />
                <FormControl fullWidth>
                   <InputLabel variant="standard" htmlFor="uncontrolled-native">
@@ -85,7 +90,7 @@ const MyModal = (props) => {
                   </NativeSelect>
                </FormControl>
                <Editor />
-            <Button onClick={props.updateData} variant="contained" component="label">
+            <Button  variant="contained" component="label">
              ذخیره
             </Button>
             </Box>

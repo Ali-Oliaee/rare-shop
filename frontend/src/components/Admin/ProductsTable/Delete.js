@@ -1,6 +1,6 @@
 import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Icon } from "@mui/material";
+import { Button, Icon } from "@mui/material";
 import { ProductsApi } from "../../../api/Products";
 const Delete = ({ id, onFinish }) => {
    const deleteHandler = async (id) => {

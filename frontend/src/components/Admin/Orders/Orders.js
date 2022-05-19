@@ -20,16 +20,30 @@ import { Button } from "@mui/material";
 import moment from "jalali-moment";
 const useStyle = makeStyles({
    root: {
-      width: "70%",
+      background: "#E6BC98",
       margin: "auto",
-      marginTop: 50,
+      width:"70%",
+      padding:50,
       overflow: "hidden",
       border: "1px solid black",
-      "& .table_row:hover": {
-         background: "#E6BC98",
-      },
+
       "& .MuiButtonBase-root svg": {
          transform: "rotate(180deg)",
+      },
+      "& .row_cell": {
+         width: 300,
+         textAlign: "center",
+      },
+      "& .MuiTableCell-head ": {
+         background: "black",
+         color: "white",
+         padding: 40,
+      },
+      "& .MuiButton-root": {
+         background: "black",
+         display: "inline-block",
+         marginRight: "45rem",
+         marginBottom : "1rem"
       },
       "& .MuiTableContainer-root::-webkit-scrollbar": {
          display: "none" /* for Chrome, Safari, and Opera */,
@@ -80,7 +94,7 @@ export default function Orders() {
       return `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`;
    }
    return (
-      <>
+      <div className={classes.root}>
          <FormControl>
             <RadioGroup
                row
@@ -103,7 +117,7 @@ export default function Orders() {
                />
             </RadioGroup>
          </FormControl>
-         <Paper className={classes.root} sx={{ borderRadius: 0 }}>
+         <Paper sx={{ borderRadius: 0 }}>
             <TableContainer sx={{ maxHeight: 440, overflowY: "hidden" }}>
                <Table stickyHeader aria-label="sticky table">
                   <TableHead>
@@ -116,6 +130,7 @@ export default function Orders() {
                         </TableCell>
                         <TableCell style={{ minWidth: 100 }}>
                            <FormControl
+                              
                               variant="standard"
                               sx={{ m: 1, minWidth: 120 }}
                            >
@@ -147,7 +162,7 @@ export default function Orders() {
                            return (
                               <TableRow
                                  className="table_row"
-                                 sx={{ bgcolor: "light_nude.main" }}
+                               
                                  role="checkbox"
                                  tabIndex={-1}
                                  key={row.code}
@@ -187,6 +202,6 @@ export default function Orders() {
                onRowsPerPageChange={handleChangeRowsPerPage}
             />
          </Paper>
-      </>
+      </div>
    );
 }
