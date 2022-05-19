@@ -38,7 +38,7 @@ const Home = () => {
    console.log(Categories[0]);
    return (
       <>
-      <MyTable/>
+      {/* <MyTable/> */}
          <div style={{ display: "flex", alignItems: "center" }}>
             <Slider
                category={1}

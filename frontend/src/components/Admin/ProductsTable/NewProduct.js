@@ -27,7 +27,7 @@ export default function NewProductModal() {
    const addProduct = async (id) => {
       const fd = new FormData();
       fd.append("data", newProduct);
-      await ProductsApi.patch(id, null, fd);
+      await ProductsApi.post(fd);
    };
    return (
       <div>
@@ -38,6 +38,7 @@ export default function NewProductModal() {
             setNewProduct={setNewProduct}
             buttonName={"کالای جدید"}
             handleFileSelect={handleFileSelect}
+            addProduct={addProduct}
          />
       </div>
    );

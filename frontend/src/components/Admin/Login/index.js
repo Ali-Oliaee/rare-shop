@@ -57,6 +57,7 @@ const Login = () => {
                   onChange={(e) =>
                      setUser({ ...user, username: e.target.value })
                   }
+                  required
                />
             </Grid>
             <Grid item xs={12} m={"auto"}>
@@ -75,6 +76,7 @@ const Login = () => {
                   onChange={(e) =>
                      setUser({ ...user, password: e.target.value })
                   }
+                  required
                />
             </Grid>
             <Grid item xs={12} m={"auto"}>

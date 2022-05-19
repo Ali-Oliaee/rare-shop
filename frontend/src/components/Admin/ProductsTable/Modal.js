@@ -28,7 +28,7 @@ const useStyle = makeStyles({
       },
       "& .MuiButton-root": {
          background: "black",
-         marginBottom: "1rem",
+         marginBottom: 30,
       },
    },
    buttonStyle: {
@@ -45,7 +45,8 @@ const MyModal = ({
    setNewProduct,
    buttonName,
    handleUploadFile,
-   imageAdress
+   imageAdress,
+   addProduct
 }) => {
    const [open, setOpen] = useState(false);
    const handleOpen = () => setOpen(true);
@@ -58,7 +59,7 @@ const MyModal = ({
    }
    return (
       <div>
-         <Button style={{ background: "black" }} onClick={handleOpen}>
+         <Button style={{ background: "black", marginBottom: 20 }} onClick={handleOpen}>
             {buttonName}
          </Button>
 
