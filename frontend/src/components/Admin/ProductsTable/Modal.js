@@ -55,7 +55,7 @@ const MyModal = (props) => {
             aria-describedby="modal-modal-description"
          >
             <Box className={classes.root}>
-               <TextField value={""}></TextField>
+               <TextField value={props.imageAdress}>{props.imageAdress}</TextField>
                {/* <button onClick={handleUploadFile}>upload</button> */}
                <Button className={classes.fileButton} variant="contained" component="label">
                   افزودن عکس
@@ -64,17 +64,19 @@ const MyModal = (props) => {
                <TextField
                className={classes.inputName}
                   label="نام کالا"
+                  name="name"
                   variant="standard"
                   focused
+                  onChange={(e) => props.setUpdatedData({...props.updatedData, [e.target.name]:e.target.value})}
                />
-               <FormControl fullWidth>
+               <FormControl fullWidth onChange={(e) => props.setUpdatedData({...props.updatedData, [e.target.name]:e.target.value})}>
                   <InputLabel variant="standard" htmlFor="uncontrolled-native">
                      دسته بندی
                   </InputLabel>
                   <NativeSelect
-                     defaultValue={30}
+                     defaultValue={1}
                      inputProps={{
-                        name: "age",
+                        name: "category",
                         id: "uncontrolled-native",
                      }}
                   >
