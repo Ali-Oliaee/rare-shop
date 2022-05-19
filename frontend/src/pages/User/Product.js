@@ -4,6 +4,9 @@ import styled from "styled-components";
 import cardBg from "../../assets/pic/productDetailsBg.jpeg";
 import { useParams } from "react-router-dom";
 import { ProductsApi } from "../../api/Products";
+import Imagegallery from "../../components/User/ImageGallery";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
 const Card = styled("div")``;
 const CardBody = styled("div")`
    display: flex;
@@ -63,38 +66,90 @@ const Select = styled.select`
       padding: 0px 2px 1px;
    }
 `;
+const ImageListStyled = styled(ImageList)`
+   margin: 10px;
+   width: 100px;
+   height: 300px;
+`;
+const ImageListItemStyled = styled(ImageListItem)`
+   margin: 10px;
+`;
+const Gallery = styled("div")`
+   position: "reletive";
+   top: 50%;
+   left: 50%;
+   transform: translate(-30%, -100%);
+`;
 export default function ProductDetails(props) {
    let { id } = useParams();
    const [productDetail, setProductDetail] = useState({});
+   const [images, setImages] = useState([]);
+   const [show, setShow] = useState(false);
+
    const getDetails = async () => {
       const res = await ProductsApi.get(id);
       setProductDetail(res.data);
+      const gallery = (res.data?.images)
+         .split("'")
+         .slice(1, -1)
+         .filter((el) => el !== ",");
+      setImages(gallery);
    };
-
+   const handleShow = () => {
+      setShow(!show);
+   };
    useEffect(() => {
       getDetails();
    }, [id]);
 
    return (
-      <Card>
-         <CardBody>
-            <Image src={BASE_URL + productDetail.image} />
-            <CardContent>
-               <Cardtext>
-                  <CardName>{productDetail.name}</CardName>
-                  <CardP>{"دسته بندی: پوشاک > شلوار "}</CardP>
-                  <CardP>
-                     {"قیمت: "}
-                     {productDetail.price?.toLocaleString("fa")}
-                  </CardP>
-               </Cardtext>
-               {/* <Select>
+      <>
+         <Card
+            style={{ zIndex: 5000, background: show ? "rgba(1,1,1,0.5)" : "" }}
+         >
+            <CardBody>
+               <ImageListStyled onClick={handleShow} cols={1} rowHeight={100}>
+                  {images?.map((item) => (
+                     <ImageListItemStyled key={item + 1}>
+                        <img
+                           src={BASE_URL + `${item}`}
+                           srcSet={
+                              BASE_URL +
+                              `${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`
+                           }
+                           alt={item}
+                           loading="lazy"
+                        />
+                     </ImageListItemStyled>
+                  ))}
+               </ImageListStyled>
+               <Image src={BASE_URL + productDetail.image} />
+               <CardContent>
+                  <Cardtext>
+                     <CardName>{productDetail.name}</CardName>
+                     <CardP>{"دسته بندی: پوشاک > شلوار "}</CardP>
+                     <CardP>
+                        {"قیمت: "}
+                        {productDetail.price?.toLocaleString("fa")}
+                     </CardP>
+                  </Cardtext>
+                  {/* <Select>
                
                </Select> */}
-               <CardButton>افزودن به سبد خرید</CardButton>
-            </CardContent>
-         </CardBody>
-         <CardP style={{ color: "black" }}>{productDetail.description}</CardP>
-      </Card>
+                  <CardButton>افزودن به سبد خرید</CardButton>
+               </CardContent>
+            </CardBody>
+            <CardP style={{ color: "black" }}>
+               {productDetail.description}
+            </CardP>
+         </Card>
+
+         {show && (
+            <Gallery>
+               {" "}
+               <Imagegallery images={images} />
+            </Gallery>
+         )}
+      </>
    );
 }

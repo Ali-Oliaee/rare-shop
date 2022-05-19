@@ -21,34 +21,44 @@ const useStyle = makeStyles({
       border: "2px solid #000",
       boxShadow: 24,
       padding: 40,
-      "& .MuiFormControl-root":{
-         width:"100%",
-         marginTop:20,
-         marginBottom:20,
+      "& .MuiFormControl-root": {
+         width: "100%",
+         marginTop: 20,
+         marginBottom: 20,
       },
       "& .MuiButton-root": {
          background: "black",
-         marginBottom : "1rem"
+         marginBottom: "1rem",
       },
    },
    buttonStyle: {
       marginRight: "70rem",
       marginTop: "2rem",
    },
-   fileButton:{
+   fileButton: {
       float: "left",
-      marginBottom:20,
+      marginBottom: 20,
    },
-  
 });
-const MyModal = ({newProduct , setNewProduct, buttonName, handleUploadFile}) => {
+const MyModal = ({
+   newProduct,
+   setNewProduct,
+   buttonName,
+   handleUploadFile,
+   imageAdress
+}) => {
    const [open, setOpen] = useState(false);
    const handleOpen = () => setOpen(true);
    const handleClose = () => setOpen(false);
    const classes = useStyle();
+
+   const saveClickHandler = () => {
+      handleClose()
+      setNewProduct()
+   }
    return (
       <div>
-         <Button style={{background: "black"}} onClick={handleOpen}>
+         <Button style={{ background: "black" }} onClick={handleOpen}>
             {buttonName}
          </Button>
 
@@ -59,27 +69,43 @@ const MyModal = ({newProduct , setNewProduct, buttonName, handleUploadFile}) => 
             aria-describedby="modal-modal-description"
          >
             <Box className={classes.root}>
-               <TextField value={""}></TextField>
+               <TextField value={imageAdress}>
+                  {imageAdress}
+               </TextField>
                {/* <button onClick={handleUploadFile}>upload</button> */}
-               <Button className={classes.fileButton} variant="contained" component="label">
+               <Button
+                  className={classes.fileButton}
+                  variant="contained"
+                  component="label"
+               >
                   افزودن عکس
                   <input type="file" hidden onChange={handleUploadFile} />
                </Button>
                <TextField
-               className={classes.inputName}
+                  className={classes.inputName}
                   label="نام کالا"
+                  name="name"
                   variant="standard"
+
                   // focused
                   // onChange={() => setNewProduct()}
                />
-               <FormControl fullWidth>
+               <FormControl
+                  fullWidth
+                  // onChange={(e) =>
+                  //    props.setUpdatedData({
+                  //       ...props.updatedData,
+                  //       [e.target.name]: e.target.value,
+                  //    })
+                  // }
+               >
                   <InputLabel variant="standard" htmlFor="uncontrolled-native">
                      دسته بندی
                   </InputLabel>
                   <NativeSelect
-                     defaultValue={30}
+                     defaultValue={1}
                      inputProps={{
-                        name: "age",
+                        name: "category",
                         id: "uncontrolled-native",
                      }}
                   >
@@ -90,9 +116,9 @@ const MyModal = ({newProduct , setNewProduct, buttonName, handleUploadFile}) => 
                   </NativeSelect>
                </FormControl>
                <Editor />
-            <Button  variant="contained" component="label">
-             ذخیره
-            </Button>
+               <Button onClick={saveClickHandler} variant="contained" component="label">
+                  ذخیره
+               </Button>
             </Box>
          </Modal>
       </div>
