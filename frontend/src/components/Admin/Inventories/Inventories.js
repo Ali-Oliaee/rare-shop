@@ -11,13 +11,14 @@ import { makeStyles } from "@mui/styles";
 import { TextField, Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import { ProductsApi } from "../../../api/Products";
+import { AdminApi } from "../../../api/AdminApi";
 
 const useStyle = makeStyles({
    root: {
       background: "#E6BC98",
       margin: "auto",
-      width:"70%",
-      padding:50,
+      width: "70%",
+      padding: 50,
       overflow: "hidden",
       border: "1px solid black",
 
@@ -35,7 +36,7 @@ const useStyle = makeStyles({
       },
       "& .MuiButton-root": {
          background: "black",
-         marginBottom : "1rem"
+         marginBottom: "1rem",
       },
       "& .MuiTableContainer-root::-webkit-scrollbar": {
          display: "none" /* for Chrome, Safari, and Opera */,
@@ -62,9 +63,34 @@ export default function Inventories() {
       setProducts(res.data);
    };
 
+   const p2e = (s) => s.replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
+   const handlePrice = (e, id) => {
+      setPrice({
+         edit: true,
+         id: id,
+         value: parseFloat(p2e(e.target.value)),
+      });
+   };
+   const handleInventory = (e, id) => {
+      setInventory({
+         edit: true,
+         id: id,
+         value: parseFloat(p2e(e.target.value)),
+      });
+      console.log(inventory);
+   };
+   const updatePrice = async () => {
+      if (price) {
+         await ProductsApi.patch(price.id, { price: price.value });
+      }
+      if (inventory) {
+         await ProductsApi.patch(inventory.id, { inventory: inventory.value });
+      }
+   };
+
    useEffect(() => {
       getProducts();
-   }, []);
+   }, [price, inventory]);
 
    const handleChangePage = (event, newPage) => {
       setPage(newPage);
@@ -77,16 +103,13 @@ export default function Inventories() {
    function defaultLabelDisplayedRows({ from, to, count }) {
       return `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`;
    }
-   const handlePrice = (e, id) => {
-      setPrice(e.target.value);
-   };
-   const handleInventory = (e) => {
-      setInventory(e.target.value);
-   };
+
    return (
       // <div style={{margin:"100px"}}>
       <div className={classes.root}>
-         <Button className={classes.myButton}>ذخیره</Button>
+         <Button onClick={updatePrice} className={classes.myButton}>
+            ذخیره
+         </Button>
          <Paper sx={{ borderRadius: 0 }}>
             <TableContainer sx={{ maxHeight: 440 }}>
                <Table stickyHeader aria-label="sticky table">
@@ -124,7 +147,9 @@ export default function Inventories() {
                                           value={price[row.id]}
                                           className={classes.myInput}
                                           type={edit ? "text" : "readonly"}
-                                          onChange={handlePrice}
+                                          onChange={(e) =>
+                                             handlePrice(e, row.id)
+                                          }
                                           // onBlur={setEdit(!edit)}
                                        />
                                     </TableCell>
@@ -134,10 +159,12 @@ export default function Inventories() {
                                           defaultValue={row.inventory.toLocaleString(
                                              "fa"
                                           )}
-                                          value={inventory}
+                                          value={inventory?.row?.id}
                                           className={classes.myInput}
                                           type={edit ? "text" : "readonly"}
-                                          onChange={handleInventory}
+                                          onChange={(e) =>
+                                             handleInventory(e, row.id)
+                                          }
                                           // onBlur={setEdit(!edit)}
                                        />
                                     </TableCell>

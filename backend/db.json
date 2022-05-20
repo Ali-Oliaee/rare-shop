@@ -5,12 +5,13 @@
       "categoryId": 1,
       "subCategoryId": 1,
       "price": 470000,
-      "inventory": 40,
+      "inventory": 25,
       "images": "['/files/5bbb103ba916e270ee9cbd4be345d635','/files/5bbb103ba916e270ee9cbd4be345d635','/files/5bbb103ba916e270ee9cbd4be345d635','/files/5bbb103ba916e270ee9cbd4be345d635']",
       "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
       "image": "/files/5bbb103ba916e270ee9cbd4be345d635",
       "createdAt": 1651775523056,
-      "id": 1
+      "id": 1,
+      "undefined": "۴۷۰ d"
     },
     {
       "name": "شلوار بگی نارنجی",
@@ -22,13 +23,14 @@
       "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
       "image": "/files/b081e1aa932f0611fe21603465a2579d",
       "createdAt": 1651775684637,
-      "id": 2
+      "id": 2,
+      "undefined": "۶۵۰۰۰"
     },
     {
       "name": "شلوار بگی طرحدار",
       "categoryId": 1,
       "subCategoryId": 1,
-      "price": 600000,
+      "price": 570000,
       "inventory": 40,
       "images": "['/files/048454da2ba3f71514bbccc0860fd59c','/files/048454da2ba3f71514bbccc0860fd59c','/files/048454da2ba3f71514bbccc0860fd59c','/files/048454da2ba3f71514bbccc0860fd59c']",
       "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
@@ -40,7 +42,7 @@
       "name": "شلواربوی فرند زاپ دار",
       "categoryId": 1,
       "subCategoryId": 1,
-      "price": 600000,
+      "price": 475000,
       "inventory": 40,
       "images": "['/files/d5c85b3200a222268d88db502645c062','/files/d5c85b3200a222268d88db502645c062','/files/d5c85b3200a222268d88db502645c062','/files/d5c85b3200a222268d88db502645c062']",
       "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
@@ -928,7 +930,7 @@
       "name": "گوشواره نگین مرواریدی",
       "categoryId": 3,
       "subCategoryId": 9,
-      "price": 2550000,
+      "price": 1450000,
       "inventory": 25,
       "images": "['/files/e9e69c87d8e56ed996d2e50d99693f75','/files/e9e69c87d8e56ed996d2e50d99693f75','/files/e9e69c87d8e56ed996d2e50d99693f75','/files/e9e69c87d8e56ed996d2e50d99693f75']",
       "description": "با اکسسوری به استایل خود جلوه ببخشید.",
