@@ -31,7 +31,8 @@
     "stylis": "^4.1.1",
     "stylis-plugin-rtl": "^2.1.1",
     "swiper": "^8.1.4",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -109,18 +109,6 @@
       "id": 10
     },
     {
-      "name": "شلوار بگ آبی تیره",
-      "categoryId": 1,
-      "subCategoryId": 1,
-      "price": 600000,
-      "inventory": 40,
-      "images": "['/files/6c61343474473c0a119df141a5f5cf64','/files/6c61343474473c0a119df141a5f5cf64','/files/6c61343474473c0a119df141a5f5cf64','/files/6c61343474473c0a119df141a5f5cf64']",
-      "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
-      "image": "/files/6c61343474473c0a119df141a5f5cf64",
-      "createdAt": 1651926690901,
-      "id": 11
-    },
-    {
       "name": "تیشرت مشکی آستین حریر",
       "categoryId": 1,
       "subCategoryId": 2,

@@ -52,7 +52,7 @@ export default function Inventories() {
    const [rowsPerPage, setRowsPerPage] = useState(10);
    const [products, setProducts] = useState([]);
    const [edit, setEdit] = useState(false);
-   const [price, setPrice] = useState();
+   const [price, setPrice] = useState([]);
    const [inventory, setInventory] = useState();
 
    const classes = useStyle();
@@ -77,7 +77,7 @@ export default function Inventories() {
    function defaultLabelDisplayedRows({ from, to, count }) {
       return `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`;
    }
-   const handlePrice = (e) => {
+   const handlePrice = (e, id) => {
       setPrice(e.target.value);
    };
    const handleInventory = (e) => {
@@ -121,7 +121,7 @@ export default function Inventories() {
                                           defaultValue={row.price.toLocaleString(
                                              "fa"
                                           )}
-                                          value={price}
+                                          value={price[row.id]}
                                           className={classes.myInput}
                                           type={edit ? "text" : "readonly"}
                                           onChange={handlePrice}

@@ -26,7 +26,7 @@ export default function NewProductModal() {
    };
    const addProduct = async (id) => {
       const fd = new FormData();
-      fd.append("data", newProduct);
+      fd.append("data", newProduct);//json okeye
       await ProductsApi.post(fd);
    };
    return (

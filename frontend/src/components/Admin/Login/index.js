@@ -1,183 +1,187 @@
-import { TextField, Button, Grid, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import React, { useState } from "react";
-import Image from "../../../assets/pic/nudewallpaper.jpeg";
+import React from "react";
 import { AdminApi } from "../../../api/AdminApi";
 import { useNavigate } from "react-router-dom";
-const useStyle = makeStyles({
-   root: {
-      padding: 80,
-      backgroundColor: "#a88d77d5",
-      "& input[type='text']::placeholder":{
-         paddingRight: "10px"
-      }
-   },
-   bodyStyle: {
-      width: "100vw",
-      height: "100vh",
-      paddingTop: 140,
-      backgroundImage: `url(${Image})`,
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "cover", 
-   },
+import { useFormik } from "formik";
+import * as Yup from "yup";
+// const useStyle = makeStyles({
+//    root: {
+//       padding: 80,
+//       backgroundColor: "#a88d77d5",
+//       "& input[type='text']::placeholder": {
+//          paddingRight: "10px",
+//       },
+//    },
+//    bodyStyle: {
+//       width: "100vw",
+//       height: "100vh",
+//       paddingTop: 140,
+//       backgroundImage: `url(${Image})`,
+//       backgroundRepeat: "no-repeat",
+//       backgroundSize: "cover",
+//    },
+// });
+
+// const Login = () => {
+//    const [user, setUser] = useState({ username: "", password: "" });
+//    const classes = useStyle();
+//    const navigate = useNavigate();
+
+//    const handleSubmit = async (e) => {
+//       e.preventDefault();
+//       localStorage.removeItem('token')
+//       let res = await AdminApi.login(user);
+//       res && localStorage.setItem("token", res.data.token);
+//       navigate("/dashboard/products");
+//    };
+
+//    return (
+//       <form onSubmit={handleSubmit} className={classes.bodyStyle}>
+//       <Grid className={classes.root} xs={5} m="auto" container spacing={2}>
+//          <Typography textAlign="center" m='auto' variant="h4" xs={12}>
+//          پنل مدیریت
+//          </Typography>
+//             <Grid item xs={12} m={"auto"}>
+//                <TextField
+//                   sx={{
+//                      width: "100%",
+//                      bgcolor: "neutral_light.main",
+//                      border: "1px solid black",
+//                   }}
+//                   id="filled-username-input"
+//                   label="نام کاربری"
+//                   type="text"
+//                   autoComplete="current-password"
+//                   variant="filled"
+//                   value={user.username}
+//                   onChange={(e) =>
+//                      setUser({ ...user, username: e.target.value })
+//                   }
+//                   required
+//                />
+//             </Grid>
+//             <Grid item xs={12} m={"auto"}>
+//                <TextField
+//                   sx={{
+//                      width: "100%",
+//                      bgcolor: "neutral_light.main",
+//                      border: "1px solid black",
+//                   }}
+//                   label="رمز عبور"
+//                   id="filled-password-input"
+//                   type="password"
+//                   autoComplete="current-password"
+//                   variant="filled"
+//                   value={user.password}
+//                   onChange={(e) =>
+//                      setUser({ ...user, password: e.target.value })
+//                   }
+//                   required
+//                />
+//             </Grid>
+//             <Grid item xs={12} m={"auto"}>
+//                <Button
+//                   type="submit"
+//                   color="neutral_dark"
+//                   sx={{ width: "100%", borderRadius: 0 }}
+//                   variant="contained"
+//                >
+//                   ورود
+//                </Button>
+//             </Grid>
+//          </Grid>
+//       </form>
+//    );
+// };
+
+// export default Login;
+
+import styled from "styled-components";
+
+const FiledInput = styled("input")`
+   width: "100%",
+   bgcolor: "neutral_light.main",
+   border: "1px solid black",
+`;
+const SignupSchema = Yup.object({
+   username: Yup.string()
+      .min(2, "نام کاربری باید شامل حداقل ۳ کارکتر باشد.")
+      .max(50, "نام شما باید شامل حداکثر ۵۰ کارکتر باشد!")
+      .required("پر کردن این فیلد ضروری است!"),
+   password: Yup.string()
+      .min(7, "کلمه عبور شما باید شامل حداقل 8 کارکتر باشد!")
+      .max(50, "کلمه عبور شما باید شامل حداکثر 50 کارکتر باشد!")
+      .required("پر کردن این فیلد ضروری است!"),
 });
-
 const Login = () => {
-   const [user, setUser] = useState({ username: "", password: "" });
-   const classes = useStyle();
    const navigate = useNavigate();
+   const formik = useFormik({
+      initialValues: {
+         username: "",
+         password: "",
+      },
+      validationSchema: Yup.object({
+         username: Yup.string()
+            .min(2, "نام کاربری باید شامل حداقل ۳ کارکتر باشد.")
+            .max(50, "نام شما باید شامل حداکثر ۵۰ کارکتر باشد!")
+            .required("پر کردن این فیلد ضروری است!"),
+         password: Yup.string()
+            .min(2, "کلمه عبور شما باید شامل حداقل 8 کارکتر باشد!")
+            .max(50, "کلمه عبور شما باید شامل حداکثر 50 کارکتر باشد!")
+            .required("پر کردن این فیلد ضروری است!"),
+      }),
 
-   const handleSubmit = async (e) => {
-      e.preventDefault();
-      localStorage.removeItem('token')
-      let res = await AdminApi.login(user);
-      res && localStorage.setItem("token", res.data.token);
-      navigate("/dashboard/products");
-   };
-   
+      onSubmit: async (values, { setSubmitting }) => {
+          setSubmitting(false);
+         console.log(values);
+         localStorage.removeItem("token");
+          let res = await AdminApi.login(values)
+            .then((res) => {
+               const token = res.data.token;
+               localStorage.setItem("token", token);
+               // dispatch(setUser(res.data.user));
+               // toast.success("ورود با موفقیت انجام شد");
+               navigate("/dashboard/products");
+            })
+            .catch((err) => {
+               //          toast.error(err?.response?.data?.message);
+               //          setButtonLoading(false);
+            });
+      },
+   });
    return (
-      <form onSubmit={handleSubmit} className={classes.bodyStyle}>
-      <Grid className={classes.root} xs={5} m="auto" container spacing={2}>
-         <Typography textAlign="center" m='auto' variant="h4" xs={12}>
-         پنل مدیریت
-         </Typography>
-            <Grid item xs={12} m={"auto"}>
-               <TextField
-                  sx={{
-                     width: "100%",
-                     bgcolor: "neutral_light.main",
-                     border: "1px solid black",
-                  }}
-                  id="filled-username-input"
-                  label="نام کاربری"
-                  type="text"
-                  autoComplete="current-password"
-                  variant="filled"
-                  value={user.username}
-                  onChange={(e) =>
-                     setUser({ ...user, username: e.target.value })
-                  }
-                  required
-               />
-            </Grid>
-            <Grid item xs={12} m={"auto"}>
-               <TextField
-                  sx={{
-                     width: "100%",
-                     bgcolor: "neutral_light.main",
-                     border: "1px solid black",
-                  }}
-                  label="رمز عبور"
-                  id="filled-password-input"
-                  type="password"
-                  autoComplete="current-password"
-                  variant="filled"
-                  value={user.password}
-                  onChange={(e) =>
-                     setUser({ ...user, password: e.target.value })
-                  }
-                  required
-               />
-            </Grid>
-            <Grid item xs={12} m={"auto"}>
-               <Button
-                  type="submit"
-                  color="neutral_dark"
-                  sx={{ width: "100%", borderRadius: 0 }}
-                  variant="contained"
-               >
-                  ورود
-               </Button>
-            </Grid>
-         </Grid>
+      <form onSubmit={formik.handleSubmit}>
+         <FiledInput
+            type="text"
+            placeholder="نام کاربری"
+            id="username-input"
+            name="username"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.username}
+         />
+         <p className="error">
+            {formik.touched.username &&
+               formik.errors.username &&
+               formik.errors.username}
+         </p>
+         <FiledInput
+            type="text"
+            placeholder="رمز عبور"
+            id="password-input"
+            name="password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+         />
+         <p className="error">
+            {formik.errors.password &&
+               formik.touched.password &&
+               formik.errors.password}
+         </p>
+
+         <button type="submit">ورود</button>
       </form>
    );
 };
 
 export default Login;
-
-// import React from "react";
-// import { useFormik } from "formik";
-
-// const SignupForm = () => {
-//    const formik = useFormik({
-//       initialValues: {
-//          firstName: "",
-//          lastName: "",
-//          email: "",
-//       },
-//       onSubmit: (values) => {
-//          alert(JSON.stringify(values, null, 2));
-//       },
-//    });
-//    return (
-//       <form onSubmit={formik.handleSubmit}>
-//          {/* <label htmlFor="firstName">First Name</label>
-//       <input
-//         id="firstName"
-//         name="firstName"
-//         type="text"
-//         onChange={formik.handleChange}
-//         value={formik.values.firstName}
-//       /> */}
-//          <TextField
-//             sx={{
-//                width: "100%",
-//                bgcolor: "neutral_light.main",
-//                border: "1px solid black",
-//             }}
-//             id="filled-password-input"
-//             label="username"
-//             type="text"
-//             autoComplete="current-password"
-//             variant="filled"
-//          />
-//          <label htmlFor="lastName">Last Name</label>
-//          <input
-//             id="lastName"
-//             name="lastName"
-//             type="text"
-//             onChange={formik.handleChange}
-//             value={formik.values.lastName}
-//          />
-//          <label htmlFor="email">Email Address</label>
-//          <input
-//             id="email"
-//             name="email"
-//             type="email"
-//             onChange={formik.handleChange}
-//             value={formik.values.email}
-//          />
-//          <button type="submit">Submit</button>
-//       </form>
-//    );
-// };
-//  const register = (e) => {
-//    e.preventDefault();
-//    setButtonLoading(true);
-
-//    let { phone, password } = formState;
-//    if (!phone || !password) {
-//       return alert("لطفا اطلاعات را کامل وارد کنید.");
-//    }
-
-//    if (password.length < 8) {
-//       return alert("رمز عبور باید حداقل 8 رقم باشد.");
-//    }
-
-//    AdminApi.login({
-//       phone: phone,
-//       password: password,
-//    })
-//       .then((res) => {
-//          const token = res.headers["x-auth-token"];
-//          localStorage.setItem(TOKEN_LOCAL_KEY, token);
-//          dispatch(setUser(res.data.user));
-//          toast.success("ورود با موفقیت انجام شد");
-//          setButtonLoading(false);
-//       })
-//       .catch((err) => {
-//          toast.error(err?.response?.data?.message);
-//          setButtonLoading(false);
-//       });
-// };

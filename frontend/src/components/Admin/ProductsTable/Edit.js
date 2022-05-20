@@ -25,8 +25,8 @@ const Edit = ({ id }) => {
       }else{
          await ProductsApi.patch(id,updateData);
       }
-
    }
+   
    useEffect(() => {
       imageUpdating()
    }, [selectedFile]);
