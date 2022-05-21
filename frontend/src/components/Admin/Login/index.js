@@ -5,24 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import Image from "../../../assets/pic/channelBackground.jpeg";
-import { style } from "@mui/system";
-// const useStyle = makeStyles({
-//    root: {
-//       padding: 80,
-//       backgroundColor: "#a88d77d5",
-//       "& input[type='text']::placeholder": {
-//          paddingRight: "10px",
-//       },
-//    },
-//    bodyStyle: {
-//       width: "100vw",
-//       height: "100vh",
-//       paddingTop: 140,
-//       backgroundImage: `url(${Image})`,
-//       backgroundRepeat: "no-repeat",
-//       backgroundSize: "cover",
-//    },
-// });
+
 
 const Container = styled("div")`
    width: 65vw;
