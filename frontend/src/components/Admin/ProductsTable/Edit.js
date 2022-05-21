@@ -6,8 +6,9 @@ import { AdminApi } from "../../../api/AdminApi";
 import { ProductsApi } from "../../../api/Products";
 const Edit = ({ id }) => {
    const [selectedFile, setSelectedFile] = useState(null);
-   const [updatedData, setUpdatedData] = useState([]);
-
+   const [updatedData, setUpdatedData] = useState({
+      
+   });
    const handleFileSelect = (event) => {
       setSelectedFile(event.target.files[0]);
    };
@@ -15,17 +16,20 @@ const Edit = ({ id }) => {
    const handleUploadFile = async () => {
       const fd = new FormData();
       fd.append("image", selectedFile);
-      const res = await AdminApi.upload(fd);
+      await AdminApi.upload(fd).then((res) => {
+         setUpdatedData({
+            ...updatedData,
+            image: "/files/" + res.data.filename,
+         });
+      });
    };
 
-   const updateData = async () => {
-      if (selectedFile) {
-         const fd = new FormData();
-         fd.append("data", updatedData);
-         await ProductsApi.patch(id, null, fd);
-      } else {
-         await ProductsApi.patch(id, updateData);
-      }
+   const updateData = () => {
+      const apiCall = async () => {
+         let res = await ProductsApi.patch(id,updatedData);
+         console.log(res.data);
+      };
+      apiCall();
    };
 
    useEffect(() => {

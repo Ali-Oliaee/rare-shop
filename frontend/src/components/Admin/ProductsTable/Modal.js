@@ -16,24 +16,20 @@ const useStyle = makeStyles({
       left: "50%",
       transform: "translate(-50%, -50%)",
       width: 500,
-      height: 500,
+      height: 550,
       background: "white",
       border: "2px solid #000",
       boxShadow: 24,
       padding: 40,
       "& .MuiFormControl-root": {
-         width: "100%",
-         marginTop: 20,
-         marginBottom: 20,
+         // width: "100%",
+         margin: 10,
       },
       "& .MuiButton-root": {
          background: "black",
-         marginBottom: 30,
+         marginBottom: 20,
+         marginTop: 20,
       },
-   },
-   buttonStyle: {
-      marginRight: "70rem",
-      marginTop: "2rem",
    },
    fileButton: {
       float: "left",
@@ -48,22 +44,21 @@ const MyModal = (props) => {
       handleUploadFile,
       handleFileSelect,
       imageAdress,
-      addProduct
-   } = props
+      addProduct,
+   } = props;
    const [open, setOpen] = useState(false);
    const handleOpen = () => setOpen(true);
    const handleClose = () => setOpen(false);
    const classes = useStyle();
+   const p2e = (s) => s.replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
 
    const saveClickHandler = () => {
-      handleClose()
-      setNewProduct()
-   }
+      handleClose();
+      setNewProduct();
+   };
    return (
       <div>
-         <Button style={{ background: "black", marginBottom: 20 }} onClick={handleOpen}>
-            {buttonName}
-         </Button>
+         <Button onClick={handleOpen}>{buttonName}</Button>
 
          <Modal
             open={open}
@@ -72,7 +67,7 @@ const MyModal = (props) => {
             aria-describedby="modal-modal-description"
          >
             <Box className={classes.root}>
-              <input value={imageAdress}/>
+               <input value={imageAdress} />
                <button onClick={handleUploadFile}>upload</button>
                <Button
                   className={classes.fileButton}
@@ -89,8 +84,39 @@ const MyModal = (props) => {
                   variant="standard"
                   value={newProduct?.name}
                   // focused
-                  onChange={(e) => setNewProduct({...newProduct, [e.target.name]:e.target.value})}
+                  onChange={(e) =>
+                     setNewProduct({
+                        ...newProduct,
+                        [e.target.name]: e.target.value,
+                     })
+                  }
                />
+               {/* <FormControl sx={{display: "flex"}}> */}
+               <TextField
+                  label="قیمت"
+                  name="price"
+                  variant="standard"
+                  value={newProduct?.price}
+                  onChange={(e) =>
+                     setNewProduct({
+                        ...newProduct,
+                        price: e.target.value,
+                     })
+                  }
+               />
+               <TextField
+                  label="تعداد موجودی"
+                  name="inventory"
+                  variant="standard"
+                  value={newProduct?.inventory}
+                  onChange={(e) =>
+                     setNewProduct({
+                        ...newProduct,
+                        inventory: e.target.value,
+                     })
+                  }
+               />
+               {/* </FormControl> */}
                <FormControl
                   name="categoryId"
                   fullWidth
@@ -98,7 +124,7 @@ const MyModal = (props) => {
                   onChange={(e) =>
                      setNewProduct({
                         ...newProduct,
-                        [e.target.name]: e.target.value,
+                        categoryId: parseInt(e.target.value),
                      })
                   }
                >
@@ -113,13 +139,50 @@ const MyModal = (props) => {
                      }}
                   >
                      <option></option>
-                     <option value={1}>پوشاک</option>
+                     <option value={1}> پوشاک </option>
                      <option value={2}>کیف و کفش </option>
                      <option value={3}>اکسسوری</option>
                   </NativeSelect>
                </FormControl>
-               <Editor />
-               <Button onClick={saveClickHandler} variant="contained" component="label">
+               <FormControl
+                  name="subCategoryId"
+                  fullWidth
+                  value={newProduct?.categoryId}
+                  onChange={(e) =>
+                     setNewProduct({
+                        ...newProduct,
+                        subCategoryId: parseInt(e.target.value),
+                     })
+                  }
+               >
+                  <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                     زیر دسته بندی
+                  </InputLabel>
+                  <NativeSelect
+                     defaultValue={1}
+                     inputProps={{
+                        name: "subCategoryId",
+                        id: "controlled-native",
+                     }}
+                  >
+                     <option></option>
+                     <option value={1}>شلوار</option>
+                     <option value={2}>تیشرت و شومیز</option>
+                     <option value={3}>پیراهن</option>
+                     <option value={4}>کفش اسپرت</option>
+                     <option value={5}>کفش مجلسی</option>
+                     <option value={6}>کیف</option>
+                     <option value={7}>عینک</option>
+                     <option value={8}>گردنبند و دستبند</option>
+                     <option value={9}>گوشواره و انگشتر</option>
+                  </NativeSelect>
+               </FormControl>
+               <Editor newProduct={newProduct} setNewProduct={setNewProduct} />
+               <Button
+                  onClick={addProduct}
+                  variant="contained"
+                  component="label"
+               >
                   ذخیره
                </Button>
             </Box>

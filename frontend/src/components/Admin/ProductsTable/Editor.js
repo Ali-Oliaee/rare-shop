@@ -3,6 +3,9 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 class Editor extends Component {
+   constructor(props) {
+      super(props)
+   }
    render() {
       return (
          <div className="App">
@@ -15,6 +18,10 @@ class Editor extends Component {
                }}
                onChange={(event, editor) => {
                   const data = editor.getData();
+                  this.props.setNewProduct({
+                     ...this.props.newProduct,
+                     "description": data
+                  })
                   console.log({ event, editor, data });
                }}
                onBlur={(event, editor) => {
@@ -30,3 +37,4 @@ class Editor extends Component {
 }
 
 export default Editor;
+

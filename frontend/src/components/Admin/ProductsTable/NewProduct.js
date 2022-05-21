@@ -22,15 +22,16 @@ export default function NewProductModal() {
    const handleUploadFile = async () => {
       const fd = new FormData();
       fd.append("image", selectedFile);
-      const res = await AdminApi.upload(fd);
-      setNewProduct({ ...newProduct, image: "/files/" + res.filename });
+      await AdminApi.upload(fd).then((res) => {
+         setNewProduct({ ...newProduct, image: "/files/" + res.data.filename });
+      });
    };
    const addProduct = () => {
       const apiCall = async () => {
-         await ProductsApi.post(newProduct);
+         let res = await ProductsApi.post(newProduct);
+         console.log(res.data);
       };
       apiCall();
-      // fd.append("data", newProduct);//json okeye
    };
    return (
       <div>

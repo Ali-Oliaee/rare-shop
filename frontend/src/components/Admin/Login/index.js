@@ -1,6 +1,6 @@
 import React from "react";
 import { AdminApi } from "../../../api/AdminApi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
@@ -44,7 +44,7 @@ const FormSubmit = styled("form")`
    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;
 const FiledInput = styled("input")`
-   width: 90%;
+   width: 100%;
    padding: 1rem 2rem;
    border: "1px solid black";
    border: none;
@@ -55,7 +55,10 @@ const MyButton = styled("button")`
    border-radius: 2rem;
    border: none;
    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-   padding: 10px 70px;
+   padding: 10px;
+   margin: auto;
+   text-aligne: center;
+   width: 100%;
    background: #BB906D;
 `;
 const Login = () => {
@@ -127,6 +130,8 @@ const Login = () => {
             </p>
 
             <MyButton type="submit">ورود</MyButton>
+            
+           <Link to="/">بازگشت به سایت</Link>
          </FormSubmit>
       </Container>
    );
