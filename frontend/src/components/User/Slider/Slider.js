@@ -33,7 +33,7 @@ export default function Slider(props) {
          >
             {props.data?.map((swipe) => (
                <SwiperSlide className="swiperImg" key={swipe.id}>
-                  {<img src={BASE_URL + swipe.image} />}
+                  {<Link to={`/product/${swipe.id}`}><img src={BASE_URL + swipe.image} /></Link>}
                </SwiperSlide>
             ))}
          </Swiper>
