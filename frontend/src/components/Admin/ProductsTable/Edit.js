@@ -8,37 +8,39 @@ const Edit = ({ id }) => {
    const [selectedFile, setSelectedFile] = useState(null);
    const [updatedData, setUpdatedData] = useState([]);
 
-   const imageUpdating = async () => {
+   const handleFileSelect = (event) => {
+      setSelectedFile(event.target.files[0]);
+   };
+
+   const handleUploadFile = async () => {
       const fd = new FormData();
       fd.append("image", selectedFile);
       const res = await AdminApi.upload(fd);
    };
 
-   const handleUpdatedData = (event) => {
-      setSelectedFile(event.target.files[0]);
-   };
-   const updateData = async() => {
-      if(selectedFile) {
+   const updateData = async () => {
+      if (selectedFile) {
          const fd = new FormData();
-         fd.append("data", updatedData)
-          await ProductsApi.patch(id,null, fd);
-      }else{
-         await ProductsApi.patch(id,updateData);
+         fd.append("data", updatedData);
+         await ProductsApi.patch(id, null, fd);
+      } else {
+         await ProductsApi.patch(id, updateData);
       }
-   }
-   
+   };
+
    useEffect(() => {
-      imageUpdating()
+      updateData();
    }, [selectedFile]);
    return (
       <div>
          <MyModal
             imageAdress={selectedFile?.filename}
+            handleUploadFile={handleUploadFile}
+            newProduct={updatedData}
+            setNewProduct={setUpdatedData}
             buttonName={<EditIcon />}
-            handleUpdatedData={handleUpdatedData}
-            updatedData={updatedData}
-            setUpdatedData={setUpdatedData}
-            updateData={updateData}
+            handleFileSelect={handleFileSelect}
+            addProduct={updateData}
          />
       </div>
    );

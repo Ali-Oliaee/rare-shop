@@ -3,31 +3,34 @@ import { FileApi } from "../../../api/FileApi";
 import { BASE_URL } from "../../../core/constants";
 import MyModal from "./Modal";
 import { AdminApi } from "../../../api/AdminApi";
-import {ProductsApi} from "../../../api/Products"
+import { ProductsApi } from "../../../api/Products";
 export default function NewProductModal() {
    const [selectedFile, setSelectedFile] = useState(null);
    const [newProduct, setNewProduct] = useState({
       name: "",
       categoryId: null,
       subCategoryId: null,
-      price: null,
       inventory: null,
+      image: "",
+      price: null,
       description: "",
    });
 
    const handleFileSelect = (event) => {
       setSelectedFile(event.target.files[0]);
-      console.log(selectedFile);
    };
    const handleUploadFile = async () => {
       const fd = new FormData();
       fd.append("image", selectedFile);
       const res = await AdminApi.upload(fd);
+      setNewProduct({ ...newProduct, image: "/files/" + res.filename });
    };
-   const addProduct = async (id) => {
-      const fd = new FormData();
-      fd.append("data", newProduct);//json okeye
-      await ProductsApi.post(fd);
+   const addProduct = () => {
+      const apiCall = async () => {
+         await ProductsApi.post(newProduct);
+      };
+      apiCall();
+      // fd.append("data", newProduct);//json okeye
    };
    return (
       <div>

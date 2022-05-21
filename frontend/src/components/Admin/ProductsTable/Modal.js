@@ -40,14 +40,16 @@ const useStyle = makeStyles({
       marginBottom: 20,
    },
 });
-const MyModal = ({
-   newProduct,
-   setNewProduct,
-   buttonName,
-   handleUploadFile,
-   imageAdress,
-   addProduct
-}) => {
+const MyModal = (props) => {
+   const {
+      newProduct,
+      setNewProduct,
+      buttonName,
+      handleUploadFile,
+      handleFileSelect,
+      imageAdress,
+      addProduct
+   } = props
    const [open, setOpen] = useState(false);
    const handleOpen = () => setOpen(true);
    const handleClose = () => setOpen(false);
@@ -70,35 +72,35 @@ const MyModal = ({
             aria-describedby="modal-modal-description"
          >
             <Box className={classes.root}>
-               <TextField value={imageAdress}>
-                  {imageAdress}
-               </TextField>
-               {/* <button onClick={handleUploadFile}>upload</button> */}
+              <input value={imageAdress}/>
+               <button onClick={handleUploadFile}>upload</button>
                <Button
                   className={classes.fileButton}
                   variant="contained"
                   component="label"
                >
                   افزودن عکس
-                  <input type="file" hidden onChange={handleUploadFile} />
+                  <input type="file" hidden onChange={handleFileSelect} />
                </Button>
                <TextField
                   className={classes.inputName}
                   label="نام کالا"
                   name="name"
                   variant="standard"
-
+                  value={newProduct?.name}
                   // focused
-                  // onChange={() => setNewProduct()}
+                  onChange={(e) => setNewProduct({...newProduct, [e.target.name]:e.target.value})}
                />
                <FormControl
+                  name="categoryId"
                   fullWidth
-                  // onChange={(e) =>
-                  //    props.setUpdatedData({
-                  //       ...props.updatedData,
-                  //       [e.target.name]: e.target.value,
-                  //    })
-                  // }
+                  value={newProduct?.categoryId}
+                  onChange={(e) =>
+                     setNewProduct({
+                        ...newProduct,
+                        [e.target.name]: e.target.value,
+                     })
+                  }
                >
                   <InputLabel variant="standard" htmlFor="uncontrolled-native">
                      دسته بندی
@@ -106,7 +108,7 @@ const MyModal = ({
                   <NativeSelect
                      defaultValue={1}
                      inputProps={{
-                        name: "category",
+                        name: "categoryId",
                         id: "uncontrolled-native",
                      }}
                   >

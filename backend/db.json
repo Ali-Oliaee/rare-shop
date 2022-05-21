@@ -4,14 +4,14 @@
       "name": "شلوار بگی آبی تیره",
       "categoryId": 1,
       "subCategoryId": 1,
-      "price": 470000,
+      "price": 900000,
       "inventory": 25,
       "images": "['/files/5bbb103ba916e270ee9cbd4be345d635','/files/5bbb103ba916e270ee9cbd4be345d635','/files/5bbb103ba916e270ee9cbd4be345d635','/files/5bbb103ba916e270ee9cbd4be345d635']",
       "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
       "image": "/files/5bbb103ba916e270ee9cbd4be345d635",
       "createdAt": 1651775523056,
       "id": 1,
-      "undefined": "۴۷۰ d"
+      "async () ": "> {\n    if (selectedFile) {\n      const fd = new FormData();\n      fd.append(\"data\", updatedData);\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, null, fd);\n    } else {\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, updateData);\n    }\n  }"
     },
     {
       "name": "شلوار بگی نارنجی",
@@ -24,7 +24,7 @@
       "image": "/files/b081e1aa932f0611fe21603465a2579d",
       "createdAt": 1651775684637,
       "id": 2,
-      "undefined": "۶۵۰۰۰"
+      "async () ": "> {\n    if (selectedFile) {\n      const fd = new FormData();\n      fd.append(\"data\", updatedData);\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, null, fd);\n    } else {\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, updateData);\n    }\n  }"
     },
     {
       "name": "شلوار بگی طرحدار",
@@ -36,7 +36,8 @@
       "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
       "image": "/files/048454da2ba3f71514bbccc0860fd59c",
       "createdAt": 1651775836660,
-      "id": 3
+      "id": 3,
+      "async () ": "> {\n    if (selectedFile) {\n      const fd = new FormData();\n      fd.append(\"data\", updatedData);\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, null, fd);\n    } else {\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, updateData);\n    }\n  }"
     },
     {
       "name": "شلواربوی فرند زاپ دار",
@@ -48,7 +49,8 @@
       "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
       "image": "/files/d5c85b3200a222268d88db502645c062",
       "createdAt": 1651776012626,
-      "id": 4
+      "id": 4,
+      "async () ": "> {\n    if (selectedFile) {\n      const fd = new FormData();\n      fd.append(\"data\", updatedData);\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, null, fd);\n    } else {\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, updateData);\n    }\n  }"
     },
     {
       "name": "شلوار بوت کات چرم مشکی",
@@ -60,7 +62,8 @@
       "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
       "image": "null",
       "createdAt": 1651776294180,
-      "id": 5
+      "id": 5,
+      "async () ": "> {\n    if (selectedFile) {\n      const fd = new FormData();\n      fd.append(\"data\", updatedData);\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, null, fd);\n    } else {\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, updateData);\n    }\n  }"
     },
     {
       "name": "شلوار بوت کات چرم قرمز",
@@ -72,7 +75,8 @@
       "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
       "image": "/files/f4aea10f1750e1a665098a1519931c23",
       "createdAt": 1651776404516,
-      "id": 6
+      "id": 6,
+      "async () ": "> {\n    if (selectedFile) {\n      const fd = new FormData();\n      fd.append(\"data\", updatedData);\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, null, fd);\n    } else {\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, updateData);\n    }\n  }"
     },
     {
       "name": "شلوار جین راسته سبز جلبکی",
@@ -84,7 +88,8 @@
       "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
       "image": "/files/7a6116124e277fba9376f616b25d247b",
       "createdAt": 1651776630150,
-      "id": 7
+      "id": 7,
+      "async () ": "> {\n    if (selectedFile) {\n      const fd = new FormData();\n      fd.append(\"data\", updatedData);\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, null, fd);\n    } else {\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, updateData);\n    }\n  }"
     },
     {
       "name": "شلوار جین بگ طرح گاوی بنفش",
@@ -96,7 +101,8 @@
       "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
       "image": "/files/30068032963408793676f385f332a014",
       "createdAt": 1651776784417,
-      "id": 8
+      "id": 8,
+      "async () ": "> {\n    if (selectedFile) {\n      const fd = new FormData();\n      fd.append(\"data\", updatedData);\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, null, fd);\n    } else {\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, updateData);\n    }\n  }"
     },
     {
       "name": "شلوار بگ آبی روشن زاپ دار",
@@ -108,7 +114,8 @@
       "description": " شلوار اسپرت مناسب برای بهار و تابستان است. و با کت و مانتو های کوتاه اسپرت بسیار زیباست ",
       "image": "/files/b97acf8946e5e74090b826476bf3257f",
       "createdAt": 1651926647351,
-      "id": 10
+      "id": 10,
+      "async () ": "> {\n    if (selectedFile) {\n      const fd = new FormData();\n      fd.append(\"data\", updatedData);\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, null, fd);\n    } else {\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, updateData);\n    }\n  }"
     },
     {
       "name": "تیشرت مشکی آستین حریر",
@@ -120,7 +127,8 @@
       "description": "این تیشرت از پارچه درجه یک دوخته شده که بسیار زیبا و راحت است.مناسب برای مهمانی ها",
       "image": "/files/dbb6fbe42de1515b5779f9efd09335e9",
       "createdAt": 1651927738859,
-      "id": 12
+      "id": 12,
+      "async () ": "> {\n    if (selectedFile) {\n      const fd = new FormData();\n      fd.append(\"data\", updatedData);\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, null, fd);\n    } else {\n      await _api_Products__WEBPACK_IMPORTED_MODULE_3__.ProductsApi.patch(id, updateData);\n    }\n  }"
     },
     {
       "name": "تیشرت رنگی رنگی",

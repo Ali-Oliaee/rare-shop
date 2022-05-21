@@ -3,6 +3,9 @@ import { AdminApi } from "../../../api/AdminApi";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import styled from "styled-components";
+import Image from "../../../assets/pic/channelBackground.jpeg";
+import { style } from "@mui/system";
 // const useStyle = makeStyles({
 //    root: {
 //       padding: 80,
@@ -21,97 +24,40 @@ import * as Yup from "yup";
 //    },
 // });
 
-// const Login = () => {
-//    const [user, setUser] = useState({ username: "", password: "" });
-//    const classes = useStyle();
-//    const navigate = useNavigate();
-
-//    const handleSubmit = async (e) => {
-//       e.preventDefault();
-//       localStorage.removeItem('token')
-//       let res = await AdminApi.login(user);
-//       res && localStorage.setItem("token", res.data.token);
-//       navigate("/dashboard/products");
-//    };
-
-//    return (
-//       <form onSubmit={handleSubmit} className={classes.bodyStyle}>
-//       <Grid className={classes.root} xs={5} m="auto" container spacing={2}>
-//          <Typography textAlign="center" m='auto' variant="h4" xs={12}>
-//          پنل مدیریت
-//          </Typography>
-//             <Grid item xs={12} m={"auto"}>
-//                <TextField
-//                   sx={{
-//                      width: "100%",
-//                      bgcolor: "neutral_light.main",
-//                      border: "1px solid black",
-//                   }}
-//                   id="filled-username-input"
-//                   label="نام کاربری"
-//                   type="text"
-//                   autoComplete="current-password"
-//                   variant="filled"
-//                   value={user.username}
-//                   onChange={(e) =>
-//                      setUser({ ...user, username: e.target.value })
-//                   }
-//                   required
-//                />
-//             </Grid>
-//             <Grid item xs={12} m={"auto"}>
-//                <TextField
-//                   sx={{
-//                      width: "100%",
-//                      bgcolor: "neutral_light.main",
-//                      border: "1px solid black",
-//                   }}
-//                   label="رمز عبور"
-//                   id="filled-password-input"
-//                   type="password"
-//                   autoComplete="current-password"
-//                   variant="filled"
-//                   value={user.password}
-//                   onChange={(e) =>
-//                      setUser({ ...user, password: e.target.value })
-//                   }
-//                   required
-//                />
-//             </Grid>
-//             <Grid item xs={12} m={"auto"}>
-//                <Button
-//                   type="submit"
-//                   color="neutral_dark"
-//                   sx={{ width: "100%", borderRadius: 0 }}
-//                   variant="contained"
-//                >
-//                   ورود
-//                </Button>
-//             </Grid>
-//          </Grid>
-//       </form>
-//    );
-// };
-
-// export default Login;
-
-import styled from "styled-components";
-
-const FiledInput = styled("input")`
-   width: "100%",
-   bgcolor: "neutral_light.main",
-   border: "1px solid black",
+const Container = styled("div")`
+   width: 65vw;
+   height: 70vh;
+   background-image: url(${Image});
+   background-repeat: no-repeat;
+   background-size: cover;
+   margin: 7rem auto;
+   border-radius: 2rem;
+   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+   padding: 9.4rem 0;
 `;
-const SignupSchema = Yup.object({
-   username: Yup.string()
-      .min(3, "نام کاربری باید شامل حداقل ۳ کارکتر باشد.")
-      .max(50, "نام شما باید شامل حداکثر ۵۰ کارکتر باشد!")
-      .required("پر کردن این فیلد ضروری است!"),
-   password: Yup.string()
-      .min(7, "کلمه عبور شما باید شامل حداقل 8 کارکتر باشد!")
-      .max(50, "کلمه عبور شما باید شامل حداکثر 50 کارکتر باشد!")
-      .required("پر کردن این فیلد ضروری است!"),
-});
+const FormSubmit = styled("form")`
+   width: 50%;
+   background: white;
+   border-radius: 2rem;
+   margin: auto;
+   padding: 2rem;
+   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+`;
+const FiledInput = styled("input")`
+   width: 90%;
+   padding: 1rem 2rem;
+   border: "1px solid black";
+   border: none;
+   border-radius: 2rem;
+   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+`;
+const MyButton = styled("button")`
+   border-radius: 2rem;
+   border: none;
+   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+   padding: 10px 70px;
+   background: #BB906D;
+`;
 const Login = () => {
    const navigate = useNavigate();
    const formik = useFormik({
@@ -131,10 +77,10 @@ const Login = () => {
       }),
 
       onSubmit: async (values, { setSubmitting }) => {
-          setSubmitting(false);
+         setSubmitting(false);
          console.log(values);
          localStorage.removeItem("token");
-          let res = await AdminApi.login(values)
+         let res = await AdminApi.login(values)
             .then((res) => {
                const token = res.data.token;
                localStorage.setItem("token", token);
@@ -149,38 +95,40 @@ const Login = () => {
       },
    });
    return (
-      <form onSubmit={formik.handleSubmit}>
-         <FiledInput
-            type="text"
-            placeholder="نام کاربری"
-            id="username-input"
-            name="username"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.username}
-         />
-         <p className="error">
-            {formik.touched.username &&
-               formik.errors.username &&
-               formik.errors.username}
-         </p>
-         <FiledInput
-            type="text"
-            placeholder="رمز عبور"
-            id="password-input"
-            name="password"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.password}
-         />
-         <p className="error">
-            {formik.errors.password &&
-               formik.touched.password &&
-               formik.errors.password}
-         </p>
+      <Container>
+         <FormSubmit onSubmit={formik.handleSubmit}>
+            <FiledInput
+               type="text"
+               placeholder="نام کاربری"
+               id="username-input"
+               name="username"
+               onChange={formik.handleChange}
+               onBlur={formik.handleBlur}
+               value={formik.values.username}
+            />
+            <p className="error">
+               {formik.touched.username &&
+                  formik.errors.username &&
+                  formik.errors.username}
+            </p>
+            <FiledInput
+               type="text"
+               placeholder="رمز عبور"
+               id="password-input"
+               name="password"
+               onChange={formik.handleChange}
+               onBlur={formik.handleBlur}
+               value={formik.values.password}
+            />
+            <p className="error">
+               {formik.errors.password &&
+                  formik.touched.password &&
+                  formik.errors.password}
+            </p>
 
-         <button type="submit">ورود</button>
-      </form>
+            <MyButton type="submit">ورود</MyButton>
+         </FormSubmit>
+      </Container>
    );
 };
 

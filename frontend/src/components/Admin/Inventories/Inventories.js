@@ -79,13 +79,18 @@ export default function Inventories() {
       });
       console.log(inventory);
    };
-   const updatePrice = async () => {
-      if (price) {
-         await ProductsApi.patch(price.id, { price: price.value });
-      }
-      if (inventory) {
-         await ProductsApi.patch(inventory.id, { inventory: inventory.value });
-      }
+   const updatePrice = () => {
+      const apiCall = async () => {
+         if (price) {
+            await ProductsApi.patch(price.id, { price: price.value });
+         }
+         if (inventory) {
+            await ProductsApi.patch(inventory.id, {
+               inventory: inventory.value,
+            });
+         }
+      };
+      apiCall();
    };
 
    useEffect(() => {

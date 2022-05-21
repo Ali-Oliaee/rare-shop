@@ -15,7 +15,6 @@ import Select from "@mui/material/Select";
 import { ProductsApi } from "../../../api/Products";
 import { AdminApi } from "../../../api/AdminApi";
 import { BASE_URL } from "../../../core/constants";
-import { Button, Icon } from "@mui/material";
 import NewProductModal from "./NewProduct";
 import Delete from "./Delete";
 import Edit from "./Edit";
@@ -45,7 +44,6 @@ const useStyle = makeStyles({
          display: "none" /* for Chrome, Safari, and Opera */,
       },
    },
-  
 });
 
 export default function AllProductsTable() {
