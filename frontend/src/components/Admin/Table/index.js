@@ -29,8 +29,11 @@ const useStyle = makeStyles({
       },
    },
 });
-const headColmns = [props.column];
-export default function MyTable() {
+
+export default function MyTable(props) {
+   const { column, goods, rowsCell } = props
+   const headColmns = column;
+   console.log(goods);
    const [page, setPage] = useState(0);
    const [rowsPerPage, setRowsPerPage] = useState(10);
    const [products, setProducts] = useState([]);
@@ -62,7 +65,7 @@ export default function MyTable() {
                      </TableRow>
                   </TableHead>
                   <TableBody>
-                     {Object.values(props.goods)
+                     {Object.values(goods)
                         .slice(
                            page * rowsPerPage,
                            page * rowsPerPage + rowsPerPage
@@ -76,7 +79,7 @@ export default function MyTable() {
                                  tabIndex={-1}
                                  key={row.code}
                               >
-                                 {props.rowsCell.map((cell) => (
+                                 {rowsCell.map((cell) => (
                                     <TableCell className="row_cell">
                                        {cell}
                                     </TableCell>
@@ -103,7 +106,7 @@ export default function MyTable() {
                rowsPerPageOptions={[10, 25, 100]}
                component="div"
                labelRowsPerPage="صفحه"
-               count={props.goods.length}
+               count={goods.length}
                rowsPerPage={rowsPerPage}
                labelDisplayedRows={defaultLabelDisplayedRows}
                page={page}

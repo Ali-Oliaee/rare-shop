@@ -46,6 +46,7 @@ const CardButton = styled("button")`
    margin-top: 50px;
    padding: 5px 10px;
    border-radius: 2px;
+   cursor: pointer;
 `;
 const Select = styled.select`
    width: 5%;
@@ -136,7 +137,11 @@ export default function ProductDetails(props) {
                   {/* <Select>
                
                </Select> */}
-                  <CardButton>افزودن به سبد خرید</CardButton>
+                  {productDetail.inventory ? (
+                     <CardButton>افزودن به سبد خرید</CardButton>
+                  ) : (
+                     <CardButton disabled>موجود نیست</CardButton>
+                  )}
                </CardContent>
             </CardBody>
             <CardP style={{ color: "black" }}>

@@ -18,7 +18,7 @@ import { BASE_URL } from "../../../core/constants";
 import NewProductModal from "./NewProduct";
 import Delete from "./Delete";
 import Edit from "./Edit";
-
+import { Link } from "react-router-dom";
 const useStyle = makeStyles({
    root: {
       background: "#E6BC98",
@@ -34,6 +34,9 @@ const useStyle = makeStyles({
       "& .row_cell": {
          width: 300,
          textAlign: "center",
+      },
+      "& .MuiTableRow-root": {
+         width: "100%",
       },
       "& .MuiTableCell-head ": {
          background: "black",
@@ -152,27 +155,38 @@ export default function AllProductsTable() {
                                  role="checkbox"
                                  tabIndex={-1}
                                  key={row.code}
+                                 onChange={() => console.log("table row")}
                               >
-                                 <TableCell>
-                                    <img
-                                       style={{ maxWidth: 60 }}
-                                       src={BASE_URL + row.image}
-                                       alt="تصویر کالا"
-                                    />
-                                 </TableCell>
-                                 <TableCell>{row.name}</TableCell>
-                                 <TableCell>
-                                    {findCategoryName(row.categoryId) +
-                                       "/ " +
-                                       findSubCategoryName(row.subCategoryId)}
-                                 </TableCell>
-                                 <TableCell>
-                                    <Delete
-                                       onFinish={getProducts}
-                                       id={row.id}
-                                    />
-                                    <Edit id={row.id} onFinish={getProducts} />
-                                 </TableCell>
+                                 <Link
+                                    className={classes.linkStyle}
+                                    to={`/product/${row.id}`}
+                                 >
+                                    <TableCell>
+                                       <img
+                                          style={{ maxWidth: 60 }}
+                                          src={BASE_URL + row.image}
+                                          alt="تصویر کالا"
+                                       />
+                                    </TableCell>
+                                    <TableCell>{row.name}</TableCell>
+                                    <TableCell>
+                                       {findCategoryName(row.categoryId) +
+                                          "/ " +
+                                          findSubCategoryName(
+                                             row.subCategoryId
+                                          )}
+                                    </TableCell>
+                                    <TableCell>
+                                       <Delete
+                                          onFinish={getProducts}
+                                          id={row.id}
+                                       />
+                                       <Edit
+                                          id={row.id}
+                                          onFinish={getProducts}
+                                       />
+                                    </TableCell>
+                                 </Link>
                               </TableRow>
                            );
                         })}

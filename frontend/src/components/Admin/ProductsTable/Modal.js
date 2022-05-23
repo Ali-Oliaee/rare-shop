@@ -51,7 +51,7 @@ const MyModal = (props) => {
    const handleClose = () => setOpen(false);
    const classes = useStyle();
    const p2e = (s) => s.replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
-
+//filter harf
    const saveClickHandler = () => {
       handleClose();
       setNewProduct();
@@ -100,7 +100,7 @@ const MyModal = (props) => {
                   onChange={(e) =>
                      setNewProduct({
                         ...newProduct,
-                        price: e.target.value,
+                        price:parseInt(p2e(e.target.value)),
                      })
                   }
                />

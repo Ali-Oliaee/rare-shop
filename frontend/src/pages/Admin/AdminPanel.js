@@ -6,14 +6,13 @@ import Inventories from "components/Admin/Inventories/Inventories";
 import { Outlet } from "react-router-dom";
 
 const Adminpanel = () => {
-   const [active, setActive] = useState(false)
+   const [active, setActive] = useState(false);
    return (
       <AdminLayout>
-
-         <Inventories active={active}/>
-         <Orders active={active}/>
-         <AllProducts active={active}/>
-         <Outlet/>
+         <Inventories active={active} />
+         <Orders active={active} />
+         <AllProducts active={active} />
+         <Outlet />
       </AdminLayout>
    );
 };

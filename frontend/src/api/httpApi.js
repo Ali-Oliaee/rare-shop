@@ -1,16 +1,15 @@
 import axios, { CanceledError } from "axios";
 import { TOKEN_LOCAL_KEY } from "../core/constants";
-// import store from "../redux/store";
-// import { startLoading, endLoading } from "../redux/actions/LoadingAction";
+import {store} from "../redux/store";
+import { startLoading, endLoading } from "../redux/reducers/LoadingSlice";
 class Service {
    constructor(entity) {
       this.instance = axios.create();
       this.entity = entity;
-      // this.dispatch = useDispatch()
       this.baseApisUrl = `http://localhost:8000${this.entity}`;
       this.instance.interceptors.request.use(
          (config) => {
-            // store.dispatch(startLoading());
+             store.dispatch(startLoading());
             const token = localStorage.getItem("token");
             if (token) {
                config.headers["token"] = token;
@@ -23,7 +22,7 @@ class Service {
       );
       this.instance.interceptors.response.use(
          (res) => {
-            // store.dispatch(endLoading());
+             store.dispatch(endLoading());
             const { status } = res;
             if (status > 400) {
                window.location.pathname = "/404";
@@ -34,7 +33,7 @@ class Service {
             if (error.response.status == 401) {
                window.location.pathname = "/auth/login";
             }
-            // store.dispatch(endLoading());
+            store.dispatch(endLoading());
             return error.response;
          }
       );
