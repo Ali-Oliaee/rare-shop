@@ -27,13 +27,13 @@ const useStyle = makeStyles({
       },
       "& .MuiButton-root": {
          background: "black",
-         marginBottom: 20,
+         marginBottom: 10,
          marginTop: 20,
       },
    },
    fileButton: {
       float: "left",
-      marginBottom: 20,
+      // marginBottom: 20,
    },
 });
 const MyModal = (props) => {
@@ -45,15 +45,14 @@ const MyModal = (props) => {
       handleFileSelect,
       imageAdress,
       addProduct,
-      imgRef
+      imgRef,
    } = props;
    const [open, setOpen] = useState(false);
    const handleOpen = () => setOpen(true);
    const handleClose = () => setOpen(false);
    const classes = useStyle();
    const p2e = (s) => s.replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
-   
-   
+
    const saveClickHandler = () => {
       handleClose();
       setNewProduct();
@@ -70,16 +69,20 @@ const MyModal = (props) => {
          >
             <Box className={classes.root}>
                {/* <button onClick={handleUploadFile}>upload</button> */}
-               <img alt={""} src="" ref={imgRef} height={30} />
                <Button
                   className={classes.fileButton}
                   variant="contained"
                   component="label"
                >
                   افزودن عکس
-                  <input type="file" multiple hidden onChange={handleUploadFile} />
+                  <input
+                     type="file"
+                     multiple
+                     hidden
+                     onChange={handleUploadFile}
+                  />
                </Button>
-               
+
                <TextField
                   className={classes.inputName}
                   label="نام کالا"
@@ -93,7 +96,6 @@ const MyModal = (props) => {
                      })
                   }
                />
-               {/* <FormControl sx={{display: "flex"}}> */}
                <TextField
                   label="قیمت"
                   name="price"
@@ -102,24 +104,25 @@ const MyModal = (props) => {
                   onChange={(e) =>
                      setNewProduct({
                         ...newProduct,
-                        price: +(p2e(e.target.value)),
+                        price: +p2e(e.target.value),
                      })
                   }
                />
+               <img style={{float: "left"}} alt={""} src="" ref={imgRef} height={100} />
+
                <TextField
                   label="تعداد موجودی"
                   name="inventory"
                   variant="standard"
                   value={newProduct?.inventory}
-                  onChange={(e) =>{
+                  onChange={(e) => {
                      setNewProduct({
                         ...newProduct,
                         inventory: +p2e(e.target.value),
-                     })
-                  }
-                  }
+                     });
+                  }}
                />
-               {/* </FormControl> */}
+
                <FormControl
                   name="categoryId"
                   fullWidth
