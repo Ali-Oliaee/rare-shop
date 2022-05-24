@@ -10,10 +10,10 @@ export default function NewProductModal() {
       name: "",
       categoryId: null,
       subCategoryId: null,
+      price: null,
       inventory: null,
       image: "",
       images: [],
-      price: null,
       description: "",
    });
 

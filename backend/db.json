@@ -940,7 +940,7 @@
       "name": "پیراهن آبی",
       "categoryId": 1,
       "subCategoryId": 3,
-      "inventory": null,
+      "inventory": 2,
       "image": "/files/6bc0bab55888809295762852a98437bf",
       "images": [
         "/files/6bc0bab55888809295762852a98437bf",
@@ -948,10 +948,26 @@
         "/files/34cdbf13941e3662c3a2b79b5cd1feef",
         "/files/ba61c515f16c691f78ca4186495621c1"
       ],
-      "price": null,
+      "price": 550000,
       "description": "<p>مناسب تابستان زیبا و شکیل</p>",
       "createdAt": 1653393297703,
       "id": 84
+    },
+    {
+      "name": "کت سوسنی",
+      "categoryId": 1,
+      "subCategoryId": 2,
+      "inventory": 25,
+      "image": "/files/4dd950cfec7aa58cac5b5d45800e298c",
+      "images": [
+        "/files/4dd950cfec7aa58cac5b5d45800e298c",
+        "/files/31347e135e5c178f0f64840b74311fe7",
+        "/files/2220aa7c7ab9b448d397a04fc026117f"
+      ],
+      "price": 120000,
+      "description": "<p>مناسب تابستان زیبا و شکیل</p>",
+      "createdAt": 1653396138677,
+      "id": 85
     }
   ],
   "category": [

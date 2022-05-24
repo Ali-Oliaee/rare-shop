@@ -102,7 +102,7 @@ const MyModal = (props) => {
                   onChange={(e) =>
                      setNewProduct({
                         ...newProduct,
-                        price:parseInt (p2e(e.target.value)),
+                        price: +(p2e(e.target.value)),
                      })
                   }
                />
@@ -112,10 +112,9 @@ const MyModal = (props) => {
                   variant="standard"
                   value={newProduct?.inventory}
                   onChange={(e) =>{
-                     console.log(p2e(parseInt(e.target.value)));
                      setNewProduct({
                         ...newProduct,
-                        inventory: p2e(parseInt(e.target.value)),
+                        inventory: +p2e(e.target.value),
                      })
                   }
                   }
