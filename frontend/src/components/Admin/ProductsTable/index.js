@@ -43,6 +43,15 @@ const useStyle = makeStyles({
       "& .MuiTableContainer-root::-webkit-scrollbar": {
          display: "none" /* for Chrome, Safari, and Opera */,
       },
+      "& .MuiFormControl-root ": {
+         "& .MuiInputLabel-root": {
+            color: "white",
+         },
+         "& .MuiSelect-select": {
+            color: "white",
+            borderBottom: "1px white solid"
+         }
+      }
    },
 });
 

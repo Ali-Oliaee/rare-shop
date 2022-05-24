@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-
+import IRANSansWeb_Black from "../assets/fonts/IRANSansWeb_Black.ttf"
 export let theme = createTheme({
    direction: 'rtl',
    palette: {
@@ -40,4 +40,8 @@ export let theme = createTheme({
          contrastText: "#fff",
       },
    },
+   typography: {
+      fontFamily: 'iran-sans'
+    }
+ 
 });

@@ -48,6 +48,15 @@ const useStyle = makeStyles({
       "& .MuiTableContainer-root::-webkit-scrollbar": {
          display: "none" /* for Chrome, Safari, and Opera */,
       },
+      "& .MuiFormControl-root ": {
+         "& .MuiInputLabel-root": {
+            color: "white",
+         },
+         "& .MuiSelect-select": {
+            color: "white",
+            borderBottom: "1px white solid"
+         }
+      }
    },
 });
 
@@ -135,7 +144,7 @@ export default function Orders() {
                               sx={{ m: 1, minWidth: 120 }}
                            >
                               <InputLabel id="demo-simple-select-standard-label">
-                                 زمان ثبت سفارش
+                                 مرتب سازی بر اساس
                               </InputLabel>
                               <Select
                                  labelId="demo-simple-select-standard-label"
