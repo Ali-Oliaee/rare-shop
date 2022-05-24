@@ -7,6 +7,8 @@ import { ProductsApi } from "../../api/Products";
 import Imagegallery from "../../components/User/ImageGallery";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
+import { useDispatch } from "react-redux";
+import { setCartProducts } from "../../redux/reducers/CartOrder";
 const Card = styled("div")``;
 const CardBody = styled("div")`
    display: flex;
@@ -83,6 +85,7 @@ const Gallery = styled("div")`
 `;
 export default function ProductDetails(props) {
    let { id } = useParams();
+   const dispatch = useDispatch()
    const [productDetail, setProductDetail] = useState({});
    const [images, setImages] = useState([]);
    const [show, setShow] = useState(false);
@@ -103,6 +106,9 @@ export default function ProductDetails(props) {
       getDetails();
    }, [id]);
 
+   const addToCart = () => {
+      dispatch(setCartProducts(productDetail))
+   }
    return (
       <>
          <Card
@@ -138,7 +144,7 @@ export default function ProductDetails(props) {
                
                </Select> */}
                   {productDetail.inventory ? (
-                     <CardButton>افزودن به سبد خرید</CardButton>
+                     <CardButton onClick={addToCart}>افزودن به سبد خرید</CardButton>
                   ) : (
                      <CardButton disabled>موجود نیست</CardButton>
                   )}

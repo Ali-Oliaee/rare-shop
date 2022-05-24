@@ -62,7 +62,7 @@ export const routes = [
       isPrivate: false,
    },
    {
-      path: "/cart",
+      path: "/checkout/cart",
       component: (
          <Suspense fallback={<div>loading...</div>}>
             <UserLayout>

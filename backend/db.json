@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "name": "شلوار بگی زغالی",
+      "name": "معصومه نادری",
       "categoryId": 1,
       "subCategoryId": 1,
       "price": 550000,
@@ -1046,17 +1046,8 @@
   ],
   "orders": [
     {
-      "customerDetail": {
-        "username": "admin",
-        "firstName": "ملینا",
-        "lastName": "موسی خانی",
-        "phone": "09027638913",
-        "billingAddress": "Tehran - piroozi",
-        "shippingAddress": "Tehran- azadi"
-      },
       "id": 1,
-      "location": "21111,2000,3333",
-      "orderNumber": "2122",
+      "orderNumber": 2122,
       "orderDate": 1651941133996,
       "purchaseTotal": 220000,
       "orderStatus": 1,
@@ -1065,11 +1056,19 @@
       "orderItems": [
         {
           "name": "Test product",
-          "thumbnail": "65ddd8b1bbce4d8396b62611147fa1d6",
-          "price": "12000",
-          "quantity": "12"
+          "thumbnail": "/files/9ce00edc3ac02f037b17efab8164cdce",
+          "price": 12000,
+          "quantity": 12
         }
-      ]
+      ],
+      "customerDetail": {
+        "username": "admin",
+        "firstName": "ملینا",
+        "lastName": "موسی خانی",
+        "phone": "09027638913",
+        "billingAddress": "Tehran - piroozi",
+        "shippingAddress": "Tehran- azadi"
+      }
     },
     {
       "customerDetail": {
@@ -1092,8 +1091,8 @@
         {
           "name": "Test product",
           "thumbnail": "65ddd8b1bbce4d8396b62611147fa1d6",
-          "price": "12000",
-          "quantity": "12"
+          "price": 12000,
+          "quantity": 12
         }
       ]
     }

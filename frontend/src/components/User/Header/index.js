@@ -1,65 +1,24 @@
-import * as React from "react";
+import React, { useState} from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Header.scss";
-
+import Badge from "@mui/material/Badge";
 const UserHeader = () => {
-   const [anchorElNav, setAnchorElNav] = React.useState(null);
-   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-   const handleOpenNavMenu = (event) => {
-      setAnchorElNav(event.currentTarget);
-   };
-   const handleOpenUserMenu = (event) => {
-      setAnchorElUser(event.currentTarget);
-   };
-
-   const handleCloseNavMenu = () => {
-      setAnchorElNav(null);
-   };
-
-   const handleCloseUserMenu = () => {
-      setAnchorElUser(null);
-   };
-
+   const [badgeCounter, setBadgeCounter] = useState(0);
    return (
       <>
          <AppBar sx={{ background: "black" }} position="static">
             <Container maxWidth="xl">
                <Toolbar disableGutters>
-                  <Box
-                     sx={{
-                        flexGrow: 1,
-                        display: { xs: "flex", md: "none" },
-                     }}
-                  >
-                     <IconButton
-                        size="large"
-                        aria-label="account of current user"
-                        aria-controls="menu-appbar"
-                        aria-haspopup="true"
-                        onClick={handleOpenNavMenu}
-                        color="inherit"
-                     >
-                        <MenuIcon />
-                     </IconButton>
-                  </Box>
-
                   <Box sx={{ flexGrow: 1, display: "flex" }}>
-                     <Link
-                        to="/dashboard/products"
-                        className="link-style"
-                     >
+                     <Link to="/dashboard/products" className="link-style">
                         <Button
-                           onClick={handleCloseNavMenu}
                            sx={{
                               my: 2,
                               display: "block",
@@ -70,17 +29,21 @@ const UserHeader = () => {
                            مدیریت
                         </Button>
                      </Link>
-                     <Button
-                        onClick={handleCloseNavMenu}
-                        sx={{ my: 2, display: "block", color: "white" }}
-                     >
-                        <ShoppingCartIcon />
-                     </Button>
+                     <Link to="/checkout/cart" className="link-style">
+                        <Badge
+                           style={{
+                              marginTop: 30,
+                              marginRight: 17,
+                           }}
+                           color="secondary"
+                           badgeContent={badgeCounter}
+                           showZero
+                        >
+                           <ShoppingCartIcon />
+                        </Badge>
+                     </Link>
                   </Box>
-                  <Link
-                     to="/"
-                     className="link-style"
-                  >
+                  <Link to="/" className="link-style">
                      <Typography
                         className="logo-shop"
                         variant="h6"

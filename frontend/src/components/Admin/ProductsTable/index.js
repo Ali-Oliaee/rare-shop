@@ -158,7 +158,6 @@ export default function AllProductsTable() {
                                  onChange={() => console.log("table row")}
                               >
                                  <Link
-                                    className={classes.linkStyle}
                                     to={`/product/${row.id}`}
                                  >
                                     <TableCell>
@@ -168,25 +167,21 @@ export default function AllProductsTable() {
                                           alt="تصویر کالا"
                                        />
                                     </TableCell>
-                                    <TableCell>{row.name}</TableCell>
-                                    <TableCell>
-                                       {findCategoryName(row.categoryId) +
-                                          "/ " +
-                                          findSubCategoryName(
-                                             row.subCategoryId
-                                          )}
-                                    </TableCell>
-                                    <TableCell>
-                                       <Delete
-                                          onFinish={getProducts}
-                                          id={row.id}
-                                       />
-                                       <Edit
-                                          id={row.id}
-                                          onFinish={getProducts}
-                                       />
-                                    </TableCell>
                                  </Link>
+
+                                 <TableCell>{row.name}</TableCell>
+                                 <TableCell>
+                                    {findCategoryName(row.categoryId) +
+                                       "/ " +
+                                       findSubCategoryName(row.subCategoryId)}
+                                 </TableCell>
+                                 <TableCell>
+                                    <Delete
+                                       onFinish={getProducts}
+                                       id={row.id}
+                                    />
+                                    <Edit id={row.id} onFinish={getProducts} />
+                                 </TableCell>
                               </TableRow>
                            );
                         })}

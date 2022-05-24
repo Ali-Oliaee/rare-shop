@@ -10,27 +10,8 @@ import { ThemeProvider } from "styled-components";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
-   const [anchorElNav, setAnchorElNav] = useState(null);
-   const [anchorElUser, setAnchorElUser] = useState(null);
    const [active, setActive] = useState(1);
 
-   const handleOpenNavMenu = (event) => {
-      setAnchorElNav(event.currentTarget);
-   };
-   const handleOpenUserMenu = (event) => {
-      setAnchorElUser(event.currentTarget);
-   };
-
-   const handleCloseNavMenu = () => {
-      setAnchorElNav(null);
-   };
-
-   const handleCloseUserMenu = () => {
-      setAnchorElUser(null);
-   };
-   const handleClickChange = () => {
-      setActive(!active);
-   };
    const isActiveStyle = () => {
     
       return {
@@ -54,24 +35,6 @@ const Header = () => {
          <AppBar sx={{ background: "black" }} position="static">
             <Container maxWidth="xl">
                <Toolbar disableGutters>
-                  <Box
-                     sx={{
-                        flexGrow: 1,
-                        display: { xs: "flex", md: "none" },
-                     }}
-                  >
-                     <IconButton
-                        size="large"
-                        aria-label="account of current user"
-                        aria-controls="menu-appbar"
-                        aria-haspopup="true"
-                        onClick={handleOpenNavMenu}
-                        color="inherit"
-                     >
-                        <MenuIcon />
-                     </IconButton>
-                  </Box>
-
                   <NavLink
                      to="/"
                      className="link-style"
