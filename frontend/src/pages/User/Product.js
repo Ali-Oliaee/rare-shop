@@ -8,7 +8,8 @@ import Imagegallery from "../../components/User/ImageGallery";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { useDispatch } from "react-redux";
-import { setCartProducts } from "../../redux/reducers/CartOrder";
+import { setCartProducts } from "../../redux/reducers/CartSlice";
+
 const Card = styled("div")``;
 const CardBody = styled("div")`
    display: flex;
@@ -44,30 +45,20 @@ const CardP = styled("p")`
 const CardButton = styled("button")`
    background: #f4d7c0;
    border: none;
-   margin-right: 350px;
    margin-top: 50px;
    padding: 5px 10px;
    border-radius: 2px;
    cursor: pointer;
 `;
 const Select = styled.select`
-   width: 5%;
-   height: 35px;
-   background: white;
-   color: gray;
-   padding-left: 5px;
+   width: 50px;
+   height: 37px;
+   background: #f4d7c0;
+   padding: 0 5px;
    font-size: 14px;
-   border: none;
+   border: white 1px solid;
    margin-left: 10px;
-
-   option {
-      color: black;
-      background: white;
-      display: flex;
-      white-space: pre;
-      min-height: 20px;
-      padding: 0px 2px 1px;
-   }
+   border-radius: 2px;
 `;
 const ImageListStyled = styled(ImageList)`
    margin: 10px;
@@ -85,11 +76,14 @@ const Gallery = styled("div")`
 `;
 export default function ProductDetails(props) {
    let { id } = useParams();
-   const dispatch = useDispatch()
+   const dispatch = useDispatch();
    const [productDetail, setProductDetail] = useState({});
    const [images, setImages] = useState([]);
    const [show, setShow] = useState(false);
-
+   let options = []
+   for(let i = 1; i <= 50;i++ ){
+      options.push(i)
+   }
    const getDetails = async () => {
       const res = await ProductsApi.get(id);
       setProductDetail(res.data);
@@ -107,8 +101,8 @@ export default function ProductDetails(props) {
    }, [id]);
 
    const addToCart = () => {
-      dispatch(setCartProducts(productDetail))
-   }
+      dispatch(setCartProducts(productDetail));
+   };
    return (
       <>
          <Card
@@ -140,11 +134,13 @@ export default function ProductDetails(props) {
                         {productDetail.price?.toLocaleString("fa")}
                      </CardP>
                   </Cardtext>
-                  {/* <Select>
-               
-               </Select> */}
+                  <Select>
+                     {options.map(item => <option key={item}>{item}</option>)}
+                  </Select>
                   {productDetail.inventory ? (
-                     <CardButton onClick={addToCart}>افزودن به سبد خرید</CardButton>
+                     <CardButton onClick={addToCart}>
+                        افزودن به سبد خرید
+                     </CardButton>
                   ) : (
                      <CardButton disabled>موجود نیست</CardButton>
                   )}

@@ -9,8 +9,12 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
 import "./Header.scss";
 import Badge from "@mui/material/Badge";
+import { useDispatch } from "react-redux";
+import { setCartProducts } from "../../../redux/reducers/CartSlice";
 const UserHeader = () => {
    const [badgeCounter, setBadgeCounter] = useState(0);
+   const dispatch = useDispatch()
+   console.log(dispatch(setCartProducts));
    return (
       <>
          <AppBar sx={{ background: "black" }} position="static">
