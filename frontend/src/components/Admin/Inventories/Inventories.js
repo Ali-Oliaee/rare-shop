@@ -54,7 +54,7 @@ export default function Inventories() {
    const [products, setProducts] = useState([]);
    const [edit, setEdit] = useState(false);
    const [price, setPrice] = useState([]);
-   const [inventory, setInventory] = useState();
+   const [inventory, setInventory] = useState([]);
 
    const classes = useStyle();
 
