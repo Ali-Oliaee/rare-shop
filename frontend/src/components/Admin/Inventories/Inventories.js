@@ -53,53 +53,56 @@ export default function Inventories() {
    const [edit, setEdit] = useState(false);
    const [price, setPrice] = useState([]);
    const [editedId, setEditedId] = useState([]);
-   const [editableData, setEditableData] = useState([]);
+   const [editableData, setEditableData] = useState();
    const classes = useStyle();
 
    const getProducts = async () => {
-      const priceInventory = [];
       const res = await ProductsApi.gets();
       setProducts(res.data);
-      Object.values(res.data).map((item) => {
-         priceInventory.push({
-            id: item.id,
-            price: item.price,
-            inventory: item.inventory,
-         });
-      });
-      setEditableData(priceInventory);
+   };
+
+   const handleClickInput = ({ target }, id) => {
+      const { value, name } = target;
+      let editableRow = products.filter((el) => el.id === id);
+      if (target.tagName === "INPUT") {
+         setEditableData((prevState) => [
+            ...prevState,
+            {
+               id: value.id,
+               type: name,
+               value: null,
+            },
+         ]);
+      }
+      // setEditableData({
+      //
+      // });
    };
 
    const p2e = (s) => s.replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
-  
-   const handleChange = ({target}, id) => {
-      const {value, name} = target
-      const requestedData = editableData.filter(el => el.id === id)
-      
-      editableData[id] = {
-         ...editableData[id],
-         [name]: value
-         };
+
+   const handleChange = ({ target }, id) => {
+      const { value, name } = target;
+      setEditableData({
+         ...editableData,
+         [id]: { id: id, type: name, value: null },
+      });
    };
 
-   // const updatePrice = () => {
-   //    const apiCall = async () => {
-   //       if (price) {
-   //          await ProductsApi.patch(price.id, { price: price.value });
-   //       }
-   //       if (inventory) {
-   //          await ProductsApi.patch(inventory.id, {
-   //             inventory: inventory.value,
-   //          });
-   //       }
-   //    };
-   //    apiCall();
-   // };
+   const updatePrice = () => {
+      const newChange = Object.values(editableData).map((item) => {
+         const value = document.getElementById(`${item.type}-${item.id}`).value;
+         return { ...item, value: value };
+      });
+      newChange.forEach(async (item) => {
+         await ProductsApi.patch(item.id, { [item.type]: item.value });
+      });
+
+   };
 
    useEffect(() => {
       getProducts();
-      console.log(editedId);
-   }, [price]);
+   }, [price, editableData]);
 
    const handleChangePage = (event, newPage) => {
       setPage(newPage);
@@ -112,13 +115,9 @@ export default function Inventories() {
    function defaultLabelDisplayedRows({ from, to, count }) {
       return `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`;
    }
-   const getValues = (id) => {
-      let target = editableData.filter(el => el.id === id) 
-      return target[0]
-   }
    return (
       <div className={classes.root}>
-         <Button  className={classes.myButton}>
+         <Button onClick={updatePrice} className={classes.myButton}>
             ذخیره
          </Button>
          <Paper sx={{ borderRadius: 0 }}>
@@ -150,11 +149,17 @@ export default function Inventories() {
                                        {row.name}
                                     </TableCell>
                                     <TableCell className="row_cell">
-                                       <div onClick={() => setEdit(!edit)}>
+                                       <div
+                                          onClick={() =>
+                                             handleClickInput(row.id)
+                                          }
+                                       >
                                           {
                                              <input
                                                 name="price"
-                                                value={getValues(row.id).price}
+                                                id={`price-${row.id}`}
+                                                defaultValue={row.price}
+                                                // value={row.price}
                                                 className={classes.myInput}
                                                 type={
                                                    edit ? "text" : "readonly"
@@ -167,14 +172,23 @@ export default function Inventories() {
                                        </div>
                                     </TableCell>
                                     <TableCell className="row_cell">
-                                       <input
-                                          name="inventory"
-                                          value={getValues(row.id).inventory}                                          className={classes.myInput}
-                                          type={edit ? "text" : "readonly"}
-                                          onChange={(e) =>
-                                             handleChange(e, row.id)
+                                       <div
+                                          onClick={() =>
+                                             handleClickInput(row.id)
                                           }
-                                       />
+                                       >
+                                          <input
+                                             name="inventory"
+                                             defaultValue={row.inventory}
+                                             // value={row.inventory}
+                                             id={`inventory-${row.id}`}
+                                             className={classes.myInput}
+                                             type={edit ? "text" : "readonly"}
+                                             onChange={(e) =>
+                                                handleChange(e, row.id)
+                                             }
+                                          />
+                                       </div>
                                     </TableCell>
                                  </TableRow>
                               );

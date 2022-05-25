@@ -48,6 +48,7 @@ const MyModal = (props) => {
       imgRef,
    } = props;
    const [open, setOpen] = useState(false);
+   const [errorText, setErrorText] = useState('')
    const handleOpen = () => setOpen(true);
    const handleClose = () => setOpen(false);
    const classes = useStyle();
@@ -56,6 +57,18 @@ const MyModal = (props) => {
    const saveClickHandler = () => {
       handleClose();
       setNewProduct();
+   };
+   const handleChangeValidate = (event) => {
+      setNewProduct({
+         ...newProduct,
+         [event.target.name]: +p2e(event.target.value),
+      })
+      if (event.target.value.match(/\d/g)) {
+         setErrorText("");
+         // setPhone(event.target.value);
+      } else {
+         setErrorText("لطفا عدد وارد کنید!");
+      }
    };
    return (
       <div>
@@ -100,27 +113,27 @@ const MyModal = (props) => {
                   label="قیمت"
                   name="price"
                   variant="standard"
+                  helperText={errorText}
+                  error={errorText}
                   value={newProduct?.price}
-                  onChange={(e) =>
-                     setNewProduct({
-                        ...newProduct,
-                        price: +p2e(e.target.value),
-                     })
-                  }
+                  onChange={handleChangeValidate}
                />
-               <img style={{float: "left"}} alt={""} src="" ref={imgRef} height={100} />
+               <img
+                  style={{ float: "left" }}
+                  alt={""}
+                  src=""
+                  ref={imgRef}
+                  height={100}
+               />
 
                <TextField
                   label="تعداد موجودی"
                   name="inventory"
                   variant="standard"
+                  helperText={errorText}
+                  error={errorText}
                   value={newProduct?.inventory}
-                  onChange={(e) => {
-                     setNewProduct({
-                        ...newProduct,
-                        inventory: +p2e(e.target.value),
-                     });
-                  }}
+                  onChange={handleChangeValidate}
                />
 
                <FormControl

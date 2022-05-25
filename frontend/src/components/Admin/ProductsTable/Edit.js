@@ -4,16 +4,8 @@ import MyModal from "./Modal";
 import { AdminApi } from "../../../api/AdminApi";
 import { ProductsApi } from "../../../api/Products";
 const Edit = ({ id }) => {
-   const [updatedData, setUpdatedData] = useState({
-      // name: "",
-      // categoryId: null,
-      // subCategoryId: null,
-      // price: null,
-      // inventory: null,
-      // image: "",
-      // images: [],
-      // description: "",
-   });
+   const [updatedData, setUpdatedData] = useState({});
+  
    const imgRef = useRef();
    const preview = (file) => {
       const fileReader = new FileReader();

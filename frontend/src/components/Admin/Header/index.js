@@ -44,11 +44,6 @@ const Header = () => {
          textDecoration: "none",
       };
    };
-
-   useEffect(() => {
-      console.log(active);
-      
-   }, [active]);
    return (
       <>
          <AppBar sx={{ background: "black" }} position="static">
