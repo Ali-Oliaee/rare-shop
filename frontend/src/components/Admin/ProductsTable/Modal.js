@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
@@ -27,13 +27,13 @@ const useStyle = makeStyles({
       },
       "& .MuiButton-root": {
          background: "black",
-         marginBottom: 20,
+         marginBottom: 10,
          marginTop: 20,
       },
    },
    fileButton: {
       float: "left",
-      marginBottom: 20,
+      // marginBottom: 20,
    },
 });
 const MyModal = (props) => {
@@ -45,8 +45,10 @@ const MyModal = (props) => {
       handleFileSelect,
       imageAdress,
       addProduct,
+      imgRef,
    } = props;
    const [open, setOpen] = useState(false);
+   const [errorText, setErrorText] = useState('')
    const handleOpen = () => setOpen(true);
    const handleClose = () => setOpen(false);
    const classes = useStyle();
@@ -55,6 +57,18 @@ const MyModal = (props) => {
    const saveClickHandler = () => {
       handleClose();
       setNewProduct();
+   };
+   const handleChangeValidate = (event) => {
+      setNewProduct({
+         ...newProduct,
+         [event.target.name]: +p2e(event.target.value),
+      })
+      if (event.target.value.match(/\d/g)) {
+         setErrorText("");
+         // setPhone(event.target.value);
+      } else {
+         setErrorText("لطفا عدد وارد کنید!");
+      }
    };
    return (
       <div>
@@ -67,23 +81,27 @@ const MyModal = (props) => {
             aria-describedby="modal-modal-description"
          >
             <Box className={classes.root}>
-               <input value={imageAdress} />
-               <button onClick={handleUploadFile}>upload</button>
+               {/* <button onClick={handleUploadFile}>upload</button> */}
                <Button
                   className={classes.fileButton}
                   variant="contained"
                   component="label"
                >
                   افزودن عکس
-                  <input type="file" hidden onChange={handleFileSelect} />
+                  <input
+                     type="file"
+                     multiple
+                     hidden
+                     onChange={handleUploadFile}
+                  />
                </Button>
+
                <TextField
                   className={classes.inputName}
                   label="نام کالا"
                   name="name"
                   variant="standard"
                   value={newProduct?.name}
-                  // focused
                   onChange={(e) =>
                      setNewProduct({
                         ...newProduct,
@@ -91,32 +109,33 @@ const MyModal = (props) => {
                      })
                   }
                />
-               {/* <FormControl sx={{display: "flex"}}> */}
                <TextField
                   label="قیمت"
                   name="price"
                   variant="standard"
+                  helperText={errorText}
+                  error={errorText}
                   value={newProduct?.price}
-                  onChange={(e) =>
-                     setNewProduct({
-                        ...newProduct,
-                        price: e.target.value,
-                     })
-                  }
+                  onChange={handleChangeValidate}
                />
+               <img
+                  style={{ float: "left" }}
+                  alt={""}
+                  src=""
+                  ref={imgRef}
+                  height={100}
+               />
+
                <TextField
                   label="تعداد موجودی"
                   name="inventory"
                   variant="standard"
+                  helperText={errorText}
+                  error={errorText}
                   value={newProduct?.inventory}
-                  onChange={(e) =>
-                     setNewProduct({
-                        ...newProduct,
-                        inventory: e.target.value,
-                     })
-                  }
+                  onChange={handleChangeValidate}
                />
-               {/* </FormControl> */}
+
                <FormControl
                   name="categoryId"
                   fullWidth
@@ -144,6 +163,7 @@ const MyModal = (props) => {
                      <option value={3}>اکسسوری</option>
                   </NativeSelect>
                </FormControl>
+
                <FormControl
                   name="subCategoryId"
                   fullWidth

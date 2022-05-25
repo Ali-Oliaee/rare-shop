@@ -35,7 +35,6 @@ const Home = () => {
       getCategoryData();
       getProducts();
    }, []);
-   console.log(Categories[0]);
    return (
       <>
       {/* <MyTable/> */}

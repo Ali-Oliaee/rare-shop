@@ -31,7 +31,7 @@ class Service {
             return res;
          },
          (error) => {
-            if (error.response.status == 401) {
+            if (error.response.status === 401) {
                window.location.pathname = "/auth/login";
             }
             // store.dispatch(endLoading());
