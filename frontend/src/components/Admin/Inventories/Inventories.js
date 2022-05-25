@@ -8,10 +8,8 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { makeStyles } from "@mui/styles";
-import { TextField, Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import { ProductsApi } from "../../../api/Products";
-import { AdminApi } from "../../../api/AdminApi";
 
 const useStyle = makeStyles({
    root: {
@@ -54,48 +52,54 @@ export default function Inventories() {
    const [products, setProducts] = useState([]);
    const [edit, setEdit] = useState(false);
    const [price, setPrice] = useState([]);
-   const [inventory, setInventory] = useState([]);
-
+   const [editedId, setEditedId] = useState([]);
+   const [editableData, setEditableData] = useState([]);
    const classes = useStyle();
 
    const getProducts = async () => {
+      const priceInventory = [];
       const res = await ProductsApi.gets();
       setProducts(res.data);
+      Object.values(res.data).map((item) => {
+         priceInventory.push({
+            id: item.id,
+            price: item.price,
+            inventory: item.inventory,
+         });
+      });
+      setEditableData(priceInventory);
    };
 
    const p2e = (s) => s.replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
-   const handlePrice = (e, id) => {
-      setPrice({
-         edit: true,
-         id: id,
-         value: parseFloat(p2e(e.target.value)),
-      });
+  
+   const handleChange = ({target}, id) => {
+      const {value, name} = target
+      const requestedData = editableData.filter(el => el.id === id)
+      
+      editableData[id] = {
+         ...editableData[id],
+         [name]: value
+         };
    };
-   const handleInventory = (e, id) => {
-      setInventory({
-         edit: true,
-         id: id,
-         value: parseFloat(p2e(e.target.value)),
-      });
-      console.log(inventory);
-   };
-   const updatePrice = () => {
-      const apiCall = async () => {
-         if (price) {
-            await ProductsApi.patch(price.id, { price: price.value });
-         }
-         if (inventory) {
-            await ProductsApi.patch(inventory.id, {
-               inventory: inventory.value,
-            });
-         }
-      };
-      apiCall();
-   };
+
+   // const updatePrice = () => {
+   //    const apiCall = async () => {
+   //       if (price) {
+   //          await ProductsApi.patch(price.id, { price: price.value });
+   //       }
+   //       if (inventory) {
+   //          await ProductsApi.patch(inventory.id, {
+   //             inventory: inventory.value,
+   //          });
+   //       }
+   //    };
+   //    apiCall();
+   // };
 
    useEffect(() => {
       getProducts();
-   }, [price, inventory]);
+      console.log(editedId);
+   }, [price]);
 
    const handleChangePage = (event, newPage) => {
       setPage(newPage);
@@ -108,11 +112,13 @@ export default function Inventories() {
    function defaultLabelDisplayedRows({ from, to, count }) {
       return `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`;
    }
-
+   const getValues = (id) => {
+      let target = editableData.filter(el => el.id === id) 
+      return target[0]
+   }
    return (
-      // <div style={{margin:"100px"}}>
       <div className={classes.root}>
-         <Button onClick={updatePrice} className={classes.myButton}>
+         <Button  className={classes.myButton}>
             ذخیره
          </Button>
          <Paper sx={{ borderRadius: 0 }}>
@@ -144,33 +150,30 @@ export default function Inventories() {
                                        {row.name}
                                     </TableCell>
                                     <TableCell className="row_cell">
-                                       <input
-                                          name="price"
-                                          defaultValue={row.price.toLocaleString(
-                                             "fa"
-                                          )}
-                                          value={price[row.id]}
-                                          className={classes.myInput}
-                                          type={edit ? "text" : "readonly"}
-                                          onChange={(e) =>
-                                             handlePrice(e, row.id)
+                                       <div onClick={() => setEdit(!edit)}>
+                                          {
+                                             <input
+                                                name="price"
+                                                value={getValues(row.id).price}
+                                                className={classes.myInput}
+                                                type={
+                                                   edit ? "text" : "readonly"
+                                                }
+                                                onChange={(e) =>
+                                                   handleChange(e, row.id)
+                                                }
+                                             />
                                           }
-                                          // onBlur={setEdit(!edit)}
-                                       />
+                                       </div>
                                     </TableCell>
                                     <TableCell className="row_cell">
                                        <input
                                           name="inventory"
-                                          defaultValue={row.inventory.toLocaleString(
-                                             "fa"
-                                          )}
-                                          value={inventory?.row?.id}
-                                          className={classes.myInput}
+                                          value={getValues(row.id).inventory}                                          className={classes.myInput}
                                           type={edit ? "text" : "readonly"}
                                           onChange={(e) =>
-                                             handleInventory(e, row.id)
+                                             handleChange(e, row.id)
                                           }
-                                          // onBlur={setEdit(!edit)}
                                        />
                                     </TableCell>
                                  </TableRow>
