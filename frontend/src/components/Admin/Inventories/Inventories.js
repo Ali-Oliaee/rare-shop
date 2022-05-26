@@ -159,7 +159,6 @@ export default function Inventories() {
                                                 name="price"
                                                 id={`price-${row.id}`}
                                                 defaultValue={row.price}
-                                                // value={row.price}
                                                 className={classes.myInput}
                                                 type={
                                                    edit ? "text" : "readonly"
