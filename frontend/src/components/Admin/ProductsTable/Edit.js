@@ -3,9 +3,9 @@ import EditIcon from "@mui/icons-material/Edit";
 import MyModal from "./Modal";
 import { AdminApi } from "../../../api/AdminApi";
 import { ProductsApi } from "../../../api/Products";
-const Edit = ({ id }) => {
+const Edit = ({ row }) => {
    const [updatedData, setUpdatedData] = useState({});
-  
+   console.log(row);
    const imgRef = useRef();
    const preview = (file) => {
       const fileReader = new FileReader();
@@ -36,13 +36,14 @@ const Edit = ({ id }) => {
    // setUpdatedData({ ...updatedData, image: "/files/" + res.data.filename });
    const updateProduct = () => {
       const apiCall = async () => {
-        await ProductsApi.patch(id,updatedData);
+        await ProductsApi.patch(row.id,updatedData);
       };
       apiCall();
    };
    return (
       <div>
          <MyModal
+            row={row}
             handleUploadFile={handleUploadFile}
             newProduct={updatedData}
             buttonName={<EditIcon />}

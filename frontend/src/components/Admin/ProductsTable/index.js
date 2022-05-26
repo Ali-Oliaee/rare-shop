@@ -180,7 +180,7 @@ export default function AllProductsTable() {
                                        onFinish={getProducts}
                                        id={row.id}
                                     />
-                                    <Edit id={row.id} onFinish={getProducts} />
+                                    <Edit row={row} onFinish={getProducts} />
                                  </TableCell>
                               </TableRow>
                            );

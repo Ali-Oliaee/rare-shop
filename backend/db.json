@@ -1,11 +1,11 @@
 {
   "products": [
     {
-      "name": "شلوار بگی زغالی",
+      "name": "شلوار بگی ذغالی",
       "categoryId": 1,
       "subCategoryId": 1,
-      "price": "5503333",
-      "inventory": "12",
+      "price": 5503333,
+      "inventory": 12,
       "images": [
         "/files/5bbb103ba916e270ee9cbd4be345d635",
         "/files/5bbb103ba916e270ee9cbd4be345d635",
@@ -22,7 +22,7 @@
       "categoryId": 1,
       "subCategoryId": 1,
       "price": 600000,
-      "inventory": "25",
+      "inventory": 5,
       "images": [
         "/files/b081e1aa932f0611fe21603465a2579d",
         "/files/b081e1aa932f0611fe21603465a2579d",
@@ -39,7 +39,7 @@
       "categoryId": 1,
       "subCategoryId": 1,
       "price": 520000,
-      "inventory": "0",
+      "inventory": 0,
       "images": [
         "/files/048454da2ba3f71514bbccc0860fd59c",
         "/files/048454da2ba3f71514bbccc0860fd59c",
@@ -56,7 +56,7 @@
       "categoryId": 1,
       "subCategoryId": 1,
       "price": 600000,
-      "inventory": "0",
+      "inventory": 0,
       "images": [
         "/files/d5c85b3200a222268d88db502645c062",
         "/files/d5c85b3200a222268d88db502645c062",
@@ -73,7 +73,7 @@
       "categoryId": 1,
       "subCategoryId": 1,
       "price": 460000,
-      "inventory": "1",
+      "inventory": 1,
       "images": [
         "/files/9d48f3e0e9de147ca82ad686ae401aaa",
         "/files/9d48f3e0e9de147ca82ad686ae401aaa",

@@ -38,12 +38,11 @@ const useStyle = makeStyles({
 });
 const MyModal = (props) => {
    const {
+      row,
       newProduct,
       setNewProduct,
       buttonName,
       handleUploadFile,
-      handleFileSelect,
-      imageAdress,
       addProduct,
       imgRef,
    } = props;
@@ -100,6 +99,7 @@ const MyModal = (props) => {
                   className={classes.inputName}
                   label="نام کالا"
                   name="name"
+                  defaultValue={row?.name}
                   variant="standard"
                   value={newProduct?.name}
                   onChange={(e) =>
@@ -114,6 +114,7 @@ const MyModal = (props) => {
                   name="price"
                   variant="standard"
                   helperText={errorText}
+                  defaultValue={row?.price}
                   error={errorText}
                   value={newProduct?.price}
                   onChange={handleChangeValidate}
@@ -130,6 +131,7 @@ const MyModal = (props) => {
                   label="تعداد موجودی"
                   name="inventory"
                   variant="standard"
+                  defaultValue={row?.inventory}
                   helperText={errorText}
                   error={errorText}
                   value={newProduct?.inventory}
@@ -139,6 +141,7 @@ const MyModal = (props) => {
                <FormControl
                   name="categoryId"
                   fullWidth
+                  defaultValue={row?.categoryId}
                   value={newProduct?.categoryId}
                   onChange={(e) =>
                      setNewProduct({
@@ -167,7 +170,8 @@ const MyModal = (props) => {
                <FormControl
                   name="subCategoryId"
                   fullWidth
-                  value={newProduct?.categoryId}
+                  value={newProduct?.subCategoryId}
+                  defaultValue={row?.subCategoryId}
                   onChange={(e) =>
                      setNewProduct({
                         ...newProduct,
@@ -197,7 +201,7 @@ const MyModal = (props) => {
                      <option value={9}>گوشواره و انگشتر</option>
                   </NativeSelect>
                </FormControl>
-               <Editor newProduct={newProduct} setNewProduct={setNewProduct} />
+               <Editor description={row?.description} newProduct={newProduct} setNewProduct={setNewProduct} />
                <Button
                   onClick={addProduct}
                   variant="contained"

@@ -3,7 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, Icon } from "@mui/material";
 import { ProductsApi } from "../../../api/Products";
 const Delete = ({ id, onFinish }) => {
-   const deleteHandler = async (id) => {
+   const deleteHandler = async () => {
      await ProductsApi.delete(id);
      onFinish()
       //let deleted = Object.values(products).filter((el) => el.id !== id);
