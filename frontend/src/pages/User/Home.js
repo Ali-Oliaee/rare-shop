@@ -2,11 +2,15 @@ import React, { useState, useEffect } from "react";
 import Slider from "../../components/User/Slider/Slider";
 import { ProductsApi } from "../../api/Products";
 import { AdminApi } from "../../api/AdminApi";
+import { useSelector, useDispatch } from "react-redux";
+import Skeleton from "@mui/material/Skeleton";
 import "swiper/css/bundle";
-import MyTable from "../../components/User/Table/MyTable";
+import MyTable from "../../components/Admin/Table";
 const Home = () => {
    const [products, setProducts] = useState([]);
    const [Categories, setCategories] = useState([]);
+   const dispatch = useDispatch();
+   const loading = useSelector((state) => state.loading);
 
    const getProducts = async () => {
       const clothesRes = await ProductsApi.gets({
@@ -37,7 +41,9 @@ const Home = () => {
    }, []);
    return (
       <>
-      {/* <MyTable/> */}
+
+
+
          <div style={{ display: "flex", alignItems: "center" }}>
             <Slider
                category={1}
@@ -47,7 +53,13 @@ const Home = () => {
                findCategoryName={findCategoryName}
             />
          </div>
-         <div style={{ display: "flex", alignItems: "center",flexDirection: "row-reverse" }}>
+         <div
+            style={{
+               display: "flex",
+               alignItems: "center",
+               flexDirection: "row-reverse",
+            }}
+         >
             <Slider
                category={2}
                data={products[1]}

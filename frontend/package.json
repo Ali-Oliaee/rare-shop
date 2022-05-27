@@ -19,6 +19,7 @@
     "axios": "^0.27.2",
     "formik": "^2.2.9",
     "jalali-moment": "^3.3.11",
+    "lottie-react": "^2.2.1",
     "mui-image-slider": "^1.0.7",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",

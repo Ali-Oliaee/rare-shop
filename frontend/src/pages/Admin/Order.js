@@ -6,8 +6,7 @@ const Order = () => {
   
    return (
       <AdminLayout>
-         <Orders />
-         
+         <Orders />     
       </AdminLayout>
    );
 };

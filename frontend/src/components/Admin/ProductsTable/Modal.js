@@ -52,7 +52,7 @@ const MyModal = (props) => {
    const handleClose = () => setOpen(false);
    const classes = useStyle();
    const p2e = (s) => s.replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
-
+//filter harf
    const saveClickHandler = () => {
       handleClose();
       setNewProduct();
@@ -118,6 +118,7 @@ const MyModal = (props) => {
                   error={errorText}
                   value={newProduct?.price}
                   onChange={handleChangeValidate}
+
                />
                <img
                   style={{ float: "left" }}

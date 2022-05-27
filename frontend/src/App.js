@@ -8,7 +8,8 @@ import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
-
+import { store } from './redux/store'
+import { Provider } from 'react-redux'
 // Create rtl cache
 const cacheRtl = createCache({
    key: "muirtl",
@@ -17,32 +18,33 @@ const cacheRtl = createCache({
 
 function App() {
    return (
-      <CacheProvider value={cacheRtl}>
-         <ThemeProvider theme={theme}>
-            <Routes>
-               {routes.map((rout, index) => {
-                  
-                  if (rout.isPrivate) {
-                     return (
-                        <Route
-                           key={rout.path}
-                           path={rout.path}
-                           element={WithAuth(rout.component)}
-                        />
-                     );
-                  } else {
-                     return (
-                        <Route
-                           key={rout.path}
-                           path={rout.path}
-                           element={rout.component}
-                        />
-                     );
-                  }
-               })}
-            </Routes>
-         </ThemeProvider>
-      </CacheProvider>
+      <Provider store={store}>
+         <CacheProvider value={cacheRtl}>
+            <ThemeProvider theme={theme}>
+               <Routes>
+                  {routes.map((rout, index) => {
+                     if (rout.isPrivate) {
+                        return (
+                           <Route
+                              key={rout.path}
+                              path={rout.path}
+                              element={WithAuth(rout.component)}
+                           />
+                        );
+                     } else {
+                        return (
+                           <Route
+                              key={rout.path}
+                              path={rout.path}
+                              element={rout.component}
+                           />
+                        );
+                     }
+                  })}
+               </Routes>
+            </ThemeProvider>
+         </CacheProvider>
+      </Provider>
    );
 }
 

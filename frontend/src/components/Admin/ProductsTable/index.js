@@ -18,7 +18,7 @@ import { BASE_URL } from "../../../core/constants";
 import NewProductModal from "./NewProduct";
 import Delete from "./Delete";
 import Edit from "./Edit";
-
+import { Link } from "react-router-dom";
 const useStyle = makeStyles({
    root: {
       background: "#E6BC98",
@@ -35,6 +35,9 @@ const useStyle = makeStyles({
          width: 300,
          textAlign: "center",
       },
+      "& .MuiTableRow-root": {
+         width: "100%",
+      },
       "& .MuiTableCell-head ": {
          background: "black",
          color: "white",
@@ -49,9 +52,9 @@ const useStyle = makeStyles({
          },
          "& .MuiSelect-select": {
             color: "white",
-            borderBottom: "1px white solid"
-         }
-      }
+            borderBottom: "1px white solid",
+         },
+      },
    },
 });
 
@@ -161,6 +164,7 @@ export default function AllProductsTable() {
                                  role="checkbox"
                                  tabIndex={-1}
                                  key={row.code}
+                                 onChange={() => console.log("table row")}
                               >
                                  <TableCell>
                                     <img

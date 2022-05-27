@@ -1,21 +1,24 @@
-import Home from "../pages/User/Home";
-import Product from "../pages/User/Product";
-import Payment from "../pages/User/Payment";
-import Cart from "../pages/User/Cart";
-import Login from "../components/Admin/Login";
-import UserLayout from "../components/User/Layout";
-import Inventory from "../pages/Admin/Inventory";
-import Order from "../pages/Admin/Order";
-import ProductsTable from "../pages/Admin/Products";
-import AllProducts from "../pages/User/AllProducts";
+import { lazy, Suspense } from "react";
+const Home = lazy(() => import("../pages/User/Home"));
+const Product = lazy(() => import("../pages/User/Product"));
+const Payment = lazy(() => import("../pages/User/Payment"));
+const Cart = lazy(() => import("../pages/User/Cart"));
+const Login = lazy(() => import("../components/Admin/Login"));
+const UserLayout = lazy(() => import("../components/User/Layout"));
+const Inventory = lazy(() => import("../pages/Admin/Inventory"));
+const Order = lazy(() => import("../pages/Admin/Order"));
+const ProductsTable = lazy(() => import("../pages/Admin/Products"));
+const AllProducts = lazy(() => import("../pages/User/AllProducts"));
 
 export const routes = [
    {
       path: "/",
       component: (
-         <UserLayout>
-            <Home />
-         </UserLayout>
+         <Suspense fallback={<div>loading...</div>}>
+            <UserLayout>
+               <Home />
+            </UserLayout>
+         </Suspense>
       ),
       isPrivate: false,
    },
@@ -23,27 +26,33 @@ export const routes = [
    {
       path: "/products/clothes",
       component: (
-         <UserLayout>
-            <AllProducts cat={1} />
-         </UserLayout>
+         <Suspense fallback={<div>loading...</div>}>
+            <UserLayout>
+               <AllProducts cat={1} />
+            </UserLayout>
+         </Suspense>
       ),
       isPrivate: false,
    },
    {
       path: "/products/shoes-bag",
       component: (
-         <UserLayout>
-            <AllProducts cat={2} />
-         </UserLayout>
+         <Suspense fallback={<div>loading...</div>}>
+            <UserLayout>
+               <AllProducts cat={2} />
+            </UserLayout>
+         </Suspense>
       ),
       isPrivate: false,
    },
    {
       path: "/products/accessory",
       component: (
-         <UserLayout>
-            <AllProducts cat={3} />
-         </UserLayout>
+         <Suspense fallback={<div>loading...</div>}>
+            <UserLayout>
+               <AllProducts cat={3} />
+            </UserLayout>
+         </Suspense>
       ),
       isPrivate: false,
    },
@@ -55,42 +64,62 @@ export const routes = [
    {
       path: "/cart",
       component: (
-         <UserLayout>
-            <Cart />
-         </UserLayout>
+         <Suspense fallback={<div>loading...</div>}>
+            <UserLayout>
+               <Cart />
+            </UserLayout>
+         </Suspense>
       ),
       isPrivate: false,
    },
    {
       path: "/auth/login",
-      component: <Login />,
+      component: (
+         <Suspense fallback={<div>loading...</div>}>
+            <Login />
+         </Suspense>
+      ),
       isPrivate: false,
       layout: "user",
    },
    {
       path: "/dashboard/products",
-      component: ProductsTable,
-      isPrivate: true,
+      component: (
+         <Suspense fallback={<div>loading...</div>}>
+            {<ProductsTable />}
+         </Suspense>
+      ),
+      isPrivate: false,
       layout: "admin",
    },
    {
       path: "/dashboard/inventory",
-      component: <Inventory />,
+      component: (
+         <Suspense fallback={<div>loading...</div>}>
+            <Inventory />
+         </Suspense>
+      ),
       isPrivate: false,
       layout: "admin",
    },
    {
       path: "/dashboard/order",
-      component: <Order />,
+      component: (
+         <Suspense fallback={<div>loading...</div>}>
+            <Order />
+         </Suspense>
+      ),
       isPrivate: false,
       layout: "admin",
    },
    {
       path: "/product/:id",
       component: (
-         <UserLayout>
-            <Product />
-         </UserLayout>
+         <Suspense fallback={<div>loading...</div>}>
+            <UserLayout>
+               <Product />
+            </UserLayout>
+         </Suspense>
       ),
       isPrivate: false,
       layout: "admin",
