@@ -166,7 +166,6 @@ export default function AllProductsTable() {
                                  key={row.code}
                                  onChange={() => console.log("table row")}
                               >
-<<<<<<< HEAD
                                  <TableCell>
                                     <img
                                        style={{ maxWidth: 60 }}
@@ -174,20 +173,7 @@ export default function AllProductsTable() {
                                        alt="تصویر کالا"
                                     />
                                  </TableCell>
-=======
-                                 <Link
-                                    to={`/product/${row.id}`}
-                                 >
-                                    <TableCell>
-                                       <img
-                                          style={{ maxWidth: 60 }}
-                                          src={BASE_URL + row.image}
-                                          alt="تصویر کالا"
-                                       />
-                                    </TableCell>
-                                 </Link>
 
->>>>>>> feat/cart-page
                                  <TableCell>{row.name}</TableCell>
                                  <TableCell>
                                     {findCategoryName(row.categoryId) +
@@ -199,11 +185,8 @@ export default function AllProductsTable() {
                                        onFinish={getProducts}
                                        id={row.id}
                                     />
-<<<<<<< HEAD
+
                                     <Edit row={row} onFinish={getProducts} />
-=======
-                                    <Edit id={row.id} onFinish={getProducts} />
->>>>>>> feat/cart-page
                                  </TableCell>
                               </TableRow>
                            );

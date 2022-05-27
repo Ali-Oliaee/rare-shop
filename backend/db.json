@@ -1,11 +1,8 @@
 {
   "products": [
     {
-<<<<<<< HEAD
+
       "name": "شلوار بگی ذغالی",
-=======
-      "name": "معصومه نادری",
->>>>>>> feat/cart-page
       "categoryId": 1,
       "subCategoryId": 1,
       "price": 5503333,
