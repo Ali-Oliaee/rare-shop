@@ -93,14 +93,16 @@ export default function Inventories() {
    const updatePrice = () => {
       const newChange = Object.values(editableData).map((item) => {
          const value = document.getElementById(`${item.type}-${item.id}`).value;
-         return { ...item, value: value };
+         return { ...item, value: +value };
       });
 
       Promise.all(
          newChange.map((item) => {
             return ProductsApi.patch(item.id, { [item.type]: item.value });
          })
-      );
+      ).catch((err) => {
+         Promise.reject(err)
+      })
    };
 
    useEffect(() => {
@@ -140,7 +142,6 @@ export default function Inventories() {
                            page * rowsPerPage + rowsPerPage
                         )
                         .map((row) => {
-                           if (row.inventory > 0) {
                               return (
                                  <TableRow
                                     className="table_row"
@@ -195,7 +196,7 @@ export default function Inventories() {
                                  </TableRow>
                               );
                            }
-                        })}
+                        )}
                   </TableBody>
                </Table>
             </TableContainer>

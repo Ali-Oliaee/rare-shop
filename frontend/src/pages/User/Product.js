@@ -137,10 +137,10 @@ export default function ProductDetails(props) {
                         {productDetail.price?.toLocaleString("fa")}
                      </CardP>
                   </Cardtext>
-                  {/* <Select>
+                  <Select>
                
-               </Select> */}
-                  {productDetail.inventory ? (
+               </Select>
+                  {productDetail.inventory !== 0  ? (
                      <CardButton>افزودن به سبد خرید</CardButton>
                   ) : (
                      <CardButton disabled>موجود نیست</CardButton>

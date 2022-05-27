@@ -1,6 +1,6 @@
 import axios, { CanceledError } from "axios";
 import { TOKEN_LOCAL_KEY } from "../core/constants";
-import {store} from "../redux/store";
+import { store } from "../redux/store";
 import { startLoading, endLoading } from "../redux/reducers/LoadingSlice";
 class Service {
    constructor(entity) {
@@ -9,7 +9,7 @@ class Service {
       this.baseApisUrl = `http://localhost:8000${this.entity}`;
       this.instance.interceptors.request.use(
          (config) => {
-             store.dispatch(startLoading());
+            store.dispatch(startLoading());
             const token = localStorage.getItem("token");
             if (token) {
                config.headers["token"] = token;
@@ -17,12 +17,12 @@ class Service {
             return config;
          },
          function (error) {
-            Promise.reject(CanceledError);
+            Promise.reject(error);
          }
       );
       this.instance.interceptors.response.use(
          (res) => {
-             store.dispatch(endLoading());
+            store.dispatch(endLoading());
             const { status } = res;
             if (status > 400) {
                window.location.pathname = "/404";
@@ -48,7 +48,7 @@ class Service {
       return this.instance.get(`${this.baseApisUrl}`, config);
    };
 
-   get = (id,config) => {
+   get = (id, config) => {
       return this.instance.get(`${this.baseApisUrl}/${id}`, config);
    };
 
@@ -73,25 +73,25 @@ class Service {
    formdata = (body) => {
       const fd = new FormData();
       // Object.keys(body).forEach((k) => {
-         // if (body instanceof File) {
-            fd.append('image',body);
-            console.log("is file");
-         // } else {
-         //    let value = body;
-         //    if (!(value instanceof File) && typeof value === "object") {
-         //       value = JSON.stringify(value);
-         //    }
-         //    console.log("isn't file");
-         //    fd.append('image',value);
-         // }
-         // if (body[k] instanceof FileList) {
-         //    [...body[k]].forEach((v) => {
-         //       let value = v;
-         //       if (!(value instanceof File) && typeof value === "object")
-         //          value = JSON.stringify(value);
-         //       fd.append(k, value);
-         //    });
-         // }
+      // if (body instanceof File) {
+      fd.append("image", body);
+      console.log("is file");
+      // } else {
+      //    let value = body;
+      //    if (!(value instanceof File) && typeof value === "object") {
+      //       value = JSON.stringify(value);
+      //    }
+      //    console.log("isn't file");
+      //    fd.append('image',value);
+      // }
+      // if (body[k] instanceof FileList) {
+      //    [...body[k]].forEach((v) => {
+      //       let value = v;
+      //       if (!(value instanceof File) && typeof value === "object")
+      //          value = JSON.stringify(value);
+      //       fd.append(k, value);
+      //    });
+      // }
       // });
       return fd;
    };
