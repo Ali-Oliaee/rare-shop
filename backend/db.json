@@ -5,7 +5,7 @@
       "categoryId": 1,
       "subCategoryId": 1,
       "price": 5503333,
-      "inventory": 12,
+      "inventory": 0,
       "images": [
         "/files/5bbb103ba916e270ee9cbd4be345d635",
         "/files/5bbb103ba916e270ee9cbd4be345d635",
@@ -21,8 +21,8 @@
       "name": "شلوار بگی نارنجی",
       "categoryId": 1,
       "subCategoryId": 1,
-      "price": 600000,
-      "inventory": 5,
+      "price": "6003223",
+      "inventory": "0",
       "images": [
         "/files/b081e1aa932f0611fe21603465a2579d",
         "/files/b081e1aa932f0611fe21603465a2579d",
@@ -72,8 +72,8 @@
       "name": "شلوار بوت کات چرم مشکی",
       "categoryId": 1,
       "subCategoryId": 1,
-      "price": 460000,
-      "inventory": 1,
+      "price": "460454",
+      "inventory": "15",
       "images": [
         "/files/9d48f3e0e9de147ca82ad686ae401aaa",
         "/files/9d48f3e0e9de147ca82ad686ae401aaa",
@@ -90,7 +90,7 @@
       "categoryId": 1,
       "subCategoryId": 1,
       "price": 600000,
-      "inventory": 40,
+      "inventory": "32",
       "images": [
         "/files/f4aea10f1750e1a665098a1519931c23",
         "/files/f4aea10f1750e1a665098a1519931c23",
@@ -106,7 +106,7 @@
       "categoryId": 1,
       "subCategoryId": 1,
       "price": 710000,
-      "inventory": 23,
+      "inventory": "0",
       "images": [
         "/files/7a6116124e277fba9376f616b25d247b",
         "/files/7a6116124e277fba9376f616b25d247b",
@@ -138,7 +138,7 @@
       "name": "شلوار بگ آبی روشن زاپ دار",
       "categoryId": 1,
       "subCategoryId": 1,
-      "price": 600000,
+      "price": "600222",
       "inventory": 40,
       "images": [
         "/files/b97acf8946e5e74090b826476bf3257f",
@@ -1155,23 +1155,6 @@
       "id": 72
     },
     {
-      "name": "گردنبند زنجیر طلا ستاره دار",
-      "categoryId": 3,
-      "subCategoryId": 8,
-      "price": 2550000,
-      "inventory": 30,
-      "images": [
-        "/files/851a6b7a46b335b3687de04052b3e6ae",
-        "/files/851a6b7a46b335b3687de04052b3e6ae",
-        "/files/851a6b7a46b335b3687de04052b3e6ae",
-        "/files/851a6b7a46b335b3687de04052b3e6ae"
-      ],
-      "description": "با اکسسوری به استایل خود جلوه ببخشید.",
-      "image": "/files/851a6b7a46b335b3687de04052b3e6ae",
-      "createdAt": 1651940840001,
-      "id": 73
-    },
-    {
       "name": "گردنبند زنجیر طلاشلوغ",
       "categoryId": 3,
       "subCategoryId": 8,
@@ -1373,6 +1356,22 @@
       "description": "<p>زیبا و خنک مناسب مهمانی و خیابان گردی</p>",
       "createdAt": 1653400507264,
       "id": 86
+    },
+    {
+      "name": "masoumeh naderi",
+      "categoryId": 1,
+      "subCategoryId": 3,
+      "price": 120000,
+      "inventory": 13,
+      "image": "/files/2771c623522dad5fe24050239ee03900",
+      "images": [
+        "/files/2771c623522dad5fe24050239ee03900",
+        "/files/f75429d3f460679dcda30473f797a4ef",
+        "/files/efd7ff9a3d15cdfb1a391e6f5090bd27"
+      ],
+      "description": "<p>یسبشسیبشس</p>",
+      "createdAt": 1653558106600,
+      "id": 88
     }
   ],
   "category": [

@@ -6,7 +6,8 @@ const WithAuth = (Component) => {
     ? (
       <Component></Component>
    ) : (
-      <Navigate to="/auth/login" />
+      <Component></Component>
+      // <Navigate to="/auth/login" />
    );
 };
 

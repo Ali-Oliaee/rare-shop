@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BASE_URL } from "../../core/constants";
 import styled from "styled-components";
 import cardBg from "../../assets/pic/productDetailsBg.jpeg";
@@ -85,16 +85,19 @@ export default function ProductDetails(props) {
    const [productDetail, setProductDetail] = useState({});
    const [images, setImages] = useState([]);
    const [show, setShow] = useState(false);
-
+   const descRef = useRef();
    const getDetails = async () => {
       const res = await ProductsApi.get(id);
       setProductDetail(res.data);
-      const gallery = (res.data?.images)
-         .split("'")
-         .slice(1, -1)
-         .filter((el) => el !== ",");
+      const gallery = res.data?.images;
+      // .split("'")
+      // .slice(1, -1)
+      // .filter((el) => el !== ",");
       setImages(gallery);
+      descRef.current.innerHTML = res.data?.description;
+
    };
+  
    const handleShow = () => {
       setShow(!show);
    };
@@ -139,9 +142,7 @@ export default function ProductDetails(props) {
                   <CardButton>افزودن به سبد خرید</CardButton>
                </CardContent>
             </CardBody>
-            <CardP style={{ color: "black" }}>
-               {productDetail.description}
-            </CardP>
+            <CardP ref={descRef} style={{ color: "black" }}></CardP>
          </Card>
 
          {show && (

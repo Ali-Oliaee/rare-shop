@@ -30,8 +30,10 @@ class Service {
             }
             return res;
          },
+
          (error) => {
             if (error.response.status === 401) {
+               localStorage.removeItem("token");
                window.location.pathname = "/auth/login";
             }
             // store.dispatch(endLoading());

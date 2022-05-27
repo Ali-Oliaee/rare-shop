@@ -85,8 +85,9 @@ export default function Inventories() {
       const { value, name } = target;
       setEditableData({
          ...editableData,
-         [id]: { id: id, type: name, value: null },
+         [id]: { id: id, type: name, value: value },
       });
+      console.log(value);
    };
 
    const updatePrice = () => {
@@ -94,10 +95,12 @@ export default function Inventories() {
          const value = document.getElementById(`${item.type}-${item.id}`).value;
          return { ...item, value: value };
       });
-      newChange.forEach(async (item) => {
-         await ProductsApi.patch(item.id, { [item.type]: item.value });
-      });
 
+      Promise.all(
+         newChange.map((item) => {
+            return ProductsApi.patch(item.id, { [item.type]: item.value });
+         })
+      );
    };
 
    useEffect(() => {

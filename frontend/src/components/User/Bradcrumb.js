@@ -1,5 +1,4 @@
 import * as React from "react";
-import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
 
@@ -8,21 +7,23 @@ function handleClick(event) {
    console.info("You clicked a breadcrumb.");
 }
 
-export default function Breadcrumbs() {
+export default function Breadcrumb({ category }) {
+ 
    return (
       <div role="presentation" onClick={handleClick}>
          <Breadcrumbs aria-label="breadcrumb">
             <Link underline="hover" color="inherit" href="/">
-               MUI
+               همه کالا ها
             </Link>
             <Link
                underline="hover"
                color="inherit"
                href="/material-ui/getting-started/installation/"
             >
-               Core
+               {}
+               {category}
             </Link>
-            <Typography color="text.primary">Breadcrumbs</Typography>
+            {/* <Typography color="text.primary">Breadcrumbs</Typography> */}
          </Breadcrumbs>
       </div>
    );

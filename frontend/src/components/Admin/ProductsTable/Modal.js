@@ -60,7 +60,7 @@ const MyModal = (props) => {
    const handleChangeValidate = (event) => {
       setNewProduct({
          ...newProduct,
-         [event.target.name]: +p2e(event.target.value),
+         [event.target.name]: event.target.value,
       })
       if (event.target.value.match(/\d/g)) {
          setErrorText("");
