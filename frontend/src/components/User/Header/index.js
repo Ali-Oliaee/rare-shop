@@ -14,7 +14,7 @@ import { setCartProducts } from "../../../redux/reducers/CartSlice";
 const UserHeader = () => {
    const [badgeCounter, setBadgeCounter] = useState(0);
    const dispatch = useDispatch()
-   console.log(dispatch(setCartProducts));
+   
    return (
       <>
          <AppBar sx={{ background: "black" }} position="static">

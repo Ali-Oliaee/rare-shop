@@ -38,7 +38,6 @@ export default function DataTable() {
    const rows = [];
    if (product.length > 0) {
       product.map((item) => {
-        console.log(item);
          rows.push({
             id: item.id,
             image: item.image,

@@ -89,7 +89,7 @@ export const routes = [
             {<ProductsTable />}
          </Suspense>
       ),
-      isPrivate: false,
+      isPrivate: true,
       layout: "admin",
    },
    {

@@ -24,7 +24,6 @@ export default function CartTable() {
    const getOrders = async () => {
       const ordersResponse = await OrdersApi.get(1);
       setOrder(ordersResponse.data);
-      // console.log(ordersResponse.data.orderItems);
    };
 
    useEffect(() => {

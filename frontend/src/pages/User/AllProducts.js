@@ -5,6 +5,7 @@ import { Grid } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import { makeStyles } from "@mui/styles";
 import { textAlign } from "@mui/system";
+import Breadcrumb from "../../components/User/Bradcrumb";
 
 const useStyle = makeStyles({
    root: {
@@ -13,8 +14,8 @@ const useStyle = makeStyles({
       },
       "& .paginationStyle": {
          textAlign: "center",
-         margin: "auto"
-      }
+         margin: "auto",
+      },
    },
 });
 const AllProducts = ({ cat }) => {
@@ -26,7 +27,7 @@ const AllProducts = ({ cat }) => {
       const clothesRes = await ProductsApi.gets({
          params: { _page: page, _limit: 6, categoryId: cat },
       });
-      setCount(parseInt(clothesRes.headers["x-total-count"] / 6));
+      setCount(Math.ceil(clothesRes.headers["x-total-count"] / 6));
       setProducts(clothesRes.data);
    };
 
@@ -35,10 +36,15 @@ const AllProducts = ({ cat }) => {
    };
    useEffect(() => {
       getProducts();
-   }, [page, cat]);
+   }, [page, cat, count]);
+   let categoryName = cat;
+   if (categoryName === 1) categoryName = "پوشاک";
+   else if (categoryName === 2) categoryName =  "کیف و کفش";
+   else if (categoryName === 3) categoryName = "اکسسوری";
 
    return (
       <div className={classes.root}>
+         <Breadcrumb category={categoryName} />
          <Grid container>
             {products.map((good) => (
                <Grid item m="auto" my={3} xs={10} md={4.8} key={good.id}>
@@ -46,7 +52,12 @@ const AllProducts = ({ cat }) => {
                </Grid>
             ))}
          </Grid>
-         <Pagination page={page} count={count} onChange={handlePageChange} className="paginationStyle"/>{" "}
+         <Pagination
+            page={page}
+            count={count}
+            onChange={handlePageChange}
+            className="paginationStyle"
+         />{" "}
       </div>
    );
 };

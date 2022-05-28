@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BASE_URL } from "../../core/constants";
 import styled from "styled-components";
 import cardBg from "../../assets/pic/productDetailsBg.jpeg";
@@ -80,19 +80,25 @@ export default function ProductDetails(props) {
    const [productDetail, setProductDetail] = useState({});
    const [images, setImages] = useState([]);
    const [show, setShow] = useState(false);
-   let options = []
-   for(let i = 1; i <= 50;i++ ){
-      options.push(i)
+
+   const descRef = useRef();
+
+   let options = [];
+   for (let i = 1; i <= 50; i++) {
+      options.push(i);
    }
+
    const getDetails = async () => {
       const res = await ProductsApi.get(id);
       setProductDetail(res.data);
-      const gallery = (res.data?.images)
-         .split("'")
-         .slice(1, -1)
-         .filter((el) => el !== ",");
+      const gallery = res.data?.images;
+      // .split("'")
+      // .slice(1, -1)
+      // .filter((el) => el !== ",");
       setImages(gallery);
+      descRef.current.innerHTML = res.data?.description;
    };
+
    const handleShow = () => {
       setShow(!show);
    };
@@ -135,7 +141,9 @@ export default function ProductDetails(props) {
                      </CardP>
                   </Cardtext>
                   <Select>
-                     {options.map(item => <option key={item}>{item}</option>)}
+                     {options.map((item) => (
+                        <option key={item}>{item}</option>
+                     ))}
                   </Select>
                   {productDetail.inventory ? (
                      <CardButton onClick={addToCart}>
@@ -146,9 +154,7 @@ export default function ProductDetails(props) {
                   )}
                </CardContent>
             </CardBody>
-            <CardP style={{ color: "black" }}>
-               {productDetail.description}
-            </CardP>
+            <CardP ref={descRef} style={{ color: "black" }}></CardP>
          </Card>
 
          {show && (

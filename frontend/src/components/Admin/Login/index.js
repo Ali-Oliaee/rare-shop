@@ -5,8 +5,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import Image from "../../../assets/pic/channelBackground.jpeg";
-
-
+import { setAdminInfo } from "../../../redux/reducers/adminSlice";
+import { useDispatch } from "react-redux";
 const Container = styled("div")`
    width: 65vw;
    height: 70vh;
@@ -45,6 +45,7 @@ const MyButton = styled("button")`
    background: #BB906D;
 `;
 const Login = () => {
+   const dispatch = useDispatch()
    const navigate = useNavigate();
    const formik = useFormik({
       initialValues: {
@@ -70,7 +71,7 @@ const Login = () => {
             .then((res) => {
                const token = res.data.token;
                localStorage.setItem("token", token);
-               // dispatch(setUser(res.data.user));
+               dispatch(setAdminInfo(res.data.user));
                // toast.success("ورود با موفقیت انجام شد");
                navigate("/dashboard/products");
             })

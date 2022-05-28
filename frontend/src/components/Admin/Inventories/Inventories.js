@@ -8,10 +8,8 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { makeStyles } from "@mui/styles";
-import { TextField, Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import { ProductsApi } from "../../../api/Products";
-import { AdminApi } from "../../../api/AdminApi";
 
 const useStyle = makeStyles({
    root: {
@@ -54,8 +52,8 @@ export default function Inventories() {
    const [products, setProducts] = useState([]);
    const [edit, setEdit] = useState(false);
    const [price, setPrice] = useState([]);
-   const [inventory, setInventory] = useState();
-
+   const [editedId, setEditedId] = useState([]);
+   const [editableData, setEditableData] = useState();
    const classes = useStyle();
 
    const getProducts = async () => {
@@ -63,39 +61,52 @@ export default function Inventories() {
       setProducts(res.data);
    };
 
+   const handleClickInput = ({ target }, id) => {
+      const { value, name } = target;
+      let editableRow = products.filter((el) => el.id === id);
+      if (target.tagName === "INPUT") {
+         setEditableData((prevState) => [
+            ...prevState,
+            {
+               id: value.id,
+               type: name,
+               value: null,
+            },
+         ]);
+      }
+      // setEditableData({
+      //
+      // });
+   };
+
    const p2e = (s) => s.replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
-   const handlePrice = (e, id) => {
-      setPrice({
-         edit: true,
-         id: id,
-         value: parseFloat(p2e(e.target.value)),
+
+   const handleChange = ({ target }, id) => {
+      const { value, name } = target;
+      setEditableData({
+         ...editableData,
+         [id]: { id: id, type: name, value: value },
       });
    };
-   const handleInventory = (e, id) => {
-      setInventory({
-         edit: true,
-         id: id,
-         value: parseFloat(p2e(e.target.value)),
-      });
-      console.log(inventory);
-   };
+
    const updatePrice = () => {
-      const apiCall = async () => {
-         if (price) {
-            await ProductsApi.patch(price.id, { price: price.value });
-         }
-         if (inventory) {
-            await ProductsApi.patch(inventory.id, {
-               inventory: inventory.value,
-            });
-         }
-      };
-      apiCall();
+      const newChange = Object.values(editableData).map((item) => {
+         const value = document.getElementById(`${item.type}-${item.id}`).value;
+         return { ...item, value: +value };
+      });
+
+      Promise.all(
+         newChange.map((item) => {
+            return ProductsApi.patch(item.id, { [item.type]: item.value });
+         })
+      ).catch((err) => {
+         Promise.reject(err)
+      })
    };
 
    useEffect(() => {
       getProducts();
-   }, [price, inventory]);
+   }, [price, editableData]);
 
    const handleChangePage = (event, newPage) => {
       setPage(newPage);
@@ -108,9 +119,7 @@ export default function Inventories() {
    function defaultLabelDisplayedRows({ from, to, count }) {
       return `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`;
    }
-
    return (
-      // <div style={{margin:"100px"}}>
       <div className={classes.root}>
          <Button onClick={updatePrice} className={classes.myButton}>
             ذخیره
@@ -132,7 +141,6 @@ export default function Inventories() {
                            page * rowsPerPage + rowsPerPage
                         )
                         .map((row) => {
-                           if (row.inventory > 0) {
                               return (
                                  <TableRow
                                     className="table_row"
@@ -144,39 +152,50 @@ export default function Inventories() {
                                        {row.name}
                                     </TableCell>
                                     <TableCell className="row_cell">
-                                       <input
-                                          name="price"
-                                          defaultValue={row.price.toLocaleString(
-                                             "fa"
-                                          )}
-                                          value={price[row.id]}
-                                          className={classes.myInput}
-                                          type={edit ? "text" : "readonly"}
-                                          onChange={(e) =>
-                                             handlePrice(e, row.id)
+                                       <div
+                                          onClick={() =>
+                                             handleClickInput(row.id)
                                           }
-                                          // onBlur={setEdit(!edit)}
-                                       />
+                                       >
+                                          {
+                                             <input
+                                                name="price"
+                                                id={`price-${row.id}`}
+                                                defaultValue={row.price}
+                                                className={classes.myInput}
+                                                type={
+                                                   edit ? "text" : "readonly"
+                                                }
+                                                onChange={(e) =>
+                                                   handleChange(e, row.id)
+                                                }
+                                             />
+                                          }
+                                       </div>
                                     </TableCell>
                                     <TableCell className="row_cell">
-                                       <input
-                                          name="inventory"
-                                          defaultValue={row.inventory.toLocaleString(
-                                             "fa"
-                                          )}
-                                          value={inventory?.row?.id}
-                                          className={classes.myInput}
-                                          type={edit ? "text" : "readonly"}
-                                          onChange={(e) =>
-                                             handleInventory(e, row.id)
+                                       <div
+                                          onClick={() =>
+                                             handleClickInput(row.id)
                                           }
-                                          // onBlur={setEdit(!edit)}
-                                       />
+                                       >
+                                          <input
+                                             name="inventory"
+                                             defaultValue={row.inventory}
+                                             // value={row.inventory}
+                                             id={`inventory-${row.id}`}
+                                             className={classes.myInput}
+                                             type={edit ? "text" : "readonly"}
+                                             onChange={(e) =>
+                                                handleChange(e, row.id)
+                                             }
+                                          />
+                                       </div>
                                     </TableCell>
                                  </TableRow>
                               );
                            }
-                        })}
+                        )}
                   </TableBody>
                </Table>
             </TableContainer>

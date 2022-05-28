@@ -24,6 +24,7 @@ function App() {
                <Routes>
                   {routes.map((rout, index) => {
                      if (rout.isPrivate) {
+                        
                         return (
                            <Route
                               key={rout.path}

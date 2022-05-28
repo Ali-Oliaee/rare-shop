@@ -1,48 +1,62 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { FileApi } from "../../../api/FileApi";
 import { BASE_URL } from "../../../core/constants";
 import MyModal from "./Modal";
 import { AdminApi } from "../../../api/AdminApi";
 import { ProductsApi } from "../../../api/Products";
 export default function NewProductModal() {
-   const [selectedFile, setSelectedFile] = useState(null);
    const [newProduct, setNewProduct] = useState({
       name: "",
       categoryId: null,
       subCategoryId: null,
+      price: null,
       inventory: null,
       image: "",
-      price: null,
+      images: [],
       description: "",
    });
-
-   const handleFileSelect = (event) => {
-      setSelectedFile(event.target.files[0]);
+   const imgRef = useRef();
+   const preview = (file) => {
+      const fileReader = new FileReader();
+      fileReader.onload = (e) => {
+         if (imgRef && imgRef.current) imgRef.current.src = e.target?.result;
+      };
+      fileReader.readAsDataURL(file);
    };
-   const handleUploadFile = async () => {
-      const fd = new FormData();
-      fd.append("image", selectedFile);
-      await AdminApi.upload(fd).then((res) => {
-         setNewProduct({ ...newProduct, image: "/files/" + res.data.filename });
+
+   const handleUploadFile = async (e) => {
+      let files = e.target.files;
+       preview(files[0]);
+      let temp = [];
+      Object.values(files).map((item) => {
+         const fd = new FormData();
+         fd.append("image", item);
+         let tempRes = AdminApi.upload(fd);
+         temp.push(tempRes);
+      });
+      const arrayResponse = await Promise.all(temp);
+      setNewProduct({
+         ...newProduct,
+         image: `/files/${arrayResponse[0].data.filename}`,
+         images: arrayResponse.map((i) => `/files/${i.data.filename}`),
       });
    };
+   // setNewProduct({ ...newProduct, image: "/files/" + res.data.filename });
    const addProduct = () => {
       const apiCall = async () => {
-         let res = await ProductsApi.post(newProduct);
-         console.log(res.data);
+         await ProductsApi.post(newProduct);
       };
       apiCall();
    };
    return (
       <div>
          <MyModal
-            imageAdress={selectedFile?.filename}
             handleUploadFile={handleUploadFile}
             newProduct={newProduct}
             setNewProduct={setNewProduct}
             buttonName={"کالای جدید"}
-            handleFileSelect={handleFileSelect}
             addProduct={addProduct}
+            imgRef={imgRef}
          />
       </div>
    );

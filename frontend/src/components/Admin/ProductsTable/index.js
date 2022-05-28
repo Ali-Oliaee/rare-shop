@@ -46,6 +46,15 @@ const useStyle = makeStyles({
       "& .MuiTableContainer-root::-webkit-scrollbar": {
          display: "none" /* for Chrome, Safari, and Opera */,
       },
+      "& .MuiFormControl-root ": {
+         "& .MuiInputLabel-root": {
+            color: "white",
+         },
+         "& .MuiSelect-select": {
+            color: "white",
+            borderBottom: "1px white solid",
+         },
+      },
    },
 });
 
@@ -155,19 +164,14 @@ export default function AllProductsTable() {
                                  role="checkbox"
                                  tabIndex={-1}
                                  key={row.code}
-                                 onChange={() => console.log("table row")}
                               >
-                                 <Link
-                                    to={`/product/${row.id}`}
-                                 >
-                                    <TableCell>
-                                       <img
-                                          style={{ maxWidth: 60 }}
-                                          src={BASE_URL + row.image}
-                                          alt="تصویر کالا"
-                                       />
-                                    </TableCell>
-                                 </Link>
+                                 <TableCell>
+                                    <img
+                                       style={{ maxWidth: 60 }}
+                                       src={BASE_URL + row.image}
+                                       alt="تصویر کالا"
+                                    />
+                                 </TableCell>
 
                                  <TableCell>{row.name}</TableCell>
                                  <TableCell>
@@ -180,7 +184,8 @@ export default function AllProductsTable() {
                                        onFinish={getProducts}
                                        id={row.id}
                                     />
-                                    <Edit id={row.id} onFinish={getProducts} />
+
+                                    <Edit row={row} onFinish={getProducts} />
                                  </TableCell>
                               </TableRow>
                            );

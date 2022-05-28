@@ -37,7 +37,7 @@ export default function ProductCard({ data }) {
                      {data.name}
                   </Typography>
                   <Typography
-                     mt={10}
+                     mt={7}
                      ml={2}
                      fontSize={20}
                      variant="subtitle1"

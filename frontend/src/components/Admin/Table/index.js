@@ -33,11 +33,9 @@ const useStyle = makeStyles({
 export default function MyTable(props) {
    const { column, goods, rowsCell } = props
    const headColmns = column;
-   console.log(goods);
    const [page, setPage] = useState(0);
    const [rowsPerPage, setRowsPerPage] = useState(10);
-   const [products, setProducts] = useState([]);
-   const [edit, setEdit] = useState(true);
+
    const classes = useStyle();
 
    const handleChangePage = (event, newPage) => {

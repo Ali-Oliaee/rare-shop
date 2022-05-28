@@ -1,17 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import { ThemeProvider } from "styled-components";
 import { NavLink } from "react-router-dom";
-
+import { makeStyles } from "@mui/styles";
+const useStyle = makeStyles({
+   root:{
+         display: "flex",
+         listStyle: "none",
+         justifyContent: "center",
+         marginTop: 0,
+         "& li a": {
+           textDecoration: "none",
+           margin: "0 1rem",
+           padding: "1rem",
+           cursor: "pointer",
+           fontSize: 20,
+           color: "white",
+         },
+         "& li a:hover" :{
+           color: "#856047"
+         }
+       }
+       
+   
+})
 const Header = () => {
+   const classes = useStyle()
    const [active, setActive] = useState(1);
-
    const isActiveStyle = () => {
     
       return {
@@ -25,11 +42,6 @@ const Header = () => {
          textDecoration: "none",
       };
    };
-
-   useEffect(() => {
-      console.log(active);
-      
-   }, [active]);
    return (
       <>
          <AppBar sx={{ background: "black" }} position="static">
@@ -50,7 +62,7 @@ const Header = () => {
                      </Typography>
                   </NavLink>
                </Toolbar>
-               <ul className="links-ul">
+               <ul className={classes.root}>
                   <li onClick={() => setActive(1)}>
                      <NavLink
                         style={active === 1 ? isActiveStyle : notActiveStyle}
@@ -76,6 +88,7 @@ const Header = () => {
                      </NavLink>
                   </li>
                </ul>
+              
             </Container>
          </AppBar>
       </>
