@@ -64,7 +64,6 @@ const Login = () => {
 
       onSubmit: async (values, { setSubmitting }) => {
          setSubmitting(false);
-         console.log(values);
          localStorage.removeItem("token");
          let res = await AdminApi.login(values)
             .then((res) => {
