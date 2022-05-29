@@ -9,7 +9,7 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { useDispatch } from "react-redux";
 import { setCartProducts } from "../../redux/reducers/CartSlice";
-
+import { toast } from "react-toastify";
 const Card = styled("div")``;
 const CardBody = styled("div")`
    display: flex;
@@ -50,7 +50,7 @@ const CardButton = styled("button")`
    border-radius: 2px;
    cursor: pointer;
 `;
-const Select = styled.select`
+const Select = styled("select")`
    width: 50px;
    height: 37px;
    background: #f4d7c0;
@@ -80,7 +80,8 @@ export default function ProductDetails(props) {
    const [productDetail, setProductDetail] = useState({});
    const [images, setImages] = useState([]);
    const [show, setShow] = useState(false);
-
+   const [count, setCount] = useState(1)
+   const [isAddedToCart, setIsAddedToCart] = useState(false)
    const descRef = useRef();
 
    let options = [];
@@ -107,7 +108,11 @@ export default function ProductDetails(props) {
    }, [id]);
 
    const addToCart = () => {
-      dispatch(setCartProducts(productDetail));
+      if(count > productDetail.inventory){
+         toast.error(`از این کالا تنها ${productDetail.inventory} عدد در انبار موجود میباشد!`)
+      }
+      dispatch(setCartProducts({productDetail, count}));
+      setIsAddedToCart(true)
    };
    return (
       <>
@@ -117,9 +122,9 @@ export default function ProductDetails(props) {
             <CardBody>
                <ImageListStyled onClick={handleShow} cols={1} rowHeight={100}>
                   {images?.map((item) => (
-                     <ImageListItemStyled key={item + 1}>
+                     <ImageListItemStyled key={Date.now()}>
                         <img
-                           src={BASE_URL + `${item}`}
+                           // src={BASE_URL + `${item}`}
                            srcSet={
                               BASE_URL +
                               `${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`
@@ -140,13 +145,13 @@ export default function ProductDetails(props) {
                         {productDetail.price?.toLocaleString("fa")}
                      </CardP>
                   </Cardtext>
-                  <Select>
+                  <Select value={count} onChange={(e) => setCount(+e.target.value)}>
                      {options.map((item) => (
                         <option key={item}>{item}</option>
                      ))}
                   </Select>
                   {productDetail.inventory ? (
-                     <CardButton onClick={addToCart}>
+                     <CardButton disabled={isAddedToCart} onClick={addToCart}>
                         افزودن به سبد خرید
                      </CardButton>
                   ) : (

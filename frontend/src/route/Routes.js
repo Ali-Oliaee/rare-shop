@@ -24,33 +24,11 @@ export const routes = [
    },
 
    {
-      path: "/products/clothes",
+      path: "/products/:category",
       component: (
          <Suspense fallback={<div>loading...</div>}>
             <UserLayout>
-               <AllProducts cat={1} />
-            </UserLayout>
-         </Suspense>
-      ),
-      isPrivate: false,
-   },
-   {
-      path: "/products/shoes-bag",
-      component: (
-         <Suspense fallback={<div>loading...</div>}>
-            <UserLayout>
-               <AllProducts cat={2} />
-            </UserLayout>
-         </Suspense>
-      ),
-      isPrivate: false,
-   },
-   {
-      path: "/products/accessory",
-      component: (
-         <Suspense fallback={<div>loading...</div>}>
-            <UserLayout>
-               <AllProducts cat={3} />
+               <AllProducts />
             </UserLayout>
          </Suspense>
       ),

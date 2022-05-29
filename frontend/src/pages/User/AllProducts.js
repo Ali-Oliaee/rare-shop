@@ -6,6 +6,7 @@ import Pagination from "@mui/material/Pagination";
 import { makeStyles } from "@mui/styles";
 import { textAlign } from "@mui/system";
 import Breadcrumb from "../../components/User/Bradcrumb";
+import { useParams } from "react-router-dom";
 
 const useStyle = makeStyles({
    root: {
@@ -18,14 +19,15 @@ const useStyle = makeStyles({
       },
    },
 });
-const AllProducts = ({ cat }) => {
+const AllProducts = () => {
    const [products, setProducts] = useState([]);
    const [page, setPage] = useState(1);
    const [count, setCount] = useState(1);
    const classes = useStyle();
+   const cat = useParams()
    const getProducts = async () => {
       const clothesRes = await ProductsApi.gets({
-         params: { _page: page, _limit: 6, categoryId: cat },
+         params: { _page: page, _limit: 6, categoryId: cat.category },
       });
       setCount(Math.ceil(clothesRes.headers["x-total-count"] / 6));
       setProducts(clothesRes.data);
@@ -37,7 +39,7 @@ const AllProducts = ({ cat }) => {
    useEffect(() => {
       getProducts();
    }, [page, cat, count]);
-   let categoryName = cat;
+   let categoryName = cat.category;
    if (categoryName === 1) categoryName = "پوشاک";
    else if (categoryName === 2) categoryName =  "کیف و کفش";
    else if (categoryName === 3) categoryName = "اکسسوری";

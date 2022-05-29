@@ -10,25 +10,26 @@ import { OrdersApi } from "../../../api/OrdersApi";
 import { BASE_URL } from "../../../core/constants";
 import Delete from "@mui/icons-material/Delete";
 import { makeStyles } from "@mui/styles";
+import { useSelector } from "react-redux";
 const useStyle = makeStyles({
-  root: {
-    width: "70%",
-    margin: "auto",
-  }
-})
+   root: {
+      width: "70%",
+      margin: "auto",
+   },
+});
 export default function CartTable() {
    const [order, setOrder] = useState([]);
    const columns = ["تصویر کالا", "نام کالا", "قیمت", "تعداد", " حذف"];
-  const classes = useStyle()
+   const classes = useStyle();
 
-   const getOrders = async () => {
-      const ordersResponse = await OrdersApi.get(1);
-      setOrder(ordersResponse.data);
-   };
+   const ordersRedux = useSelector((state) => state.cart);
 
    useEffect(() => {
-      getOrders();
-   }, []);
+      localStorage.setItem("cart", JSON.stringify(ordersRedux));
+      setOrder(localStorage.getItem("cart"));
+   }, [ordersRedux]);
+   
+   console.log(order);
    return (
       <TableContainer className={classes.root} component={Paper}>
          <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -40,27 +41,31 @@ export default function CartTable() {
                </TableRow>
             </TableHead>
             <TableBody>
-               {order?.orderItems?.map((item) => (
-                
-                  <TableRow
-                     key={item.id}
-                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                     <TableCell component="th" scope="row">
-                        <TableCell align="center">
-                           <img
-                              style={{ maxWidth: 60 }}
-                              src={BASE_URL + item.thumbnail}
-                              alt="تصویر کالا"
-                           />
+               {order?.productDetail?.map((item) => {
+                  console.log(item);
+                  return (
+                     <TableRow
+                        key={item.id}
+                        sx={{
+                           "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                     >
+                        <TableCell component="th" scope="row">
+                           <TableCell align="center">
+                              <img
+                                 style={{ maxWidth: 60 }}
+                                 src={BASE_URL + item.image}
+                                 alt="تصویر کالا"
+                              />
+                           </TableCell>
                         </TableCell>
-                     </TableCell>
-                     <TableCell align="center">{item.name}</TableCell>
-                     <TableCell align="center">{item.price}</TableCell>
-                     <TableCell align="center">{item.quantity}</TableCell>
-                     <TableCell align="center">{<Delete/>}</TableCell>
-                  </TableRow>
-               ))}
+                        <TableCell align="center">{item.name}</TableCell>
+                        <TableCell align="center">{item.price}</TableCell>
+                        <TableCell align="center">{item.inventory}</TableCell>
+                        <TableCell align="center">{<Delete />}</TableCell>
+                     </TableRow>
+                  );
+               })}
             </TableBody>
          </Table>
       </TableContainer>

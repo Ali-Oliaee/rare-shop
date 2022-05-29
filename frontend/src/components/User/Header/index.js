@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -9,12 +9,13 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
 import "./Header.scss";
 import Badge from "@mui/material/Badge";
-import { useDispatch } from "react-redux";
-import { setCartProducts } from "../../../redux/reducers/CartSlice";
+import { useSelector } from "react-redux";
 const UserHeader = () => {
    const [badgeCounter, setBadgeCounter] = useState(0);
-   const dispatch = useDispatch()
-   
+   const countOfOrders = useSelector((state) => state.cart.length);
+   useEffect(() => {
+      setBadgeCounter(countOfOrders);
+   }, [countOfOrders]);
    return (
       <>
          <AppBar sx={{ background: "black" }} position="static">
@@ -61,13 +62,13 @@ const UserHeader = () => {
                </Toolbar>
                <ul className="links-ul">
                   <li>
-                     <Link to="/products/clothes">پوشاک</Link>
+                     <Link to="/products/1">پوشاک</Link>
                   </li>
                   <li>
-                     <Link to="/products/shoes-bag">کیف و کفش</Link>
+                     <Link to="/products/2">کیف و کفش</Link>
                   </li>
                   <li>
-                     <Link to="/products/accessory">اکسسوری</Link>
+                     <Link to="/products/3">اکسسوری</Link>
                   </li>
                </ul>
             </Container>

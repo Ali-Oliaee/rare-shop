@@ -68,19 +68,23 @@ const Login = () => {
       onSubmit: (values, { setSubmitting }) => {
          setSubmitting(false);
          localStorage.removeItem("token");
-         AdminApi.login(values)
-         .then((res) => {
-               const token = res.data.token;
-               localStorage.setItem("token", token);
-               dispatch(setAdminInfo(token));
-               // toast.success("ورود با موفقیت انجام شد");
-               navigate("/dashboard/products");
-            })
-            .catch((err) => {
-               alert("hello")
-               toast.error("نام کاربری یا رمز عبور صحیح نمی باشد :(");
-               // setButtonLoading(false);
+         console.log(values);
+         try {
+            AdminApi.login(values).then((res) => {
+               if (res.data.token) {
+                  const token = res.data.token;
+                  localStorage.setItem("token", token);
+                  dispatch(setAdminInfo(token));
+                  toast.success("ورود با موفقیت انجام شد");
+                  navigate("/dashboard/products");
+               }else{
+                  toast.error("نام کاربری یا رمز عبور صحیح نمی باشد :(");
+               }
             });
+         } catch (err) {
+            toast.error("نام کاربری یا رمز عبور صحیح نمی باشد :(");
+            // setButtonLoading(false);
+         }
       },
    });
    return (
