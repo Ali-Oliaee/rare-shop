@@ -18,6 +18,10 @@ AdminApi.login = function (body) {
   return this.instance.post(`${this.baseApisUrl}auth/login`, body);
 };
 
+AdminApi.getUser = function () {
+  return this.instance.get(`${this.baseApisUrl}users`);
+};
+
 AdminApi.upload = function (body) {
   return this.instance.post(`${this.baseApisUrl}upload`, body);
 };

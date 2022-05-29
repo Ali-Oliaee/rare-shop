@@ -10,6 +10,7 @@ import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
+import Toastcontainer from "./components/Admin/Toast-Alert/ToastContainer";
 // Create rtl cache
 const cacheRtl = createCache({
    key: "muirtl",
@@ -18,7 +19,6 @@ const cacheRtl = createCache({
 
 function App() {
    return (
-      <Provider store={store}>
          <CacheProvider value={cacheRtl}>
             <ThemeProvider theme={theme}>
                <Routes>
@@ -43,9 +43,9 @@ function App() {
                      }
                   })}
                </Routes>
+               <Toastcontainer/>
             </ThemeProvider>
          </CacheProvider>
-      </Provider>
    );
 }
 

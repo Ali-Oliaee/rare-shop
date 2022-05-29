@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Skeleton from "@mui/material/Skeleton";
 import "swiper/css/bundle";
 import MyTable from "../../components/Admin/Table";
+
 const Home = () => {
    const [products, setProducts] = useState([]);
    const [Categories, setCategories] = useState([]);
@@ -35,6 +36,8 @@ const Home = () => {
       );
       return requestedCategoryObject?.name;
    };
+
+
    useEffect(() => {
       getCategoryData();
       getProducts();

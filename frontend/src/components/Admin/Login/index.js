@@ -7,6 +7,8 @@ import styled from "styled-components";
 import Image from "../../../assets/pic/channelBackground.jpeg";
 import { setAdminInfo } from "../../../redux/reducers/adminSlice";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { UserApi } from "../../../api/UserApi";
 const Container = styled("div")`
    width: 65vw;
    height: 70vh;
@@ -42,10 +44,10 @@ const MyButton = styled("button")`
    margin: auto;
    text-aligne: center;
    width: 100%;
-   background: #BB906D;
+   background: #bb906d;
 `;
 const Login = () => {
-   const dispatch = useDispatch()
+   const dispatch = useDispatch();
    const navigate = useNavigate();
    const formik = useFormik({
       initialValues: {
@@ -63,21 +65,21 @@ const Login = () => {
             .required("پر کردن این فیلد ضروری است!"),
       }),
 
-      onSubmit: async (values, { setSubmitting }) => {
+      onSubmit: (values, { setSubmitting }) => {
          setSubmitting(false);
-         console.log(values);
          localStorage.removeItem("token");
-         let res = await AdminApi.login(values)
-            .then((res) => {
+         AdminApi.login(values)
+         .then((res) => {
                const token = res.data.token;
                localStorage.setItem("token", token);
-               dispatch(setAdminInfo(res.data.user));
+               dispatch(setAdminInfo(token));
                // toast.success("ورود با موفقیت انجام شد");
                navigate("/dashboard/products");
             })
             .catch((err) => {
-               //          toast.error(err?.response?.data?.message);
-               //          setButtonLoading(false);
+               alert("hello")
+               toast.error("نام کاربری یا رمز عبور صحیح نمی باشد :(");
+               // setButtonLoading(false);
             });
       },
    });
@@ -114,8 +116,8 @@ const Login = () => {
             </p>
 
             <MyButton type="submit">ورود</MyButton>
-            
-           <Link to="/">بازگشت به سایت</Link>
+
+            <Link to="/">بازگشت به سایت</Link>
          </FormSubmit>
       </Container>
    );

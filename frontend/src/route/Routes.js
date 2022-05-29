@@ -80,7 +80,6 @@ export const routes = [
          </Suspense>
       ),
       isPrivate: false,
-      layout: "user",
    },
    {
       path: "/dashboard/products",
@@ -90,7 +89,6 @@ export const routes = [
          </Suspense>
       ),
       isPrivate: true,
-      layout: "admin",
    },
    {
       path: "/dashboard/inventory",
@@ -100,7 +98,6 @@ export const routes = [
          </Suspense>
       ),
       isPrivate: false,
-      layout: "admin",
    },
    {
       path: "/dashboard/order",
@@ -110,7 +107,6 @@ export const routes = [
          </Suspense>
       ),
       isPrivate: false,
-      layout: "admin",
    },
    {
       path: "/product/:id",
@@ -122,6 +118,5 @@ export const routes = [
          </Suspense>
       ),
       isPrivate: false,
-      layout: "admin",
    },
 ];
