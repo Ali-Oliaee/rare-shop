@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Skeleton  from "@mui/material/Skeleton";
 import "./Slider.scss";
+import { makeStyles } from "@mui/material";
 
 export default function Slider(props) {
    const dispatch = useDispatch();
    const loading = useSelector((state) => state.loading);
+   // const classes = useStyle()
    return (
       <>
          <div style={{ width: 500 }}>
@@ -24,6 +26,7 @@ export default function Slider(props) {
             <Skeleton variant="rectangular" width={500} height={550} />
          ) : ( */}
             <Swiper
+               // className={classes.root}
                spaceBetween={30}
                centeredSlides={true}
                autoplay={{
@@ -35,7 +38,6 @@ export default function Slider(props) {
                }}
                navigation={true}
                modules={[Autoplay, Pagination, Navigation]}
-               className="mySwiper"
             >
                {props.data?.map((swipe) => (
                   <SwiperSlide className="swiperImg" key={swipe.id}>

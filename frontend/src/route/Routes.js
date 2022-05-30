@@ -24,7 +24,7 @@ export const routes = [
    },
 
    {
-      path: "/products/:category",
+      path: "/products/category/:category",
       component: (
          <Suspense fallback={<div>loading...</div>}>
             <UserLayout>

@@ -74,14 +74,15 @@ const Gallery = styled("div")`
    left: 50%;
    transform: translate(-30%, -100%);
 `;
-export default function ProductDetails(props) {
+export default function ProductDetails() {
+
    let { id } = useParams();
    const dispatch = useDispatch();
    const [productDetail, setProductDetail] = useState({});
    const [images, setImages] = useState([]);
    const [show, setShow] = useState(false);
-   const [count, setCount] = useState(1)
-   const [isAddedToCart, setIsAddedToCart] = useState(false)
+   const [count, setCount] = useState(1);
+   const [isAddedToCart, setIsAddedToCart] = useState(false);
    const descRef = useRef();
 
    let options = [];
@@ -108,11 +109,13 @@ export default function ProductDetails(props) {
    }, [id]);
 
    const addToCart = () => {
-      if(count > productDetail.inventory){
-         toast.error(`از این کالا تنها ${productDetail.inventory} عدد در انبار موجود میباشد!`)
+      if (count > productDetail.inventory) {
+         toast.error(
+            `از این کالا تنها ${productDetail.inventory} عدد در انبار موجود میباشد!`
+         );
       }
-      dispatch(setCartProducts({productDetail, count}));
-      setIsAddedToCart(true)
+      dispatch(setCartProducts(productDetail));
+      setIsAddedToCart(true);
    };
    return (
       <>
@@ -145,7 +148,10 @@ export default function ProductDetails(props) {
                         {productDetail.price?.toLocaleString("fa")}
                      </CardP>
                   </Cardtext>
-                  <Select value={count} onChange={(e) => setCount(+e.target.value)}>
+                  <Select
+                     value={count}
+                     onChange={(e) => setCount(+e.target.value)}
+                  >
                      {options.map((item) => (
                         <option key={item}>{item}</option>
                      ))}

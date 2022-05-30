@@ -12,10 +12,12 @@ import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux";
 const UserHeader = () => {
    const [badgeCounter, setBadgeCounter] = useState(0);
-   const countOfOrders = useSelector((state) => state.cart.length);
+    const countOfOrders = useSelector((state) => state.cart.length);
+   //   console.log(locall.length);
    useEffect(() => {
       setBadgeCounter(countOfOrders);
    }, [countOfOrders]);
+   
    return (
       <>
          <AppBar sx={{ background: "black" }} position="static">
@@ -62,13 +64,13 @@ const UserHeader = () => {
                </Toolbar>
                <ul className="links-ul">
                   <li>
-                     <Link to="/products/1">پوشاک</Link>
+                     <Link to="/products/category/1">پوشاک</Link>
                   </li>
                   <li>
-                     <Link to="/products/2">کیف و کفش</Link>
+                     <Link to="/products/category/2">کیف و کفش</Link>
                   </li>
                   <li>
-                     <Link to="/products/3">اکسسوری</Link>
+                     <Link to="/products/category/3">اکسسوری</Link>
                   </li>
                </ul>
             </Container>

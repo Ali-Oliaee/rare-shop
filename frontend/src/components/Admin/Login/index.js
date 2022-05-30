@@ -68,7 +68,6 @@ const Login = () => {
       onSubmit: (values, { setSubmitting }) => {
          setSubmitting(false);
          localStorage.removeItem("token");
-         console.log(values);
          try {
             AdminApi.login(values).then((res) => {
                if (res.data.token) {

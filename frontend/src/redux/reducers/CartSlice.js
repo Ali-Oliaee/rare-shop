@@ -5,7 +5,9 @@ export const CartSlice = createSlice({
    initialState:[],
    reducers: {
       setCartProducts: (state, action) => {
+         localStorage.setItem("cart",JSON.stringify([...state, { ...action.payload}]))
          return [...state, { ...action.payload}];
+
       },
       removeCartProducts:(state, action) => {
        const notRemovedItems = state.filter(el => el !== action.payload)
