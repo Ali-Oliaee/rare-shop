@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+import Notfoundpage from "../pages/User/NotFoundPage";
 const Home = lazy(() => import("../pages/User/Home"));
 const Product = lazy(() => import("../pages/User/Product"));
 const Payment = lazy(() => import("../pages/User/Payment"));
@@ -95,6 +96,11 @@ export const routes = [
             </UserLayout>
          </Suspense>
       ),
+      isPrivate: false,
+   },
+   {
+      path: "/404",
+      component: <Notfoundpage />,
       isPrivate: false,
    },
 ];

@@ -8,8 +8,10 @@ import Imagegallery from "../../components/User/ImageGallery";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { useDispatch } from "react-redux";
-import { setCartProducts } from "../../redux/reducers/CartSlice";
+import { addToCart } from "../../redux/reducers/CartSlice";
 import { toast } from "react-toastify";
+import Counter from "../../components/User/Cart/Counter";
+import { v4 as uuidv4 } from 'uuid';
 const Card = styled("div")``;
 const CardBody = styled("div")`
    display: flex;
@@ -108,13 +110,13 @@ export default function ProductDetails() {
       getDetails();
    }, [id]);
 
-   const addToCart = () => {
+   const handleAddToCart = () => {
       if (count > productDetail.inventory) {
          toast.error(
             `از این کالا تنها ${productDetail.inventory} عدد در انبار موجود میباشد!`
          );
       }
-      dispatch(setCartProducts(productDetail));
+      dispatch(addToCart({productDetail,count}));
       setIsAddedToCart(true);
    };
    return (
@@ -125,9 +127,9 @@ export default function ProductDetails() {
             <CardBody>
                <ImageListStyled onClick={handleShow} cols={1} rowHeight={100}>
                   {images?.map((item) => (
-                     <ImageListItemStyled key={Date.now()}>
+                     <ImageListItemStyled key={uuidv4()}>
                         <img
-                           // src={BASE_URL + `${item}`}
+                           src={BASE_URL + `${item}`}
                            srcSet={
                               BASE_URL +
                               `${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`
@@ -148,16 +150,10 @@ export default function ProductDetails() {
                         {productDetail.price?.toLocaleString("fa")}
                      </CardP>
                   </Cardtext>
-                  <Select
-                     value={count}
-                     onChange={(e) => setCount(+e.target.value)}
-                  >
-                     {options.map((item) => (
-                        <option key={item}>{item}</option>
-                     ))}
-                  </Select>
+      
+                 <Counter inventory={productDetail.inventory }/>
                   {productDetail.inventory ? (
-                     <CardButton disabled={isAddedToCart} onClick={addToCart}>
+                     <CardButton disabled={isAddedToCart} onClick={handleAddToCart}>
                         افزودن به سبد خرید
                      </CardButton>
                   ) : (
