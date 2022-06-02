@@ -29,7 +29,6 @@ export default function Slider(props) {
             <Skeleton variant="rectangular" width={500} height={550} />
          ) : ( */}
             <Swiper
-                // className={classes.root}
                 style={{
                     "--swiper-navigation-size": "22px",
                     "--swiper-navigation-color": "#d3a98c",

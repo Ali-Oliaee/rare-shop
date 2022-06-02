@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+import CheckoutForm from "../pages/User/CheckoutForm";
 import Notfoundpage from "../pages/User/NotFoundPage";
 const Home = lazy(() => import("../pages/User/Home"));
 const Product = lazy(() => import("../pages/User/Product"));
@@ -101,6 +102,11 @@ export const routes = [
    {
       path: "/404",
       component: <Notfoundpage />,
+      isPrivate: false,
+   },
+   {
+      path: "/checkout/userInfo",
+      component: <CheckoutForm/>,
       isPrivate: false,
    },
 ];

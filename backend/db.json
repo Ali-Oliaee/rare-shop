@@ -1,7 +1,6 @@
 {
   "products": [
     {
-
       "name": "شلوار بگی ذغالی",
       "categoryId": 1,
       "subCategoryId": 1,
@@ -1492,11 +1491,9 @@
         "lastName": "نادری",
         "phone": "09017638913",
         "billingAddress": "Tehran - piroozi",
-        "shippingAddress": "Tehran- azadi"
+        "shippingAddress": "تهران پیروزی پلاک ۵"
       },
       "id": 2,
-      "location": "21111,2000,3333",
-      "orderNumber": "2122",
       "orderDate": 1651941133996,
       "purchaseTotal": 220000,
       "orderStatus": 2,
@@ -1510,6 +1507,55 @@
           "quantity": 12
         }
       ]
+    },
+    {
+      "cartItems": [
+        {
+          "count": 6,
+          "productDetail": {
+            "name": "عینک صورتی مشاره۲",
+            "categoryId": 3,
+            "subCategoryId": 7,
+            "price": 1350000,
+            "inventory": 30,
+            "images": [
+              "/files/5755d313ab004283279cb70c179b8d6f",
+              "/files/5755d313ab004283279cb70c179b8d6f",
+              "/files/5755d313ab004283279cb70c179b8d6f",
+              "/files/5755d313ab004283279cb70c179b8d6f"
+            ],
+            "description": "با اکسسوری به استایل خود جلوه ببخشید.",
+            "image": "/files/5755d313ab004283279cb70c179b8d6f",
+            "createdAt": 1651940568681,
+            "id": 65
+          }
+        },
+        {
+          "count": 7,
+          "productDetail": {
+            "name": "گوشواره دراز",
+            "categoryId": 3,
+            "subCategoryId": 9,
+            "price": 2550000,
+            "inventory": 25,
+            "images": [
+              "files/67ef0e4c700b09ad3c5f1982da82bae",
+              "files/67ef0e4c700b09ad3c5f1982da82bae",
+              "files/67ef0e4c700b09ad3c5f1982da82bae",
+              "files/67ef0e4c700b09ad3c5f1982da82baea"
+            ],
+            "description": "با اکسسوری به استایل خود جلوه ببخشید.",
+            "image": "/files/67ef0e4c700b09ad3c5f1982da82baea",
+            "createdAt": 1651941090069,
+            "id": 81
+          }
+        }
+      ],
+      "cartTotalQuantity": 13,
+      "cartTotalAmount": 25950000,
+      "userInfo": [],
+      "createdAt": 1654161886353,
+      "id": 3
     }
   ],
   "orderStatus": [

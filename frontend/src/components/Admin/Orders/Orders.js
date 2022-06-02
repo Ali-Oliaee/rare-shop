@@ -18,6 +18,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { Button } from "@mui/material";
 import moment from "jalali-moment";
+import OrderDetailModal from "./OrderDetailModal";
 const useStyle = makeStyles({
    root: {
       background: "#E6BC98",
@@ -190,7 +191,7 @@ export default function Orders() {
                                        .format("YYYY/MM/DD")}
                                  </TableCell>
                                  <TableCell>
-                                    <Button>بررسی سفارش</Button>
+                                   <OrderDetailModal data={row}/>
                                  </TableCell>
                               </TableRow>
                            );

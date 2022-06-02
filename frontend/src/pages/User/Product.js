@@ -8,10 +8,10 @@ import Imagegallery from "../../components/User/ImageGallery";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../redux/reducers/CartSlice";
+import { addToCart, decreaseCart } from "../../redux/reducers/CartSlice";
 import { toast } from "react-toastify";
 import Counter from "../../components/User/Cart/Counter";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 const Card = styled("div")``;
 const CardBody = styled("div")`
    display: flex;
@@ -77,7 +77,6 @@ const Gallery = styled("div")`
    transform: translate(-30%, -100%);
 `;
 export default function ProductDetails() {
-
    let { id } = useParams();
    const dispatch = useDispatch();
    const [productDetail, setProductDetail] = useState({});
@@ -116,8 +115,14 @@ export default function ProductDetails() {
             `از این کالا تنها ${productDetail.inventory} عدد در انبار موجود میباشد!`
          );
       }
-      dispatch(addToCart({productDetail,count}));
+      dispatch(addToCart({ productDetail, count }));
       setIsAddedToCart(true);
+   };
+   const handleDecrement = (countProduct) => {
+      setCount(countProduct)
+   };
+   const handleIncrement = (countProduct) => {
+     setCount(countProduct)
    };
    return (
       <>
@@ -150,10 +155,18 @@ export default function ProductDetails() {
                         {productDetail.price?.toLocaleString("fa")}
                      </CardP>
                   </Cardtext>
-      
-                 <Counter inventory={productDetail.inventory }/>
+
+                  <Counter
+                     inventory={productDetail.inventory}
+                     data={{productDetail,count}}
+                     handleIncrement={handleIncrement}
+                     handleDecrement={handleDecrement}
+                  />
                   {productDetail.inventory ? (
-                     <CardButton disabled={isAddedToCart} onClick={handleAddToCart}>
+                     <CardButton
+                        disabled={isAddedToCart}
+                        onClick={handleAddToCart}
+                     >
                         افزودن به سبد خرید
                      </CardButton>
                   ) : (

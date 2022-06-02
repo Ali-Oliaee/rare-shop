@@ -34,7 +34,7 @@ server.use((req, res, next) => {
 
    const token = req.headers.token || req.headers.Token;
    if (protectionRule && !token) return res.status(401).send();
-   if (token && !protectionRule) return next();
+   // if (token && !protectionRule) return next();
    if (!token) return next();
 
    jwt.verify(token, AUTH_JWT_SECRET, (err, decoded) => {

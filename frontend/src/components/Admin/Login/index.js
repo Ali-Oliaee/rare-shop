@@ -8,7 +8,6 @@ import Image from "../../../assets/pic/channelBackground.jpeg";
 import { setAdminInfo } from "../../../redux/reducers/adminSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { UserApi } from "../../../api/UserApi";
 const Container = styled("div")`
    width: 65vw;
    height: 70vh;
