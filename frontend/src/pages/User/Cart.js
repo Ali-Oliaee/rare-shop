@@ -17,10 +17,8 @@ const Cart = () => {
       dispatch(removeCartProducts(id));
    };
    useEffect(() => {
-      let items = JSON.parse(localStorage.getItem("cart"));
-      if (items) {
-         setOrder(items);
-      }
+      setOrder(cart.cartItems);
+
       dispatch(getTotals());
    }, [dispatch, cart]);
    const defaultOptions = {

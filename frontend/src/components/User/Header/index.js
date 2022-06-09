@@ -13,8 +13,7 @@ import { useSelector } from "react-redux";
 
 const UserHeader = () => {
    const [badgeCounter, setBadgeCounter] = useState(0);
-   const countOfOrders = JSON.parse(localStorage.getItem("cart"))
-      ?.length || 0;
+   const countOfOrders = useSelector(state => state.cart.cartItems.length)
    useEffect(() => {
       setBadgeCounter(countOfOrders);
    }, [countOfOrders,badgeCounter]);
