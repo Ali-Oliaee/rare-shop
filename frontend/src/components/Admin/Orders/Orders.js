@@ -23,8 +23,8 @@ const useStyle = makeStyles({
    root: {
       background: "#E6BC98",
       margin: "auto",
-      width:"70%",
-      padding:50,
+      width: "70%",
+      padding: 50,
       overflow: "hidden",
       border: "1px solid black",
 
@@ -44,7 +44,7 @@ const useStyle = makeStyles({
          background: "black",
          display: "inline-block",
          marginRight: "45rem",
-         marginBottom : "1rem"
+         marginBottom: "1rem",
       },
       "& .MuiTableContainer-root::-webkit-scrollbar": {
          display: "none" /* for Chrome, Safari, and Opera */,
@@ -55,9 +55,9 @@ const useStyle = makeStyles({
          },
          "& .MuiSelect-select": {
             color: "white",
-            borderBottom: "1px white solid"
-         }
-      }
+            borderBottom: "1px white solid",
+         },
+      },
    },
 });
 
@@ -103,7 +103,12 @@ export default function Orders() {
    function defaultLabelDisplayedRows({ from, to, count }) {
       return `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`;
    }
-
+   const clickHandler = async (id) => {
+      await OrdersApi.patch(id, {
+         orderStatus: 1,
+         deliveredAt: Date.now()
+      })
+   };
    return (
       <div className={classes.root}>
          <FormControl>
@@ -141,7 +146,6 @@ export default function Orders() {
                         </TableCell>
                         <TableCell style={{ minWidth: 100 }}>
                            <FormControl
-                              
                               variant="standard"
                               sx={{ m: 1, minWidth: 120 }}
                            >
@@ -173,7 +177,6 @@ export default function Orders() {
                            return (
                               <TableRow
                                  className="table_row"
-                               
                                  role="checkbox"
                                  tabIndex={-1}
                                  key={row.code}
@@ -192,7 +195,11 @@ export default function Orders() {
                                        .format("YYYY/MM/DD")}
                                  </TableCell>
                                  <TableCell>
-                                   <OrderDetailModal data={row} />
+                                    <OrderDetailModal
+                                       data={row}
+                                       isDelivered={!processOrders}
+                                       clickHandler={clickHandler}
+                                    />
                                  </TableCell>
                               </TableRow>
                            );

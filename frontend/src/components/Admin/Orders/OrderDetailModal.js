@@ -10,6 +10,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import { Link } from "react-router-dom";
 const style = {
    position: "absolute",
    top: "50%",
@@ -22,13 +23,13 @@ const style = {
    p: 4,
 };
 
-export default function OrderDetailModal({ data }) {
+export default function OrderDetailModal({ data, isDelivered, clickHandler }) {
    const [open, setOpen] = React.useState(false);
    const handleOpen = () => setOpen(true);
    const handleClose = () => setOpen(false);
    let delivery = new Date(data.delivery);
    let orderDate = new Date(data.orderDate);
-   console.log(data);
+   let deliveredAt = new Date(data.deliveredAt);
    return (
       <div>
          <Button style={{ margin: 0 }} onClick={handleOpen}>
@@ -49,7 +50,7 @@ export default function OrderDetailModal({ data }) {
                   }`}
                </Typography>
                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  {`آدرس:‌ ${data.customerDetail.shippingAddress}`}
+                  {`آدرس:‌ ${data.customerDetail.address}`}
                </Typography>
                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                   {`تلفن: ${data.customerDetail.phone}`}
@@ -77,18 +78,33 @@ export default function OrderDetailModal({ data }) {
                         {data.orderItems.map((row) => {
                            return (
                               <TableRow>
-                                 <TableCell>{row.name}</TableCell>
-                                 <TableCell>{row.price}</TableCell>
                                  <TableCell>
-                                    {row.quantity}
+                                    <Link
+                                       to={`/product/${data.id}`}
+                                       className="link-style"
+                                    >
+                                       {" "}
+                                       {row.name}
+                                    </Link>
                                  </TableCell>
+                                 <TableCell>{row.price}</TableCell>
+                                 <TableCell>{row.quantity}</TableCell>
                               </TableRow>
                            );
                         })}
                      </TableBody>
                   </Table>
                </TableContainer>
-                      
+               {isDelivered ? (
+                  <Typography variant="p">{`زمان تحویل: ${moment(
+                     deliveredAt,
+                     "YYYY/MM/DD"
+                  )
+                     .locale("fa")
+                     .format("YYYY/MM/DD")}`}</Typography>
+               ) : (
+                  <Button onClick={() => clickHandler} variant="contained" color="success" sx={{m:2}}>تحویل شد</Button>
+               )}
             </Box>
          </Modal>
       </div>

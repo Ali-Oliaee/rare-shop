@@ -106,7 +106,7 @@ export default function CartTable({ orders, handleDelete }) {
                </TableBody>
             </Table>
          </TableContainer>
-         {/* <div
+         <div
             style={{
                display: "flex",
                justifyContent: "space-around",
@@ -119,12 +119,12 @@ export default function CartTable({ orders, handleDelete }) {
             <Typography typography="p">{` جمع کل:  ${cartTotalAmount.toLocaleString(
                "fa"
             )} تومان`}</Typography>
-            <Link to="/checkout/userInfo">
-               <Button variant="contained" color="success">
+            <Link style={{textDecoration: "none"}} to="/checkout/userInfo">
+               <Button variant="contained" sx={{background: "green"}}>
                   نهایی کردن سبد خرید
                </Button>
-            </Link> */}
-         {/* </div> */}
+            </Link>
+         </div>
       </>
    );
 }
