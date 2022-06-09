@@ -14,9 +14,6 @@ class Service {
             if (token) {
                config.headers["token"] = token;
             }
-            // setInterval(() => {
-            //    localStorage.removeItem("token")
-            // },10800000)
             return config;
          },
          function (error) {

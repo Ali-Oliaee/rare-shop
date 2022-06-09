@@ -10,27 +10,7 @@ import Lottie from "react-lottie";
 import { Typography } from "@mui/material";
 const Cart = () => {
    const [orders, setOrder] = useState([]);
-   const [orderData, setOrderData] = useState({
-      customerDetail: {
-         firstName: "",
-         lastName: "",
-         phone: null,
-         shippingAddress: "",
-      },
-      orderDate: null,
-      purchaseTotal: null,
-      orderStatus: null,
-      delivery: null,
-      deliveredAt: null,
-      orderItems: [
-         {
-            name: "",
-            thumbnail: "",
-            price: null,
-            quantity: null,
-         },
-      ],
-   });
+
    const cart = useSelector((state) => state.cart);
    const dispatch = useDispatch();
    const handleDelete = (id) => {

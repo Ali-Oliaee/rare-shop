@@ -9,6 +9,7 @@ const initialState = {
    cartTotalAmount: 0,
    userInfo: [],
 };
+
 export const CartSlice = createSlice({
    name: "cart",
    initialState,
@@ -77,9 +78,9 @@ export const CartSlice = createSlice({
          return state;
       },
       getUserInfo(state, action) {
-        state.userInfo =  action.payload;
-        localStorage.setItem("customer", JSON.stringify(state.userInfo))
-
+         state.userInfo = action.payload;
+         localStorage.setItem("customer", JSON.stringify(state.userInfo));
+         
       },
       getTotals(state, action) {
          let { total, quantity } = state.cartItems.reduce(
@@ -119,6 +120,6 @@ export const {
    removeCartProducts,
    getTotals,
    clearCart,
-   getUserInfo
+   getUserInfo,
 } = CartSlice.actions;
 export default CartSlice.reducer;

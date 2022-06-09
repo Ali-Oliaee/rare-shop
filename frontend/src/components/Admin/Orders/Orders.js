@@ -103,6 +103,7 @@ export default function Orders() {
    function defaultLabelDisplayedRows({ from, to, count }) {
       return `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`;
    }
+
    return (
       <div className={classes.root}>
          <FormControl>
@@ -191,7 +192,7 @@ export default function Orders() {
                                        .format("YYYY/MM/DD")}
                                  </TableCell>
                                  <TableCell>
-                                   <OrderDetailModal data={row}/>
+                                   <OrderDetailModal data={row} />
                                  </TableCell>
                               </TableRow>
                            );

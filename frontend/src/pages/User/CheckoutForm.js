@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
-import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { getUserInfo } from "../../redux/reducers/CartSlice";
-// import { DatePicker } from "jalali-react-datepicker";
-// import { RangePicker } from "react-jalali-datepicker";
 import { OrdersApi } from "../../api/OrdersApi";
-import Order from "../Admin/Order";
+import { DatePicker } from "jalali-react-datepicker";
+
 const FormSubmit = styled("form")`
    display: flex;
    flex-direction: column;
@@ -40,12 +38,65 @@ const MyButton = styled("button")`
    margin: auto;
    text-aligne: center;
    width: 10rem;
+   background: #bb906d;
 `;
 const Checkout = () => {
-   const orderData = useSelector((state) => state.cart);
-   const registerOrder = async () => {
-      await OrdersApi.post(orderData);
+   const [orderData, setOrderData] = useState({
+      customerDetail: {
+         firstName: "",
+         lastName: "",
+         phone: null,
+         shippingAddress: "",
+      },
+      orderDate: null,
+      purchaseTotal: null,
+      orderStatus: null,
+      delivery: null,
+      deliveredAt: null,
+      orderItems: [
+         {
+            name: "",
+            thumbnail: "",
+            price: null,
+            quantity: null,
+         },
+      ],
+   });
+   // setOrderData({
+   //    ...orderData,
+   //    [orderData.name]: item.productDetail.name,
+   //    [orderData.thumbnail]: item.productDetail.image,
+   //    [orderData.price]: item.productDetail.price,
+   //    [orderData.quantity]: item.count,
+   // })
+   const orderItemsRedux = useSelector((state) => state.cart);
+   const sendData = () => {
+      console.log(orderItems.cartItems);
+      const orderItems = [];
+      // orderItemsRedux?.cartItems.map((item) => {
+      //   {
+      //    name: item.productDetail.name,
+      //    thumbnail: item.productDetail.image,
+      //    price: item.productDetail.price,
+      //    quantity: item.count
+      //   }
+      // });
+     // console.log(orderData);
+    
+      // setTimeout(() => {
+      //    OrdersApi.post({
+      //       customerDetails: orderItems.userInfo,
+      //       purchaseTotal: orderItems.cartTotalAmount,
+      //       orderDate: Date.now().getTime(),
+      //       orderStatus: 2,
+      //       delivery: "",
+      //       deliveredAt: null,
+      //    });
+      // }, 1500);
    };
+   // useEffect(() => {
+   //    sendData()
+   // }, [orderItems]);
    const phoneRegEx =
       /(0|\\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/gi;
    const dispatch = useDispatch();
@@ -76,8 +127,8 @@ const Checkout = () => {
       onSubmit: (values) => {
          alert(JSON.stringify(values, null, 2));
          dispatch(getUserInfo(values));
-         registerOrder();
-         // window.location.replace('http://localhost:5500/')
+
+        window.location.replace("http://localhost:5500/");
       },
    });
    return (
@@ -140,7 +191,7 @@ const Checkout = () => {
                   formik.errors.phone &&
                   formik.errors.phone}
             </p>
-            <FiledInput
+            {/* <FiledInput
                type="text"
                placeholder="تاریخ تحویل"
                id="delivery-date"
@@ -148,19 +199,26 @@ const Checkout = () => {
                onChange={formik.handleChange}
                onBlur={formik.handleBlur}
                value={formik.values.date}
+            /> */}
+            <DatePicker
+               placeholder="انتخاب تاریخ"
+               locale="fa-IR"
+               format="YYYY/MM/DD"
+               preSelected={new Date().toLocaleString("fa-IR")}
+               onClickSubmitButton={(i) => {
+                  let deliveryDate = new Date(i.value._d);
+                  formik.values.date = deliveryDate.getTime();
+               }}
             />
-            {/* <RangePicker/> */}
             <p className="error">
                {formik.errors.date && formik.touched.date && formik.errors.date}
             </p>
             <div>
-               <MyButton style={{ background: "green" }} type="submit">
-                  پرداخت
-               </MyButton>
+               <MyButton type="submit">رفتن به صفحه پرداخت</MyButton>
 
-               <MyButton style={{ background: "red" }} type="submit">
+               {/* <MyButton style={{ background: "red" }} type="submit">
                   انصراف
-               </MyButton>
+               </MyButton> */}
             </div>
          </FormSubmit>
       </>

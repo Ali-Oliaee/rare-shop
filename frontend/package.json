@@ -32,6 +32,7 @@
     "react-toastify": "^9.0.1",
     "redux-logger": "^3.0.6",
     "sass": "^1.51.0",
+    "stream": "^0.0.2",
     "styled-components": "^5.3.5",
     "stylis": "^4.1.1",
     "stylis-plugin-rtl": "^2.1.1",

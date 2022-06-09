@@ -11,7 +11,7 @@ const jwt = require("jsonwebtoken");
 const AUTH_JWT_SECRET = "TOP-SECRET";
 
 //TODO: change below line to change expire time of token (default time is 3hours 180mins)
-const AUTH_JWT_OPTIONS = { expiresIn: 180 * 60 };
+const AUTH_JWT_OPTIONS = { expiresIn: 1 * 60 };
 
 // Load DB file for Authentication middleware and endpoints
 const DB = JSON.parse(
@@ -35,6 +35,7 @@ server.use((req, res, next) => {
    const token = req.headers.token || req.headers.Token;
    if (protectionRule && !token) return res.status(401).send();
    // if (token && !protectionRule) return next();
+   if(!protectionRule)return next()
    if (!token) return next();
 
    jwt.verify(token, AUTH_JWT_SECRET, (err, decoded) => {

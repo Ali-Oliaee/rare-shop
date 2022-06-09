@@ -88,6 +88,7 @@ export default function OrderDetailModal({ data }) {
                      </TableBody>
                   </Table>
                </TableContainer>
+                      
             </Box>
          </Modal>
       </div>
