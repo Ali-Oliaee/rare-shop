@@ -23,13 +23,13 @@ const Counter = ({ data, inventory, handleIncrement, handleDecrement }) => {
    const handleIncrease = () => {
       if (count < inventory) {
          setCount(count + 1);
-         handleIncrement(data?.productDetail);
+         handleIncrement([data?.productDetail, count+1]);
       }
    };
    const handleDecrease = () => {
       if (count > 1) {
          setCount(count - 1);
-         handleDecrement(data?.productDetail);
+         handleDecrement([data?.productDetail, count-1]);
       }
    };
    return (

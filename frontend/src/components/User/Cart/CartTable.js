@@ -27,11 +27,14 @@ export default function CartTable({ orders, handleDelete }) {
    const columns = ["تصویر کالا", "نام کالا", "قیمت", "تعداد", "تعداد", " حذف"];
    const dispatch = useDispatch();
    const classes = useStyle();
+   console.log(orders);
    const handleDecrement = (product) => {
-      dispatch(decreaseCart(product));
+      // console.log({productDetail,count});
+      dispatch(decreaseCart(product[0]));
    };
    const handleIncrement = (product) => {
-      dispatch(addToCart(product));
+      // console.log(count);
+  dispatch(addToCart(product[0]));
    };
    const [cartTotalQuantity, cartTotalAmount] = JSON.parse(
       localStorage.getItem("total")
@@ -48,7 +51,7 @@ export default function CartTable({ orders, handleDelete }) {
                   </TableRow>
                </TableHead>
                <TableBody>
-                  {Object.values(orders).map((item) => {
+                  {orders?.cartItems?.map((item) => {
                      return (
                         <TableRow
                            key={item?.productDetail?.id}
@@ -103,7 +106,7 @@ export default function CartTable({ orders, handleDelete }) {
                </TableBody>
             </Table>
          </TableContainer>
-         <div
+         {/* <div
             style={{
                display: "flex",
                justifyContent: "space-around",
@@ -120,8 +123,8 @@ export default function CartTable({ orders, handleDelete }) {
                <Button variant="contained" color="success">
                   نهایی کردن سبد خرید
                </Button>
-            </Link>
-         </div>
+            </Link> */}
+         {/* </div> */}
       </>
    );
 }

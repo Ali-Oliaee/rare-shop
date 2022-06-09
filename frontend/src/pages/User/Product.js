@@ -52,16 +52,6 @@ const CardButton = styled("button")`
    border-radius: 2px;
    cursor: pointer;
 `;
-const Select = styled("select")`
-   width: 50px;
-   height: 37px;
-   background: #f4d7c0;
-   padding: 0 5px;
-   font-size: 14px;
-   border: white 1px solid;
-   margin-left: 10px;
-   border-radius: 2px;
-`;
 const ImageListStyled = styled(ImageList)`
    margin: 10px;
    width: 100px;
@@ -95,9 +85,6 @@ export default function ProductDetails() {
       const res = await ProductsApi.get(id);
       setProductDetail(res.data);
       const gallery = res.data?.images;
-      // .split("'")
-      // .slice(1, -1)
-      // .filter((el) => el !== ",");
       setImages(gallery);
       descRef.current.innerHTML = res.data?.description;
    };
@@ -118,11 +105,11 @@ export default function ProductDetails() {
       dispatch(addToCart({ productDetail, count }));
       setIsAddedToCart(true);
    };
-   const handleDecrement = (countProduct) => {
-      setCount(countProduct)
+   const handleDecrement = (product) => {
+      setCount(product[1])
    };
-   const handleIncrement = (countProduct) => {
-     setCount(countProduct)
+   const handleIncrement = (product) => {
+     setCount(product[1])
    };
    return (
       <>

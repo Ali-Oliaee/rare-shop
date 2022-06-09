@@ -17,7 +17,7 @@ const Cart = () => {
       dispatch(removeCartProducts(id));
    };
    useEffect(() => {
-      setOrder(cart.cartItems);
+      setOrder(cart);
 
       dispatch(getTotals());
    }, [dispatch, cart]);
@@ -31,7 +31,7 @@ const Cart = () => {
    };
    return (
       <>
-         {orders.length > 0 ? (
+         {orders?.cartItems?.length > 0 ? (
             <CartTable orders={orders} handleDelete={handleDelete} />
          ) : (
             <>
