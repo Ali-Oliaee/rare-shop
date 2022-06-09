@@ -5,7 +5,7 @@
       "categoryId": 1,
       "subCategoryId": 1,
       "price": 550333,
-      "inventory": 20,
+      "inventory": 26,
       "images": [
         "/files/5bbb103ba916e270ee9cbd4be345d635",
         "/files/5bbb103ba916e270ee9cbd4be345d635",
@@ -479,7 +479,7 @@
       "categoryId": 2,
       "subCategoryId": 4,
       "price": 600000,
-      "inventory": 3,
+      "inventory": 1,
       "images": [
         "/files/de3c009a43b78ccf7a6c45fc39a0691f",
         "/files/de3c009a43b78ccf7a6c45fc39a0691f",
@@ -1295,7 +1295,7 @@
       "categoryId": 3,
       "subCategoryId": 9,
       "price": 1450000,
-      "inventory": 25,
+      "inventory": 21,
       "images": [
         "/files/e9e69c87d8e56ed996d2e50d99693f75",
         "/files/e9e69c87d8e56ed996d2e50d99693f75",
@@ -1462,10 +1462,10 @@
     {
       "id": 1,
       "orderDate": 1651941133996,
-      "purchaseTotal": 220000,
+      "purchaseTotal": 230000,
       "orderStatus": 1,
       "delivery": 1643396897495,
-      "deliveredAt": 1646222643757,
+      "deliveredAt": 1654794350771,
       "orderItems": [
         {
           "name": "Test product",
@@ -1474,7 +1474,7 @@
           "quantity": 12
         }
       ],
-      "customerDetail": {
+      "customerDetails": {
         "firstName": "ملینا",
         "lastName": "موسی خانی",
         "phone": "09027638913",
@@ -1482,7 +1482,7 @@
       }
     },
     {
-      "customerDetail": {
+      "customerDetails": {
         "firstName": "معصومه",
         "lastName": "نادری",
         "phone": "09017638913",
@@ -1502,6 +1502,42 @@
           "quantity": 12
         }
       ]
+    },
+    {
+      "customerDetails": {
+        "firstName": "طاها",
+        "lastName": "نادری",
+        "date": 1655235000000,
+        "phone": "09010439137",
+        "address": "مشهد .سجاد . بزرگمهر ۱۱. ساختمان آرسام . پلاک ۱۲. واحد۱۴"
+      },
+      "orderItems": [
+        {
+          "name": "گوشواره نگین مرواریدی",
+          "thumbnail": "/files/e9e69c87d8e56ed996d2e50d99693f75",
+          "price": 1450000,
+          "quantity": 4
+        },
+        {
+          "name": "شلوار بگی ذغالی",
+          "thumbnail": "/files/5bbb103ba916e270ee9cbd4be345d635",
+          "price": 550333,
+          "quantity": 1
+        },
+        {
+          "name": "کفش کانورس گورخری",
+          "thumbnail": "/files/de3c009a43b78ccf7a6c45fc39a0691f",
+          "price": 600000,
+          "quantity": 2
+        }
+      ],
+      "purchaseTotal": 7550333,
+      "orderDate": 1654794712823,
+      "orderStatus": 2,
+      "delivery": 1655235000000,
+      "deliveredAt": null,
+      "createdAt": 1654794712841,
+      "id": 3
     }
   ],
   "orderStatus": [
@@ -1523,6 +1559,7 @@
     "products": "admin",
     "products.post": false,
     "products.put": false,
+    "products.patch": false,
     "products.delete": false,
     "orders.post": false,
     "upload": false,

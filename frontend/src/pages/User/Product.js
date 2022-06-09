@@ -81,12 +81,6 @@ export default function ProductDetails() {
    const [count, setCount] = useState(1);
    const [isAddedToCart, setIsAddedToCart] = useState(false);
    const descRef = useRef();
-
-   let options = [];
-   for (let i = 1; i <= 50; i++) {
-      options.push(i);
-   }
-
    const getDetails = async () => {
       const res = await ProductsApi.get(id);
       setProductDetail(res.data);
@@ -94,13 +88,12 @@ export default function ProductDetails() {
       setImages(gallery);
       descRef.current.innerHTML = res.data?.description;
    };
-
    const handleShow = () => {
       setShow(!show);
    };
    useEffect(() => {
       getDetails();
-   }, [id]);
+   }, [id, count]);
 
    const handleAddToCart = () => {
       if (count > productDetail.inventory) {
@@ -108,14 +101,17 @@ export default function ProductDetails() {
             `از این کالا تنها ${productDetail.inventory} عدد در انبار موجود میباشد!`
          );
       }
+
       dispatch(addToCart({ productDetail, count }));
       setIsAddedToCart(true);
    };
    const handleDecrement = (product) => {
+      console.log(product[1], count);
       setCount(product[1]);
    };
    const handleIncrement = (product) => {
       setCount(product[1]);
+      console.log(product[1], count);
    };
    return (
       <>

@@ -28,9 +28,6 @@ const useStyle = makeStyles({
       overflow: "hidden",
       border: "1px solid black",
 
-      "& .MuiButtonBase-root svg": {
-         transform: "rotate(180deg)",
-      },
       "& .row_cell": {
          width: 300,
          textAlign: "center",
@@ -54,6 +51,9 @@ const useStyle = makeStyles({
             color: "white",
             borderBottom: "1px white solid",
          },
+      },
+      "& .MuiButtonBase-root svg": {
+         transform: "rotate(180deg)",
       },
    },
 });
@@ -173,19 +173,23 @@ export default function AllProductsTable() {
                                     />
                                  </TableCell>
 
-                                 <TableCell>{row.name}</TableCell>
+                                 <TableCell>
+                                    <Link className="link-style" to={`/product/${row.id}`}>{row.name}</Link>
+                                 </TableCell>
                                  <TableCell>
                                     {findCategoryName(row.categoryId) +
                                        "/ " +
                                        findSubCategoryName(row.subCategoryId)}
                                  </TableCell>
                                  <TableCell>
-                                    <Delete
-                                       onFinish={getProducts}
-                                       id={row.id}
-                                    />
+                                    <div style={{ display: "flex" }}>
+                                       <Delete
+                                          onFinish={getProducts}
+                                          id={row.id}
+                                       />
 
-                                    <Edit row={row} onFinish={getProducts} />
+                                       <Edit row={row} onFinish={getProducts} />
+                                    </div>
                                  </TableCell>
                               </TableRow>
                            );

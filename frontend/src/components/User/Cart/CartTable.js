@@ -34,7 +34,7 @@ export default function CartTable({ orders, handleDelete }) {
    };
    const handleIncrement = (product) => {
       // console.log(count);
-  dispatch(addToCart(product[0]));
+      dispatch(addToCart(product[0]));
    };
    const [cartTotalQuantity, cartTotalAmount] = JSON.parse(
       localStorage.getItem("total")
@@ -71,7 +71,9 @@ export default function CartTable({ orders, handleDelete }) {
                               </TableCell>
                            </TableCell>
                            <TableCell align="center">
-                              {item?.productDetail?.name}
+                              <Link className="link-style" to={`/product/${item?.productDetail?.id}`}>
+                                 {item?.productDetail?.name}
+                              </Link>
                            </TableCell>
                            <TableCell align="center">
                               {item?.productDetail?.price}
@@ -113,14 +115,14 @@ export default function CartTable({ orders, handleDelete }) {
                marginTop: 50,
             }}
          >
-            <Typography typography="p">{`تعداد اقلام: ${cartTotalQuantity.toLocaleString(
+            <Typography typography="p">{`تعداد اقلام: ${cartTotalQuantity?.toLocaleString(
                "fa"
             )} عدد`}</Typography>
-            <Typography typography="p">{` جمع کل:  ${cartTotalAmount.toLocaleString(
+            <Typography typography="p">{` جمع کل:  ${cartTotalAmount?.toLocaleString(
                "fa"
             )} تومان`}</Typography>
-            <Link style={{textDecoration: "none"}} to="/checkout/userInfo">
-               <Button variant="contained" sx={{background: "green"}}>
+            <Link style={{ textDecoration: "none" }} to="/checkout/userInfo">
+               <Button variant="contained" sx={{ background: "green" }}>
                   نهایی کردن سبد خرید
                </Button>
             </Link>

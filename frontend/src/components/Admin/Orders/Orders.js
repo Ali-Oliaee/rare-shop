@@ -134,7 +134,7 @@ export default function Orders() {
             </RadioGroup>
          </FormControl>
          <Paper sx={{ borderRadius: 0 }}>
-            <TableContainer sx={{ maxHeight: 440, overflowY: "hidden" }}>
+            <TableContainer sx={{ maxHeight: 440, overflowY: "scroll" }}>
                <Table stickyHeader aria-label="sticky table">
                   <TableHead>
                      <TableRow className={classes.table_row}>
@@ -182,12 +182,12 @@ export default function Orders() {
                                  key={row.code}
                               >
                                  <TableCell>
-                                    {row.customerDetail.firstName +
+                                    {row.customerDetails?.firstName +
                                        " " +
-                                       row.customerDetail.lastName}
+                                       row.customerDetails?.lastName}
                                  </TableCell>
                                  <TableCell>
-                                    {row.purchaseTotal.toLocaleString()}
+                                    {row.purchaseTotal?.toLocaleString()}
                                  </TableCell>
                                  <TableCell>
                                     {moment(date, "YYYY/MM/DD")

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { OrdersApi } from "../../api/OrdersApi";
 import { DatePicker } from "jalali-react-datepicker";
+import { ProductsApi } from "../../api/Products";
 
 const FormSubmit = styled("form")`
    display: flex;
@@ -60,13 +61,6 @@ const Checkout = () => {
          },
       ],
    });
-   // setOrderData({
-   //    ...orderData,
-   //    [orderData.name]: item.productDetail.name,
-   //    [orderData.thumbnail]: item.productDetail.image,
-   //    [orderData.price]: item.productDetail.price,
-   //    [orderData.quantity]: item.count,
-   // })
    const reduxData = useSelector((state) => state);
 
    const orderItems = [];
@@ -106,26 +100,34 @@ const Checkout = () => {
             .required("شماره همراه خود را وارد کنید.")
             .max(13, "شماره ی  وارد شده نامعتبر میباشد!"),
       }),
-      onSubmit: (values) => {
+      onSubmit: async (values) => {
          try {
-            setTimeout(() => {
-               const res = OrdersApi.post({
-                  customerDetails: values,
-                  purchaseTotal: reduxData.cart.cartTotalAmount,
-                  orderItems: orderItems,
-                  orderDate: Date.now(),
-                  orderStatus: 3,
-                  delivery: values.date,
-                  deliveredAt: null,
+            let res = await OrdersApi.post({
+               customerDetails: values,
+               orderItems: orderItems,
+               purchaseTotal: reduxData.cart.cartTotalAmount,
+               orderDate: Date.now(),
+               orderStatus: 3,
+               delivery: values.date,
+               deliveredAt: null,
+            });
+            try {
+               reduxData?.cart.cartItems.map(async (item) => {
+                  console.log(item);
+                  await ProductsApi.patch(item.productDetail.id, {
+                     inventory: item.productDetail.inventory - item.count,
+                  });
                });
-               localStorage.setItem("orderId", res.data.id);
-            }, 1500);
+            } catch (err) {
+               Promise.reject(err);
+            }
+
+            localStorage.setItem("orderId", res.data.id);
+             window.location.replace("http://localhost:5500/");
          } catch (err) {
             Promise.error(err);
          }
          // dispatch(getUserInfo(values));
-
-         window.location.replace("http://localhost:5500/");
       },
    });
    return (

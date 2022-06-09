@@ -35,6 +35,9 @@ const useStyle = makeStyles({
       float: "left",
       // marginBottom: 20,
    },
+   ".MuiButtonBase-root svg": {
+      color: "black",
+   },
 });
 const MyModal = (props) => {
    const {
@@ -47,12 +50,12 @@ const MyModal = (props) => {
       imgRef,
    } = props;
    const [open, setOpen] = useState(false);
-   const [errorText, setErrorText] = useState('')
+   const [errorText, setErrorText] = useState("");
    const handleOpen = () => setOpen(true);
    const handleClose = () => setOpen(false);
    const classes = useStyle();
    const p2e = (s) => s.replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
-//filter harf
+   //filter harf
    const saveClickHandler = () => {
       handleClose();
       setNewProduct();
@@ -61,7 +64,7 @@ const MyModal = (props) => {
       setNewProduct({
          ...newProduct,
          [event.target.name]: event.target.value,
-      })
+      });
       if (event.target.value.match(/\d/g)) {
          setErrorText("");
          // setPhone(event.target.value);
@@ -71,7 +74,12 @@ const MyModal = (props) => {
    };
    return (
       <div>
-         <Button onClick={handleOpen}>{buttonName}</Button>
+         <Button
+            sx={{ color: "black", transform: "rotate(180deg)" }}
+            onClick={handleOpen}
+         >
+            {buttonName}
+         </Button>
 
          <Modal
             open={open}
@@ -118,7 +126,6 @@ const MyModal = (props) => {
                   error={errorText}
                   value={newProduct?.price}
                   onChange={handleChangeValidate}
-
                />
                <img
                   style={{ float: "left" }}
@@ -202,7 +209,11 @@ const MyModal = (props) => {
                      <option value={9}>گوشواره و انگشتر</option>
                   </NativeSelect>
                </FormControl>
-               <Editor description={row?.description} newProduct={newProduct} setNewProduct={setNewProduct} />
+               <Editor
+                  description={row?.description}
+                  newProduct={newProduct}
+                  setNewProduct={setNewProduct}
+               />
                <Button
                   onClick={addProduct}
                   variant="contained"

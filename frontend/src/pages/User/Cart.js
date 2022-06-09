@@ -9,18 +9,19 @@ import {
 import Lottie from "react-lottie";
 import { Typography } from "@mui/material";
 const Cart = () => {
-   const [orders, setOrder] = useState([]);
+   const [orders, setOrders] = useState([]);
 
    const cart = useSelector((state) => state.cart);
    const dispatch = useDispatch();
+   
+   useEffect(() => {
+      setOrders(cart);
+      dispatch(getTotals());
+   }, [cart]);
+
    const handleDelete = (id) => {
       dispatch(removeCartProducts(id));
    };
-   useEffect(() => {
-      setOrder(cart);
-
-      dispatch(getTotals());
-   }, [dispatch, cart]);
    const defaultOptions = {
       loop: true,
       autoplay: true,

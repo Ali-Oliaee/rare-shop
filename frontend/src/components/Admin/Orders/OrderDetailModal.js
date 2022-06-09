@@ -44,16 +44,16 @@ export default function OrderDetailModal({ data, isDelivered, clickHandler }) {
             <Box sx={style}>
                <Typography id="modal-modal-title" variant="p">
                   {` نام مشتری: ${
-                     data.customerDetail.firstName +
+                     data.customerDetails?.firstName +
                      " " +
-                     data.customerDetail.lastName
+                     data.customerDetails?.lastName
                   }`}
                </Typography>
                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  {`آدرس:‌ ${data.customerDetail.address}`}
+                  {`آدرس:‌ ${data.customerDetails?.address}`}
                </Typography>
                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  {`تلفن: ${data.customerDetail.phone}`}
+                  {`تلفن: ${data.customerDetails?.phone}`}
                </Typography>
                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                   {`زمان تحویل: ${moment(delivery, "YYYY/MM/DD")
@@ -103,7 +103,7 @@ export default function OrderDetailModal({ data, isDelivered, clickHandler }) {
                      .locale("fa")
                      .format("YYYY/MM/DD")}`}</Typography>
                ) : (
-                  <Button onClick={() => clickHandler} variant="contained" color="success" sx={{m:2}}>تحویل شد</Button>
+                  <Button onClick={() => clickHandler(data.id)} variant="contained" color="success" sx={{m:2}}>تحویل شد</Button>
                )}
             </Box>
          </Modal>

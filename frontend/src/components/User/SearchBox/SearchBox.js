@@ -47,7 +47,7 @@ const Searchbox = ({ darkMode }) => {
             <input
                type="text"
                value={wordEntered}
-               placeholder="Search a Country..."
+               placeholder="جستجو کنید..."
                onChange={handleFilter}
             />
             <span className="icon-search">
