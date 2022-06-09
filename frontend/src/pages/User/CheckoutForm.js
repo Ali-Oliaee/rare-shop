@@ -3,8 +3,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import { getUserInfo } from "../../redux/reducers/CartSlice";
 import { OrdersApi } from "../../api/OrdersApi";
 import { DatePicker } from "jalali-react-datepicker";
 

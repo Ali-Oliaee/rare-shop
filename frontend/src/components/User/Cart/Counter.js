@@ -8,14 +8,15 @@ import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 const useStyle = makeStyles({
    root: {
-      background: "white",
+      background: "#F4D7C0",
+      padding:3.5,
       "& .myButton": {
          border: "none",
       },
    },
-   //  counterText:{
-   //     textAlign: "center"
-   //  }
+    counterText:{
+       textAlign: "center"
+    }
 });
 const Counter = ({ data, inventory, handleIncrement, handleDecrement }) => {
    const classes = useStyle();

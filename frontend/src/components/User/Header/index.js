@@ -10,13 +10,16 @@ import { Link } from "react-router-dom";
 import "./Header.scss";
 import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux";
+import SearchIcon from "@mui/icons-material/Search";
+import Searchbox from "../SearchBox/SearchBox";
 
 const UserHeader = () => {
    const [badgeCounter, setBadgeCounter] = useState(0);
-   const countOfOrders = useSelector(state => state.cart.cartItems.length)
+   const [searchMode, setSearchMode] = useState(false);
+   const countOfOrders = useSelector((state) => state.cart.cartItems.length);
    useEffect(() => {
       setBadgeCounter(countOfOrders);
-   }, [countOfOrders,badgeCounter]);
+   }, [countOfOrders, badgeCounter]);
 
    return (
       <>
@@ -49,6 +52,14 @@ const UserHeader = () => {
                            <ShoppingCartIcon />
                         </Badge>
                      </Link>
+
+                     <Button
+                        onClick={() => setSearchMode(!searchMode)}
+                        sx={{ color: "white", mt: 1 }}
+                     >
+                        <SearchIcon />
+                     </Button>
+                     {searchMode && <Searchbox />}
                   </Box>
                   <Link to="/" className="link-style">
                      <Typography

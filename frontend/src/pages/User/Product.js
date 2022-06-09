@@ -16,7 +16,6 @@ const Card = styled("div")``;
 const CardBody = styled("div")`
    display: flex;
    justify-content: center;
-   //  background-image: url(${cardBg})
 `;
 const Image = styled("img")`
    height: 450px;
@@ -47,10 +46,10 @@ const CardP = styled("p")`
 const CardButton = styled("button")`
    background: #f4d7c0;
    border: none;
-   margin-top: 50px;
    padding: 5px 10px;
-   border-radius: 2px;
+   border-radius: 4px;
    cursor: pointer;
+   margin: 20px 10px;
 `;
 const ImageListStyled = styled(ImageList)`
    margin: 10px;
@@ -66,6 +65,13 @@ const Gallery = styled("div")`
    left: 50%;
    transform: translate(-30%, -100%);
 `;
+const StyledDiv = styled("div")`
+   display: flex;
+   justify-content: flex-end;
+   margin-left: 20px;
+   align-items: center;
+`;
+
 export default function ProductDetails() {
    let { id } = useParams();
    const dispatch = useDispatch();
@@ -106,10 +112,10 @@ export default function ProductDetails() {
       setIsAddedToCart(true);
    };
    const handleDecrement = (product) => {
-      setCount(product[1])
+      setCount(product[1]);
    };
    const handleIncrement = (product) => {
-     setCount(product[1])
+      setCount(product[1]);
    };
    return (
       <>
@@ -136,29 +142,30 @@ export default function ProductDetails() {
                <CardContent>
                   <Cardtext>
                      <CardName>{productDetail.name}</CardName>
-                     <CardP>{"دسته بندی: پوشاک > شلوار "}</CardP>
+                     <CardP>{"دسته بندی: پوشاک - شلوار "}</CardP>
                      <CardP>
-                        {"قیمت: "}
-                        {productDetail.price?.toLocaleString("fa")}
+                        {` قیمت: 
+                        ${productDetail.price?.toLocaleString("fa")} تومان`}
                      </CardP>
                   </Cardtext>
-
-                  <Counter
-                     inventory={productDetail.inventory}
-                     data={{productDetail,count}}
-                     handleIncrement={handleIncrement}
-                     handleDecrement={handleDecrement}
-                  />
-                  {productDetail.inventory ? (
-                     <CardButton
-                        disabled={isAddedToCart}
-                        onClick={handleAddToCart}
-                     >
-                        افزودن به سبد خرید
-                     </CardButton>
-                  ) : (
-                     <CardButton disabled>موجود نیست</CardButton>
-                  )}
+                  <StyledDiv>
+                     <Counter
+                        inventory={productDetail.inventory}
+                        data={{ productDetail, count }}
+                        handleIncrement={handleIncrement}
+                        handleDecrement={handleDecrement}
+                     />
+                     {productDetail.inventory ? (
+                        <CardButton
+                           disabled={isAddedToCart}
+                           onClick={handleAddToCart}
+                        >
+                           افزودن به سبد خرید
+                        </CardButton>
+                     ) : (
+                        <CardButton disabled>موجود نیست</CardButton>
+                     )}
+                  </StyledDiv>
                </CardContent>
             </CardBody>
             <CardP ref={descRef} style={{ color: "black" }}></CardP>
