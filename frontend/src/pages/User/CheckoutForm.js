@@ -70,7 +70,7 @@ const Checkout = () => {
    //    [orderData.quantity]: item.count,
    // })
    const orderItemsRedux = useSelector((state) => state.cart);
-   const sendData = () => {
+
       console.log(orderItems.cartItems);
       const orderItems = [];
       // orderItemsRedux?.cartItems.map((item) => {
@@ -83,20 +83,9 @@ const Checkout = () => {
       // });
      // console.log(orderData);
     
-      // setTimeout(() => {
-      //    OrdersApi.post({
-      //       customerDetails: orderItems.userInfo,
-      //       purchaseTotal: orderItems.cartTotalAmount,
-      //       orderDate: Date.now().getTime(),
-      //       orderStatus: 2,
-      //       delivery: "",
-      //       deliveredAt: null,
-      //    });
-      // }, 1500);
-   };
-   // useEffect(() => {
-   //    sendData()
-   // }, [orderItems]);
+     
+
+
    const phoneRegEx =
       /(0|\\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/gi;
    const dispatch = useDispatch();
@@ -125,7 +114,16 @@ const Checkout = () => {
             .max(13, "شماره ی  وارد شده نامعتبر میباشد!"),
       }),
       onSubmit: (values) => {
-         alert(JSON.stringify(values, null, 2));
+          setTimeout(() => {
+         OrdersApi.post({
+            customerDetails: orderItems.userInfo,
+            purchaseTotal: orderItems.cartTotalAmount,
+            orderDate: Date.now().getTime(),
+            orderStatus: 2,
+            delivery: "",
+            deliveredAt: null,
+         });
+      }, 1500);
          dispatch(getUserInfo(values));
 
         window.location.replace("http://localhost:5500/");
