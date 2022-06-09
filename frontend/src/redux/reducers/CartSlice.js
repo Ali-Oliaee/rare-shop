@@ -35,7 +35,7 @@ export const CartSlice = createSlice({
                position: "bottom-left",
             });
          }
-         localStorage.setItem("cart", JSON.stringify(state.cartItems));
+         // localStorage.setItem("cart", JSON.stringify(state.cartItems));
       },
       decreaseCart(state, action) {
          const itemIndex = state.cartItems.findIndex(
@@ -61,7 +61,7 @@ export const CartSlice = createSlice({
             // });
          }
 
-         localStorage.setItem("cart", JSON.stringify(state.cartItems));
+         // localStorage.setItem("cart", JSON.stringify(state.cartItems));
       },
       removeCartProducts(state, action) {
          const nextCartItems = state.cartItems.filter(
@@ -74,12 +74,12 @@ export const CartSlice = createSlice({
             position: "bottom-left",
          });
 
-         localStorage.setItem("cart", JSON.stringify(state.cartItems));
+         // localStorage.setItem("cart", JSON.stringify(state.cartItems));
          return state;
       },
       getUserInfo(state, action) {
          state.userInfo = action.payload;
-         localStorage.setItem("customer", JSON.stringify(state.userInfo));
+         // localStorage.setItem("customer", JSON.stringify(state.userInfo));
          
       },
       getTotals(state, action) {
@@ -108,8 +108,8 @@ export const CartSlice = createSlice({
       },
       clearCart(state, action) {
          state.cartItems = [];
-         localStorage.setItem("cart", JSON.stringify(state.cartItems));
-         toast.error("Cart cleared", { position: "bottom-left" });
+         // localStorage.setItem("cart", JSON.stringify(state.cartItems));
+         // toast.error("Cart cleared", { position: "bottom-left" });
       },
    },
 });

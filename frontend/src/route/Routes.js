@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import CheckoutForm from "../pages/User/CheckoutForm";
 import Notfoundpage from "../pages/User/NotFoundPage";
+import ResultPage from "../pages/User/Result";
 const Home = lazy(() => import("../pages/User/Home"));
 const Product = lazy(() => import("../pages/User/Product"));
 const Payment = lazy(() => import("../pages/User/Payment"));
@@ -107,6 +108,11 @@ export const routes = [
    {
       path: "/checkout/userInfo",
       component: <CheckoutForm/>,
+      isPrivate: false,
+   },
+   {
+      path: "/result",
+      component: <ResultPage/>,
       isPrivate: false,
    },
 ];

@@ -69,22 +69,17 @@ const Checkout = () => {
    //    [orderData.price]: item.productDetail.price,
    //    [orderData.quantity]: item.count,
    // })
-   const orderItemsRedux = useSelector((state) => state.cart);
+   const reduxData = useSelector((state) => state);
 
-      console.log(orderItems.cartItems);
-      const orderItems = [];
-      // orderItemsRedux?.cartItems.map((item) => {
-      //   {
-      //    name: item.productDetail.name,
-      //    thumbnail: item.productDetail.image,
-      //    price: item.productDetail.price,
-      //    quantity: item.count
-      //   }
-      // });
-     // console.log(orderData);
-    
-     
-
+   const orderItems = [];
+   reduxData?.cart.cartItems.map((item) => {
+      orderItems.push({
+         name: item.productDetail.name,
+         thumbnail: item.productDetail.image,
+         price: item.productDetail.price,
+         quantity: item.count,
+      });
+   });
 
    const phoneRegEx =
       /(0|\\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/gi;
@@ -114,19 +109,25 @@ const Checkout = () => {
             .max(13, "شماره ی  وارد شده نامعتبر میباشد!"),
       }),
       onSubmit: (values) => {
-          setTimeout(() => {
-         OrdersApi.post({
-            customerDetails: orderItems.userInfo,
-            purchaseTotal: orderItems.cartTotalAmount,
-            orderDate: Date.now().getTime(),
-            orderStatus: 2,
-            delivery: "",
-            deliveredAt: null,
-         });
-      }, 1500);
-         dispatch(getUserInfo(values));
+         try {
+            setTimeout(() => {
+               const res = OrdersApi.post({
+                  customerDetails: values,
+                  purchaseTotal: reduxData.cart.cartTotalAmount,
+                  orderItems: orderItems,
+                  orderDate: Date.now(),
+                  orderStatus: 3,
+                  delivery: values.date,
+                  deliveredAt: null,
+               });
+               localStorage.setItem("orderId", res.data.id);
+            }, 1500);
+         } catch (err) {
+            Promise.error(err);
+         }
+         // dispatch(getUserInfo(values));
 
-        window.location.replace("http://localhost:5500/");
+         window.location.replace("http://localhost:5500/");
       },
    });
    return (

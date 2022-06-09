@@ -2,11 +2,21 @@ import { configureStore } from "@reduxjs/toolkit";
 import adminReducer from "./reducers/adminSlice";
 import loadingReducer from "./reducers/LoadingSlice";
 import cartOrderReducer from "./reducers/CartSlice";
+import storage from "redux-persist/lib/storage";
+import { combineReducers } from "redux";
+import { persistReducer } from "redux-persist";
+
+const reducers = combineReducers({
+   admin: adminReducer,
+   loading: loadingReducer,
+   cart: cartOrderReducer,
+});
+const persistConfig = {
+   key: "root",
+   storage,
+};
+const persistedReducer = persistReducer(persistConfig, reducers);
 export const store = configureStore({
    devTools: true,
-   reducer: {
-      admin: adminReducer,
-      loading: loadingReducer,
-      cart: cartOrderReducer
-   },
+   reducer: persistedReducer,
 });
