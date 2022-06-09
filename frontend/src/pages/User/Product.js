@@ -106,12 +106,10 @@ export default function ProductDetails() {
       setIsAddedToCart(true);
    };
    const handleDecrement = (product) => {
-      console.log(product[1], count);
       setCount(product[1]);
    };
    const handleIncrement = (product) => {
       setCount(product[1]);
-      console.log(product[1], count);
    };
    return (
       <>

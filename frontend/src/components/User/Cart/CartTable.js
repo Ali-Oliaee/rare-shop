@@ -29,11 +29,9 @@ export default function CartTable({ orders, handleDelete }) {
    const classes = useStyle();
    console.log(orders);
    const handleDecrement = (product) => {
-      // console.log({productDetail,count});
       dispatch(decreaseCart(product[0]));
    };
    const handleIncrement = (product) => {
-      // console.log(count);
       dispatch(addToCart(product[0]));
    };
    const [cartTotalQuantity, cartTotalAmount] = JSON.parse(

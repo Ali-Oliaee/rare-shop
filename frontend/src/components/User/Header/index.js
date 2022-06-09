@@ -84,6 +84,23 @@ const UserHeader = () => {
                      <Link to="/products/category/3">اکسسوری</Link>
                   </li>
                </ul>
+               {/* <div>
+                  <ul className="links-ul">
+                     <li><Link to="/products/category/1">شلوار</Link></li>
+                     <li><Link to="/products/category/1">تیشرت و شومیز</Link></li>
+                     <li><Link to="/products/category/1">پیراهن</Link></li>
+                  </ul>
+                  <ul className="links-ul">
+                     <li>کفش اسپرت</li>
+                     <li>کفش مجلسی</li>
+                     <li>کیف</li>
+                  </ul>
+                  <ul className="links-ul">
+                     <li>عینک</li>
+                     <li> گردنبند و دستبند</li>
+                     <li>انگشتر و گوشواره</li>
+                  </ul>
+               </div> */}
             </Container>
          </AppBar>
       </>
