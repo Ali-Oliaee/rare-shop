@@ -4,9 +4,14 @@ import * as Yup from "yup";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { OrdersApi } from "../../api/OrdersApi";
-import { DatePicker } from "jalali-react-datepicker";
+// import { DatePicker } from "jalali-react-datepicker";
 import { ProductsApi } from "../../api/Products";
-
+import DatePicker from "react-multi-date-picker";
+import TimePicker from "react-multi-date-picker/plugins/time_picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+import DateObject from "date-object";
+import DatePanel from "react-multi-date-picker/plugins/date_panel";
 const FormSubmit = styled("form")`
    display: flex;
    flex-direction: column;
@@ -40,27 +45,16 @@ const MyButton = styled("button")`
    background: #bb906d;
 `;
 const Checkout = () => {
-   const [orderData, setOrderData] = useState({
-      customerDetail: {
-         firstName: "",
-         lastName: "",
-         phone: null,
-         shippingAddress: "",
-      },
-      orderDate: null,
-      purchaseTotal: null,
-      orderStatus: null,
-      delivery: null,
-      deliveredAt: null,
-      orderItems: [
-         {
-            name: "",
-            thumbnail: "",
-            price: null,
-            quantity: null,
-         },
-      ],
-   });
+   const [deliverDate, setDeliverDate] = useState(
+      [1, 2, 3].map((number) =>
+         new DateObject({ calendar: "persian", locale: "fa" }).set({
+            day: number,
+            hour: number,
+            minute: number,
+            second: number,
+         })
+      )
+   );
    const reduxData = useSelector((state) => state);
 
    const orderItems = [];
@@ -80,9 +74,9 @@ const Checkout = () => {
       initialValues: {
          firstName: "",
          lastName: "",
-         date: null,
          phone: null,
          address: "",
+         date: null
       },
       validationSchema: Yup.object({
          firstName: Yup.string()
@@ -113,7 +107,6 @@ const Checkout = () => {
             });
             try {
                reduxData?.cart.cartItems.map(async (item) => {
-                  console.log(item);
                   await ProductsApi.patch(item.productDetail.id, {
                      inventory: item.productDetail.inventory - item.count,
                   });
@@ -123,7 +116,7 @@ const Checkout = () => {
             }
 
             localStorage.setItem("orderId", res.data.id);
-             window.location.replace("http://localhost:5500/");
+            window.location.replace("http://localhost:5500/");
          } catch (err) {
             Promise.error(err);
          }
@@ -190,15 +183,6 @@ const Checkout = () => {
                   formik.errors.phone &&
                   formik.errors.phone}
             </p>
-            {/* <FiledInput
-               type="text"
-               placeholder="تاریخ تحویل"
-               id="delivery-date"
-               name="date"
-               onChange={formik.handleChange}
-               onBlur={formik.handleBlur}
-               value={formik.values.date}
-            /> */}
             <DatePicker
                placeholder="انتخاب تاریخ"
                locale="fa-IR"
@@ -209,6 +193,21 @@ const Checkout = () => {
                   formik.values.date = deliveryDate.getTime();
                }}
             />
+            {/* <DatePicker
+            placeholder="انتخاب زمان تحویل"
+               value={deliverDate}
+               onChange={setDeliverDate}
+               minDate={new DateObject({ calendar: persian })}
+               maxDate={new DateObject({ calendar: persian }).set("date", 15)}
+               calendar={persian}
+               locale={persian_fa}
+               calendarPosition="bottom-right"
+               plugins={[
+                  <TimePicker position="bottom" />,
+                  // <DatePanel markFocused />,
+               ]}
+               format="YYYY/MM/DD HH:mm:ss"
+            /> */}
             <p className="error">
                {formik.errors.date && formik.touched.date && formik.errors.date}
             </p>
