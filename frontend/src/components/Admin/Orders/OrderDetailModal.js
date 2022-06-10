@@ -103,7 +103,17 @@ export default function OrderDetailModal({ data, isDelivered, clickHandler }) {
                      .locale("fa")
                      .format("YYYY/MM/DD")}`}</Typography>
                ) : (
-                  <Button onClick={() => clickHandler(data.id)} variant="contained" color="success" sx={{m:2}}>تحویل شد</Button>
+                  <Button
+                     onClick={() => {
+                        clickHandler(data.id);
+                        handleClose();
+                     }}
+                     variant="contained"
+                     color="success"
+                     sx={{ m: 2 }}
+                  >
+                     تحویل شد
+                  </Button>
                )}
             </Box>
          </Modal>
