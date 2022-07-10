@@ -16,6 +16,7 @@ import Searchbox from "../SearchBox/SearchBox";
 const UserHeader = () => {
    const [badgeCounter, setBadgeCounter] = useState(0);
    const [searchMode, setSearchMode] = useState(false);
+   const [active, setActive] = useState(false);
    const countOfOrders = useSelector((state) => state.cart.cartItems.length);
    useEffect(() => {
       setBadgeCounter(countOfOrders);
@@ -23,7 +24,7 @@ const UserHeader = () => {
 
    return (
       <>
-         <AppBar sx={{ background: "black" }} position="static">
+         <AppBar sx={{ background: "#90DBF4", boxShadow: 0 }} position="static">
             <Container maxWidth="xl">
                <Toolbar disableGutters>
                   <Box sx={{ flexGrow: 1, display: "flex" }}>
@@ -74,33 +75,112 @@ const UserHeader = () => {
                   </Link>
                </Toolbar>
                <ul className="links-ul">
-                  <li>
+                  <li
+                     onMouseEnter={() => {
+                        setActive(1);
+                     }}
+                     onMouseLeave={() => {
+                        setActive(0);
+                     }}
+                  >
                      <Link to="/products/category/1">پوشاک</Link>
+                     <div className="subCategorySlide">
+                        {active == 1 && (
+                           <>
+                              <div className="triangle-down"></div>{" "}
+                              <ul className="links-ul">
+                                 <li>
+                                    <Link to="/products/category/1">شلوار</Link>
+                                 </li>
+                                 <li>
+                                    <Link to="/products/category/1">
+                                       تیشرت و شومیز
+                                    </Link>
+                                 </li>
+                                 <li>
+                                    <Link to="/products/category/1">
+                                       پیراهن
+                                    </Link>
+                                 </li>
+                              </ul>
+                           </>
+                        )}
+                     </div>
                   </li>
-                  <li>
+                  <li
+                     onMouseEnter={() => {
+                        setActive(2);
+                     }}
+                     onMouseLeave={() => {
+                        setActive(0);
+                     }}
+                  >
                      <Link to="/products/category/2">کیف و کفش</Link>
+                     <div className="subCategorySlide">
+                        {active == 2 && (
+                           <>
+                              <div className="triangle-down"></div>
+                              <ul className="links-ul">
+                                 <li>
+                                    <Link to="/products/category/1">
+                                       کفش اسپرت
+                                    </Link>
+                                 </li>
+                                 <li>
+                                    <Link to="/products/category/1">
+                                       کفش مجلسی
+                                    </Link>
+                                 </li>
+                                 <li>
+                                    <Link to="/products/category/1">کیف</Link>
+                                 </li>
+                              </ul>
+                           </>
+                        )}
+                     </div>
+                  </li>
+                  <li
+                     onMouseEnter={() => {
+                        setActive(3);
+                     }}
+                     onMouseLeave={() => {
+                        setActive(0);
+                     }}
+                  >
+                     <Link to="/products/category/3">اکسسوری</Link>
+                     <div className="subCategorySlide">
+                        {active == 3 && (
+                           <>
+                              <div className="triangle-down"></div>
+                              <ul className="links-ul">
+                                 <li>
+                                    <Link to="/products/category/1">عینک</Link>
+                                 </li>
+                                 <li>
+                                    <Link to="/products/category/2">
+                                       {" "}
+                                       گردنبند و دستبند
+                                    </Link>
+                                 </li>
+                                 <li>
+                                    <Link to="/products/category/3">
+                                       انگشتر و گوشواره
+                                    </Link>
+                                 </li>
+                              </ul>
+                           </>
+                        )}
+                     </div>
                   </li>
                   <li>
-                     <Link to="/products/category/3">اکسسوری</Link>
+                     <Link to="/products/category/4">لوازم آرایش</Link>
+                     {/* <div>
+                        <ul>
+                           <li><Link></Link></li>
+                        </ul>
+                     </div> */}
                   </li>
                </ul>
-               {/* <div>
-                  <ul className="links-ul">
-                     <li><Link to="/products/category/1">شلوار</Link></li>
-                     <li><Link to="/products/category/1">تیشرت و شومیز</Link></li>
-                     <li><Link to="/products/category/1">پیراهن</Link></li>
-                  </ul>
-                  <ul className="links-ul">
-                     <li>کفش اسپرت</li>
-                     <li>کفش مجلسی</li>
-                     <li>کیف</li>
-                  </ul>
-                  <ul className="links-ul">
-                     <li>عینک</li>
-                     <li> گردنبند و دستبند</li>
-                     <li>انگشتر و گوشواره</li>
-                  </ul>
-               </div> */}
             </Container>
          </AppBar>
       </>

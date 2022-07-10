@@ -1,9 +1,8 @@
 import React, { useState, useRef } from "react";
-import { FileApi } from "../../../api/FileApi";
-import { BASE_URL } from "../../../core/constants";
 import MyModal from "./Modal";
 import { AdminApi } from "../../../api/AdminApi";
 import { ProductsApi } from "../../../api/Products";
+import Button from "@mui/material/Button";
 export default function NewProductModal() {
    const [newProduct, setNewProduct] = useState({
       name: "",
@@ -54,7 +53,7 @@ export default function NewProductModal() {
             handleUploadFile={handleUploadFile}
             newProduct={newProduct}
             setNewProduct={setNewProduct}
-            buttonName={"کالای جدید"}
+            buttonName={<Button sx={{backgroundColor:"#ffea00", marginBottom:1}}>کالای جدید</Button>}
             addProduct={addProduct}
             imgRef={imgRef}
          />

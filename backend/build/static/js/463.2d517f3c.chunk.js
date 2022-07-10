@@ -1,0 +1,1 @@
+(self.webpackChunkrare_shop=self.webpackChunkrare_shop||[]).push([[463],{25463:function(){}}]);

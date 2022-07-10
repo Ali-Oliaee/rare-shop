@@ -32,6 +32,7 @@ class Service {
 
          (error) => {
             if (error.response.status === 401) {
+               console.log(error);
                localStorage.removeItem("token");
                window.location.pathname = "/auth/login";
             }

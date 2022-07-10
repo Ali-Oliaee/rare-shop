@@ -24,7 +24,11 @@ function ResultPage(props) {
       }
    }, [searchParams]);
    setTimeout(() => {
-      window.location.replace("/")
+      if (currentParams.result === "success"){
+         window.location.replace("/")
+      }else {
+         window.location.replace("/checkout/cart")     
+      }
    }, 10000);
    return (
       <div>

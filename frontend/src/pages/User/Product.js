@@ -21,6 +21,7 @@ const Image = styled("img")`
    height: 450px;
    width: 370px;
    border-radius: 10px;
+   margin-top: 20px;
    transition: width 2s ease-out;
    &:hover {
       width: 400px;
@@ -29,25 +30,24 @@ const Image = styled("img")`
 const CardContent = styled("div")`
    height: 320px;
    width: 500px;
-   background: black;
+   background:#ffe680;
    margin-top: 50px;
    border-radius: 10px 0 0 10px;
 `;
 const Cardtext = styled("div")``;
 const CardName = styled("h1")`
-   color: #e6bc98;
+   color: #00004d;
    margin-right: 40px;
 `;
 const CardP = styled("p")`
-   color: #f4d7c0;
+   color: #00004d;
    margin-right: 40px;
    font-size: 23px;
 `;
 const CardButton = styled("button")`
-   background: #f4d7c0;
+   background: #ff5d8f;
    border: none;
    padding: 5px 10px;
-   border-radius: 4px;
    cursor: pointer;
    margin: 20px 10px;
 `;
@@ -80,6 +80,7 @@ export default function ProductDetails() {
    const [show, setShow] = useState(false);
    const [count, setCount] = useState(1);
    const [isAddedToCart, setIsAddedToCart] = useState(false);
+
    const descRef = useRef();
    const getDetails = async () => {
       const res = await ProductsApi.get(id);
@@ -119,17 +120,19 @@ export default function ProductDetails() {
             <CardBody>
                <ImageListStyled onClick={handleShow} cols={1} rowHeight={100}>
                   {images?.map((item) => (
-                     <ImageListItemStyled key={uuidv4()}>
-                        <img
-                           src={BASE_URL + `${item}`}
-                           srcSet={
-                              BASE_URL +
-                              `${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`
-                           }
-                           alt={item}
-                           loading="lazy"
-                        />
-                     </ImageListItemStyled>
+                     <div onClick={() => alert("hello")}>
+                        <ImageListItemStyled key={uuidv4()}>
+                           <img
+                              src={BASE_URL + `${item}`}
+                              srcSet={
+                                 BASE_URL +
+                                 `${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`
+                              }
+                              alt={item}
+                              loading="lazy"
+                           />
+                        </ImageListItemStyled>
+                     </div>
                   ))}
                </ImageListStyled>
                <Image src={BASE_URL + productDetail.image} />

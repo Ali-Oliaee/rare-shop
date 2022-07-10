@@ -32,7 +32,7 @@ export default function OrderDetailModal({ data, isDelivered, clickHandler }) {
    let deliveredAt = new Date(data.deliveredAt);
    return (
       <div>
-         <Button style={{ margin: 0 }} onClick={handleOpen}>
+         <Button style={{ margin: 0, backgroundColor:"#ffea00" }} onClick={handleOpen}>
             بررسی سفارش
          </Button>
          <Modal

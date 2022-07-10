@@ -8,8 +8,6 @@ import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
-import { store } from './redux/store'
-import { Provider } from 'react-redux'
 import Toastcontainer from "./components/Admin/Toast-Alert/ToastContainer";
 // Create rtl cache
 const cacheRtl = createCache({

@@ -6,51 +6,37 @@ import Container from "@mui/material/Container";
 import { NavLink } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 const useStyle = makeStyles({
-   root:{
-         display: "flex",
-         listStyle: "none",
-         justifyContent: "center",
-         marginTop: 0,
-         "& li a": {
-           textDecoration: "none",
-           margin: "0 1rem",
-           padding: "1rem",
-           cursor: "pointer",
-           fontSize: 20,
-           color: "white",
-         },
-         "& li a:hover" :{
-           color: "#856047"
-         }
-       }
-       
-   
-})
-const Header = () => {
-   const classes = useStyle()
-   const [active, setActive] = useState(1);
-   const isActiveStyle = () => {
-    
-      return {
-         color: "#856047",
+   root: {
+      display: "flex",
+      listStyle: "none",
+      justifyContent: "center",
+      marginTop: 0,
+      "& li a": {
          textDecoration: "none",
-      };
-   };
-   const notActiveStyle = () => {
-      return {
+         margin: "0 1rem",
+         padding: "1rem",
+         cursor: "pointer",
+         fontSize: 20,
          color: "white",
-         textDecoration: "none",
-      };
+      },
+      "& li a:hover": {
+         color: "#F4ED64",
+      },
+   },
+});
+const Header = () => {
+   const classes = useStyle();
+   const isActiveStyle = {
+      color: "#F4ED64",
+      textDecoration: "none",
    };
+
    return (
       <>
-         <AppBar sx={{ background: "black" }} position="static">
+         <AppBar sx={{ background: "#90dbf4" }} position="static">
             <Container maxWidth="xl">
-               <Toolbar disableGutters>
-                  <NavLink
-                     to="/"
-                     className="link-style"
-                  >
+               <Toolbar disableGutters sx={{display:"flex", justifyContent:"space-between"}}>
+                  <NavLink to="/" className="link-style">
                      <Typography
                         className="logo-shop"
                         variant="h6"
@@ -61,34 +47,56 @@ const Header = () => {
                         Rare Shop
                      </Typography>
                   </NavLink>
+                  <div
+                     onClick={() => {
+                        localStorage.removeItem("token");
+                     }}
+                  >
+                     <NavLink to="/" className="link-style">
+                        <Typography
+                           className="logo-shop"
+                           variant="h6"
+                           noWrap
+                           component="p"
+                           sx={{ marginTop: "auto", fontSize: 18 }}
+                        >
+                           خروج از سایت
+                        </Typography>
+                     </NavLink>
+                  </div>
                </Toolbar>
                <ul className={classes.root}>
-                  <li onClick={() => setActive(1)}>
+                  <li>
                      <NavLink
-                        style={active === 1 ? isActiveStyle : notActiveStyle}
                         to="/dashboard/products"
+                        style={({ isActive }) =>
+                           isActive ? isActiveStyle : undefined
+                        }
                      >
                         کالا ها
                      </NavLink>
                   </li>
-                  <li  onClick={() => setActive(2)}>
+                  <li>
                      <NavLink
-                        style={active === 2 ? isActiveStyle : notActiveStyle}
                         to="/dashboard/inventory"
+                        style={({ isActive }) =>
+                           isActive ? isActiveStyle : undefined
+                        }
                      >
                         موجودی و قیمت ها
                      </NavLink>
                   </li>
-                  <li  onClick={() => setActive(3)}>
+                  <li>
                      <NavLink
-                        style={active === 3 ? isActiveStyle : notActiveStyle}
                         to="/dashboard/order"
+                        style={({ isActive }) =>
+                           isActive ? isActiveStyle : undefined
+                        }
                      >
                         سفارش ها
                      </NavLink>
                   </li>
                </ul>
-              
             </Container>
          </AppBar>
       </>

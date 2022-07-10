@@ -22,7 +22,6 @@ const useStyle = makeStyles({
       boxShadow: 24,
       padding: 40,
       "& .MuiFormControl-root": {
-         // width: "100%",
          margin: 10,
       },
       "& .MuiButton-root": {
@@ -33,7 +32,6 @@ const useStyle = makeStyles({
    },
    fileButton: {
       float: "left",
-      // marginBottom: 20,
    },
    ".MuiButtonBase-root svg": {
       color: "black",
@@ -55,11 +53,6 @@ const MyModal = (props) => {
    const handleClose = () => setOpen(false);
    const classes = useStyle();
    const p2e = (s) => s.replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
-   //filter harf
-   const saveClickHandler = () => {
-      handleClose();
-      setNewProduct();
-   };
    const handleChangeValidate = (event) => {
       setNewProduct({
          ...newProduct,
@@ -67,19 +60,17 @@ const MyModal = (props) => {
       });
       if (event.target.value.match(/\d/g)) {
          setErrorText("");
-         // setPhone(event.target.value);
       } else {
          setErrorText("لطفا عدد وارد کنید!");
       }
    };
    return (
       <div>
-         <Button
-            sx={{ color: "black", transform: "rotate(180deg)" }}
+         <div
             onClick={handleOpen}
          >
             {buttonName}
-         </Button>
+         </div>
 
          <Modal
             open={open}
@@ -215,7 +206,10 @@ const MyModal = (props) => {
                   setNewProduct={setNewProduct}
                />
                <Button
-                  onClick={addProduct}
+                  onClick={() => {
+                     addProduct();
+                     handleClose();
+                  }}
                   variant="contained"
                   component="label"
                >

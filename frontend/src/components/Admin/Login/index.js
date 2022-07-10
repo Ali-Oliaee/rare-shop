@@ -43,7 +43,8 @@ const MyButton = styled("button")`
    margin: auto;
    text-aligne: center;
    width: 100%;
-   background: #bb906d;
+   margin-bottom: 10px;
+   background: #a3c4f3;
 `;
 const Login = () => {
    const dispatch = useDispatch();
@@ -75,7 +76,7 @@ const Login = () => {
                   dispatch(setAdminInfo(token));
                   toast.success("ورود با موفقیت انجام شد");
                   navigate("/dashboard/products");
-               }else{
+               } else {
                   toast.error("نام کاربری یا رمز عبور صحیح نمی باشد :(");
                }
             });
@@ -119,7 +120,15 @@ const Login = () => {
 
             <MyButton type="submit">ورود</MyButton>
 
-            <Link to="/">بازگشت به سایت</Link>
+            <Link
+               style={{
+                  color: "  #A3C4F3",
+                  textDecoration: "none",
+               }}
+               to="/"
+            >
+               بازگشت به سایت
+            </Link>
          </FormSubmit>
       </Container>
    );

@@ -4,7 +4,6 @@ import { ProductsApi } from "../../api/Products";
 import { Grid } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import { makeStyles } from "@mui/styles";
-import { textAlign } from "@mui/system";
 import Breadcrumb from "../../components/User/Bradcrumb";
 import { useParams } from "react-router-dom";
 
@@ -13,9 +12,8 @@ const useStyle = makeStyles({
       "& .MuiButtonBase-root svg": {
          transform: "rotate(180deg)",
       },
-      "& .paginationStyle": {
-         textAlign: "center",
-         margin: "auto",
+      "& .MuiPagination-root ul": {
+         justifyContent: "center"
       },
    },
 });
@@ -27,9 +25,9 @@ const AllProducts = () => {
    const cat = useParams()
    const getProducts = async () => {
       const clothesRes = await ProductsApi.gets({
-         params: { _page: page, _limit: 6, categoryId: cat.category },
+         params: { _page: page, _limit: 8, categoryId: cat.category },
       });
-      setCount(Math.ceil(clothesRes.headers["x-total-count"] / 6));
+      setCount(Math.ceil(clothesRes.headers["x-total-count"] / 8));
       setProducts(clothesRes.data);
    };
 
@@ -47,10 +45,10 @@ const AllProducts = () => {
    return (
       <div className={classes.root}>
          <Breadcrumb category={categoryName} />
-         <Grid container>
-            {products.map((good) => (
-               <Grid item m="auto" my={3} xs={10} md={4.8} key={good.id}>
-                  <ProductCard data={good} />
+         <Grid container ml={3}>
+            {products.map((good, index) => (
+               <Grid item my={3} xs={12} sm={6} md={4} lg={3} key={good.id}>
+                  <ProductCard data={good}/>
                </Grid>
             ))}
          </Grid>
@@ -58,7 +56,6 @@ const AllProducts = () => {
             page={page}
             count={count}
             onChange={handlePageChange}
-            className="paginationStyle"
          />{" "}
       </div>
    );

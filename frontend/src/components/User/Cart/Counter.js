@@ -8,7 +8,7 @@ import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 const useStyle = makeStyles({
    root: {
-      background: "#F4D7C0",
+      background: "#ff5d8f",
       padding:3.5,
       "& .myButton": {
          border: "none",

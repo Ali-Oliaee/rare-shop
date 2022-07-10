@@ -1,17 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { OrdersApi } from "../../api/OrdersApi";
-// import { DatePicker } from "jalali-react-datepicker";
+import { DatePicker } from "jalali-react-datepicker";
 import { ProductsApi } from "../../api/Products";
-import DatePicker from "react-multi-date-picker";
-import TimePicker from "react-multi-date-picker/plugins/time_picker";
-import persian from "react-date-object/calendars/persian";
-import persian_fa from "react-date-object/locales/persian_fa";
-import DateObject from "date-object";
-import DatePanel from "react-multi-date-picker/plugins/date_panel";
 const FormSubmit = styled("form")`
    display: flex;
    flex-direction: column;
@@ -24,7 +18,7 @@ const FormSubmit = styled("form")`
    padding: 2rem;
    textalign: center;
    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-   background: #e6bc98;
+   background: #9381ff;
 `;
 const FiledInput = styled("input")`
    width: 80%;
@@ -42,21 +36,10 @@ const MyButton = styled("button")`
    margin: auto;
    text-aligne: center;
    width: 10rem;
-   background: #bb906d;
+   background: #ff5d8f;
 `;
 const Checkout = () => {
-   const [deliverDate, setDeliverDate] = useState(
-      [1, 2, 3].map((number) =>
-         new DateObject({ calendar: "persian", locale: "fa" }).set({
-            day: number,
-            hour: number,
-            minute: number,
-            second: number,
-         })
-      )
-   );
    const reduxData = useSelector((state) => state);
-
    const orderItems = [];
    reduxData?.cart.cartItems.map((item) => {
       orderItems.push({
@@ -76,7 +59,7 @@ const Checkout = () => {
          lastName: "",
          phone: null,
          address: "",
-         date: null
+         date: null,
       },
       validationSchema: Yup.object({
          firstName: Yup.string()
@@ -120,7 +103,6 @@ const Checkout = () => {
          } catch (err) {
             Promise.error(err);
          }
-         // dispatch(getUserInfo(values));
       },
    });
    return (
@@ -193,30 +175,11 @@ const Checkout = () => {
                   formik.values.date = deliveryDate.getTime();
                }}
             />
-            {/* <DatePicker
-            placeholder="انتخاب زمان تحویل"
-               value={deliverDate}
-               onChange={setDeliverDate}
-               minDate={new DateObject({ calendar: persian })}
-               maxDate={new DateObject({ calendar: persian }).set("date", 15)}
-               calendar={persian}
-               locale={persian_fa}
-               calendarPosition="bottom-right"
-               plugins={[
-                  <TimePicker position="bottom" />,
-                  // <DatePanel markFocused />,
-               ]}
-               format="YYYY/MM/DD HH:mm:ss"
-            /> */}
             <p className="error">
                {formik.errors.date && formik.touched.date && formik.errors.date}
             </p>
             <div>
                <MyButton type="submit">رفتن به صفحه پرداخت</MyButton>
-
-               {/* <MyButton style={{ background: "red" }} type="submit">
-                  انصراف
-               </MyButton> */}
             </div>
          </FormSubmit>
       </>

@@ -44,10 +44,11 @@ const Edit = ({ row }) => {
             row={row}
             handleUploadFile={handleUploadFile}
             newProduct={updatedData}
-            buttonName={<EditIcon />}
+            buttonName={<EditIcon sx={{color:"#6d23b6"}}/>}
             addProduct={updateProduct}
             setNewProduct={setUpdatedData}
             imgRef={imgRef}
+            
          />
       </div>
    );

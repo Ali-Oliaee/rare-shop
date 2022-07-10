@@ -35,7 +35,7 @@ server.use((req, res, next) => {
    const token = req.headers.token || req.headers.Token;
    if (protectionRule && !token) return res.status(401).send();
    // if (token && !protectionRule) return next();
-   if(!protectionRule)return next()
+   //if(!protectionRule)return next()
    if (!token) return next();
 
    jwt.verify(token, AUTH_JWT_SECRET, (err, decoded) => {
@@ -58,6 +58,7 @@ server.use((req, res, next) => {
       next(); // authorized
    });
 });
+
 
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares);

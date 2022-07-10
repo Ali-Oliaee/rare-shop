@@ -21,24 +21,26 @@ import moment from "jalali-moment";
 import OrderDetailModal from "./OrderDetailModal";
 const useStyle = makeStyles({
    root: {
-      background: "#E6BC98",
+      background: "#9381ff",
       margin: "auto",
-      width: "70%",
+      width: "80%",
       padding: 50,
       overflow: "hidden",
-      border: "1px solid black",
+      borderRadius: 25,
+      marginTop: 10,
+      fontSize: 18,
 
       "& .MuiButtonBase-root svg": {
          transform: "rotate(180deg)",
       },
       "& .row_cell": {
-         width: 300,
+         width: 250,
          textAlign: "center",
       },
       "& .MuiTableCell-head ": {
-         background: "black",
+         background: "#ff5d8f",
          color: "white",
-         padding: 40,
+         padding: 30,
       },
       "& .MuiButton-root": {
          background: "black",

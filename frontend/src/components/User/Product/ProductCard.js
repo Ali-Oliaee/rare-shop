@@ -5,22 +5,44 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { BASE_URL } from "../../../core/constants";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
+import { makeStyles } from "@mui/styles";
 
+const useStyle = makeStyles({
+   root: {
+      "& .MuiButton-root": {
+         backgroundColor: "#bdb2ff",
+         marginRight: "8rem",
+         marginBottom: "10px",
+         padding: "7px 9px",
+         borderRadius: 0,
+         color: "black"
+      },
+      "& .MuiButton-root:hover": {
+         backgroundColor: "#bdb2ff",
+         boxShadow: `-5px 5px 2px #FF99C8`
+      },
+   },
+});
 export default function ProductCard({ data }) {
+   const classes = useStyle();
    return (
-      <Link to={`/product/${data.id}`} className="link-style" >
+      <Link to={`/product/${data.id}`} className="link-style">
          <Card
+            className={classes.root}
             sx={{
-               display: "flex",
-               background: "#F4D7C0",
-               borderRadius: 0,
+               // display: "flex",
+               width: 270,
+               background: "#FAF59A",
+               border: "none",
                padding: 1,
+               borderRadius: 4,
             }}
          >
             <CardMedia
                component="img"
-               sx={{ width: 280, height: 220, borderRadius: 3 }}
+               sx={{ width: 250, height: 250, borderRadius: 4 }}
                image={BASE_URL + data.image}
                alt="عکس کالا"
             />
@@ -29,7 +51,7 @@ export default function ProductCard({ data }) {
                   sx={{
                      display: "flex",
                      flexDirection: "column",
-                     width: 180,
+                     // width: 180,
                      fontSize: 20,
                   }}
                >
@@ -37,15 +59,16 @@ export default function ProductCard({ data }) {
                      {data.name}
                   </Typography>
                   <Typography
-                     mt={7}
+                     mt={2}
                      ml={2}
-                     fontSize={20}
+                     fontSize={18}
                      variant="subtitle1"
                      component="div"
                   >
-                     {" تومان " + data.price.toLocaleString("fa")}
+                     {`قیمت: ${data.price.toLocaleString("fa")} تومان`}
                   </Typography>
                </CardContent>
+               <Button>افزودن به سبد خرید</Button>
             </Box>
          </Card>
       </Link>

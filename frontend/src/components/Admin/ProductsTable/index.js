@@ -21,24 +21,23 @@ import Edit from "./Edit";
 import { Link } from "react-router-dom";
 const useStyle = makeStyles({
    root: {
-      background: "#E6BC98",
+      background: "#9381ff",
       margin: "auto",
-      width: "70%",
+      width: "80%",
       padding: 50,
       overflow: "hidden",
-      border: "1px solid black",
+      borderRadius: 25,
+      marginTop: 10,
+      fontSize: 18,
 
       "& .row_cell": {
-         width: 300,
+         width: 250,
          textAlign: "center",
       },
-      "& .MuiTableRow-root": {
-         width: "100%",
-      },
       "& .MuiTableCell-head ": {
-         background: "black",
+         background: "#ff5d8f",
          color: "white",
-         padding: 40,
+         padding: 30,
       },
       "& .MuiTableContainer-root::-webkit-scrollbar": {
          display: "none" /* for Chrome, Safari, and Opera */,
@@ -116,15 +115,15 @@ export default function AllProductsTable() {
          <Paper sx={{ borderRadius: 0 }}>
             <TableContainer
                className={classes.scrollClass}
-               sx={{ maxHeight: 440, overflowY: "scroll" }}
+               sx={{ maxHeight: 410, overflowY: "scroll" }}
             >
                <Table stickyHeader aria-label="sticky table">
                   <TableHead>
                      <TableRow className={classes.table_row}>
-                        <TableCell style={{ minWidth: 60, maxHeight: 60 }}>
+                        <TableCell style={{ minWidth: 60, maxHeight: 50 }}>
                            تصویر
                         </TableCell>
-                        <TableCell style={{ minWidth: 100 }}>
+                        <TableCell style={{ minWidth: 80 }}>
                            نام محصول
                         </TableCell>
                         <TableCell style={{ minWidth: 100 }}>
@@ -174,7 +173,12 @@ export default function AllProductsTable() {
                                  </TableCell>
 
                                  <TableCell>
-                                    <Link className="link-style" to={`/product/${row.id}`}>{row.name}</Link>
+                                    <Link
+                                       className="link-style"
+                                       to={`/product/${row.id}`}
+                                    >
+                                       {row.name}
+                                    </Link>
                                  </TableCell>
                                  <TableCell>
                                     {findCategoryName(row.categoryId) +
@@ -182,7 +186,13 @@ export default function AllProductsTable() {
                                        findSubCategoryName(row.subCategoryId)}
                                  </TableCell>
                                  <TableCell>
-                                    <div style={{ display: "flex" }}>
+                                    <div
+                                       style={{
+                                          display: "flex",
+                                          justifyContent: "space-around",
+                                          alignItems: "center",
+                                       }}
+                                    >
                                        <Delete
                                           onFinish={getProducts}
                                           id={row.id}

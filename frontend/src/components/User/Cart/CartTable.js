@@ -120,7 +120,7 @@ export default function CartTable({ orders, handleDelete }) {
                "fa"
             )} تومان`}</Typography>
             <Link style={{ textDecoration: "none" }} to="/checkout/userInfo">
-               <Button variant="contained" sx={{ background: "green" }}>
+               <Button variant="contained" sx={{ backgroundColor: "green", marginLeft: 20 }}>
                   نهایی کردن سبد خرید
                </Button>
             </Link>

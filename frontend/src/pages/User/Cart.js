@@ -4,10 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import {
    removeCartProducts,
    getTotals,
-   clearCart,
 } from "../../redux/reducers/CartSlice";
 import Lottie from "react-lottie";
 import { Typography } from "@mui/material";
+import styled from "styled-components";
+const Wrapper = styled("div")`
+background: linear-gradient(0.25turn, #00c3ff,#ffff1c);
+padding: 50px;
+margin: 0;
+`
 const Cart = () => {
    const [orders, setOrders] = useState([]);
 
@@ -31,7 +36,7 @@ const Cart = () => {
       },
    };
    return (
-      <>
+      <Wrapper>
          {orders?.cartItems?.length > 0 ? (
             <CartTable orders={orders} handleDelete={handleDelete} />
          ) : (
@@ -42,7 +47,7 @@ const Cart = () => {
                </Typography>
             </>
          )}
-      </>
+      </Wrapper>
    );
 };
 
