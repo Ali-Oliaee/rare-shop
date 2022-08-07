@@ -11,13 +11,13 @@ import App from './App'
 const persistor = persistStore(store)
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-  <Provider store={store}>
-    <BrowserRouter>
+  <BrowserRouter>
+    <Provider store={store}>
       <CssBaseline>
         <PersistGate loading={null} persistor={persistor}>
           <App />
         </PersistGate>
       </CssBaseline>
-    </BrowserRouter>
-  </Provider>,
+    </Provider>
+  </BrowserRouter>,
 )

@@ -1,115 +1,38 @@
-import { lazy, Suspense } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import CheckoutForm from '../pages/User/CheckoutForm'
 import Notfoundpage from '../pages/User/NotFoundPage'
 import ResultPage from '../pages/User/Result'
-
-const Home = lazy(() => import('../pages/User/Home'))
+import Home from '../pages/User/Home'
+import AllProducts from '../pages/User/AllProducts'
+import Product from '../pages/User/Product'
+import Cart from '../pages/User/Cart'
+// import Login from '../pages/Admin/Login'
+// import UserLayout from '../pages/User/Layout'
+import Inventory from '../pages/Admin/Inventory'
+import Order from '../pages/Admin/Order'
+import ProductsTable from '../pages/Admin/Products'
+/**
+* ? Learning
 const Product = lazy(() => import('../pages/User/Product'))
-const Cart = lazy(() => import('../pages/User/Cart'))
-const Login = lazy(() => import('../components/Admin/Login'))
-const UserLayout = lazy(() => import('../components/User/Layout'))
-const Inventory = lazy(() => import('../pages/Admin/Inventory'))
-const Order = lazy(() => import('../pages/Admin/Order'))
-const ProductsTable = lazy(() => import('../pages/Admin/Products'))
-const AllProducts = lazy(() => import('../pages/User/AllProducts'))
+*/
 
-const routes = [
-  {
-    path: '/',
-    component: (
-      <Suspense fallback={<div>loading...</div>}>
-        <UserLayout>
-          <Home />
-        </UserLayout>
-      </Suspense>
-    ),
-    isPrivate: false,
-  },
+function MainRouter() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/checkout/cart" element={<Cart />} />
+      {/* <Route path="/auth/login" element={<Login />} /> */}
+      <Route path="/dashboard/products" element={<ProductsTable />} />
+      <Route path="/dashboard/inventory" element={<Inventory />} />
+      <Route path="/dashboard/order" element={<Order />} />
+      <Route path="/product/:id" element={<Product />} />
+      <Route path="*" element={<Notfoundpage />} />
+      <Route path="/checkout/userInfo" element={<CheckoutForm />} />
+      <Route path="/result" element={<ResultPage />} />
 
-  {
-    path: '/products/category/:category',
-    component: (
-      <Suspense fallback={<div>loading...</div>}>
-        <UserLayout>
-          <AllProducts />
-        </UserLayout>
-      </Suspense>
-    ),
-    isPrivate: false,
-  },
-  {
-    path: '/checkout/cart',
-    component: (
-      <Suspense fallback={<div>loading...</div>}>
-        <UserLayout>
-          <Cart />
-        </UserLayout>
-      </Suspense>
-    ),
-    isPrivate: false,
-  },
-  {
-    path: '/auth/login',
-    component: (
-      <Suspense fallback={<div>loading...</div>}>
-        <Login />
-      </Suspense>
-    ),
-    isPrivate: false,
-  },
-  {
-    path: '/dashboard/products',
-    component: (
-      <Suspense fallback={<div>loading...</div>}>
-        <ProductsTable />
-      </Suspense>
-    ),
-    isPrivate: true,
-  },
-  {
-    path: '/dashboard/inventory',
-    component: (
-      <Suspense fallback={<div>loading...</div>}>
-        <Inventory />
-      </Suspense>
-    ),
-    isPrivate: false,
-  },
-  {
-    path: '/dashboard/order',
-    component: (
-      <Suspense fallback={<div>loading...</div>}>
-        <Order />
-      </Suspense>
-    ),
-    isPrivate: false,
-  },
-  {
-    path: '/product/:id',
-    component: (
-      <Suspense fallback={<div>loading...</div>}>
-        <UserLayout>
-          <Product />
-        </UserLayout>
-      </Suspense>
-    ),
-    isPrivate: false,
-  },
-  {
-    path: '/404',
-    component: <Notfoundpage />,
-    isPrivate: false,
-  },
-  {
-    path: '/checkout/userInfo',
-    component: <CheckoutForm />,
-    isPrivate: false,
-  },
-  {
-    path: '/result',
-    component: <ResultPage />,
-    isPrivate: false,
-  },
-]
+      <Route path="/products/category/:category" element={<AllProducts />} />
+    </Routes>
+  )
+}
 
-export default routes
+export default MainRouter
