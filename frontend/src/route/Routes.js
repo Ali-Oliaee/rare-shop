@@ -29,7 +29,6 @@ function MainRouter() {
       <Route path="*" element={<Notfoundpage />} />
       <Route path="/checkout/userInfo" element={<CheckoutForm />} />
       <Route path="/result" element={<ResultPage />} />
-
       <Route path="/products/category/:category" element={<AllProducts />} />
     </Routes>
   )
