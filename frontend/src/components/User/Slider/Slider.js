@@ -1,7 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
-import { BASE_URL } from "../../../core/constants";
 import { Link } from "react-router-dom";
 import "./Slider.scss";
 
@@ -41,7 +40,7 @@ export default function Slider(props) {
                                 style={{ width: "100%" }}
                                 to={`/product/${swipe.id}`}
                             >
-                                <img src={BASE_URL + swipe.image} />
+                                <img src={process.env.BASE_URL + swipe.image} />
                             </Link>
                         }
                     </SwiperSlide>

@@ -1,5 +1,4 @@
-import axios, { CanceledError } from "axios";
-import { TOKEN_LOCAL_KEY } from "../core/constants";
+import axios from "axios";
 import { store } from "../redux/store";
 import { startLoading, endLoading } from "../redux/reducers/LoadingSlice";
 

@@ -14,11 +14,11 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { ProductsApi } from "../../../api/Products";
 import { AdminApi } from "../../../api/AdminApi";
-import { BASE_URL } from "../../../core/constants";
 import NewProductModal from "./NewProduct";
 import Delete from "./Delete";
 import Edit from "./Edit";
 import { Link } from "react-router-dom";
+
 const useStyle = makeStyles({
    root: {
       background: "#9381ff",
@@ -167,7 +167,7 @@ export default function AllProductsTable() {
                                  <TableCell>
                                     <img
                                        style={{ maxWidth: 60 }}
-                                       src={BASE_URL + row.image}
+                                       src={process.env.BASE_URL + row.image}
                                        alt="تصویر کالا"
                                     />
                                  </TableCell>

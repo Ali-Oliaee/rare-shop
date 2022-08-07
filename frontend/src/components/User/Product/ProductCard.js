@@ -4,7 +4,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { BASE_URL } from "../../../core/constants";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
@@ -43,7 +42,7 @@ export default function ProductCard({ data }) {
             <CardMedia
                component="img"
                sx={{ width: 250, height: 250, borderRadius: 4 }}
-               image={BASE_URL + data.image}
+               image={process.env.BASE_URL + data.image}
                alt="عکس کالا"
             />
             <Box>

@@ -7,7 +7,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { OrdersApi } from "../../../api/OrdersApi";
-import { BASE_URL } from "../../../core/constants";
 import Delete from "@mui/icons-material/Delete";
 import { makeStyles } from "@mui/styles";
 import { useSelector } from "react-redux";
@@ -63,7 +62,7 @@ export default function CartTable({ orders, handleDelete }) {
                               <TableCell align="center">
                                  <img
                                     style={{ maxWidth: 60 }}
-                                    src={BASE_URL + item?.productDetail?.image}
+                                    src={process.env.BASE_URL + item?.productDetail?.image}
                                     alt="تصویر کالا"
                                  />
                               </TableCell>

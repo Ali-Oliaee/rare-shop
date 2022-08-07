@@ -1,33 +1,8 @@
 import { createTheme } from "@mui/material/styles";
-import IRANSansWeb_Black from "../assets/fonts/IRANSansWeb_Black.ttf"
-export let theme = createTheme({
+
+export const theme = createTheme({
    direction: 'rtl',
    palette: {
-      // #FBF8CC,
-      // #FCF6BD
-      // #e9ff70,
-      // #deff0a
-      // #fbff12,
-      // #ffe45e,
-      // #ffea00, 
-      // #FDE4CF,
-      // #FFCFD2,
-      // #F1C0E8,
-      // #E4C1F9,
-      // #CFBAF0,
-      // #bdb2ff,
-      // #9381ff,
-      // #6d23b6,
-      // #FF99C8,
-      // #ff5d8f,
-      // #B9FBC0,
-      // #98F5E1,
-      // #8EECF5,
-      // #90DBF4,
-      // #A3C4F3,
-      // #147df5
-   
-
       neutral_light: {
          main: "#fff",
          contrastText: "#000",

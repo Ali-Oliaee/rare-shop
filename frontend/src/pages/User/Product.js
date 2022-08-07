@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { BASE_URL } from "../../core/constants";
 import styled from "styled-components";
 import cardBg from "../../assets/pic/productDetailsBg.jpeg";
 import { useParams } from "react-router-dom";
@@ -12,6 +11,7 @@ import { addToCart, decreaseCart } from "../../redux/reducers/CartSlice";
 import { toast } from "react-toastify";
 import Counter from "../../components/User/Cart/Counter";
 import { v4 as uuidv4 } from "uuid";
+
 const Card = styled("div")``;
 const CardBody = styled("div")`
    display: flex;
@@ -123,9 +123,9 @@ export default function ProductDetails() {
                      <div onClick={() => alert("hello")}>
                         <ImageListItemStyled key={uuidv4()}>
                            <img
-                              src={BASE_URL + `${item}`}
+                              src={process.env.BASE_URL + `${item}`}
                               srcSet={
-                                 BASE_URL +
+                                 process.env.BASE_URL +
                                  `${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`
                               }
                               alt={item}
@@ -135,7 +135,7 @@ export default function ProductDetails() {
                      </div>
                   ))}
                </ImageListStyled>
-               <Image src={BASE_URL + productDetail.image} />
+               <Image src={process.env.BASE_URL + productDetail.image} />
                <CardContent>
                   <Cardtext>
                      <CardName>{productDetail.name}</CardName>
