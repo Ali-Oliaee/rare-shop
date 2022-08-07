@@ -29,6 +29,7 @@
         "no-unused-vars": "warn",
         "react/react-in-jsx-scope": "off",
         "react/prop-types": "off",
+        "global-require": 0,
         "react/jsx-filename-extension": [
             1,
             {
