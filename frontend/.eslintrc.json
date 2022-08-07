@@ -17,15 +17,6 @@
     "plugins": [
         "react"
     ],
-    "react/jsx-filename-extension": [
-        1,
-        {
-            "extensions": [
-                ".js",
-                ".jsx"
-            ]
-        }
-    ],
     "rules": {
         "quotes": [
             "error",
@@ -35,6 +26,17 @@
             "error",
             "never"
         ],
-        "no-unused-vars": "warn"
+        "no-unused-vars": "warn",
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off",
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ]
     }
 }
