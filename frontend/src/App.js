@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
 import { theme } from "./core/Theme";
 import { ThemeProvider } from "@emotion/react";
 import { routes } from "./route/Routes";
@@ -9,7 +8,8 @@ import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
 import Toastcontainer from "./components/Admin/Toast-Alert/ToastContainer";
-// Create rtl cache
+import "./App.css";
+
 const cacheRtl = createCache({
    key: "muirtl",
    stylisPlugins: [prefixer, rtlPlugin],
@@ -22,7 +22,6 @@ function App() {
                <Routes>
                   {routes.map((rout, index) => {
                      if (rout.isPrivate) {
-                        
                         return (
                            <Route
                               key={rout.path}

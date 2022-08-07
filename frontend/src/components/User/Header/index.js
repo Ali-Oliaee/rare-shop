@@ -7,11 +7,11 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
-import "./Header.scss";
 import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux";
 import SearchIcon from "@mui/icons-material/Search";
 import Searchbox from "../SearchBox/SearchBox";
+import "./Header.scss";
 
 const UserHeader = () => {
    const [badgeCounter, setBadgeCounter] = useState(0);
@@ -174,11 +174,6 @@ const UserHeader = () => {
                   </li>
                   <li>
                      <Link to="/products/category/4">لوازم آرایش</Link>
-                     {/* <div>
-                        <ul>
-                           <li><Link></Link></li>
-                        </ul>
-                     </div> */}
                   </li>
                </ul>
             </Container>
