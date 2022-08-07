@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,36 +5,40 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { OrdersApi } from "../../../api/OrdersApi";
 import Delete from "@mui/icons-material/Delete";
 import { makeStyles } from "@mui/styles";
-import { useSelector } from "react-redux";
 import Button from "@mui/material/Button";
 import Counter from "./Counter";
 import { addToCart, decreaseCart } from "../../../redux/reducers/CartSlice";
 import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+
 const useStyle = makeStyles({
    root: {
       width: "70%",
       margin: "auto",
    },
 });
+
 export default function CartTable({ orders, handleDelete }) {
    const columns = ["تصویر کالا", "نام کالا", "قیمت", "تعداد", "تعداد", " حذف"];
    const dispatch = useDispatch();
-   const classes = useStyle();
-   console.log(orders);
-   const handleDecrement = (product) => {
-      dispatch(decreaseCart(product[0]));
-   };
-   const handleIncrement = (product) => {
-      dispatch(addToCart(product[0]));
-   };
-   const [cartTotalQuantity, cartTotalAmount] = JSON.parse(
-      localStorage.getItem("total")
-   );
+   const classes = useStyle();   
+   const handleDecrement = (product) => dispatch(decreaseCart(product[0]));
+   const handleIncrement = (product) => dispatch(addToCart(product[0]));
+   const [cartTotalQuantity, cartTotalAmount] = JSON.parse(localStorage.getItem("total"));
+   const connectToWallet = () =>  {
+      if(window.ethereum){
+         window.ethereum.request({method:'eth_requestAccounts'})
+         .then(res => {
+                 // Return the address of the wallet
+                 console.log(res) 
+         })
+      }
+      else return alert("install metamask extension!!")
+   }
+
    return (
       <>
          <TableContainer className={classes.root} component={Paper}>
@@ -118,11 +121,14 @@ export default function CartTable({ orders, handleDelete }) {
             <Typography typography="p">{` جمع کل:  ${cartTotalAmount?.toLocaleString(
                "fa"
             )} تومان`}</Typography>
-            <Link style={{ textDecoration: "none" }} to="/checkout/userInfo">
+            {/* <Link style={{ textDecoration: "none" }} to="/checkout/userInfo">
                <Button variant="contained" sx={{ backgroundColor: "green", marginLeft: 20 }}>
                   نهایی کردن سبد خرید
                </Button>
-            </Link>
+            </Link> */}
+            <Button variant="contained" sx={{ backgroundColor: "green", marginLeft: 20 }} onClick={connectToWallet}>
+                  نهایی کردن سبد خرید
+            </Button>
          </div>
       </>
    );
