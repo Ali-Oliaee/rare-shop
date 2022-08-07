@@ -7,7 +7,7 @@ class Service {
   constructor(entity) {
     this.instance = axios.create()
     this.entity = entity
-    this.baseApisUrl = `http://localhost:8000${this.entity}`
+    this.baseApisUrl = process.env.BASE_URL + this.entity
     this.instance.interceptors.request.use(
       (config) => {
         store.dispatch(startLoading())
@@ -18,20 +18,15 @@ class Service {
         }
         return config
       },
-      (error) => {
-        Promise.reject(error)
-      },
+      (error) => Promise.reject(error),
     )
     this.instance.interceptors.response.use(
       (res) => {
         store.dispatch(endLoading())
         const { status } = res
-        if (status > 400) {
-          window.location.pathname = '/404'
-        }
+        if (status > 400) window.location.pathname = '/404'
         return res
       },
-
       (error) => {
         if (error.response.status === 401) {
           console.log(error)
@@ -42,7 +37,6 @@ class Service {
         return error.response
       },
     )
-
     // this.instance.defaults.timeout = 60000;
     this.instance.defaults.baseURL = process.env.REACT_APP_SUB_API
   }
@@ -52,16 +46,12 @@ class Service {
   get = (id, config) => this.instance.get(`${this.baseApisUrl}/${id}`, config)
 
   post = (body, formdata = false) => {
-    if (formdata) {
-      body = this.formdata(body)
-    }
+    if (formdata) body = this.formdata(body)
     return this.instance.post(`${this.baseApisUrl}`, body)
   }
 
   patch = (id, body, formdata = false) => {
-    if (formdata) {
-      body = this.formdata(body)
-    }
+    if (formdata) body = this.formdata(body)
     return this.instance.patch(`${this.baseApisUrl}/${id}`, body)
   }
 
