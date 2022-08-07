@@ -13,6 +13,8 @@ import { addToCart, decreaseCart } from "../../../redux/reducers/CartSlice";
 import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+const ethers = require('ethers')
 
 const useStyle = makeStyles({
    root: {
@@ -25,15 +27,19 @@ export default function CartTable({ orders, handleDelete }) {
    const columns = ["تصویر کالا", "نام کالا", "قیمت", "تعداد", "تعداد", " حذف"];
    const dispatch = useDispatch();
    const classes = useStyle();   
+   const [account, setAccount] = useState(null)
    const handleDecrement = (product) => dispatch(decreaseCart(product[0]));
    const handleIncrement = (product) => dispatch(addToCart(product[0]));
    const [cartTotalQuantity, cartTotalAmount] = JSON.parse(localStorage.getItem("total"));
    const connectToWallet = () =>  {
       if(window.ethereum){
          window.ethereum.request({method:'eth_requestAccounts'})
-         .then(res => {
-                 // Return the address of the wallet
-                 console.log(res) 
+         .then((address) => {
+            window.ethereum
+            .request({ 
+               method: "eth_getBalance", 
+               params: [address[0], "latest"] 
+            }).then((balance) => setAccount({address, balance: ethers.utils.formatEther(balance)}))
          })
       }
       else return alert("install metamask extension!!")
@@ -46,7 +52,7 @@ export default function CartTable({ orders, handleDelete }) {
                <TableHead>
                   <TableRow>
                      {columns.map((item) => (
-                        <TableCell align="center">{item}</TableCell>
+                        <TableCell key={item} align="center">{item}</TableCell>
                      ))}
                   </TableRow>
                </TableHead>
@@ -55,7 +61,7 @@ export default function CartTable({ orders, handleDelete }) {
                      return (
                         <TableRow
                            key={item?.productDetail?.id}
-                           sx={{
+                           sx ={{
                               "&:last-child td, &:last-child th": {
                                  border: 0,
                               },
@@ -121,6 +127,13 @@ export default function CartTable({ orders, handleDelete }) {
             <Typography typography="p">{` جمع کل:  ${cartTotalAmount?.toLocaleString(
                "fa"
             )} تومان`}</Typography>
+            {account && (
+               <div style={{direction: 'ltr'}}>
+                  <h3>Account Connected</h3>
+                  <p>Address: {account.address}</p>
+                  <p>Balance: {account.balance}</p>
+               </div>
+            )}
             {/* <Link style={{ textDecoration: "none" }} to="/checkout/userInfo">
                <Button variant="contained" sx={{ backgroundColor: "green", marginLeft: 20 }}>
                   نهایی کردن سبد خرید
