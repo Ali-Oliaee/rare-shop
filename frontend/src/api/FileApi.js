@@ -1,5 +1,5 @@
-import http from "./HttpApi"
+import Http from './HttpApi'
 
-const FileApi = new http("/");
+const FileApi = new Http('/')
 
-export { FileApi }
+export default FileApi

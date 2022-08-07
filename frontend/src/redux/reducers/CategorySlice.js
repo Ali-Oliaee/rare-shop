@@ -1,37 +1,37 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 // import { AdminApi } from "../../api/AdminApi";
 
-const fetchCategoryName = createAsyncThunk("getCategory", async (thunkAPI) => {
-   // const response = await AdminApi.getCategoryId();
-   // return response.data;
-});
+const fetchCategoryName = createAsyncThunk('getCategory', async (thunkAPI) => {
+  // const response = await AdminApi.getCategoryId();
+  // return response.data;
+})
 
 const fetchSubCategoryName = createAsyncThunk(
-   "getSubCategory",
-   async (thunkAPI) => {
-      // const response = await AdminApi.getSubCategoryId();
-      // return response.data;
-   }
-);
+  'getSubCategory',
+  async (thunkAPI) => {
+    // const response = await AdminApi.getSubCategoryId();
+    // return response.data;
+  },
+)
 const initialState = {
-   category: [],
-   subCategory: [],
-};
+  category: [],
+  subCategory: [],
+}
 export const CategorySlice = createSlice({
-   name: "category",
-   initialState,
-   reducers: {
-      getCategoryName:
+  name: 'category',
+  initialState,
+  reducers: {
+    getCategoryName:
          (fetchCategoryName.fulfilled,
          (state, action) => {
-            state.category.push(action.payload);
+           state.category.push(action.payload)
          }),
-      getSubCategoryName:
+    getSubCategoryName:
          (fetchSubCategoryName.fulfilled,
          (state, action) => {
-            state.subCategory.push(action.payload);
+           state.subCategory.push(action.payload)
          }),
-   },
-});
-export const { getCategoryName, getSubCategoryName } = CategorySlice.actions;
-export default CategorySlice.reducer;
+  },
+})
+export const { getCategoryName, getSubCategoryName } = CategorySlice.actions
+export default CategorySlice.reducer

@@ -1,10 +1,10 @@
-import { createSlice ,createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 // export const fetchProducts = createAsyncThunk('', () => {})
 
 export const LoadingSlice = createSlice({
   name: 'loading',
-  initialState:{
+  initialState: {
     loading: false,
   },
   reducers: {
@@ -12,10 +12,10 @@ export const LoadingSlice = createSlice({
       //  state.loading = true
     },
     endLoading: (state, action) => {
-       state.loading = false
+      // eslint-disable-next-line no-param-reassign
+      state.loading = false
     },
-  }
+  },
 })
-export const { startLoading, endLoading } = LoadingSlice.actions;
+export const { startLoading, endLoading } = LoadingSlice.actions
 export default LoadingSlice.reducer
-

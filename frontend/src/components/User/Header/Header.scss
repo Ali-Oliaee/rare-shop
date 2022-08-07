@@ -1,13 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
 .logo-shop {
    font-family: "Montserrat", sans-serif;
    font-size: 24px;
 }
+
 .links-ul {
    display: flex;
    list-style: none;
    justify-content: center;
    margin-top: 0;
+
    li a {
       text-decoration: none;
       margin: 0 1rem;
@@ -16,10 +19,12 @@
       font-size: 20px;
       color: white;
    }
+
    li a:hover {
       color: hsl(57, 87%, 67%);
    }
 }
+
 .triangle-down {
    width: 0;
    height: 0;
@@ -28,6 +33,7 @@
    border-top: 20px solid #90dbf4;
    margin-right: 40px;
 }
+
 .subCategorySlide {
    position: absolute;
    top: 125px;
@@ -35,6 +41,7 @@
    background: white;
    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
       rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
    ul li a {
       color: black;
    }

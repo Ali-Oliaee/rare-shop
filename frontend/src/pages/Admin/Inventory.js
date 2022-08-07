@@ -1,13 +1,12 @@
-import React from "react";
-import AdminLayout from "../../components/Admin/Layout";
-import Inventories from "../../components/Admin/Inventories/Inventories";
+import AdminLayout from '../../components/Admin/Layout'
+import Inventories from '../../components/Admin/Inventories/Inventories'
 
-const Inventory = () => {
-   return (
-      <AdminLayout>
-         <Inventories />
-      </AdminLayout>
-   );
-};
+function Inventory() {
+  return (
+    <AdminLayout>
+      <Inventories />
+    </AdminLayout>
+  )
+}
 
-export default Inventory;
+export default Inventory

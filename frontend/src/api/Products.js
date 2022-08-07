@@ -1,5 +1,5 @@
-import http from "./HttpApi"
+import Http from './HttpApi'
 
-const ProductsApi = new http("/products");
+const ProductsApi = new Http('/products')
 
-export { ProductsApi }
+export default ProductsApi

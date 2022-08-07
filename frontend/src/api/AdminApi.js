@@ -1,23 +1,11 @@
-import http from "./HttpApi"
+import Http from './HttpApi'
 
-const AdminApi = new http("/");
+const AdminApi = new Http('/')
 
-AdminApi.getCategoryId = function () {
-  return this.instance.get(`${this.baseApisUrl}category`);
-};
+AdminApi.getCategoryId = () => this.instance.get(`${this.baseApisUrl}category`)
+AdminApi.getSubCategoryId = () => this.instance.get(`${this.baseApisUrl}subCategory`)
+AdminApi.login = (body) => this.instance.post(`${this.baseApisUrl}auth/login`, body)
+AdminApi.upload = (body) => this.instance.post(`${this.baseApisUrl}upload`, body)
+AdminApi.update = (id, body) => this.instance.patch(`${this.baseApisUrl}${id}`, body)
 
-AdminApi.getSubCategoryId = function () {
-  return this.instance.get(`${this.baseApisUrl}subCategory`);
-}
-
-AdminApi.login = function (body) {
-  return this.instance.post(`${this.baseApisUrl}auth/login`, body);
-};
-
-AdminApi.upload = function (body) {
-  return this.instance.post(`${this.baseApisUrl}upload`, body);
-};
-AdminApi.update = function (id, body) {
-  return this.instance.patch(`${this.baseApisUrl}${id}`, body);
-};
-export { AdminApi }
+export default AdminApi

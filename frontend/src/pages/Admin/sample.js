@@ -1,12 +1,13 @@
-import React from 'react';
-import MyTable from '../../components/Admin/Table';
+/* eslint-disable no-undef */
+import React from 'react'
+import MyTable from '../../components/Admin/Table'
 
-const Sample = () => {
+function Sample() {
   return (
     <div>
-  <MyTable goods={products} column={column} rowsCell={rowsCell}/>
+      <MyTable goods={products} column={column} rowsCell={rowsCell} />
     </div>
-  );
+  )
 }
 
-export default Sample;
+export default Sample

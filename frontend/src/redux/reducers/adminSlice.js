@@ -1,16 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
+
 export const adminSlice = createSlice({
   name: 'admin',
-  initialState:{
+  initialState: {
     adminInfo: {},
   },
   reducers: {
-    setAdminInfo: (state, action) => {
-      return action.payload
-    },
-    
-  }
-})
-export const { setAdminInfo } = adminSlice.actions;
-export default adminSlice.reducer
+    setAdminInfo: (state, action) => action.payload,
 
+  },
+})
+export const { setAdminInfo } = adminSlice.actions
+export default adminSlice.reducer

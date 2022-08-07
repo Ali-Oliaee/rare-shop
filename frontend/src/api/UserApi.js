@@ -1,5 +1,5 @@
-import http from "./HttpApi"
+import Http from './HttpApi'
 
-const UserApi = new http("/users");
+const UserApi = new Http('/users')
 
-export { UserApi }
+export default UserApi

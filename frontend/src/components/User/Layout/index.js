@@ -1,14 +1,15 @@
-import React from "react";
-import UserHeader from "../Header";
-import Footer from "../Footer/Footer";
-const UserLayout = ({ children }) => {
-   return (
-      <>
-         <UserHeader />
-         <div>{children}</div>
-         <Footer />
-      </>
-   );
-};
+import React from 'react'
+import UserHeader from '../Header'
+import Footer from '../Footer/Footer'
 
-export default UserLayout;
+function UserLayout({ children }) {
+  return (
+    <>
+      <UserHeader />
+      <div>{children}</div>
+      <Footer />
+    </>
+  )
+}
+
+export default UserLayout
