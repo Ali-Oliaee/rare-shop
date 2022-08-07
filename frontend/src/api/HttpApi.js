@@ -2,6 +2,7 @@ import axios, { CanceledError } from "axios";
 import { TOKEN_LOCAL_KEY } from "../core/constants";
 import { store } from "../redux/store";
 import { startLoading, endLoading } from "../redux/reducers/LoadingSlice";
+
 class Service {
    constructor(entity) {
       this.instance = axios.create();

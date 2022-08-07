@@ -5,7 +5,7 @@
       "categoryId": 1,
       "subCategoryId": 3,
       "price": 580000,
-      "inventory": 16,
+      "inventory": 15,
       "image": "/files/e68a91064db6795c4e58464f10a2764e",
       "images": [
         "/files/e68a91064db6795c4e58464f10a2764e",
@@ -1584,6 +1584,30 @@
       "deliveredAt": null,
       "createdAt": 1657191312089,
       "id": 3
+    },
+    {
+      "customerDetails": {
+        "firstName": "علی",
+        "lastName": "عیلیایی",
+        "phone": "09105753695",
+        "address": "مشهد",
+        "date": 1659814200000
+      },
+      "orderItems": [
+        {
+          "name": "پیراهن مهمانی",
+          "thumbnail": "/files/e68a91064db6795c4e58464f10a2764e",
+          "price": 580000,
+          "quantity": 1
+        }
+      ],
+      "purchaseTotal": 580000,
+      "orderDate": 1659869463676,
+      "orderStatus": 3,
+      "delivery": 1659814200000,
+      "deliveredAt": null,
+      "createdAt": 1659869463777,
+      "id": 4
     }
   ],
   "orderStatus": [
