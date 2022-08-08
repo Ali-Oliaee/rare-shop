@@ -35,6 +35,72 @@
     }
 }
 
+.product-page {
+    img {
+        height: 450px;
+        width: 370px;
+        border-radius: 10px;
+        margin-top: 20px;
+        transition: width 2s ease-out;
+
+        &:hover {
+            width: 400px;
+        }
+    }
+
+    .card-body {
+        display: flex;
+        justify-content: center;
+
+        .image-list {
+            margin: 10px;
+            width: 100px;
+            height: 300px;
+        }
+
+        .card-body {
+            height: 320px;
+            width: 500px;
+            background: #ffe680;
+            margin-top: 50px;
+            border-radius: 10px 0 0 10px;
+
+            .card-title {
+                color: #00004d;
+                margin-right: 40px;
+            }
+
+            .card-description {
+                color: #00004d;
+                margin-right: 40px;
+                font-size: 23px;
+            }
+
+            .card-button {
+                background: #ff5d8f;
+                border: none;
+                padding: 5px 10px;
+                cursor: pointer;
+                margin: 20px 10px;
+            }
+
+            .card-footer {
+                display: flex;
+                justify-content: flex-end;
+                margin-left: 20px;
+                align-items: center;
+            }
+        }
+    }
+
+    .gallery {
+        position: "reletive";
+        top: 50%;
+        left: 50%;
+        transform: translate(-30%, -100%);
+    }
+}
+
 .not-found-page {
     display: flex;
     flex-direction: column;
