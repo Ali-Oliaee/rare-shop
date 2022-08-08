@@ -1,183 +1,121 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
+import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
+import Menu from '@mui/material/Menu'
+import { useSelector } from 'react-redux'
+import MenuIcon from '@mui/icons-material/Menu'
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import MenuItem from '@mui/material/MenuItem'
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore'
+import { Badge, Tooltip } from '@mui/material'
 import { Link } from 'react-router-dom'
-import Badge from '@mui/material/Badge'
-import { useSelector } from 'react-redux'
-import SearchIcon from '@mui/icons-material/Search'
-import Searchbox from '../SearchBox/SearchBox'
-import './Header.scss'
+import menuItems from './menu-items'
+import './style.scss'
 
-function UserHeader() {
+function ResponsiveAppBar() {
   const [badgeCounter, setBadgeCounter] = useState(0)
-  const [searchMode, setSearchMode] = useState(false)
-  const [active, setActive] = useState(false)
   const countOfOrders = useSelector((state) => state.cart.cartItems.length)
   useEffect(() => {
     setBadgeCounter(countOfOrders)
   }, [countOfOrders, badgeCounter])
+  const [anchorElNav, setAnchorElNav] = useState(null)
+  const [anchorEl, setAnchorEl] = useState(null)
+  const handleClick = (index, event) => setAnchorEl({ [index]: event.currentTarget })
+  const handleClose = () => setAnchorEl(null)
+  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget)
+  const handleCloseNavMenu = () => setAnchorElNav(null)
 
   return (
-    <AppBar sx={{ background: '#90DBF4', boxShadow: 0 }} position="static">
+    <AppBar position="static" className="header">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 1, display: 'flex' }}>
-            <Link to="/dashboard/products" className="link-style">
-              <Button
-                sx={{
-                  my: 2,
-                  display: 'block',
-                  color: 'white',
-                  fontSize: 20,
-                }}
-              >
-                مدیریت
-              </Button>
-            </Link>
-            <Link to="/checkout/cart" className="link-style">
-              <Badge
-                style={{
-                  marginTop: 30,
-                  marginRight: 17,
-                }}
-                color="secondary"
-                badgeContent={badgeCounter}
-                showZero
-              >
-                <ShoppingCartIcon />
-              </Badge>
-            </Link>
-
-            <Button
-              onClick={() => setSearchMode(!searchMode)}
-              sx={{ color: 'white', mt: 1 }}
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
             >
-              <SearchIcon />
-            </Button>
-            {searchMode && <Searchbox />}
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {/* {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))} */}
+            </Menu>
           </Box>
-          <Link to="/" className="link-style">
-            <Typography
-              className="logo-shop"
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ marginTop: 'auto', fontSize: 24 }}
-            >
-              Rare Shop
-            </Typography>
-          </Link>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {Object.keys(menuItems).map((item, index) => (
+              <div key={item}>
+                <Button color="inherit" onClick={(e) => handleClick(index, e)}>
+                  {item}
+                  <i className="fas fa-caret-down" />
+                </Button>
+                <Menu
+                  anchorEl={anchorEl && anchorEl[index]}
+                  open={anchorEl && Boolean(anchorEl[index])}
+                  onClose={handleClose}
+                  getContentAnchorEl={null}
+                  anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                  transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+                >
+                  {menuItems[item].map((menuitems) => (
+                    <MenuItem
+                      key={menuitems}
+                      selected={menuitems === item}
+                      onClick={handleClose}
+                    >
+                      <Link to={menuitems.path}>{menuitems.title}</Link>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </div>
+            ))}
+            <Button linkComponent={Link} to="/products/category/4">
+              لوازم آرایش
+            </Button>
+          </Box>
+          <Tooltip title="مدیریت" className="header-icon">
+            <Button linkComponent={Link} to="/dashboard/products">
+              <ManageAccountsIcon />
+            </Button>
+          </Tooltip>
+          <Tooltip title="سبد خرید" className="header-icon">
+            <Button linkComponent={Link} to="/checkout/cart">
+              <Badge badgeContent={badgeCounter} showZero color="secondary">
+                <LocalGroceryStoreIcon />
+              </Badge>
+            </Button>
+          </Tooltip>
         </Toolbar>
-        <ul className="links-ul">
-          <li
-            onMouseEnter={() => {
-              setActive(1)
-            }}
-            onMouseLeave={() => {
-              setActive(0)
-            }}
-          >
-            <Link to="/products/category/1">پوشاک</Link>
-            <div className="subCategorySlide">
-              {active === 1 && (
-              <>
-                <div className="triangle-down" />
-                {' '}
-                <ul className="links-ul">
-                  <li>
-                    <Link to="/products/category/1">شلوار</Link>
-                  </li>
-                  <li>
-                    <Link to="/products/category/1">
-                      تیشرت و شومیز
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/products/category/1">
-                      پیراهن
-                    </Link>
-                  </li>
-                </ul>
-              </>
-              )}
-            </div>
-          </li>
-          <li
-            onMouseEnter={() => {
-              setActive(2)
-            }}
-            onMouseLeave={() => {
-              setActive(0)
-            }}
-          >
-            <Link to="/products/category/2">کیف و کفش</Link>
-            <div className="subCategorySlide">
-              {active === 2 && (
-              <>
-                <div className="triangle-down" />
-                <ul className="links-ul">
-                  <li>
-                    <Link to="/products/category/1">
-                      کفش اسپرت
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/products/category/1">
-                      کفش مجلسی
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/products/category/1">کیف</Link>
-                  </li>
-                </ul>
-              </>
-              )}
-            </div>
-          </li>
-          <li
-            onMouseEnter={() => {
-              setActive(3)
-            }}
-            onMouseLeave={() => {
-              setActive(0)
-            }}
-          >
-            <Link to="/products/category/3">اکسسوری</Link>
-            <div className="subCategorySlide">
-              {active === 3 && (
-              <>
-                <div className="triangle-down" />
-                <ul className="links-ul">
-                  <li>
-                    <Link to="/products/category/1">عینک</Link>
-                  </li>
-                  <li>
-                    <Link to="/products/category/2">
-                      {' '}
-                      گردنبند و دستبند
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/products/category/3">
-                      انگشتر و گوشواره
-                    </Link>
-                  </li>
-                </ul>
-              </>
-              )}
-            </div>
-          </li>
-          <li>
-            <Link to="/products/category/4">لوازم آرایش</Link>
-          </li>
-        </ul>
       </Container>
     </AppBar>
   )
 }
-export default UserHeader
+export default ResponsiveAppBar
