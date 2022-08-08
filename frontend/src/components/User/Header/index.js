@@ -3,7 +3,6 @@ import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
 import Menu from '@mui/material/Menu'
 import { useSelector } from 'react-redux'
 import MenuIcon from '@mui/icons-material/Menu'
@@ -70,7 +69,10 @@ function ResponsiveAppBar() {
               ))} */}
             </Menu>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', alignItems: 'center' } }}>
+            <Button component={Link} to="/" className="logo">
+              Rare Shop
+            </Button>
             {Object.keys(menuItems).map((item, index) => (
               <div key={item}>
                 <Button color="inherit" onClick={(e) => handleClick(index, e)}>
@@ -101,16 +103,16 @@ function ResponsiveAppBar() {
               لوازم آرایش
             </Button>
           </Box>
-          <Tooltip title="مدیریت" className="header-icon">
-            <Button linkComponent={Link} to="/dashboard/products">
-              <ManageAccountsIcon />
-            </Button>
-          </Tooltip>
           <Tooltip title="سبد خرید" className="header-icon">
             <Button linkComponent={Link} to="/checkout/cart">
               <Badge badgeContent={badgeCounter} showZero color="secondary">
                 <LocalGroceryStoreIcon />
               </Badge>
+            </Button>
+          </Tooltip>
+          <Tooltip title="مدیریت" className="header-icon">
+            <Button linkComponent={Link} to="/dashboard/products">
+              <ManageAccountsIcon />
             </Button>
           </Tooltip>
         </Toolbar>
