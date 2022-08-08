@@ -20,24 +20,21 @@ function App() {
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={theme}>
         <Routes>
-          {routes.map((rout, index) => {
-            if (rout.isPrivate) {
-              return (
+          {routes.map((rout) => (
+            rout.isPrivate
+              ? (
                 <Route
                   key={rout.path}
                   path={rout.path}
                   element={WithAuth(rout.component)}
                 />
-              )
-            }
-            return (
-              <Route
-                key={rout.path}
-                path={rout.path}
-                element={rout.component}
-              />
-            )
-          })}
+              ) : (
+                <Route
+                  key={rout.path}
+                  path={rout.path}
+                  element={rout.component}
+                />
+              )))}
         </Routes>
         <Toastcontainer />
       </ThemeProvider>
