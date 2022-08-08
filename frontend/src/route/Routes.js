@@ -97,7 +97,7 @@ const routes = [
     isPrivate: false,
   },
   {
-    path: '/404',
+    path: '*',
     component: <Notfoundpage />,
     isPrivate: false,
   },
