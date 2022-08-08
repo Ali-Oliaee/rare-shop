@@ -5,32 +5,13 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
-import { makeStyles } from '@mui/styles'
+import './style.scss'
 
-const useStyle = makeStyles({
-  root: {
-    '& .MuiButton-root': {
-      backgroundColor: '#bdb2ff',
-      marginRight: '8rem',
-      marginBottom: '10px',
-      padding: '7px 9px',
-      borderRadius: 0,
-      color: 'black',
-    },
-    '& .MuiButton-root:hover': {
-      backgroundColor: '#bdb2ff',
-      boxShadow: '-5px 5px 2px #FF99C8',
-    },
-  },
-})
 export default function ProductCard({ data }) {
-  const classes = useStyle()
   return (
-    <Link to={`/product/${data.id}`} className="link-style">
+    <Link to={`/product/${data.id}`} className="product-card">
       <Card
-        className={classes.root}
         sx={{
-          // display: "flex",
           width: 270,
           background: '#FAF59A',
           border: 'none',
@@ -49,7 +30,6 @@ export default function ProductCard({ data }) {
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              // width: 180,
               fontSize: 20,
             }}
           >
