@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-// import {Button} from "@material-ui/core";
-// import {ButtonGroup} from "@material-ui/core";
+import { Button, ButtonGroup } from '@material-ui/core'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import { Typography } from '@mui/material'
@@ -37,22 +36,22 @@ function Counter({
   }
   return (
     <div>
-      {/* <ButtonGroup
-            className={classes.root}
-            size="small"
-            aria-label="small outlined button group"
-         >
-            <Button className="myButton" onClick={handleIncrease}>
-               <AddIcon />
-            </Button>
-            <Typography className={classes.counterText} variant="p">
-               {count === inventory ? "حداکثر" + count : count}
-            </Typography>
+      <ButtonGroup
+        className={classes.root}
+        size="small"
+        aria-label="small outlined button group"
+      >
+        <Button className="myButton" onClick={handleIncrease}>
+          <AddIcon />
+        </Button>
+        <Typography className={classes.counterText} variant="p">
+          {count === inventory ? `حداکثر${count}` : count}
+        </Typography>
 
-            <Button className="myButton" onClick={handleDecrease}>
-               <RemoveIcon />
-            </Button>
-         </ButtonGroup> */}
+        <Button className="myButton" onClick={handleDecrease}>
+          <RemoveIcon />
+        </Button>
+      </ButtonGroup>
     </div>
   )
 }
