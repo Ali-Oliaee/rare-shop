@@ -7,15 +7,12 @@ class Service {
   constructor(entity) {
     this.instance = axios.create()
     this.entity = entity
-    this.baseApisUrl = process.env.BASE_URL + this.entity
+    this.baseApisUrl = (process.env.BASE_URL ?? 'http://localhost:8000') + this.entity
     this.instance.interceptors.request.use(
       (config) => {
         store.dispatch(startLoading())
         const token = localStorage.getItem('token')
-        if (token) {
-          // eslint-disable-next-line no-param-reassign
-          config.headers.token = token
-        }
+        if (token) config.headers.token = token
         return config
       },
       (error) => Promise.reject(error),
@@ -37,7 +34,6 @@ class Service {
         return error.response
       },
     )
-    // this.instance.defaults.timeout = 60000;
     this.instance.defaults.baseURL = process.env.REACT_APP_SUB_API
   }
 

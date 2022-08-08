@@ -1,37 +1,116 @@
-import { Route, Routes } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
+import { CircularProgress } from '@mui/material'
 import CheckoutForm from '../pages/User/CheckoutForm'
 import Notfoundpage from '../pages/User/NotFoundPage'
 import ResultPage from '../pages/User/Result'
-import Home from '../pages/User/Home'
-import AllProducts from '../pages/User/AllProducts'
-import Product from '../pages/User/Product'
-import Cart from '../pages/User/Cart'
-// import Login from '../pages/Admin/Login'
-// import UserLayout from '../pages/User/Layout'
-import Inventory from '../pages/Admin/Inventory'
-import Order from '../pages/Admin/Order'
-import ProductsTable from '../pages/Admin/Products'
-/**
-* ? Learning
+
+const Home = lazy(() => import('../pages/User/Home'))
 const Product = lazy(() => import('../pages/User/Product'))
-*/
+const Cart = lazy(() => import('../pages/User/Cart'))
+const Login = lazy(() => import('../components/Admin/Login'))
+const UserLayout = lazy(() => import('../components/User/Layout'))
+const Inventory = lazy(() => import('../pages/Admin/Inventory'))
+const Order = lazy(() => import('../pages/Admin/Order'))
+const ProductsTable = lazy(() => import('../pages/Admin/Products'))
+const AllProducts = lazy(() => import('../pages/User/AllProducts'))
 
-function MainRouter() {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/checkout/cart" element={<Cart />} />
-      {/* <Route path="/auth/login" element={<Login />} /> */}
-      <Route path="/dashboard/products" element={<ProductsTable />} />
-      <Route path="/dashboard/inventory" element={<Inventory />} />
-      <Route path="/dashboard/order" element={<Order />} />
-      <Route path="/product/:id" element={<Product />} />
-      <Route path="*" element={<Notfoundpage />} />
-      <Route path="/checkout/userInfo" element={<CheckoutForm />} />
-      <Route path="/result" element={<ResultPage />} />
-      <Route path="/products/category/:category" element={<AllProducts />} />
-    </Routes>
-  )
-}
+const routes = [
+  {
+    path: '/',
+    component: (
+      <Suspense fallback={<CircularProgress />}>
+        <UserLayout>
+          <Home />
+        </UserLayout>
+      </Suspense>
+    ),
+    isPrivate: false,
+  },
 
-export default MainRouter
+  {
+    path: '/products/category/:category',
+    component: (
+      <Suspense fallback={<CircularProgress />}>
+        <UserLayout>
+          <AllProducts />
+        </UserLayout>
+      </Suspense>
+    ),
+    isPrivate: false,
+  },
+  {
+    path: '/checkout/cart',
+    component: (
+      <Suspense fallback={<CircularProgress />}>
+        <UserLayout>
+          <Cart />
+        </UserLayout>
+      </Suspense>
+    ),
+    isPrivate: false,
+  },
+  {
+    path: '/auth/login',
+    component: (
+      <Suspense fallback={<CircularProgress />}>
+        <Login />
+      </Suspense>
+    ),
+    isPrivate: false,
+  },
+  {
+    path: '/dashboard/products',
+    component: (
+      <Suspense fallback={<CircularProgress />}>
+        <ProductsTable />
+      </Suspense>
+    ),
+    isPrivate: true,
+  },
+  {
+    path: '/dashboard/inventory',
+    component: (
+      <Suspense fallback={<CircularProgress />}>
+        <Inventory />
+      </Suspense>
+    ),
+    isPrivate: false,
+  },
+  {
+    path: '/dashboard/order',
+    component: (
+      <Suspense fallback={<CircularProgress />}>
+        <Order />
+      </Suspense>
+    ),
+    isPrivate: false,
+  },
+  {
+    path: '/product/:id',
+    component: (
+      <Suspense fallback={<CircularProgress />}>
+        <UserLayout>
+          <Product />
+        </UserLayout>
+      </Suspense>
+    ),
+    isPrivate: false,
+  },
+  {
+    path: '/404',
+    component: <Notfoundpage />,
+    isPrivate: false,
+  },
+  {
+    path: '/checkout/userInfo',
+    component: <CheckoutForm />,
+    isPrivate: false,
+  },
+  {
+    path: '/result',
+    component: <ResultPage />,
+    isPrivate: false,
+  },
+]
+
+export default routes
