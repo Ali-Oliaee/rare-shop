@@ -34,7 +34,7 @@ export const CartSlice = createSlice({
         }
         state.cartItems.push(tempProductItem)
 
-        toast.success('Product added to cart', {
+        toast.success('محصول به سبد خرید شما اضافه شد!', {
           position: 'bottom-left',
         })
       }
