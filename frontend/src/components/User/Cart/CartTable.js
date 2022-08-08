@@ -1,38 +1,23 @@
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
-import Paper from '@mui/material/Paper'
-import Delete from '@mui/icons-material/Delete'
-import { makeStyles } from '@mui/styles'
-import Button from '@mui/material/Button'
-import { useDispatch } from 'react-redux'
-import { Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import {
+  Table, TableBody, TableCell, Typography, TableHead,
+  TableRow, Paper, Button, TableContainer,
+} from '@mui/material'
+import Delete from '@mui/icons-material/Delete'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { addToCart, decreaseCart } from '../../../redux/reducers/CartSlice'
 import Counter from './Counter'
 
 const ethers = require('ethers')
 
-const useStyle = makeStyles({
-  root: {
-    width: '70%',
-    margin: 'auto',
-  },
-})
-
 export default function CartTable({ orders, handleDelete }) {
   const columns = ['تصویر کالا', 'نام کالا', 'قیمت', 'تعداد', 'تعداد', ' حذف']
   const dispatch = useDispatch()
-  const classes = useStyle()
   const [account, setAccount] = useState(null)
   const handleDecrement = (product) => dispatch(decreaseCart(product[0]))
   const handleIncrement = (product) => dispatch(addToCart(product[0]))
   const [cartTotalQuantity, cartTotalAmount] = JSON.parse(localStorage.getItem('total'))
-  // eslint-disable-next-line consistent-return
   const connectToWallet = () => {
     if (window.ethereum) {
       window.ethereum.request({ method: 'eth_requestAccounts' })
@@ -44,12 +29,12 @@ export default function CartTable({ orders, handleDelete }) {
             // eslint-disable-next-line max-len
             }).then((balance) => setAccount({ address, balance: ethers.utils.formatEther(balance) }))
         })
-    } else return alert('install metamask extension!!')
+    } return new Error('No wallet detected')
   }
 
   return (
     <>
-      <TableContainer className={classes.root} component={Paper}>
+      <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
