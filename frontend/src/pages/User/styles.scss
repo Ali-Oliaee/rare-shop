@@ -35,6 +35,18 @@
     }
 }
 
+.products-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .products-list {
+        justify-content: space-around;
+        margin: 0;
+    }
+}
+
 .product-page {
     img {
         height: 450px;
