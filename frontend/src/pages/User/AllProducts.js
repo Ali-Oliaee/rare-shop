@@ -3,7 +3,6 @@ import { Grid } from '@mui/material'
 import Pagination from '@mui/material/Pagination'
 import { useParams } from 'react-router-dom'
 import ProductsApi from '../../api/Products'
-import Breadcrumb from '../../components/User/Bradcrumb'
 import ProductCard from '../../components/User/Product/ProductCard'
 import './styles.scss'
 
@@ -31,7 +30,6 @@ function AllProducts() {
 
   return (
     <div className="products-page">
-      <Breadcrumb category={categoryName} />
       <Grid container ml={3} className="products-list">
         {products.map((product) => <ProductCard data={product} />)}
       </Grid>
