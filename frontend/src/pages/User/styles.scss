@@ -1,36 +1,26 @@
 .home-page {
-    .container-one {
-        background: linear-gradient(to right, white, #f4ed64);
-        display: flex;
-        align-items: center;
-        padding: 0 50px;
-        margin: 50px;
-    }
+    width: 100%;
 
-    .container-two {
-        background: linear-gradient(to left, white, #ff5d8f);
+    .container {
+        background: rgb(87, 37, 37);
         display: flex;
-        flex-direction: row-reverse;
         align-items: center;
         padding: 0 50px;
-        margin: 50px;
-    }
 
-    .container-three {
-        background: linear-gradient(to right, white, #147df5);
-        display: flex;
-        align-items: center;
-        padding: 0 50px;
-        margin: 50px;
+        .swiper {
+
+            &-wrapper {
+                max-width: 250px;
+            }
+        }
     }
 
     .divider-image {
-        width: 100%;
-        height: 40vh;
+        height: 400px;
         background-image: url('../../assets/pic/shoes.jpeg');
         background-position: center;
         background-size: cover;
-        background-repeat: norepeat;
+        background-repeat: no-repeat;
         background-attachment: fixed;
     }
 }

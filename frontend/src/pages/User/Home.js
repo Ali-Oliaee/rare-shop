@@ -40,7 +40,7 @@ function Home() {
 
   return (
     <div className="home-page">
-      <section className="container-one">
+      <section className="container">
         <Slider
           category={1}
           data={products[0]}
@@ -51,7 +51,7 @@ function Home() {
         />
       </section>
       <div className="divider-image" />
-      <section className="container-two">
+      <section className="container">
         <Slider
           category={2}
           color="#ff5d8f"
@@ -62,7 +62,7 @@ function Home() {
         />
       </section>
       <div className="divider-image" />
-      <section className="container-three">
+      <section className="container">
         <Slider
           color="#147df5"
           category={3}
