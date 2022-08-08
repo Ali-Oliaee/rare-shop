@@ -5,9 +5,9 @@ import './style.scss'
 function Footer() {
   return (
     <div className="footer">
-      <Button linkComponent={Link} to="/about">About</Button>
-      <Button linkComponent={Link} to="/contact">Contact</Button>
-      <Button linkComponent={Link} to="/stores">Stores</Button>
+      <Button component={Link} to="/about">About</Button>
+      <Button component={Link} to="/contact">Contact</Button>
+      <Button component={Link} to="/stores">Stores</Button>
     </div>
   )
 }

@@ -93,25 +93,25 @@ function ResponsiveAppBar() {
                       selected={menuitems === item}
                       onClick={handleClose}
                     >
-                      <Link to={menuitems.path}>{menuitems.title}</Link>
+                      <Button component={Link} to={menuitems.path}>{menuitems.title}</Button>
                     </MenuItem>
                   ))}
                 </Menu>
               </div>
             ))}
-            <Button linkComponent={Link} to="/products/category/4">
+            <Button component={Link} to="/products/category/4">
               لوازم آرایش
             </Button>
           </Box>
-          <Tooltip title="سبد خرید" className="header-icon">
-            <Button linkComponent={Link} to="/checkout/cart">
+          <Button component={Link} to="/checkout/cart">
+            <Tooltip title="سبد خرید" className="header-icon">
               <Badge badgeContent={badgeCounter} showZero color="secondary">
                 <LocalGroceryStoreIcon />
               </Badge>
-            </Button>
-          </Tooltip>
+            </Tooltip>
+          </Button>
           <Tooltip title="مدیریت" className="header-icon">
-            <Button linkComponent={Link} to="/dashboard/products">
+            <Button component={Link} to="/dashboard/products">
               <ManageAccountsIcon />
             </Button>
           </Tooltip>
