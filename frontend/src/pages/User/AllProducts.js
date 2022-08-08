@@ -36,6 +36,9 @@ function AllProducts() {
         {products.map((product) => <ProductCard data={product} />)}
       </Grid>
       <Pagination
+        className="pagination"
+        hideNextButton={page === count}
+        hidePrevButton={page === 1}
         page={page}
         count={count}
         onChange={handlePageChange}
