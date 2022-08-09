@@ -3,24 +3,11 @@ import { Button, ButtonGroup } from '@material-ui/core'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import { Typography } from '@mui/material'
-import { makeStyles } from '@mui/styles'
+import './styles.scss'
 
-const useStyle = makeStyles({
-  root: {
-    background: '#ff5d8f',
-    padding: 3.5,
-    '& .myButton': {
-      border: 'none',
-    },
-  },
-  counterText: {
-    textAlign: 'center',
-  },
-})
 function Counter({
   data, inventory, handleIncrement, handleDecrement,
 }) {
-  const classes = useStyle()
   const [count, setCount] = useState(data?.count || 1)
   const handleIncrease = () => {
     if (count < inventory) {
@@ -34,21 +21,17 @@ function Counter({
       handleDecrement([data?.productDetail, count - 1])
     }
   }
+
   return (
     <div>
-      <ButtonGroup
-        className={classes.root}
-        size="small"
-        aria-label="small outlined button group"
-      >
-        <Button className="myButton" onClick={handleIncrease}>
+      <ButtonGroup className="product-counter" size="small">
+        <Button className="counter-button" onClick={handleIncrease}>
           <AddIcon />
         </Button>
-        <Typography className={classes.counterText} variant="p">
+        <Typography className="counter-text" variant="p">
           {count === inventory ? `حداکثر${count}` : count}
         </Typography>
-
-        <Button className="myButton" onClick={handleDecrease}>
+        <Button className="counter-button" onClick={handleDecrease}>
           <RemoveIcon />
         </Button>
       </ButtonGroup>

@@ -1,0 +1,20 @@
+.product-counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border: 1px solid #888;
+
+    .counter-button {
+        border: none;
+        cursor: pointer;
+    }
+
+    .counter-text {
+        text-align: center;
+        user-select: none;
+        border-left: 1px solid #888;
+        border-right: 1px solid #888 !important;
+        height: auto;
+    }
+}
