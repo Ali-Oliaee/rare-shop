@@ -29,7 +29,7 @@ export default function CartTable({ orders, handleDelete }) {
             // eslint-disable-next-line max-len
             }).then((balance) => setAccount({ address, balance: ethers.utils.formatEther(balance) }))
         })
-    } return new Error('No wallet detected')
+    } else console.error('Please install MetaMask to use this dapp')
   }
 
   return (
@@ -105,6 +105,8 @@ export default function CartTable({ orders, handleDelete }) {
             Balance:
             {' '}
             {account.balance}
+            {' '}
+            ETH
           </p>
         </div>
         )}
