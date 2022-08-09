@@ -18,8 +18,8 @@
     & a:nth-child(2)::before {
         content: '';
         position: absolute;
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
         left: -18px;
         border-radius: 50%;
         background-color: transparent;
@@ -29,8 +29,8 @@
     & a:nth-child(2)::after {
         content: '';
         position: absolute;
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
         right: -18px;
         border-radius: 50%;
         background-color: transparent;
