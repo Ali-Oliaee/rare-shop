@@ -22,7 +22,7 @@ export default function ProductCard({ data }) {
         <CardMedia
           component="img"
           sx={{ width: 250, height: 250, borderRadius: 4 }}
-          image={process.env.BASE_URL + data.image}
+          image={`http://127.0.0.1:8000${data.image}`}
           alt="عکس کالا"
         />
         <Box>

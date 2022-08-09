@@ -1,26 +1,27 @@
-/* eslint-disable react/destructuring-assignment */
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination, Navigation } from 'swiper'
 import { Link } from 'react-router-dom'
 import './Slider.scss'
 
-export default function Slider(props) {
+export default function Slider({
+  urlCategory, category, description, color, findCategoryName, data,
+}) {
   return (
     <>
-      <div style={{ width: 500 }}>
+      <div>
         <h2>
           <Link
             className="mylink"
-            to={`/products/${props.urlCategory}`}
+            to={`/products/${urlCategory}`}
           >
-            {props.findCategoryName(props.category)}
+            {findCategoryName(category)}
           </Link>
         </h2>
-        <h3>{props?.description}</h3>
+        <h3>{description}</h3>
       </div>
       <Swiper
         style={{
-          '--swiper-pagination-color': `${props.color}`,
+          '--swiper-pagination-color': `${color}`,
         }}
         spaceBetween={30}
         centeredSlides
@@ -33,21 +34,17 @@ export default function Slider(props) {
         }}
         modules={[Autoplay, Pagination, Navigation]}
       >
-        {props.data?.map((swipe) => (
+        {data?.map((swipe) => (
           <SwiperSlide className="swiperImg" key={swipe.id}>
             <Link
               style={{ width: '100%' }}
               to={`/product/${swipe.id}`}
             >
-              {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
-              <img src={process.env.BASE_URL + swipe.image} alt="image" />
+              <img src={`http://127.0.0.1:8000${swipe.image}`} alt="product" />
             </Link>
           </SwiperSlide>
         ))}
       </Swiper>
-      {/* eslint-disable-next-line max-len */}
-      {/* <swiper :style="" :loop="false" :spaceBetween="10" :navigation="true" :thumbs="{ swiper: thumbsSwiper }" class="w-full aspect-w-1 aspect-h-1"> */}
-      {/* )} */}
     </>
   )
 }
