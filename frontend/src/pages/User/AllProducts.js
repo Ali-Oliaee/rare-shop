@@ -29,6 +29,7 @@ function AllProducts() {
       <Grid container ml={3} className="products-list" justifyContent="center">
         {products.map((product) => <ProductCard data={product} />)}
       </Grid>
+      {products.length > 0 && (
       <Pagination
         className="pagination"
         hideNextButton={page === count}
@@ -37,6 +38,7 @@ function AllProducts() {
         count={count}
         onChange={handlePageChange}
       />
+      )}
     </div>
   )
 }
