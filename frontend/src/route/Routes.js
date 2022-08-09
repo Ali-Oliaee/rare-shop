@@ -18,7 +18,7 @@ const routes = [
   {
     path: '/',
     component: (
-      <Suspense fallback={<CircularProgress />}>
+      <Suspense fallback={<CircularProgress className="loading" />}>
         <UserLayout>
           <Home />
         </UserLayout>
@@ -30,7 +30,7 @@ const routes = [
   {
     path: '/products/category/:category',
     component: (
-      <Suspense fallback={<CircularProgress />}>
+      <Suspense fallback={<CircularProgress className="loading" />}>
         <UserLayout>
           <AllProducts />
         </UserLayout>
@@ -41,7 +41,7 @@ const routes = [
   {
     path: '/checkout/cart',
     component: (
-      <Suspense fallback={<CircularProgress />}>
+      <Suspense fallback={<CircularProgress className="loading" />}>
         <UserLayout>
           <Cart />
         </UserLayout>
@@ -52,7 +52,7 @@ const routes = [
   {
     path: '/auth/login',
     component: (
-      <Suspense fallback={<CircularProgress />}>
+      <Suspense fallback={<CircularProgress className="loading" />}>
         <Login />
       </Suspense>
     ),
@@ -61,7 +61,7 @@ const routes = [
   {
     path: '/dashboard/products',
     component: (
-      <Suspense fallback={<CircularProgress />}>
+      <Suspense fallback={<CircularProgress className="loading" />}>
         <ProductsTable />
       </Suspense>
     ),
@@ -70,7 +70,7 @@ const routes = [
   {
     path: '/dashboard/inventory',
     component: (
-      <Suspense fallback={<CircularProgress />}>
+      <Suspense fallback={<CircularProgress className="loading" />}>
         <Inventory />
       </Suspense>
     ),
@@ -79,7 +79,7 @@ const routes = [
   {
     path: '/dashboard/order',
     component: (
-      <Suspense fallback={<CircularProgress />}>
+      <Suspense fallback={<CircularProgress className="loading" />}>
         <Order />
       </Suspense>
     ),
@@ -88,7 +88,7 @@ const routes = [
   {
     path: '/product/:id',
     component: (
-      <Suspense fallback={<CircularProgress />}>
+      <Suspense fallback={<CircularProgress className="loading" />}>
         <UserLayout>
           <Product />
         </UserLayout>
