@@ -47,6 +47,9 @@ function UserHeader({ window }) {
           </li>
         ))}
       </List>
+      <Button component={Link} to="/products/category/4">
+        لوازم آرایش
+      </Button>
     </Box>
   )
 
