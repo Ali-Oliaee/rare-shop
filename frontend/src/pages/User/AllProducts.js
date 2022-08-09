@@ -23,14 +23,10 @@ function AllProducts() {
   useEffect(() => {
     getProducts()
   }, [page, cat, count])
-  let categoryName = cat.category
-  if (categoryName === 1) categoryName = 'پوشاک'
-  else if (categoryName === 2) categoryName = 'کیف و کفش'
-  else if (categoryName === 3) categoryName = 'اکسسوری'
 
   return (
     <div className="products-page">
-      <Grid container ml={3} className="products-list">
+      <Grid container ml={3} className="products-list" justifyContent="center">
         {products.map((product) => <ProductCard data={product} />)}
       </Grid>
       <Pagination
