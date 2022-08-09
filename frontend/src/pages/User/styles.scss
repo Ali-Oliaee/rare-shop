@@ -26,12 +26,12 @@
 }
 
 .products-page {
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-block: 20px;
+    flex: 1;
 
     .products-list {
         margin: 0;

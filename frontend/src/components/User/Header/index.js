@@ -1,17 +1,12 @@
 import { useEffect, useState } from 'react'
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
-import Menu from '@mui/material/Menu'
+import {
+  AppBar, Box, Toolbar, IconButton, Menu, Badge, Tooltip,
+  Container, Button, MenuItem,
+} from '@mui/material'
 import { useSelector } from 'react-redux'
 import MenuIcon from '@mui/icons-material/Menu'
-import Container from '@mui/material/Container'
-import Button from '@mui/material/Button'
-import MenuItem from '@mui/material/MenuItem'
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore'
-import { Badge, Tooltip } from '@mui/material'
 import { Link } from 'react-router-dom'
 import menuItems from './menu-items'
 import './style.scss'
@@ -77,7 +72,6 @@ function ResponsiveAppBar() {
               <div key={item}>
                 <Button color="inherit" onClick={(e) => handleClick(index, e)}>
                   {item}
-                  <i className="fas fa-caret-down" />
                 </Button>
                 <Menu
                   anchorEl={anchorEl && anchorEl[index]}
