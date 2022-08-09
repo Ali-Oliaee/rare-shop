@@ -28,7 +28,7 @@ function ResponsiveAppBar() {
     <AppBar position="static" className="header">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -54,7 +54,7 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: 'block', sm: 'none' },
               }}
             >
               {/* {pages.map((page) => (
@@ -64,7 +64,7 @@ function ResponsiveAppBar() {
               ))} */}
             </Menu>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', alignItems: 'center' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex', alignItems: 'center' } }}>
             <Button component={Link} to="/" className="logo">
               Rare Shop
             </Button>
