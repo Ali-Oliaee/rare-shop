@@ -12,7 +12,7 @@ import Counter from './Counter'
 const ethers = require('ethers')
 
 export default function CartTable({ orders, handleDelete }) {
-  const columns = ['تصویر کالا', 'نام کالا', 'قیمت', 'تعداد', 'تعداد', ' حذف']
+  const columns = ['تصویر کالا', 'نام کالا', 'قیمت', 'تعداد باقی مانده', 'تعداد', ' حذف']
   const dispatch = useDispatch()
   const [account, setAccount] = useState(null)
   const handleDecrement = (product) => dispatch(decreaseCart(product[0]))
@@ -45,19 +45,11 @@ export default function CartTable({ orders, handleDelete }) {
           </TableHead>
           <TableBody>
             {orders?.cartItems?.map((item) => (
-              <TableRow
-                key={item?.productDetail?.id}
-                sx={{
-                  '&:last-child td, &:last-child th': {
-                    border: 0,
-                  },
-                }}
-              >
+              <TableRow key={item?.productDetail?.id}>
                 <TableCell component="th" scope="row">
                   <TableCell align="center">
                     <img
-                      style={{ maxWidth: 60 }}
-                      // eslint-disable-next-line no-unsafe-optional-chaining
+                      style={{ maxWidth: 40 }}
                       src={`http://127.0.0.1:8000${item?.productDetail?.image}`}
                       alt="تصویر کالا"
                     />
@@ -83,9 +75,7 @@ export default function CartTable({ orders, handleDelete }) {
                   />
                 </TableCell>
                 <TableCell align="center">
-                  <Button
-                    onClick={() => handleDelete(item?.productDetail?.id)}
-                  >
+                  <Button onClick={() => handleDelete(item?.productDetail?.id)}>
                     <Delete />
                   </Button>
                 </TableCell>
@@ -94,25 +84,15 @@ export default function CartTable({ orders, handleDelete }) {
           </TableBody>
         </Table>
       </TableContainer>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-around',
-          marginTop: 50,
-        }}
-      >
-        <Typography typography="p">
-          {`تعداد اقلام: ${cartTotalQuantity?.toLocaleString(
-            'fa',
-          )} عدد`}
-
-        </Typography>
-        <Typography typography="p">
-          {` جمع کل:  ${cartTotalAmount?.toLocaleString(
-            'fa',
-          )} تومان`}
-
-        </Typography>
+      <div className="basket-info">
+        <div>
+          <Typography typography="p">
+            {`تعداد اقلام: ${cartTotalQuantity?.toLocaleString('fa')} عدد`}
+          </Typography>
+          <Typography typography="p">
+            {` جمع کل:  ${cartTotalAmount?.toLocaleString('fa')} تومان`}
+          </Typography>
+        </div>
         {account && (
         <div style={{ direction: 'ltr' }}>
           <h3>Account Connected</h3>
@@ -128,12 +108,7 @@ export default function CartTable({ orders, handleDelete }) {
           </p>
         </div>
         )}
-        {/* <Link style={{ textDecoration: "none" }} to="/checkout/userInfo">
-               <Button variant="contained" sx={{ backgroundColor: "green", marginLeft: 20 }}>
-                  نهایی کردن سبد خرید
-               </Button>
-            </Link> */}
-        <Button variant="contained" sx={{ backgroundColor: 'green', marginLeft: 20 }} onClick={connectToWallet}>
+        <Button variant="contained" onClick={connectToWallet}>
           نهایی کردن سبد خرید
         </Button>
       </div>
