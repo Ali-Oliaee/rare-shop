@@ -166,7 +166,7 @@ export default function AllProductsTable() {
                     <TableCell>
                       <img
                         style={{ maxWidth: 60 }}
-                        src={process.env.BASE_URL + row.image}
+                        src={`http://127.0.0.1:8000${row.image}`}
                         alt="تصویر کالا"
                       />
                     </TableCell>

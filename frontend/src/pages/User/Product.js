@@ -49,15 +49,15 @@ function ProductDetails() {
             {images?.map((item) => (
               <ImageListItem key={uuidv4()}>
                 <img
-                  src={process.env.BASE_URL + item}
-                  srcSet={`${process.env.BASE_URL + item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                  src={`http://127.0.0.1:8000${item}`}
+                  srcSet={`${`http://127.0.0.1:8000${item}`}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                   alt={item}
                   loading="lazy"
                 />
               </ImageListItem>
             ))}
           </ImageList>
-          <img src={process.env.BASE_URL + productDetail.image} alt="محصول" />
+          <img src={`http://127.0.0.1:8000${productDetail.image}`} alt="محصول" />
           <div className="card-content">
             <div>
               <h1 className="card-title">{productDetail.name}</h1>

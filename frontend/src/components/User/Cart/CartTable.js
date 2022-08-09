@@ -58,7 +58,7 @@ export default function CartTable({ orders, handleDelete }) {
                     <img
                       style={{ maxWidth: 60 }}
                       // eslint-disable-next-line no-unsafe-optional-chaining
-                      src={process.env.BASE_URL + item?.productDetail?.image}
+                      src={`http://127.0.0.1:8000${item?.productDetail?.image}`}
                       alt="تصویر کالا"
                     />
                   </TableCell>
