@@ -41,16 +41,22 @@ function Home() {
   return (
     <div className="home-page">
       <section className="container">
+        <div className="description">
+          به فروشگاه ما خوش آمدید
+          <br />
+          <br />
+          خرید انواع پوشاک و کفش به سرعت و با کیفیت
+        </div>
         <Slider
           category={1}
           data={products[0]}
-          color="#F4ED64"
+          color="#1f8fb8"
           description={Categories[0]?.description}
           urlCategory="clothes"
           findCategoryName={findCategoryName}
         />
       </section>
-      <div className="divider-image" />
+      <div className="divider" />
       <section className="container">
         <Slider
           category={2}
@@ -60,9 +66,19 @@ function Home() {
           urlCategory="shoes-bag"
           findCategoryName={findCategoryName}
         />
+        <div className="description">
+          خرید انواع کفش و کاپشن
+          <br />
+          به سرعت و با کیفیت
+        </div>
       </section>
-      <div className="divider-image" />
+      <div className="divider" />
       <section className="container">
+        <div className="description">
+          خرید انواع کفش و کاپشن
+          <br />
+          به سرعت و با کیفیت
+        </div>
         <Slider
           color="#147df5"
           category={3}

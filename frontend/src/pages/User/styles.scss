@@ -1,27 +1,31 @@
 .home-page {
     width: 100%;
+    background: url('../../assets/pic/shoes.jpeg') no-repeat fixed center;
+    background-size: cover;
 
     .container {
-        background: rgb(87, 37, 37);
+        width: 100%;
+        background: transparent;
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
-        padding: 0 50px;
+        justify-content: space-around;
+        padding: 50px;
+        backdrop-filter: blur(8px);
 
-        .swiper {
-
-            &-wrapper {
-                max-width: 250px;
-            }
+        .description {
+            color: #fff;
+            margin-block: 10px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
         }
     }
 
-    .divider-image {
+    .divider {
         height: 400px;
-        background-image: url('../../assets/pic/shoes.jpeg');
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
     }
 }
 
@@ -41,6 +45,7 @@
 .product-page {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     padding: 20px;
 
     img {
