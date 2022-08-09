@@ -57,8 +57,9 @@ function UserHeader({ window }) {
           <IconButton
             color="inherit"
             edge="start"
+            aria-label="open drawer"
             onClick={handleDrawerToggle}
-            sx={{ display: { sx: 'none' } }}
+            sx={{ display: { sm: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
@@ -127,9 +128,6 @@ function UserHeader({ window }) {
         >
           {drawer}
         </Drawer>
-      </Box>
-      <Box component="main" sx={{ p: 3 }}>
-        <Toolbar />
       </Box>
     </Box>
   )
