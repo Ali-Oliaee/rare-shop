@@ -1,70 +1,68 @@
 import { useEffect, useState } from 'react'
 import {
-  AppBar, Box, Toolbar, IconButton, Menu, Badge, Tooltip,
-  Container, Button, MenuItem,
+  AppBar, Box, Toolbar, IconButton, Menu,
+  Badge, Tooltip, Button, MenuItem, List,
+  ListItem, ListItemText, Drawer, ListSubheader,
 } from '@mui/material'
 import { useSelector } from 'react-redux'
-import MenuIcon from '@mui/icons-material/Menu'
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore'
+import MenuIcon from '@mui/icons-material/Menu'
 import { Link } from 'react-router-dom'
 import menuItems from './menu-items'
 import './style.scss'
 
-function ResponsiveAppBar() {
+function UserHeader({ window }) {
+  const drawerWidth = 240
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen)
+  const container = window ? () => window().document.body : undefined
   const [badgeCounter, setBadgeCounter] = useState(0)
   const countOfOrders = useSelector((state) => state.cart.cartItems.length)
   useEffect(() => {
     setBadgeCounter(countOfOrders)
   }, [countOfOrders, badgeCounter])
-  const [anchorElNav, setAnchorElNav] = useState(null)
   const [anchorEl, setAnchorEl] = useState(null)
   const handleClick = (index, event) => setAnchorEl({ [index]: event.currentTarget })
   const handleClose = () => setAnchorEl(null)
-  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget)
-  const handleCloseNavMenu = () => setAnchorElNav(null)
+
+  const drawer = (
+    <Box onClick={handleDrawerToggle} className="drawer">
+      <Button component={Link} to="/" className="logo">
+        Rare Shop
+      </Button>
+      <List subheader={<li />}>
+        {Object.keys(menuItems).map((title) => (
+          <li key={title}>
+            <ul>
+              <ListSubheader>{title}</ListSubheader>
+              {menuItems[title].map((item) => (
+                <ListItem key={item.title}>
+                  <Button component={Link} to={item.path}>
+                    <ListItemText primary={item.title} />
+                  </Button>
+                </ListItem>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </List>
+    </Box>
+  )
 
   return (
-    <AppBar position="static" className="header">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', sm: 'none' },
-              }}
-            >
-              {/* {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))} */}
-            </Menu>
-          </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex', alignItems: 'center' } }}>
+    <Box sx={{ display: 'flex' }} className="header">
+      <AppBar component="nav" color="primary" position="fixed">
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
+          <IconButton
+            color="inherit"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ display: { sx: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center' }}>
             <Button component={Link} to="/" className="logo">
               Rare Shop
             </Button>
@@ -97,21 +95,44 @@ function ResponsiveAppBar() {
               لوازم آرایش
             </Button>
           </Box>
-          <Button component={Link} to="/checkout/cart">
-            <Tooltip title="سبد خرید" className="header-icon">
-              <Badge badgeContent={badgeCounter} showZero color="secondary">
-                <LocalGroceryStoreIcon />
-              </Badge>
-            </Tooltip>
-          </Button>
-          <Tooltip title="مدیریت" className="header-icon">
-            <Button component={Link} to="/dashboard/products">
-              <ManageAccountsIcon />
+          <div className="buttons-container">
+            <Button component={Link} to="/checkout/cart">
+              <Tooltip title="سبد خرید" className="header-icon">
+                <Badge badgeContent={badgeCounter} showZero color="secondary">
+                  <LocalGroceryStoreIcon />
+                </Badge>
+              </Tooltip>
             </Button>
-          </Tooltip>
+            <Tooltip title="مدیریت" className="header-icon">
+              <Button component={Link} to="/dashboard/products">
+                <ManageAccountsIcon />
+              </Button>
+            </Tooltip>
+          </div>
         </Toolbar>
-      </Container>
-    </AppBar>
+      </AppBar>
+      <Box component="nav">
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          sx={{
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </Box>
+      <Box component="main" sx={{ p: 3 }}>
+        <Toolbar />
+      </Box>
+    </Box>
   )
 }
-export default ResponsiveAppBar
+
+export default UserHeader
