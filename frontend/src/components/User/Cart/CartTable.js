@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
   Table, TableBody, TableCell, Typography, TableHead,
   TableRow, Paper, Button, TableContainer,
@@ -9,28 +8,12 @@ import { Link } from 'react-router-dom'
 import { addToCart, decreaseCart } from '../../../redux/reducers/CartSlice'
 import Counter from './Counter'
 
-const ethers = require('ethers')
-
 export default function CartTable({ orders, handleDelete }) {
   const columns = ['تصویر کالا', 'نام کالا', 'قیمت', 'تعداد باقی مانده', 'تعداد', ' حذف']
   const dispatch = useDispatch()
-  const [account, setAccount] = useState(null)
   const handleDecrement = (product) => dispatch(decreaseCart(product[0]))
   const handleIncrement = (product) => dispatch(addToCart(product[0]))
   const [cartTotalQuantity, cartTotalAmount] = JSON.parse(localStorage.getItem('total'))
-  const connectToWallet = () => {
-    if (window.ethereum) {
-      window.ethereum.request({ method: 'eth_requestAccounts' })
-        .then((address) => {
-          window.ethereum
-            .request({
-              method: 'eth_getBalance',
-              params: [address[0], 'latest'],
-            // eslint-disable-next-line max-len
-            }).then((balance) => setAccount({ address, balance: ethers.utils.formatEther(balance) }))
-        })
-    } else console.error('Please install MetaMask to use this dapp')
-  }
 
   return (
     <>
@@ -93,24 +76,7 @@ export default function CartTable({ orders, handleDelete }) {
             {` جمع کل:  ${cartTotalAmount?.toLocaleString('fa')} تومان`}
           </Typography>
         </div>
-        {account && (
-        <div style={{ direction: 'ltr' }}>
-          <h3>Account Connected</h3>
-          <p>
-            Address:
-            {' '}
-            {account.address}
-          </p>
-          <p>
-            Balance:
-            {' '}
-            {account.balance}
-            {' '}
-            ETH
-          </p>
-        </div>
-        )}
-        <Button variant="contained" onClick={connectToWallet}>
+        <Button variant="contained">
           نهایی کردن سبد خرید
         </Button>
       </div>

@@ -1,0 +1,14 @@
+.wallet-popover {
+    direction: ltr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    width: 400px;
+
+    .MuiTextField-root {
+        margin-bottom: 8px !important;
+        width: 100%;
+    }
+}

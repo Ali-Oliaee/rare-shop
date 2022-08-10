@@ -12,6 +12,14 @@
     .header-icon {
         color: #fff !important;
     }
+
+    .buttons-container {
+        display: flex;
+
+        a {
+            padding: 0;
+        }
+    }
 }
 
 .drawer {

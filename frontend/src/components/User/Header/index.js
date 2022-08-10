@@ -9,6 +9,7 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Link } from 'react-router-dom'
+import Wallet from '../wallet'
 import menuItems from './menu-items'
 import './style.scss'
 
@@ -100,6 +101,7 @@ function UserHeader({ window }) {
             </Button>
           </Box>
           <div className="buttons-container">
+            <Wallet />
             <Button component={Link} to="/checkout/cart">
               <Tooltip title="سبد خرید" className="header-icon">
                 <Badge badgeContent={badgeCounter} showZero color="secondary">
