@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import {
   AppBar, Box, Toolbar, IconButton, Menu,
   Badge, Tooltip, Button, MenuItem, List,
-  ListItem, ListItemText, Drawer, ListSubheader,
+  ListItem, ListItemText, Drawer, ListSubheader, useMediaQuery,
 } from '@mui/material'
 import { useSelector } from 'react-redux'
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
@@ -20,6 +20,7 @@ function UserHeader({ window }) {
   const container = window ? () => window().document.body : undefined
   const [badgeCounter, setBadgeCounter] = useState(0)
   const countOfOrders = useSelector((state) => state.cart.cartItems.length)
+  const isMobile = useMediaQuery('(max-width:620px)')
   useEffect(() => {
     setBadgeCounter(countOfOrders)
   }, [countOfOrders, badgeCounter])
@@ -58,6 +59,7 @@ function UserHeader({ window }) {
     <Box sx={{ display: 'flex' }} className="header">
       <AppBar component="nav" color="primary" position="fixed">
         <Toolbar sx={{ justifyContent: 'space-between' }}>
+          {isMobile && (
           <IconButton
             color="inherit"
             edge="start"
@@ -67,6 +69,7 @@ function UserHeader({ window }) {
           >
             <MenuIcon />
           </IconButton>
+          )}
           <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center' }}>
             <Button component={Link} to="/" className="logo">
               Rare Shop
@@ -117,23 +120,21 @@ function UserHeader({ window }) {
           </div>
         </Toolbar>
       </AppBar>
-      <Box component="nav">
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true,
-          }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </Box>
+      <Drawer
+        container={container}
+        variant="temporary"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true,
+        }}
+        sx={{
+          display: { xs: 'block', sm: 'none' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+        }}
+      >
+        {drawer}
+      </Drawer>
     </Box>
   )
 }
