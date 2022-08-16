@@ -1,0 +1,6 @@
+node_modules
+npm-debug.log
+Dockerfile
+.dockerignoreEXPOSE 8000
+
+CMD yarn start
