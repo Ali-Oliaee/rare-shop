@@ -1,6 +1,6 @@
-import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-import './style.scss';
+import { Button } from '@mui/material'
+import { Link } from 'react-router-dom'
+import './style.scss'
 
 function Footer() {
   return (
@@ -15,7 +15,7 @@ function Footer() {
         شعب
       </Button>
     </div>
-  );
+  )
 }
 
-export default Footer;
+export default Footer
